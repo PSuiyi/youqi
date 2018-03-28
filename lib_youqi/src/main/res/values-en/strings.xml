@@ -1,0 +1,9 @@
+<resources>
+    <string name="alert_cancel">Cancel</string>
+    <string name="znz_str_no_data">No Data</string>
+    <string name="token_time_out">Login token failure</string>
+    <string name="token_time_out_description">Your account is logged in or the token has expired on another device, please login again</string>
+    <string name="alert_sure">Sure</string>
+    <string name="common_no_data">No Data</string>
+    <string name="str_loading">Loading</string>
+</resources>

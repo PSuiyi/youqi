@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--gallery about-->
+    <color name="gallery_photo_mask">#88000000</color>
+    <color name="gallery_dark_gray">#FF343535</color>
+    <color name="gallery_background">#f7eee3</color>
+    <color name="gallery_separation">#FFDCDCDC</color>
+    <color name="gallery_text_gray">@color/text_gray</color>
+    <color name="gallery_text_black">@color/text_color</color>
+    <color name="gallery_folder_bg">#88FFFFFF</color>
+
+    <!--仿IOS-->
+    <color name="alertdialog_line">#c6c6c6</color>
+    <color name="actionsheet_blue">#037BFF</color>
+    <color name="actionsheet_red">#FD4A2E</color>
+    <color name="actionsheet_gray">#8F8F8F</color>
+    <color name="shadow_start">#80000000</color>
+    <color name="shadow_end">#00000000</color>
+</resources>
