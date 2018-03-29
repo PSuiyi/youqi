@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_common_navigation" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/distance_view">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tvVer"
+            style="@style/TextStyle"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/distance_view"
+            android:text="美客美租1.0v" />
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_marginTop="30dp"
+            android:text="美客美租是一款面向全体办公空间租赁企业、租户员工及地产经纪的办公空间综合服务软件，打造一个集办公空间房源搜索、经纪人自助看房、楼宇内外综合服务、垂直社区交流为一体的综合应用平台。美客美租app是一款生活服务的应用软件，美客美租是个房源出租平台，通过平台可以获取更多房屋出租信息，免费注册即可享受轻松在网上租房服务，通过身份认证绝对安全，简单app扫一扫即可拎包入住，给你的生活带来了便利，喜欢的用户欢迎下载使用。"
+            android:textColor="@color/text_color" />
+
+
+        <View style="@style/WeightView" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextStyle"
+                android:text="美客美租 版权所有" />
+
+            <TextView
+                style="@style/TextGrayStyle"
+                android:layout_marginTop="6dp"
+                android:text="Copyright © 1998 - 2017 Tencent Inc. All Rights Reserved"
+                android:textSize="@dimen/text_size_12" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

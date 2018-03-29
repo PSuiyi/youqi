@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_tab"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="-22dp"
+        android:layout_weight="1"
+        android:orientation="vertical" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:background="@mipmap/bg_tab_bottom"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButton1"
+                style="@style/main_tab_bottom"
+                android:checked="true"
+                android:drawableTop="@drawable/tab_main_1"
+                android:text="@string/tab_one" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                style="@style/main_tab_bottom"
+                android:drawableTop="@drawable/tab_main_2"
+                android:text="@string/tab_two" />
+
+            <LinearLayout
+                android:id="@+id/llAdd"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:src="@mipmap/tianjiadongtai" />
+
+            </LinearLayout>
+
+            <RadioButton
+                android:id="@+id/radioButton3"
+                style="@style/main_tab_bottom"
+                android:drawableTop="@drawable/tab_main_3"
+                android:text="@string/tab_three" />
+
+            <RadioButton
+                android:id="@+id/radioButton4"
+                style="@style/main_tab_bottom"
+                android:drawableTop="@drawable/tab_main_4"
+                android:text="@string/tab_four" />
+        </RadioGroup>
+    </FrameLayout>
+</LinearLayout>

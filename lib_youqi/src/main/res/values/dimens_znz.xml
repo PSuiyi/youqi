@@ -15,15 +15,26 @@
     <dimen name="distance_top">0dp</dimen>
 
     <!--textsize navsize etc.-->
-    <dimen name="text_small_size">12sp</dimen>
-    <dimen name="text_size">13sp</dimen>
-    <dimen name="text_larger_size">17sp</dimen>
-    <dimen name="title_size">15sp</dimen>
-    <dimen name="title_larger_size">18sp</dimen>
-    <dimen name="nav_size">18sp</dimen>
-    <dimen name="nav_text_size">14sp</dimen>
-    <dimen name="nav_larger_size">20sp</dimen>
-    <dimen name="row_text_size">16sp</dimen>
+    <dimen name="text_small_size">@dimen/text_size_12</dimen>
+    <dimen name="text_size">@dimen/text_size_14</dimen>
+    <dimen name="text_larger_size">@dimen/text_size_16</dimen>
+    <dimen name="title_size">@dimen/text_size_16</dimen>
+    <dimen name="title_larger_size">@dimen/text_size_18</dimen>
+    <dimen name="nav_size">@dimen/text_size_18</dimen>
+    <dimen name="nav_text_size">@dimen/text_size_14</dimen>
+    <dimen name="nav_larger_size">@dimen/text_size_20</dimen>
+    <dimen name="row_text_size">@dimen/text_size_16</dimen>
+
+
+    <dimen name="text_size_10">10sp</dimen>
+    <dimen name="text_size_12">12sp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
+    <dimen name="text_size_15">15sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
+    <dimen name="text_size_20">20sp</dimen>
+    <dimen name="text_size_22">22sp</dimen>
+    <dimen name="text_size_24">24sp</dimen>
 
 
     <!-- common -->
