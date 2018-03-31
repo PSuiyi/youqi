@@ -18,6 +18,10 @@
         </activity>
         <activity android:name=".ui.mine.MineProjectAct" />
         <activity android:name=".ui.mine.OneStepAct" />
+        <activity android:name=".ui.mine.message.MessageTabAct" />
+        <activity android:name=".ui.mine.order.OrderTabAct" />
+        <activity android:name=".ui.mine.order.OrderDetailAct" />
+        <activity android:name=".ui.mine.vip.VipCenterAct" />
     </application>
 
 </manifest>
