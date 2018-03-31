@@ -5,17 +5,17 @@ import android.support.v7.widget.RecyclerView;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.ServiceAdapter;
-import com.mzk.compass.youqi.base.BaseAppListFragment;
+import com.znz.compass.znzlibray.base.BaseListActivity;
 
 /**
- * Date： 2018/3/29 2018
+ * Date： 2018/3/31 2018
  * User： PSuiyi
  * Description：
  */
-public class HelpFrag extends BaseAppListFragment {
+public class ServiceListAct extends BaseListActivity {
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.common_list_layout_withnav, 2};
+        return new int[]{R.layout.act_lv_service, 1};
     }
 
     @Override
@@ -25,6 +25,11 @@ public class HelpFrag extends BaseAppListFragment {
 
     @Override
     protected void initializeNavigation() {
+
+    }
+
+    @Override
+    protected void initializeAppBusiness() {
 
     }
 
@@ -51,6 +56,11 @@ public class HelpFrag extends BaseAppListFragment {
 
     @Override
     protected void onRefreshFail(String error) {
+
+    }
+
+    @Override
+    protected void customeRefreshRequest(int actionPullToRefresh) {
 
     }
 }

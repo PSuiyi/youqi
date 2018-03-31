@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/distance_view">
+
+            <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                android:id="@+id/ivImage"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:foreground="@color/gray20"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/default_image_rect" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/distance_view"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvName"
+                    style="@style/TitleTextStyle"
+                    android:singleLine="true"
+                    android:text="黄渤、光线、多米音乐怎么还是凉了" />
+
+                <TextView
+                    android:id="@+id/tvContent"
+                    style="@style/TextGrayStyle"
+                    android:layout_marginTop="@dimen/distance_text"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="由奉佑生创立，背靠华谊、光线这样的文娱大佬，成为国内音乐第一股，又曾…" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/distance_text"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TextStyle"
+                        android:text="文化娱乐" />
+
+                    <View style="@style/WeightView" />
+
+                    <TextView
+                        android:id="@+id/tvTime"
+                        style="@style/TextGrayStyle"
+                        android:text="2017/08/12" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View style="@style/Line" />
+</LinearLayout>

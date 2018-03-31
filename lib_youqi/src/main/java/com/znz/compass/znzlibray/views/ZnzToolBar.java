@@ -366,7 +366,7 @@ public class ZnzToolBar extends LinearLayout {
      *
      * @param enable
      */
-    public void setEnableEdit(boolean enable) {
+    public void setSearchEnableEdit(boolean enable) {
         if (enable) {
             etSerach.setVisibility(VISIBLE);
             tvSearch.setVisibility(GONE);

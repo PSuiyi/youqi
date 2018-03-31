@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_common_navigation" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/llInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/wodebg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/TextWhiteStyle"
+                            android:drawablePadding="10dp"
+                            android:text="叶雨"
+                            android:textSize="@dimen/nav_larger_size"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/distance_view"
+                            android:src="@mipmap/vip" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/TextWhiteStyle"
+                        android:layout_marginTop="5dp"
+                        android:text="南京xxxxxx有限公司"
+                        android:textSize="@dimen/row_text_size" />
+                </LinearLayout>
+
+                <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/default_header" />
+            </LinearLayout>
+
+            <com.znz.compass.znzlibray.views.rowview.ZnzRowGroupView
+                android:id="@+id/commonRowGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

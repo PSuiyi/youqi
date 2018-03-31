@@ -24,6 +24,7 @@
     <dimen name="nav_text_size">@dimen/text_size_14</dimen>
     <dimen name="nav_larger_size">@dimen/text_size_20</dimen>
     <dimen name="row_text_size">@dimen/text_size_16</dimen>
+    <dimen name="tab_min_width">60dp</dimen>
 
 
     <dimen name="text_size_10">10sp</dimen>

@@ -1,21 +1,20 @@
-package com.mzk.compass.youqi.ui.help;
+package com.mzk.compass.youqi.ui.news;
 
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.mzk.compass.youqi.R;
-import com.mzk.compass.youqi.adapter.ServiceAdapter;
+import com.mzk.compass.youqi.adapter.NewsAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
 
 /**
- * Date： 2018/3/29 2018
+ * Date： 2018/3/31 2018
  * User： PSuiyi
  * Description：
  */
-public class HelpFrag extends BaseAppListFragment {
+public class NewsListFrag extends BaseAppListFragment {
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.common_list_layout_withnav, 2};
+        return new int[]{R.layout.common_list_layout};
     }
 
     @Override
@@ -30,12 +29,12 @@ public class HelpFrag extends BaseAppListFragment {
 
     @Override
     protected RecyclerView.LayoutManager getLayoutManager() {
-        return new GridLayoutManager(activity, 2);
+        return null;
     }
 
     @Override
     protected void initializeView() {
-        adapter = new ServiceAdapter(dataList);
+        adapter = new NewsAdapter(dataList);
         rvRefresh.setAdapter(adapter);
     }
 

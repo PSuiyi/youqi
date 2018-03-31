@@ -1,13 +1,10 @@
 package com.mzk.compass.youqi.ui.mine;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.mzk.compass.youqi.R;
-import com.mzk.compass.youqi.base.BaseAppFragment;
+import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.ui.setting.SettingAct;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
@@ -20,11 +17,11 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Date： 2018/3/29 2018
+ * Date： 2018/3/31 2018
  * User： PSuiyi
  * Description：
  */
-public class MineFrag extends BaseAppFragment {
+public class OneStepAct extends BaseAppActivity {
     @Bind(R.id.znzToolBar)
     ZnzToolBar znzToolBar;
     @Bind(R.id.znzRemind)
@@ -33,12 +30,11 @@ public class MineFrag extends BaseAppFragment {
     LinearLayout llNetworkStatus;
     @Bind(R.id.commonRowGroup)
     ZnzRowGroupView commonRowGroup;
-
     private ArrayList<ZnzRowDescription> rowDescriptionList = new ArrayList<>();
 
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.frag_mine};
+        return new int[]{R.layout.common_row_view, 1};
     }
 
     @Override
@@ -48,24 +44,14 @@ public class MineFrag extends BaseAppFragment {
 
     @Override
     protected void initializeNavigation() {
-
+        setTitleName("一站通对接");
     }
 
     @Override
     protected void initializeView() {
         rowDescriptionList.add(new ZnzRowDescription.Builder()
                 .withIconResId(R.mipmap.ic_launcher)
-                .withTitle("我的项目")
-                .withEnableArraw(true)
-                .withTextSize(14)
-                .withTitleColor(mDataManager.getColor(R.color.text_color))
-                .withOnClickListener(v -> {
-                    gotoActivity(MineProjectAct.class);
-                })
-                .build());
-        rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withIconResId(R.mipmap.ic_launcher)
-                .withTitle("我的订单")
+                .withTitle("业务申请")
                 .withEnableArraw(true)
                 .withTextSize(14)
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
@@ -74,7 +60,7 @@ public class MineFrag extends BaseAppFragment {
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
                 .withIconResId(R.mipmap.ic_launcher)
-                .withTitle("我的收藏")
+                .withTitle("工商进度")
                 .withEnableArraw(true)
                 .withTextSize(14)
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
@@ -83,7 +69,7 @@ public class MineFrag extends BaseAppFragment {
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
                 .withIconResId(R.mipmap.ic_launcher)
-                .withTitle("认证管理")
+                .withTitle("税务进度")
                 .withEnableArraw(true)
                 .withTextSize(14)
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
@@ -92,28 +78,7 @@ public class MineFrag extends BaseAppFragment {
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
                 .withIconResId(R.mipmap.ic_launcher)
-                .withTitle("一站通对接")
-                .withEnableArraw(true)
-                .withTextSize(14)
-                .withTitleColor(mDataManager.getColor(R.color.text_color))
-                .withOnClickListener(v -> {
-                    gotoActivity(OneStepAct.class);
-                })
-                .build());
-        rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withIconResId(R.mipmap.ic_launcher)
-                .withTitle("会员中心")
-                .withValue("VIP会员2010-11-04到期")
-                .withEnableArraw(true)
-                .withTextSize(14)
-                .withTitleColor(mDataManager.getColor(R.color.text_color))
-                .withOnClickListener(v -> {
-
-                })
-                .build());
-        rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withIconResId(R.mipmap.ic_launcher)
-                .withTitle("我的投稿")
+                .withTitle("预约拿账")
                 .withEnableArraw(true)
                 .withTextSize(14)
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
@@ -122,27 +87,25 @@ public class MineFrag extends BaseAppFragment {
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
                 .withIconResId(R.mipmap.ic_launcher)
-                .withTitle("账户管理")
+                .withTitle("开票管理")
                 .withEnableArraw(true)
                 .withTextSize(14)
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
                 .withOnClickListener(v -> {
-                    gotoActivity(SettingAct.class);
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
                 .withIconResId(R.mipmap.ic_launcher)
-                .withTitle("专属客服")
+                .withTitle("办公预约")
                 .withEnableArraw(true)
                 .withTextSize(14)
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
                 .withOnClickListener(v -> {
-                    gotoActivity(SettingAct.class);
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
                 .withIconResId(R.mipmap.ic_launcher)
-                .withTitle("系统设置")
+                .withTitle("进度查看")
                 .withEnableArraw(true)
                 .withTextSize(14)
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
@@ -159,16 +122,9 @@ public class MineFrag extends BaseAppFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }
