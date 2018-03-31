@@ -10,9 +10,9 @@ import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 
 import java.util.List;
 
-public class ServiceAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
+public class ProductAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
 
-    public ServiceAdapter(@Nullable List dataList) {
+    public ProductAdapter(@Nullable List dataList) {
         super(R.layout.item_gv_service, dataList);
     }
 

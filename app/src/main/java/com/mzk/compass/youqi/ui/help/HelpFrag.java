@@ -4,7 +4,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.mzk.compass.youqi.R;
-import com.mzk.compass.youqi.adapter.ServiceAdapter;
+import com.mzk.compass.youqi.adapter.ProductAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
 
 /**
@@ -35,7 +35,7 @@ public class HelpFrag extends BaseAppListFragment {
 
     @Override
     protected void initializeView() {
-        adapter = new ServiceAdapter(dataList);
+        adapter = new ProductAdapter(dataList);
         rvRefresh.setAdapter(adapter);
     }
 
