@@ -5,14 +5,14 @@ import android.support.v7.widget.RecyclerView;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.ProductAdapter;
-import com.znz.compass.znzlibray.base.BaseListActivity;
+import com.mzk.compass.youqi.base.BaseAppListActivity;
 
 /**
  * Date： 2018/3/31 2018
  * User： PSuiyi
  * Description：
  */
-public class ProductListAct extends BaseListActivity {
+public class ProductListAct extends BaseAppListActivity {
     @Override
     protected int[] getLayoutResource() {
         return new int[]{R.layout.act_lv_service, 1};
@@ -25,11 +25,6 @@ public class ProductListAct extends BaseListActivity {
 
     @Override
     protected void initializeNavigation() {
-
-    }
-
-    @Override
-    protected void initializeAppBusiness() {
 
     }
 
@@ -56,11 +51,6 @@ public class ProductListAct extends BaseListActivity {
 
     @Override
     protected void onRefreshFail(String error) {
-
-    }
-
-    @Override
-    protected void customeRefreshRequest(int actionPullToRefresh) {
 
     }
 }

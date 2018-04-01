@@ -2,6 +2,8 @@ package com.mzk.compass.youqi.ui.home;
 
 import android.support.v7.widget.RecyclerView;
 
+import com.mzk.compass.youqi.R;
+import com.mzk.compass.youqi.adapter.ProjectAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
 
 /**
@@ -12,7 +14,7 @@ import com.mzk.compass.youqi.base.BaseAppListFragment;
 public class ProjectListFrag extends BaseAppListFragment {
     @Override
     protected int[] getLayoutResource() {
-        return new int[0];
+        return new int[]{R.layout.common_list_layout};
     }
 
     @Override
@@ -32,7 +34,8 @@ public class ProjectListFrag extends BaseAppListFragment {
 
     @Override
     protected void initializeView() {
-
+        adapter = new ProjectAdapter(dataList);
+        rvRefresh.setAdapter(adapter);
     }
 
     @Override

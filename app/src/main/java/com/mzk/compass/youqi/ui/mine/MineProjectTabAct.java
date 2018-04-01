@@ -1,4 +1,4 @@
-package com.mzk.compass.youqi.ui.mine.message;
+package com.mzk.compass.youqi.ui.mine;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.ViewPageAdapter;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.mzk.compass.youqi.ui.home.ProjectListFrag;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 
@@ -19,11 +20,11 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
- * Date： 2018/4/1 2018
+ * Date： 2018/3/31 2018
  * User： PSuiyi
  * Description：
  */
-public class MessageTabAct extends BaseAppActivity {
+public class MineProjectTabAct extends BaseAppActivity {
     @Bind(R.id.znzToolBar)
     ZnzToolBar znzToolBar;
     @Bind(R.id.znzRemind)
@@ -45,19 +46,22 @@ public class MessageTabAct extends BaseAppActivity {
 
     @Override
     protected void initializeVariate() {
-        tabNames.add("互动消息");
-        tabNames.add("交易信息");
-        tabNames.add("系统信息");
+        tabNames.add("全部");
+        tabNames.add("待审核");
+        tabNames.add("已发布");
+        tabNames.add("已拒绝");
+        tabNames.add("已下架");
 
-        fragmentList.add(new MessageListFrag());
-        fragmentList.add(new MessageListFrag());
-        fragmentList.add(new MessageListFrag());
+        fragmentList.add(new ProjectListFrag());
+        fragmentList.add(new ProjectListFrag());
+        fragmentList.add(new ProjectListFrag());
+        fragmentList.add(new ProjectListFrag());
+        fragmentList.add(new ProjectListFrag());
     }
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("消息");
-        znzToolBar.setNavRightText("编辑");
+        setTitleName("我的项目");
     }
 
     @Override

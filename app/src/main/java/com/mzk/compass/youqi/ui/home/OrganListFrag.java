@@ -2,6 +2,7 @@ package com.mzk.compass.youqi.ui.home;
 
 import android.support.v7.widget.RecyclerView;
 
+import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
 
 /**
@@ -12,7 +13,7 @@ import com.mzk.compass.youqi.base.BaseAppListFragment;
 public class OrganListFrag extends BaseAppListFragment {
     @Override
     protected int[] getLayoutResource() {
-        return new int[0];
+        return new int[]{R.layout.common_list_layout};
     }
 
     @Override

@@ -1,16 +1,17 @@
 package com.mzk.compass.youqi.ui.mine;
 
+import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 
 /**
- * Date： 2018/3/31 2018
+ * Date： 2018/4/1 2018
  * User： PSuiyi
  * Description：
  */
-public class MineProjectAct extends BaseAppActivity {
+public class MineInfoAct extends BaseAppActivity {
     @Override
     protected int[] getLayoutResource() {
-        return new int[0];
+        return new int[]{R.layout.common_row_view, 1};
     }
 
     @Override
@@ -20,7 +21,7 @@ public class MineProjectAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-
+        setTitleName("基本信息");
     }
 
     @Override

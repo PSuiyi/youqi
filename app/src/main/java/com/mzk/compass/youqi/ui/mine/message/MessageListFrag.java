@@ -1,8 +1,9 @@
-package com.mzk.compass.youqi.ui.home;
+package com.mzk.compass.youqi.ui.mine.message;
 
 import android.support.v7.widget.RecyclerView;
 
 import com.mzk.compass.youqi.R;
+import com.mzk.compass.youqi.adapter.MessageAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
 
 /**
@@ -10,7 +11,7 @@ import com.mzk.compass.youqi.base.BaseAppListFragment;
  * User： PSuiyi
  * Description：
  */
-public class PostListFrag extends BaseAppListFragment {
+public class MessageListFrag extends BaseAppListFragment {
     @Override
     protected int[] getLayoutResource() {
         return new int[]{R.layout.common_list_layout};
@@ -33,7 +34,8 @@ public class PostListFrag extends BaseAppListFragment {
 
     @Override
     protected void initializeView() {
-
+        adapter = new MessageAdapter(dataList);
+        rvRefresh.setAdapter(adapter);
     }
 
     @Override

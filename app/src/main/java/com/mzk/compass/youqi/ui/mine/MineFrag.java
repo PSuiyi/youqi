@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppFragment;
+import com.mzk.compass.youqi.ui.mine.message.MessageTabAct;
 import com.mzk.compass.youqi.ui.setting.SettingAct;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
@@ -60,7 +61,7 @@ public class MineFrag extends BaseAppFragment {
                 .withTextSize(14)
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
                 .withOnClickListener(v -> {
-                    gotoActivity(MineProjectAct.class);
+                    gotoActivity(MineProjectTabAct.class);
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
@@ -79,6 +80,7 @@ public class MineFrag extends BaseAppFragment {
                 .withTextSize(14)
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
                 .withOnClickListener(v -> {
+                    gotoActivity(MineFavTabAct.class);
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
@@ -88,6 +90,7 @@ public class MineFrag extends BaseAppFragment {
                 .withTextSize(14)
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
                 .withOnClickListener(v -> {
+                    gotoActivity(MessageTabAct.class);
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()

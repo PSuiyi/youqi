@@ -1,4 +1,4 @@
-package com.mzk.compass.youqi.ui.mine.message;
+package com.mzk.compass.youqi.ui.mine;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -9,6 +9,11 @@ import android.widget.LinearLayout;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.ViewPageAdapter;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.mzk.compass.youqi.ui.home.InvestorListFrag;
+import com.mzk.compass.youqi.ui.home.OrganListFrag;
+import com.mzk.compass.youqi.ui.home.ProductListFrag;
+import com.mzk.compass.youqi.ui.home.ProjectListFrag;
+import com.mzk.compass.youqi.ui.news.NewsListFrag;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 
@@ -23,7 +28,7 @@ import butterknife.ButterKnife;
  * User： PSuiyi
  * Description：
  */
-public class MessageTabAct extends BaseAppActivity {
+public class MineFavTabAct extends BaseAppActivity {
     @Bind(R.id.znzToolBar)
     ZnzToolBar znzToolBar;
     @Bind(R.id.znzRemind)
@@ -45,19 +50,22 @@ public class MessageTabAct extends BaseAppActivity {
 
     @Override
     protected void initializeVariate() {
-        tabNames.add("互动消息");
-        tabNames.add("交易信息");
-        tabNames.add("系统信息");
+        tabNames.add("创业项目");
+        tabNames.add("投资人");
+        tabNames.add("投资机构");
+        tabNames.add("商品");
+        tabNames.add("资讯");
 
-        fragmentList.add(new MessageListFrag());
-        fragmentList.add(new MessageListFrag());
-        fragmentList.add(new MessageListFrag());
+        fragmentList.add(new ProjectListFrag());
+        fragmentList.add(new InvestorListFrag());
+        fragmentList.add(new OrganListFrag());
+        fragmentList.add(new ProductListFrag());
+        fragmentList.add(new NewsListFrag());
     }
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("消息");
-        znzToolBar.setNavRightText("编辑");
+        setTitleName("我的收藏");
     }
 
     @Override

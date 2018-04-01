@@ -16,12 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.mine.MineProjectAct" />
+        <activity android:name=".ui.mine.MineProjectTabAct" />
         <activity android:name=".ui.mine.OneStepAct" />
         <activity android:name=".ui.mine.message.MessageTabAct" />
         <activity android:name=".ui.mine.order.OrderTabAct" />
         <activity android:name=".ui.mine.order.OrderDetailAct" />
         <activity android:name=".ui.mine.vip.VipCenterAct" />
+        <activity android:name=".ui.mine.MineFavTabAct" />
+        <activity android:name=".ui.setting.SettingAct" />
+        <activity android:name=".ui.mine.MineInfoAct" />
     </application>
 
 </manifest>

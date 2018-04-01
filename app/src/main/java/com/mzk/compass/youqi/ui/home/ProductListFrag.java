@@ -1,16 +1,18 @@
 package com.mzk.compass.youqi.ui.home;
 
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.mzk.compass.youqi.R;
+import com.mzk.compass.youqi.adapter.ProductAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
 
 /**
- * Date： 2018/4/1 2018
+ * Date： 2018/3/31 2018
  * User： PSuiyi
  * Description：
  */
-public class PostListFrag extends BaseAppListFragment {
+public class ProductListFrag extends BaseAppListFragment {
     @Override
     protected int[] getLayoutResource() {
         return new int[]{R.layout.common_list_layout};
@@ -28,12 +30,13 @@ public class PostListFrag extends BaseAppListFragment {
 
     @Override
     protected RecyclerView.LayoutManager getLayoutManager() {
-        return null;
+        return new GridLayoutManager(activity, 2);
     }
 
     @Override
     protected void initializeView() {
-
+        adapter = new ProductAdapter(dataList);
+        rvRefresh.setAdapter(adapter);
     }
 
     @Override
