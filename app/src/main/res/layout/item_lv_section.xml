@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F6F6F6"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/distance_view">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/zhuanshi1" />
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:layout_marginLeft="@dimen/distance_divider"
+                    android:layout_marginRight="@dimen/distance_divider"
+                    android:text="精选创业项目" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/zhuanshi2" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextGrayStyle"
+                android:layout_gravity="right"
+                android:drawablePadding="3dp"
+                android:drawableRight="@mipmap/gengduo"
+                android:text="查看全部" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <View style="@style/Line" />
+</LinearLayout>

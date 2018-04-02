@@ -25,7 +25,7 @@ public class HelpFrag extends BaseAppListFragment {
 
     @Override
     protected void initializeNavigation() {
-
+        znzToolBar.setSearchEnableEdit(false);
     }
 
     @Override

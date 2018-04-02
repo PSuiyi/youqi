@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <cn.bingoogolapple.bgabanner.BGABanner
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        app:banner_pageChangeDuration="2000"
+        app:banner_pointAutoPlayAble="true"
+        app:banner_pointContainerBackground="@android:color/transparent"
+        app:banner_pointDrawable="@drawable/bga_banner_selector_point_hollow"
+        app:banner_pointTopBottomMargin="5dp"
+        app:banner_tipTextSize="0dp"
+        app:banner_transitionEffect="alpha" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/tvMenu1"
+            style="@style/TextDrawableStyle"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/quanbuxiangmu"
+            android:gravity="center"
+            android:text="全部项目"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/tvMenu2"
+            style="@style/TextDrawableStyle"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/fabuxiangmu"
+            android:gravity="center"
+            android:text="发布项目"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/tvMenu3"
+            style="@style/TextDrawableStyle"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/quanbutouziren"
+            android:gravity="center"
+            android:text="全部投资人"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:id="@+id/tvMenu4"
+            style="@style/TextDrawableStyle"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/renzhengtouziren"
+            android:gravity="center"
+            android:text="认证投资人"
+            android:textSize="@dimen/text_size" />
+    </LinearLayout>
+
+    <View style="@style/LineDivider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+    </LinearLayout>
+
+</LinearLayout>

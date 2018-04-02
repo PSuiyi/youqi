@@ -82,31 +82,34 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        style="@style/TextDrawableStyle"
+                        style="@style/TextStyle"
                         android:drawableLeft="@mipmap/shoucang"
                         android:text="2585"
-                        android:textColor="@color/text_gray" />
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/text_size_10" />
 
                     <TextView
-                        style="@style/TextDrawableStyle"
+                        style="@style/TextStyle"
                         android:layout_marginLeft="@dimen/distance_divider"
-                        android:drawableLeft="@mipmap/shoucang"
+                        android:drawableLeft="@mipmap/pinlun"
                         android:text="2585"
-                        android:textColor="@color/text_gray" />
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/text_size_10" />
 
                     <TextView
-                        style="@style/TextDrawableStyle"
+                        style="@style/TextStyle"
                         android:layout_marginLeft="@dimen/distance_divider"
-                        android:drawableLeft="@mipmap/shoucang"
+                        android:drawableLeft="@mipmap/pinlun"
                         android:text="2585"
-                        android:textColor="@color/text_gray" />
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/text_size_10" />
 
                     <View style="@style/WeightView" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/shoucang" />
+                        android:src="@mipmap/zhuanfa" />
 
                     <ImageView
                         android:layout_width="wrap_content"
