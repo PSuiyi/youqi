@@ -2,8 +2,8 @@
     <string name="app_name">youqi</string>
 
     <!-- 菜单 -->
-    <string name="tab_one">首页</string>
-    <string name="tab_two">拼约</string>
-    <string name="tab_three">部落</string>
-    <string name="tab_four">个人</string>
+    <string name="tab_one">优企秀</string>
+    <string name="tab_two">优企助</string>
+    <string name="tab_three">优报道</string>
+    <string name="tab_four">我的</string>
 </resources>

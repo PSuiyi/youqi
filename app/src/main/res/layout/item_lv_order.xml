@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:text="订单编号 201803191703017555" />
+
+                <View style="@style/WeightView" />
+
+                <TextView
+                    style="@style/TitleRedTextStyle"
+                    android:text="待付款" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#F6F6F6"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@mipmap/default_image_square" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/distance_view"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TitleTextStyle"
+                        android:text="有限责任公司注册" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/distance_view"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/TitleRedTextStyle"
+                            android:text="¥999.00" />
+
+                        <View style="@style/WeightView" />
+
+                        <TextView
+                            style="@style/TextStyle"
+                            android:text="x1" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:text="共1项服务，合计：" />
+
+                <TextView
+                    style="@style/TitleRedTextStyle"
+                    android:text="¥999.00" />
+
+                <View style="@style/WeightView" />
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:text="取消订单" />
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:layout_marginLeft="@dimen/distance_view"
+                    android:text="去付款" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View style="@style/LineDividerNoTop" />
+</LinearLayout>

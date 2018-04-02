@@ -13,7 +13,7 @@ import java.util.List;
 public class OrderAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
 
     public OrderAdapter(@Nullable List dataList) {
-        super(R.layout.item_lv_demo, dataList);
+        super(R.layout.item_lv_order, dataList);
     }
 
     @Override

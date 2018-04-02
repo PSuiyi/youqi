@@ -3,6 +3,7 @@ package com.mzk.compass.youqi.ui.home;
 import android.support.v7.widget.RecyclerView;
 
 import com.mzk.compass.youqi.R;
+import com.mzk.compass.youqi.adapter.OrderAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
 
 /**
@@ -33,7 +34,8 @@ public class OrganListFrag extends BaseAppListFragment {
 
     @Override
     protected void initializeView() {
-
+        adapter = new OrderAdapter(dataList);
+        rvRefresh.setAdapter(adapter);
     }
 
     @Override

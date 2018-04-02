@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppFragment;
 import com.mzk.compass.youqi.ui.mine.message.MessageTabAct;
+import com.mzk.compass.youqi.ui.mine.order.OrderTabAct;
 import com.mzk.compass.youqi.ui.setting.SettingAct;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
@@ -55,7 +56,7 @@ public class MineFrag extends BaseAppFragment {
     @Override
     protected void initializeView() {
         rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withIconResId(R.mipmap.ic_launcher)
+                .withIconResId(R.mipmap.wodexiangmu)
                 .withTitle("我的项目")
                 .withEnableArraw(true)
                 .withTextSize(14)
@@ -65,8 +66,18 @@ public class MineFrag extends BaseAppFragment {
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withIconResId(R.mipmap.ic_launcher)
+                .withIconResId(R.mipmap.wodedingdan)
                 .withTitle("我的订单")
+                .withEnableArraw(true)
+                .withTextSize(14)
+                .withTitleColor(mDataManager.getColor(R.color.text_color))
+                .withOnClickListener(v -> {
+                    gotoActivity(OrderTabAct.class);
+                })
+                .build());
+        rowDescriptionList.add(new ZnzRowDescription.Builder()
+                .withIconResId(R.mipmap.wodedingdan)
+                .withTitle("进度查询")
                 .withEnableArraw(true)
                 .withTextSize(14)
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
@@ -74,7 +85,7 @@ public class MineFrag extends BaseAppFragment {
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withIconResId(R.mipmap.ic_launcher)
+                .withIconResId(R.mipmap.wodeshoucang)
                 .withTitle("我的收藏")
                 .withEnableArraw(true)
                 .withTextSize(14)
@@ -84,7 +95,7 @@ public class MineFrag extends BaseAppFragment {
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withIconResId(R.mipmap.ic_launcher)
+                .withIconResId(R.mipmap.qiyerenzheng)
                 .withTitle("认证管理")
                 .withEnableArraw(true)
                 .withTextSize(14)
@@ -94,7 +105,7 @@ public class MineFrag extends BaseAppFragment {
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withIconResId(R.mipmap.ic_launcher)
+                .withIconResId(R.mipmap.yizhantongduijie)
                 .withTitle("一站通对接")
                 .withEnableArraw(true)
                 .withTextSize(14)
@@ -104,7 +115,7 @@ public class MineFrag extends BaseAppFragment {
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withIconResId(R.mipmap.ic_launcher)
+                .withIconResId(R.mipmap.huiyuanzhongxin)
                 .withTitle("会员中心")
                 .withValue("VIP会员2010-11-04到期")
                 .withEnableArraw(true)
@@ -115,7 +126,7 @@ public class MineFrag extends BaseAppFragment {
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withIconResId(R.mipmap.ic_launcher)
+                .withIconResId(R.mipmap.wodetougao)
                 .withTitle("我的投稿")
                 .withEnableArraw(true)
                 .withTextSize(14)
@@ -124,7 +135,7 @@ public class MineFrag extends BaseAppFragment {
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withIconResId(R.mipmap.ic_launcher)
+                .withIconResId(R.mipmap.zhanghuguanli)
                 .withTitle("账户管理")
                 .withEnableArraw(true)
                 .withTextSize(14)
@@ -134,7 +145,7 @@ public class MineFrag extends BaseAppFragment {
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withIconResId(R.mipmap.ic_launcher)
+                .withIconResId(R.mipmap.zhuanshukefu)
                 .withTitle("专属客服")
                 .withEnableArraw(true)
                 .withTextSize(14)
@@ -144,7 +155,7 @@ public class MineFrag extends BaseAppFragment {
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withIconResId(R.mipmap.ic_launcher)
+                .withIconResId(R.mipmap.xitongshezhi)
                 .withTitle("系统设置")
                 .withEnableArraw(true)
                 .withTextSize(14)

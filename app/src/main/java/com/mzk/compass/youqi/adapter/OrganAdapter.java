@@ -13,7 +13,7 @@ import java.util.List;
 public class OrganAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
 
     public OrganAdapter(@Nullable List dataList) {
-        super(R.layout.item_lv_demo, dataList);
+        super(R.layout.item_lv_organ, dataList);
     }
 
     @Override
