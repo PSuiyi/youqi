@@ -33,10 +33,15 @@ android {
             def outputFile = output.outputFile
             if (outputFile != null && outputFile.name.endsWith('.apk')) {
                 //这里修改apk文件名
-                def fileName = "美客美租_v${defaultConfig.versionName}_${releaseTime()}.apk"
+                def fileName = "优企_v${defaultConfig.versionName}_${releaseTime()}.apk"
                 output.outputFile  = new File(outputFile.parent, fileName)
             }
         }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
     }
 }
 

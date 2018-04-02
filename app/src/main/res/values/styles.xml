@@ -1,4 +1,10 @@
 <resources>
 
-
+    <style name="MenuStyle" parent="TextDrawableStyle">
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:drawablePadding">4dp</item>
+    </style>
 </resources>

@@ -22,44 +22,64 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="20dp"
+        android:paddingBottom="10dp"
         android:paddingTop="20dp">
 
         <TextView
             android:id="@+id/tvMenu1"
-            style="@style/TextDrawableStyle"
-            android:layout_weight="1"
-            android:drawableTop="@mipmap/quanbuxiangmu"
-            android:gravity="center"
-            android:text="全部项目"
-            android:textSize="@dimen/text_size" />
+            style="@style/MenuStyle"
+            android:drawableTop="@mipmap/kaigongsi"
+            android:text="开公司" />
 
         <TextView
             android:id="@+id/tvMenu2"
-            style="@style/TextDrawableStyle"
-            android:layout_weight="1"
-            android:drawableTop="@mipmap/fabuxiangmu"
-            android:gravity="center"
-            android:text="发布项目"
-            android:textSize="@dimen/text_size" />
+            style="@style/MenuStyle"
+            android:drawableTop="@mipmap/dailijizhang"
+            android:text="代理记账" />
 
         <TextView
             android:id="@+id/tvMenu3"
-            style="@style/TextDrawableStyle"
-            android:layout_weight="1"
-            android:drawableTop="@mipmap/quanbutouziren"
-            android:gravity="center"
-            android:text="全部投资人"
-            android:textSize="@dimen/text_size" />
+            style="@style/MenuStyle"
+            android:drawableTop="@mipmap/shangbiaozhuce"
+            android:text="商标注册" />
 
         <TextView
             android:id="@+id/tvMenu4"
-            style="@style/TextDrawableStyle"
-            android:layout_weight="1"
-            android:drawableTop="@mipmap/renzhengtouziren"
-            android:gravity="center"
-            android:text="认证投资人"
-            android:textSize="@dimen/text_size" />
+            style="@style/MenuStyle"
+            android:drawableTop="@mipmap/tuishuifanhuan"
+            android:text="退税返还" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="20dp"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/tvMenu5"
+            style="@style/MenuStyle"
+            android:drawableTop="@mipmap/renshidaili"
+            android:text="人事代理" />
+
+        <TextView
+            android:id="@+id/tvMenu6"
+            style="@style/MenuStyle"
+            android:drawableTop="@mipmap/dailijizhang"
+            android:text="IT服务" />
+
+        <TextView
+            android:id="@+id/tvMenu7"
+            style="@style/MenuStyle"
+            android:drawableTop="@mipmap/chuangyeyuan"
+            android:text="创业园" />
+
+        <TextView
+            android:id="@+id/tvMenu8"
+            style="@style/MenuStyle"
+            android:drawableTop="@mipmap/quanbufenlei"
+            android:text="全部分类" />
     </LinearLayout>
 
     <View style="@style/LineDivider" />
@@ -68,7 +88,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        
+
     </LinearLayout>
 
 </LinearLayout>

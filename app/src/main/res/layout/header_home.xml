@@ -27,39 +27,27 @@
 
         <TextView
             android:id="@+id/tvMenu1"
-            style="@style/TextDrawableStyle"
-            android:layout_weight="1"
+            style="@style/MenuStyle"
             android:drawableTop="@mipmap/quanbuxiangmu"
-            android:gravity="center"
-            android:text="全部项目"
-            android:textSize="@dimen/text_size" />
+            android:text="全部项目" />
 
         <TextView
             android:id="@+id/tvMenu2"
-            style="@style/TextDrawableStyle"
-            android:layout_weight="1"
+            style="@style/MenuStyle"
             android:drawableTop="@mipmap/fabuxiangmu"
-            android:gravity="center"
-            android:text="发布项目"
-            android:textSize="@dimen/text_size" />
+            android:text="发布项目" />
 
         <TextView
             android:id="@+id/tvMenu3"
-            style="@style/TextDrawableStyle"
-            android:layout_weight="1"
+            style="@style/MenuStyle"
             android:drawableTop="@mipmap/quanbutouziren"
-            android:gravity="center"
-            android:text="全部投资人"
-            android:textSize="@dimen/text_size" />
+            android:text="全部投资人" />
 
         <TextView
             android:id="@+id/tvMenu4"
-            style="@style/TextDrawableStyle"
-            android:layout_weight="1"
+            style="@style/MenuStyle"
             android:drawableTop="@mipmap/renzhengtouziren"
-            android:gravity="center"
-            android:text="认证投资人"
-            android:textSize="@dimen/text_size" />
+            android:text="认证投资人" />
     </LinearLayout>
 
     <View style="@style/LineDivider" />

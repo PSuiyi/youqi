@@ -105,16 +105,6 @@ public class MineFrag extends BaseAppFragment {
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withIconResId(R.mipmap.yizhantongduijie)
-                .withTitle("一站通对接")
-                .withEnableArraw(true)
-                .withTextSize(14)
-                .withTitleColor(mDataManager.getColor(R.color.text_color))
-                .withOnClickListener(v -> {
-                    gotoActivity(OneStepAct.class);
-                })
-                .build());
-        rowDescriptionList.add(new ZnzRowDescription.Builder()
                 .withIconResId(R.mipmap.huiyuanzhongxin)
                 .withTitle("会员中心")
                 .withValue("VIP会员2010-11-04到期")
