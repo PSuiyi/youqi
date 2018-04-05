@@ -11,7 +11,7 @@ import com.mzk.compass.youqi.base.BaseAppActivity;
 public class FeedbackAct extends BaseAppActivity {
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.act_aboutus, 1};
+        return new int[]{R.layout.act_feedback, 1};
     }
 
     @Override

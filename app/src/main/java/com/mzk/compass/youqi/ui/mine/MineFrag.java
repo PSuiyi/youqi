@@ -76,7 +76,7 @@ public class MineFrag extends BaseAppFragment {
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withIconResId(R.mipmap.wodedingdan)
+                .withIconResId(R.mipmap.jinduchaxun)
                 .withTitle("进度查询")
                 .withEnableArraw(true)
                 .withTextSize(14)
@@ -131,7 +131,7 @@ public class MineFrag extends BaseAppFragment {
                 .withTextSize(14)
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
                 .withOnClickListener(v -> {
-                    gotoActivity(SettingAct.class);
+//                    gotoActivity(SettingAct.class);
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
@@ -141,7 +141,7 @@ public class MineFrag extends BaseAppFragment {
                 .withTextSize(14)
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
                 .withOnClickListener(v -> {
-                    gotoActivity(SettingAct.class);
+//                    gotoActivity(SettingAct.class);
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()

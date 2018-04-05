@@ -1,6 +1,7 @@
 package com.mzk.compass.youqi.ui.help;
 
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -8,7 +9,10 @@ import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.ProductAdapter;
+import com.mzk.compass.youqi.adapter.ProductGridAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
+import com.znz.compass.znzlibray.bean.BaseZnzBean;
+import com.znz.compass.znzlibray.utils.DipUtil;
 import com.znz.compass.znzlibray.views.imageloder.GlideApp;
 
 import java.util.ArrayList;
@@ -29,6 +33,9 @@ public class HelpFrag extends BaseAppListFragment {
     private TextView tvMenu4;
     private BGABanner banner;
     private List<String> imgPath = new ArrayList<>();
+    private RecyclerView rvProduct;
+    private ProductGridAdapter productGridAdapter;
+    private List<BaseZnzBean> productList = new ArrayList<>();
 
     @Override
     protected int[] getLayoutResource() {
@@ -61,6 +68,7 @@ public class HelpFrag extends BaseAppListFragment {
         tvMenu3 = bindViewById(header, R.id.tvMenu3);
         tvMenu4 = bindViewById(header, R.id.tvMenu4);
         banner = bindViewById(header, R.id.banner);
+        rvProduct = bindViewById(header, R.id.rvProduct);
         adapter.addHeaderView(header);
 
         imgPath.add("http://pic.58pic.com/58pic/11/79/25/56e58PICEkR.jpg");
@@ -83,6 +91,24 @@ public class HelpFrag extends BaseAppListFragment {
                         .into(itemView);
             }
         });
+
+        productList.add(new BaseZnzBean());
+        productList.add(new BaseZnzBean());
+        productList.add(new BaseZnzBean());
+        productList.add(new BaseZnzBean());
+        productList.add(new BaseZnzBean());
+
+        productGridAdapter = new ProductGridAdapter(productList);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(activity) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
+        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        rvProduct.setNestedScrollingEnabled(false);
+        rvProduct.setLayoutManager(layoutManager);
+        rvProduct.setAdapter(productGridAdapter);
     }
 
     @Override

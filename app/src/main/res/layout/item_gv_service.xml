@@ -2,16 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:gravity="center"
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/llContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:orientation="vertical"
-        android:paddingLeft="2dp"
-        android:paddingRight="2dp">
+        android:orientation="vertical">
 
         <com.znz.compass.znzlibray.views.imageloder.HttpImageView
             android:id="@+id/ivImage"
@@ -69,6 +68,6 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:background="@color/background" />
 </LinearLayout>

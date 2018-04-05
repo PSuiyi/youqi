@@ -41,14 +41,6 @@ public class SettingAct extends BaseAppActivity {
     @Override
     protected void initializeView() {
         rowDescriptionList = new ArrayList<>();
-        rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withTitle("消息通知")
-                .withTextSize(14)
-                .withEnableSwitch(true)
-                .withIsSwitchChecked(true)
-                .withOnCheckedChangeListener((buttonView, isChecked) -> {
-                })
-                .build());
         try {
             rowDescriptionList.add(new ZnzRowDescription.Builder()
                     .withTitle("清理缓存")
@@ -61,7 +53,15 @@ public class SettingAct extends BaseAppActivity {
             e.printStackTrace();
         }
         rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withTitle("意见反馈")
+                .withTitle("检查更新")
+                .withTextSize(14)
+                .withEnableArraw(true)
+                .withValue("已是最新版本")
+                .withOnClickListener(v -> {
+                })
+                .build());
+        rowDescriptionList.add(new ZnzRowDescription.Builder()
+                .withTitle("用户反馈")
                 .withEnableArraw(true)
                 .withTextSize(14)
                 .withOnClickListener(v -> {
@@ -74,35 +74,6 @@ public class SettingAct extends BaseAppActivity {
                 .withTextSize(14)
                 .withOnClickListener(v -> {
                     gotoActivity(AboutUsAct.class);
-                })
-                .build());
-        rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withTitle("我的账号")
-                .withEnableArraw(true)
-                .withTextSize(14)
-                .withOnClickListener(v -> {
-                })
-                .build());
-        rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withTitle("更换手机")
-                .withEnableArraw(true)
-                .withTextSize(14)
-                .withOnClickListener(v -> {
-                })
-                .build());
-        rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withTitle("更改密码")
-                .withEnableArraw(true)
-                .withTextSize(14)
-                .withOnClickListener(v -> {
-                })
-                .build());
-        rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withTitle("检查更新")
-                .withTextSize(14)
-                .withEnableArraw(true)
-                .withValue("已是最新版本")
-                .withOnClickListener(v -> {
                 })
                 .build());
         commonRowGroup.notifyDataChanged(rowDescriptionList);

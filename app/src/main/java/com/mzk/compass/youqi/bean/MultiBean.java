@@ -15,6 +15,10 @@ public class MultiBean extends BaseZnzBean implements MultiItemEntity {
         this.itemType = itemType;
     }
 
+    public MultiBean(int itemType, String section) {
+        this.itemType = itemType;
+        this.section = section;
+    }
 
     public String getSection() {
         return section;

@@ -73,7 +73,7 @@ public class Constants {
     public interface MultiType {
         int Section = 0;
         int Project = 1;
-        int Investor = 2;
+        int People = 2;
         int Organ = 3;
     }
 

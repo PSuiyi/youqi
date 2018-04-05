@@ -39,14 +39,15 @@ public class HomeFrag extends BaseAppListFragment {
 
     @Override
     protected void initializeVariate() {
-        dataList.add(new MultiBean(Constants.MultiType.Section));
+        dataList.add(new MultiBean(Constants.MultiType.Section,"精选创业项目"));
         dataList.add(new MultiBean(Constants.MultiType.Project));
         dataList.add(new MultiBean(Constants.MultiType.Project));
         dataList.add(new MultiBean(Constants.MultiType.Project));
         dataList.add(new MultiBean(Constants.MultiType.Project));
-        dataList.add(new MultiBean(Constants.MultiType.Section));
-        dataList.add(new MultiBean(Constants.MultiType.Section));
-        dataList.add(new MultiBean(Constants.MultiType.Section));
+        dataList.add(new MultiBean(Constants.MultiType.Section,"明星投资人"));
+        dataList.add(new MultiBean(Constants.MultiType.People));
+        dataList.add(new MultiBean(Constants.MultiType.Section,"精选机构"));
+        dataList.add(new MultiBean(Constants.MultiType.Organ));
     }
 
     @Override
