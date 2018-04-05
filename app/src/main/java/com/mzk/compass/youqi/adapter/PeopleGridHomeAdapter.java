@@ -22,7 +22,7 @@ import java.util.List;
 public class PeopleGridHomeAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
 
     public PeopleGridHomeAdapter(@Nullable List<BaseZnzBean> dataList) {
-        super(R.layout.item_gv_people, dataList);
+        super(R.layout.item_gv_people_home, dataList);
     }
 
     @Override
