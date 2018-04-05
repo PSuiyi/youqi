@@ -28,6 +28,8 @@
         <activity android:name=".ui.mine.MineInfoAct" />
         <activity android:name=".ui.setting.FeedbackAct" />
         <activity android:name=".ui.common.CityListAct" />
+        <activity android:name=".ui.home.project.ProjectDetailAct" />
+        <activity android:name=".ui.home.project.ProjectListAct" />
     </application>
 
 </manifest>

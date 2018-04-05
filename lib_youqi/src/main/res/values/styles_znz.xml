@@ -163,10 +163,9 @@
         <item name="android:background">@color/line</item>
     </style>
 
-    <style name="LineBlue">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">2dp</item>
-        <item name="android:background">@color/blue</item>
+    <style name="LineBoth" parent="Line">
+        <item name="android:layout_marginLeft">@dimen/distance_view</item>
+        <item name="android:layout_marginRight">@dimen/distance_view</item>
     </style>
 
     <style name="LineVer">

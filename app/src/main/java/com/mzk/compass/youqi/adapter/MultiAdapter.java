@@ -8,6 +8,7 @@ import android.view.View;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.bean.MultiBean;
 import com.mzk.compass.youqi.common.Constants;
+import com.mzk.compass.youqi.ui.home.project.ProjectDetailAct;
 import com.znz.compass.znzlibray.bean.BaseZnzBean;
 import com.znz.compass.znzlibray.views.recyclerview.BaseMultiItemQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
@@ -41,7 +42,7 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
                 dataList.add(new BaseZnzBean());
                 dataList.add(new BaseZnzBean());
                 dataList.add(new BaseZnzBean());
-                PeopleGridAdapter adapter = new PeopleGridAdapter(dataList);
+                PeopleGridHomeAdapter adapter = new PeopleGridHomeAdapter(dataList);
                 RecyclerView rvPeople = helper.getView(R.id.rvRecycler);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(mContext) {
                     @Override
@@ -73,7 +74,17 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+        switch (bean.getItemType()) {
+            case Constants.MultiType.Section:
+                break;
+            case Constants.MultiType.Project:
+                gotoActivity(ProjectDetailAct.class);
+                break;
+            case Constants.MultiType.People:
+                break;
+            case Constants.MultiType.Organ:
+                break;
+        }
     }
 
 }
