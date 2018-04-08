@@ -1,22 +1,21 @@
-package com.mzk.compass.youqi.ui.home.project;
+package com.mzk.compass.youqi.ui.home.people;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
-import com.mzk.compass.youqi.ui.home.ProjectListFrag;
+import com.mzk.compass.youqi.ui.home.InvestorListFrag;
 import com.znz.compass.znzlibray.utils.FragmentUtil;
 
 /**
- * Date： 2018/4/5 2018
+ * Date： 2018/4/8 2018
  * User： PSuiyi
  * Description：
  */
-public class ProjectListAct extends BaseAppActivity {
-
-    private ProjectListFrag fragment;
+public class PeopleListAct extends BaseAppActivity {
+    private InvestorListFrag fragment;
 
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.act_project_list, 2};
+        return new int[]{R.layout.act_people_list, 2};
     }
 
     @Override
@@ -31,7 +30,7 @@ public class ProjectListAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
-        fragment = new ProjectListFrag();
+        fragment = new InvestorListFrag();
         FragmentUtil.addFragmentToActivity(getSupportFragmentManager(), fragment, R.id.container);
     }
 

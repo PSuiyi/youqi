@@ -31,6 +31,8 @@
         <activity android:name=".ui.home.project.ProjectDetailAct" />
         <activity android:name=".ui.home.project.ProjectListAct" />
         <activity android:name=".ui.news.NewsDetailAct" />
+        <activity android:name=".ui.home.people.PeopleListAct" />
+        <activity android:name=".ui.home.ProductListAct" />
     </application>
 
 </manifest>

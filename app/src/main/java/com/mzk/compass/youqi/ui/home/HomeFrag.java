@@ -10,6 +10,8 @@ import com.mzk.compass.youqi.adapter.MultiAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
 import com.mzk.compass.youqi.bean.MultiBean;
 import com.mzk.compass.youqi.common.Constants;
+import com.mzk.compass.youqi.ui.home.people.PeopleListAct;
+import com.mzk.compass.youqi.ui.home.project.ProjectListAct;
 import com.znz.compass.znzlibray.views.imageloder.GlideApp;
 
 import java.util.ArrayList;
@@ -39,14 +41,14 @@ public class HomeFrag extends BaseAppListFragment {
 
     @Override
     protected void initializeVariate() {
-        dataList.add(new MultiBean(Constants.MultiType.Section,"精选创业项目"));
+        dataList.add(new MultiBean(Constants.MultiType.Section, "精选创业项目"));
         dataList.add(new MultiBean(Constants.MultiType.Project));
         dataList.add(new MultiBean(Constants.MultiType.Project));
         dataList.add(new MultiBean(Constants.MultiType.Project));
         dataList.add(new MultiBean(Constants.MultiType.Project));
-        dataList.add(new MultiBean(Constants.MultiType.Section,"明星投资人"));
+        dataList.add(new MultiBean(Constants.MultiType.Section, "明星投资人"));
         dataList.add(new MultiBean(Constants.MultiType.People));
-        dataList.add(new MultiBean(Constants.MultiType.Section,"精选机构"));
+        dataList.add(new MultiBean(Constants.MultiType.Section, "精选机构"));
         dataList.add(new MultiBean(Constants.MultiType.Organ));
     }
 
@@ -70,6 +72,20 @@ public class HomeFrag extends BaseAppListFragment {
         tvMenu2 = bindViewById(header, R.id.tvMenu2);
         tvMenu3 = bindViewById(header, R.id.tvMenu3);
         tvMenu4 = bindViewById(header, R.id.tvMenu4);
+
+        tvMenu1.setOnClickListener(v -> {
+            gotoActivity(ProjectListAct.class);
+        });
+        tvMenu2.setOnClickListener(v -> {
+            gotoActivity(ProductListAct.class);
+        });
+        tvMenu3.setOnClickListener(v -> {
+            gotoActivity(PeopleListAct.class);
+        });
+        tvMenu4.setOnClickListener(v -> {
+            gotoActivity(ProductListAct.class);
+        });
+
         banner = bindViewById(header, R.id.banner);
         adapter.addHeaderView(header);
 

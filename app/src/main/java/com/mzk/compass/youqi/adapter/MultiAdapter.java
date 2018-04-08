@@ -42,6 +42,8 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
                 dataList.add(new BaseZnzBean());
                 dataList.add(new BaseZnzBean());
                 dataList.add(new BaseZnzBean());
+                dataList.add(new BaseZnzBean());
+                dataList.add(new BaseZnzBean());
                 PeopleGridHomeAdapter adapter = new PeopleGridHomeAdapter(dataList);
                 RecyclerView rvPeople = helper.getView(R.id.rvRecycler);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(mContext) {

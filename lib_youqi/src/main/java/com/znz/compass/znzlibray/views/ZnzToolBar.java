@@ -135,6 +135,9 @@ public class ZnzToolBar extends LinearLayout {
                 llSearchRight2 = ViewHolder.init(view, R.id.llSearchRight2);
                 ivSearchRight = ViewHolder.init(view, R.id.ivSearchRight);
                 ivSearchRight2 = ViewHolder.init(view, R.id.ivSearchRight2);
+
+                etSerach.setVisibility(GONE);
+                tvSearch.setVisibility(VISIBLE);
                 break;
             case 3:
                 toolbar.setBackgroundColor(getResources().getColor(R.color.nav_backgroud));
