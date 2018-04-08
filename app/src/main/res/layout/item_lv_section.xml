@@ -30,7 +30,7 @@
 
                 <TextView
                     android:id="@+id/tvTitle"
-                    style="@style/TitleTextStyle"
+                    style="@style/TitleBlodStyle"
                     android:layout_marginLeft="@dimen/distance_divider"
                     android:layout_marginRight="@dimen/distance_divider"
                     android:text="精选创业项目" />

@@ -10,25 +10,24 @@ import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 
 import java.util.List;
 
-/**
- * Date： 2017/5/4 2017
- * User： PSuiyi
- * Description：
- */
+public class CommentReplyAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
 
-public class PeopleGridAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
 
-    public PeopleGridAdapter(@Nullable List<BaseZnzBean> dataList) {
-        super(R.layout.item_gv_people, dataList);
+    public CommentReplyAdapter(@Nullable List dataList) {
+        super(R.layout.item_lv_comment_reply, dataList);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, BaseZnzBean bean) {
-        setOnItemClickListener(this);
+
+//        if (helper.getAdapterPosition() == 0) {
+//            llContainer.setBackgroundResource(R.drawable.duihuakuang);
+//        } else {
+//            llContainer.setBackgroundResource(R.color.reply_bg);
+//        }
     }
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
     }
 }

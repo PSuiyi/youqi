@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/distance_divider"
+        android:paddingRight="@dimen/distance_divider">
+
+        <TextView
+            android:id="@+id/tvNickName"
+            style="@style/TextStyle"
+            android:text="1-2-901"
+            android:textColor="@color/blue" />
+
+        <TextView
+            style="@style/TextStyle"
+            android:text="："
+            android:textColor="@color/green" />
+
+        <TextView
+            android:id="@+id/tvContent"
+            style="@style/TextStyle"
+            android:text="谢谢！如需要我们配合举证，你直" />
+    </LinearLayout>
+</LinearLayout>

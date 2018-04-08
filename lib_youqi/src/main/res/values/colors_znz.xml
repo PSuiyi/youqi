@@ -4,7 +4,7 @@
     <color name="colorPrimary">@color/status_color</color>
     <color name="colorPrimaryDark">@color/black</color>
     <color name="colorAccent">@color/status_color</color>
-    <color name="status_color">@color/white</color>
+    <color name="status_color">@color/red</color>
 
     <!--基础色值-->
     <color name="red">#F10216</color>
@@ -53,7 +53,7 @@
     <!--部件色值-->
     <color name="background">#F5F5F9</color>
     <color name="background_gray">#f8f8f8</color>
-    <color name="nav_backgroud">@color/status_color</color>
+    <color name="nav_backgroud">@color/white</color>
     <color name="line">@color/gray10</color>
     <color name="line_divider">@color/background</color>
 

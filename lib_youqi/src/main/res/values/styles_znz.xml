@@ -92,7 +92,7 @@
     </style>
 
     <style name="TimeTextStyle" parent="TextStyle">
-        <item name="android:textColor">@color/text_gray</item>
+        <item name="android:textColor">@color/text_gray_light</item>
         <item name="android:textSize">@dimen/text_size</item>
         <item name="android:text">2016-09-11 12:30</item>
     </style>

@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.mzk.compass.youqi.R;
+import com.mzk.compass.youqi.ui.home.project.ProjectDetailAct;
 import com.znz.compass.znzlibray.bean.BaseZnzBean;
 import com.znz.compass.znzlibray.utils.DipUtil;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
@@ -44,6 +45,6 @@ public class ProductGridAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHo
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+        gotoActivity(ProjectDetailAct.class);
     }
 }
