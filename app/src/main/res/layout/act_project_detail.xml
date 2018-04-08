@@ -14,6 +14,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <LinearLayout
@@ -251,6 +252,54 @@
             android:layout_height="wrap_content" />
 
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nav_height"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/pinlun"
+            android:gravity="center"
+            android:text="评论" />
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/zijian"
+            android:gravity="center"
+            android:text="约谈" />
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/shoucang"
+            android:gravity="center"
+            android:text="收藏" />
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/zhuanfa"
+            android:gravity="center"
+            android:text="分享" />
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/huidaodingbu"
+            android:gravity="center"
+            android:text="返回顶部" />
     </LinearLayout>
 
 </LinearLayout>

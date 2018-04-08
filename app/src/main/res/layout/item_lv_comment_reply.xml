@@ -16,7 +16,7 @@
         <TextView
             android:id="@+id/tvNickName"
             style="@style/TextStyle"
-            android:text="1-2-901"
+            android:text="张三"
             android:textColor="@color/blue" />
 
         <TextView
@@ -27,6 +27,6 @@
         <TextView
             android:id="@+id/tvContent"
             style="@style/TextStyle"
-            android:text="谢谢！如需要我们配合举证，你直" />
+            android:text="好的，有时间一定联系你，希望有合作" />
     </LinearLayout>
 </LinearLayout>

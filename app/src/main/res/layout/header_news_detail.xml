@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/distance_view">
+
+        <TextView
+            style="@style/TitleBlodStyle"
+            android:text="注意了！十九大报告圈重点 未来五年的这些关键词才是投资的国之所向" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/distance_divider"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TextDrawableStyle"
+                android:drawableLeft="@mipmap/shoucangxiaohui"
+                android:text="2585"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/text_size_12" />
+
+            <TextView
+                style="@style/TextDrawableStyle"
+                android:layout_marginLeft="@dimen/distance_divider"
+                android:drawableLeft="@mipmap/pinglunxiaohui"
+                android:text="2585"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/text_size_12" />
+
+            <View style="@style/WeightView" />
+
+            <TextView style="@style/TimeTextStyle" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        style="@style/TextStyle"
+        android:padding="@dimen/distance_view"
+        android:text="请详细介绍项目所处市场，目前的市场规模及预测，您可以采用图表来更清晰的说明。请详细介绍项目所处市场，目前的市场规模及预测，您可以采用图表来更清晰的说明。请详细介绍项目所处市场，目前的市场规模及预测，您可以采用图表来更清晰的说明。请详细介绍项目所处市场，目前的市场规模及预测，您可以采用图表来更清晰的说明。\n请详细介绍项目所处市场，目前的市场规模及预测，您可以采用图表来更清晰的说明。请详细介绍项目所处市场，目前的市场规模及预测，您可以采用图表来更清晰的说明。" />
+
+    <View style="@style/Line" />
+
+    <TextView
+        style="@style/TitleBlodStyle"
+        android:padding="@dimen/distance_view"
+        android:text="评论"
+        android:textSize="@dimen/text_size_20" />
+
+    <View style="@style/Line" />
+
+</LinearLayout>

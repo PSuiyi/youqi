@@ -10,10 +10,10 @@ import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 
 import java.util.List;
 
-public class InvestorAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
+public class PeopleSimpleAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
 
-    public InvestorAdapter(@Nullable List dataList) {
-        super(R.layout.item_lv_investor, dataList);
+    public PeopleSimpleAdapter(@Nullable List dataList) {
+        super(R.layout.item_lv_demo, dataList);
     }
 
     @Override

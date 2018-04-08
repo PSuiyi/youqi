@@ -1,8 +1,10 @@
 package com.mzk.compass.youqi.ui.news;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.mzk.compass.youqi.R;
+import com.mzk.compass.youqi.adapter.CommentAdapter;
 import com.mzk.compass.youqi.base.BaseAppListActivity;
 
 /**
@@ -11,9 +13,12 @@ import com.mzk.compass.youqi.base.BaseAppListActivity;
  * Description：
  */
 public class NewsDetailAct extends BaseAppListActivity {
+
+    private View header;
+
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.common_list_layout_withnav, 1};
+        return new int[]{R.layout.act_news_detail, 1};
     }
 
     @Override
@@ -33,7 +38,11 @@ public class NewsDetailAct extends BaseAppListActivity {
 
     @Override
     protected void initializeView() {
+        adapter = new CommentAdapter(dataList);
+        rvRefresh.setAdapter(adapter);
 
+        header = View.inflate(activity, R.layout.header_news_detail, null);
+        adapter.addHeaderView(header);
     }
 
     @Override
