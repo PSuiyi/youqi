@@ -36,10 +36,14 @@ public class HelpFrag extends BaseAppListFragment {
     private RecyclerView rvProduct;
     private ProductGridAdapter productGridAdapter;
     private List<BaseZnzBean> productList = new ArrayList<>();
+    private View tvMenu5;
+    private View tvMenu6;
+    private View tvMenu7;
+    private View tvMenu8;
 
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.common_list_layout_withnav, 2};
+        return new int[]{R.layout.frag_help, 2};
     }
 
     @Override
@@ -67,6 +71,36 @@ public class HelpFrag extends BaseAppListFragment {
         tvMenu2 = bindViewById(header, R.id.tvMenu2);
         tvMenu3 = bindViewById(header, R.id.tvMenu3);
         tvMenu4 = bindViewById(header, R.id.tvMenu4);
+        tvMenu5 = bindViewById(header, R.id.tvMenu5);
+        tvMenu6 = bindViewById(header, R.id.tvMenu6);
+        tvMenu7 = bindViewById(header, R.id.tvMenu7);
+        tvMenu8 = bindViewById(header, R.id.tvMenu8);
+
+        tvMenu1.setOnClickListener(v -> {
+            gotoActivity(ProductListAct.class);
+        });
+        tvMenu2.setOnClickListener(v -> {
+            gotoActivity(ProductListAct.class);
+        });
+        tvMenu3.setOnClickListener(v -> {
+            gotoActivity(ProductListAct.class);
+        });
+        tvMenu4.setOnClickListener(v -> {
+            gotoActivity(ProductListAct.class);
+        });
+        tvMenu5.setOnClickListener(v -> {
+            gotoActivity(ProductListAct.class);
+        });
+        tvMenu6.setOnClickListener(v -> {
+            gotoActivity(ProductListAct.class);
+        });
+        tvMenu7.setOnClickListener(v -> {
+            gotoActivity(ProductListAct.class);
+        });
+        tvMenu8.setOnClickListener(v -> {
+            gotoActivity(ProductListAct.class);
+        });
+
         banner = bindViewById(header, R.id.banner);
         rvProduct = bindViewById(header, R.id.rvProduct);
         adapter.addHeaderView(header);

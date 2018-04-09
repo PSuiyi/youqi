@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
@@ -7,28 +8,28 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/llContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_line_gray"
         android:orientation="vertical">
 
         <com.znz.compass.znzlibray.views.imageloder.HttpImageView
             android:id="@+id/ivImage"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="180dp"
             android:scaleType="centerCrop"
             android:src="@mipmap/default_image_square" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+
             android:orientation="vertical"
             android:padding="10dp">
 
             <TextView
                 android:id="@+id/tvName"
-                style="@style/TextStyle"
+                style="@style/TitleTextStyle"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text="有限责任公司注册" />
@@ -36,12 +37,13 @@
 
             <TextView
                 android:id="@+id/tvMoney"
-                style="@style/TextStyle"
+                style="@style/TitleTextStyle"
                 android:paddingTop="@dimen/distance_text"
                 android:text="¥999.00"
                 android:textColor="@color/red" />
 
             <TextView
+                android:id="@+id/tvMoneyOld"
                 style="@style/TextGrayStyle"
                 android:paddingTop="@dimen/distance_text"
                 android:text="原价：¥1000.00" />
@@ -53,7 +55,10 @@
                 android:paddingTop="@dimen/distance_text">
 
                 <TextView
-                    style="@style/TextStyle"
+                    style="@style/TextRedStyle"
+                    android:background="@drawable/bg_line_red_2"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
                     android:text="自营" />
 
                 <View style="@style/WeightView" />
@@ -63,11 +68,5 @@
                     android:text="成交量：192" />
             </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/background" />
 </LinearLayout>

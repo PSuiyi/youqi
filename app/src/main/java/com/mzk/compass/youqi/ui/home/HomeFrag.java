@@ -10,6 +10,7 @@ import com.mzk.compass.youqi.adapter.MultiAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
 import com.mzk.compass.youqi.bean.MultiBean;
 import com.mzk.compass.youqi.common.Constants;
+import com.mzk.compass.youqi.ui.help.ProductListAct;
 import com.mzk.compass.youqi.ui.home.people.PeopleListAct;
 import com.mzk.compass.youqi.ui.home.project.ProjectListAct;
 import com.znz.compass.znzlibray.views.imageloder.GlideApp;
