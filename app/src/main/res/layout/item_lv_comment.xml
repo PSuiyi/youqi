@@ -35,7 +35,6 @@
                 <TextView
                     android:id="@+id/tvUserName"
                     style="@style/TextStyle"
-                    android:layout_marginLeft="@dimen/distance_divider"
                     android:ellipsize="end"
                     android:text="赵大千" />
 

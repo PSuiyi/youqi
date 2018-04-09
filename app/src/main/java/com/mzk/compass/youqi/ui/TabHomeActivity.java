@@ -16,6 +16,7 @@ import com.mzk.compass.youqi.ui.help.HelpFrag;
 import com.mzk.compass.youqi.ui.home.HomeFrag;
 import com.mzk.compass.youqi.ui.mine.MineFrag;
 import com.mzk.compass.youqi.ui.news.NewsFrag;
+import com.mzk.compass.youqi.ui.publish.PublishAct;
 import com.znz.compass.znzlibray.utils.FragmentUtil;
 
 import butterknife.Bind;
@@ -97,7 +98,7 @@ public class TabHomeActivity extends BaseAppActivity {
                 fragmentUtil.switchContent(meetingFragment, R.id.main_container, fragmentManager);
                 break;
             case R.id.llAdd:
-
+                gotoActivity(PublishAct.class);
                 break;
             case R.id.radioButton3:
                 if (groupFragment == null) {

@@ -50,7 +50,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/shoucang" />
+                        android:src="@mipmap/zhuanfa" />
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -92,16 +92,18 @@
 
                     <TextView
                         style="@style/TextDrawableStyle"
-                        android:drawableLeft="@mipmap/shoucang"
+                        android:drawableLeft="@mipmap/shoucangxiaohui"
                         android:text="2585"
-                        android:textColor="@color/text_gray" />
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/text_size_12" />
 
                     <TextView
                         style="@style/TextDrawableStyle"
                         android:layout_marginLeft="@dimen/distance_divider"
-                        android:drawableLeft="@mipmap/shoucang"
+                        android:drawableLeft="@mipmap/pinglunxiaohui"
                         android:text="2585"
-                        android:textColor="@color/text_gray" />
+                        android:textColor="@color/text_gray"
+                        android:textSize="@dimen/text_size_12" />
                 </LinearLayout>
             </LinearLayout>
 

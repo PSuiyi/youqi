@@ -33,6 +33,8 @@
         <activity android:name=".ui.news.NewsDetailAct" />
         <activity android:name=".ui.home.people.PeopleListAct" />
         <activity android:name=".ui.help.ProductListAct" />
+        <activity android:name=".ui.publish.PublishAct" />
+        <activity android:name=".ui.mine.article.ArticleTabAct" />
     </application>
 
 </manifest>

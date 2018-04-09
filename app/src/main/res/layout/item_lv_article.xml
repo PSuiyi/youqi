@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/distance_view">
+
+            <TextView
+                style="@style/TitleTextStyle"
+                android:text="国家税务总局关于贯彻落实进一步扩大小型微利企业减半征收企业所得税范围有关问题的公告" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/distance_text"
+                android:orientation="horizontal">
+
+                <TextView style="@style/TimeTextStyle" />
+
+                <View style="@style/WeightView" />
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:background="@drawable/bg_line_gray_4"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:text="已采纳"
+                    android:textColor="@color/green" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View style="@style/Line" />
+</LinearLayout>
