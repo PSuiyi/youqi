@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
-import com.mzk.compass.youqi.ui.home.project.ProjectDetailAct;
+import com.mzk.compass.youqi.ui.help.ProductDetailAct;
 import com.znz.compass.znzlibray.bean.BaseZnzBean;
 import com.znz.compass.znzlibray.utils.DipUtil;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
@@ -49,6 +49,6 @@ public class ProductAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        gotoActivity(ProjectDetailAct.class);
+        gotoActivity(ProductDetailAct.class);
     }
 }

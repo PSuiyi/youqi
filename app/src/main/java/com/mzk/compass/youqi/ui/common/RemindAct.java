@@ -1,17 +1,17 @@
-package com.mzk.compass.youqi.ui.publish;
+package com.mzk.compass.youqi.ui.common;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 
 /**
- * Date： 2018/4/9 2018
+ * Date： 2018/4/16 2018
  * User： PSuiyi
  * Description：
  */
-public class PublishAct extends BaseAppActivity {
+public class RemindAct extends BaseAppActivity {
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.act_publish_project, 1};
+        return new int[]{R.layout.act_remind, 1};
     }
 
     @Override
@@ -21,7 +21,7 @@ public class PublishAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("项目发布");
+        setTitleName("用户协议");
     }
 
     @Override

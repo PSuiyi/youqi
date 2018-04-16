@@ -1,9 +1,12 @@
 package com.mzk.compass.youqi.ui.login;
 
+import android.view.View;
 import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.mzk.compass.youqi.ui.common.RemindAct;
+import com.znz.compass.znzlibray.views.ZnzToolBar;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -16,6 +19,8 @@ import butterknife.OnClick;
 public class Register2Act extends BaseAppActivity {
     @Bind(R.id.tvSubmit)
     TextView tvSubmit;
+    @Bind(R.id.znzToolBar)
+    ZnzToolBar znzToolBar;
 
     @Override
     protected int[] getLayoutResource() {
@@ -47,8 +52,16 @@ public class Register2Act extends BaseAppActivity {
 
     }
 
-    @OnClick(R.id.tvSubmit)
-    public void onViewClicked() {
-        gotoActivityWithClearStack(LoginAct.class);
+
+    @OnClick({R.id.tvRemind, R.id.tvSubmit})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tvRemind:
+                gotoActivity(RemindAct.class);
+                break;
+            case R.id.tvSubmit:
+                gotoActivityWithClearStack(LoginAct.class);
+                break;
+        }
     }
 }

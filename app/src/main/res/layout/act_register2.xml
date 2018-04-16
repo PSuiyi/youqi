@@ -87,6 +87,7 @@
                 android:text="已阅读并同意" />
 
             <TextView
+                android:id="@+id/tvRemind"
                 style="@style/TextRedStyle"
                 android:text="《优企注册条款》" />
         </LinearLayout>

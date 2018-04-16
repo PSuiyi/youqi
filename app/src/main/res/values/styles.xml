@@ -41,4 +41,12 @@
         <item name="android:layout_marginRight">6dp</item>
         <item name="android:background">@color/line</item>
     </style>
+
+    <style name="DotRedStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">3dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:src">@drawable/bg_circle_red</item>
+    </style>
 </resources>
