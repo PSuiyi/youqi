@@ -10,12 +10,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.TabHomeActivity">
+
+        <activity android:name=".ui.login.LoginAct" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.TabHomeActivity">
+
         </activity>
         <activity android:name=".ui.mine.MineProjectTabAct" />
         <activity android:name=".ui.mine.OneStepAct" />
@@ -35,6 +40,9 @@
         <activity android:name=".ui.help.ProductListAct" />
         <activity android:name=".ui.publish.PublishAct" />
         <activity android:name=".ui.mine.article.ArticleTabAct" />
+        <activity android:name=".ui.login.RegisterAct" />
+        <activity android:name=".ui.login.Register2Act" />
+        <activity android:name=".ui.login.LoginCodeAct" />
     </application>
 
 </manifest>

@@ -77,7 +77,6 @@
                 android:minWidth="60dp"
                 android:text="按钮"
                 android:textSize="@dimen/nav_text_size"
-                android:textStyle="bold"
                 android:visibility="gone" />
 
             <LinearLayout
