@@ -15,7 +15,8 @@
 
         <TextView
             style="@style/TitleBlodStyle"
-            android:text="注意了！十九大报告圈重点 未来五年的这些关键词才是投资的国之所向" />
+            android:text="注意了！十九大报告圈重点 未来五年的这些关键词才是投资的国之所向"
+            android:textSize="@dimen/text_size_18" />
 
         <LinearLayout
             android:layout_width="match_parent"
