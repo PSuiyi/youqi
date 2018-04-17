@@ -32,8 +32,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:gravity="center_vertical"
+                    android:layout_marginTop="40dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -127,13 +127,13 @@
 
                     <TextView
                         style="@style/TextStyle"
-                        android:text="700元"
+                        android:text="200元"
                         android:textColor="@color/red" />
 
                     <TextView
                         style="@style/TextGrayStyle"
                         android:layout_marginTop="@dimen/distance_divider"
-                        android:text="佣金" />
+                        android:text="余额" />
                 </LinearLayout>
             </LinearLayout>
 
