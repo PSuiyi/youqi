@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppFragment;
@@ -12,8 +11,6 @@ import com.mzk.compass.youqi.ui.mine.article.ArticleTabAct;
 import com.mzk.compass.youqi.ui.mine.message.MessageTabAct;
 import com.mzk.compass.youqi.ui.mine.order.OrderTabAct;
 import com.mzk.compass.youqi.ui.setting.SettingAct;
-import com.znz.compass.znzlibray.views.ZnzRemind;
-import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.compass.znzlibray.views.rowview.ZnzRowDescription;
 import com.znz.compass.znzlibray.views.rowview.ZnzRowGroupView;
 
@@ -21,6 +18,7 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Date： 2018/3/29 2018
@@ -28,12 +26,6 @@ import butterknife.ButterKnife;
  * Description：
  */
 public class MineFrag extends BaseAppFragment {
-    @Bind(R.id.znzToolBar)
-    ZnzToolBar znzToolBar;
-    @Bind(R.id.znzRemind)
-    ZnzRemind znzRemind;
-    @Bind(R.id.llNetworkStatus)
-    LinearLayout llNetworkStatus;
     @Bind(R.id.commonRowGroup)
     ZnzRowGroupView commonRowGroup;
 
@@ -142,6 +134,7 @@ public class MineFrag extends BaseAppFragment {
                 .withTextSize(14)
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
                 .withOnClickListener(v -> {
+                    gotoActivity(CustomerServiceAct.class);
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
@@ -174,5 +167,16 @@ public class MineFrag extends BaseAppFragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    @OnClick({R.id.llInfo, R.id.ivMessage})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.llInfo:
+                gotoActivity(MineInfoAct.class);
+                break;
+            case R.id.ivMessage:
+                break;
+        }
     }
 }

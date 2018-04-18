@@ -45,6 +45,9 @@
         <activity android:name=".ui.login.LoginCodeAct" />
         <activity android:name=".ui.common.RemindAct" />
         <activity android:name=".ui.help.ProductDetailAct" />
+        <activity android:name=".ui.mine.UpdateInfoAct" />
+        <activity android:name=".ui.mine.UpdateIntroAct" />
+        <activity android:name=".ui.mine.CustomerServiceAct" />
     </application>
 
 </manifest>
