@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_common_navigation" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/distance_view">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TextStyle"
+                        android:text="有鱼钓" />
+
+                    <TextView
+                        style="@style/TextWhiteStyle"
+                        android:layout_marginLeft="@dimen/distance_divider"
+                        android:background="@drawable/bg_red_radius_2"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="天使轮" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextSamllGrayStyle"
+                    android:layout_marginTop="5dp"
+                    android:text="好玩有趣的钓鱼软件，同城交友，人脉扩展！" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TextStyle"
+                        android:background="@drawable/bg_blue_light_radius_2"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="互联网"
+                        android:textColor="@color/text_blue_message"
+                        android:textSize="@dimen/text_size_10" />
+
+                    <TextView
+                        style="@style/TextStyle"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/bg_blue_light_radius_2"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="休闲"
+                        android:textColor="@color/text_blue_message"
+                        android:textSize="@dimen/text_size_10" />
+
+                    <TextView
+                        style="@style/TextStyle"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/bg_blue_light_radius_2"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="娱乐"
+                        android:textColor="@color/text_blue_message"
+                        android:textSize="@dimen/text_size_10" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@mipmap/default_header" />
+
+                    <TextView
+                        style="@style/TextSamllStyle"
+                        android:layout_marginLeft="10dp"
+                        android:text="赵大千" />
+
+                    <View style="@style/WeightView" />
+
+                    <TextView
+                        style="@style/TextSamllGrayStyle"
+                        android:text="2018.01.09 19:09" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            style="@style/Line"
+            android:layout_marginLeft="@dimen/distance_view"
+            android:layout_marginRight="@dimen/distance_view" />
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_margin="@dimen/distance_view"
+            android:text="您好：真诚向您推荐我们的创业项目，希望您在百忙中抽出时间了解一下我们的项目，如果您对我们的项目有意向，可通过小鱼办公与我们进行视频会议。谢谢。您好：真诚向您推荐我们的创业项目，希望您在百忙中抽出时间了解一下我们的项目，如果您对我们的项目有意向，可通过小鱼办公与我们进行视频会议。谢谢。您好：真诚向您推荐我们的创业项目，希望您在百忙中抽出时间了解一下我们的项目，如果您对我们的项目有意向，可通过小鱼办公与我们进行视频会议。谢谢。" />
+    </LinearLayout>
+
+</LinearLayout>

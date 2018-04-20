@@ -48,6 +48,9 @@
         <activity android:name=".ui.mine.UpdateInfoAct" />
         <activity android:name=".ui.mine.UpdateIntroAct" />
         <activity android:name=".ui.mine.CustomerServiceAct" />
+        <activity android:name=".ui.setting.AboutUsAct" />
+        <activity android:name=".ui.mine.message.MessageDetailAct" />
+        <activity android:name=".ui.mine.message.MessageReplyAct" />
     </application>
 
 </manifest>

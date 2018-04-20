@@ -94,7 +94,6 @@ public class MineFrag extends BaseAppFragment {
                 .withTextSize(14)
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
                 .withOnClickListener(v -> {
-                    gotoActivity(MessageTabAct.class);
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
@@ -176,6 +175,7 @@ public class MineFrag extends BaseAppFragment {
                 gotoActivity(MineInfoAct.class);
                 break;
             case R.id.ivMessage:
+                gotoActivity(MessageTabAct.class);
                 break;
         }
     }
