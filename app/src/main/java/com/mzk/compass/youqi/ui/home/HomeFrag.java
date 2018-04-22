@@ -10,9 +10,11 @@ import com.mzk.compass.youqi.adapter.MultiAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
 import com.mzk.compass.youqi.bean.MultiBean;
 import com.mzk.compass.youqi.common.Constants;
+import com.mzk.compass.youqi.ui.common.CityListAct;
 import com.mzk.compass.youqi.ui.help.ProductListAct;
 import com.mzk.compass.youqi.ui.home.people.PeopleListAct;
 import com.mzk.compass.youqi.ui.home.project.ProjectListAct;
+import com.znz.compass.znzlibray.utils.BitmapUtil;
 import com.znz.compass.znzlibray.views.imageloder.GlideApp;
 
 import java.util.ArrayList;
@@ -56,6 +58,11 @@ public class HomeFrag extends BaseAppListFragment {
     @Override
     protected void initializeNavigation() {
         znzToolBar.setSearchEnableEdit(false);
+        znzToolBar.setSearchLeft("南京", BitmapUtil.getResourceDrawable(activity, R.mipmap.xiala));
+        znzToolBar.setSearchRightImage(R.mipmap.xiaoxi);
+        znzToolBar.setOnSearchLeftClickListener(v -> {
+            gotoActivity(CityListAct.class);
+        });
     }
 
     @Override

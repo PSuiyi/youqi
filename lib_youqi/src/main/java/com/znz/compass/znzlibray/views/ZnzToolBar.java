@@ -37,13 +37,18 @@ public class ZnzToolBar extends LinearLayout {
     //search about
     protected Toolbar toolbarSearch;
     protected TextView tvSearch;
+    protected TextView tvSearchLeft;
+    protected ImageView ivSerachLeft;
     protected TextView tvSearchRight;
     protected EditTextWithDel etSerach;
+    protected LinearLayout llSerachLeft;
     protected LinearLayout llSearch;
     protected LinearLayout llSearchRight;
     protected LinearLayout llSearchRight2;
     protected ImageView ivSearchRight;
     protected ImageView ivSearchRight2;
+    protected View distanceLeft;
+    protected View distanceRight;
 
 
     private LinearLayout llNavRuixi;
@@ -130,6 +135,11 @@ public class ZnzToolBar extends LinearLayout {
                 llSearch = ViewHolder.init(view, R.id.llSearch);
                 etSerach = ViewHolder.init(view, R.id.etSerach);
                 tvSearch = ViewHolder.init(view, R.id.tvSearch);
+                distanceLeft = ViewHolder.init(view, R.id.distanceLeft);
+                distanceRight = ViewHolder.init(view, R.id.distanceRight);
+                tvSearchLeft = ViewHolder.init(view, R.id.tvSearchLeft);
+                llSerachLeft = ViewHolder.init(view, R.id.llSerachLeft);
+                ivSerachLeft = ViewHolder.init(view, R.id.ivSerachLeft);
                 tvSearchRight = ViewHolder.init(view, R.id.tvSearchRight);
                 llSearchRight = ViewHolder.init(view, R.id.llSearchRight);
                 llSearchRight2 = ViewHolder.init(view, R.id.llSearchRight2);
@@ -398,11 +408,40 @@ public class ZnzToolBar extends LinearLayout {
         ivSearchRight.setImageResource(resId);
         llSearchRight.setVisibility(VISIBLE);
         tvSearchRight.setVisibility(GONE);
+        distanceRight.setVisibility(GONE);
     }
 
     public void setSearchRightImage2(@DrawableRes int resId) {
         ivSearchRight2.setImageResource(resId);
         llSearchRight2.setVisibility(VISIBLE);
+        distanceRight.setVisibility(GONE);
+    }
+
+
+    public void setSearchLeftText(String str) {
+        tvSearchLeft.setText(str);
+        tvSearchLeft.setVisibility(VISIBLE);
+        llSerachLeft.setVisibility(VISIBLE);
+        ivSerachLeft.setVisibility(GONE);
+        distanceLeft.setVisibility(GONE);
+    }
+
+    public void setSearchLeftImage(@DrawableRes int resId) {
+        ivSerachLeft.setImageResource(resId);
+        llSerachLeft.setVisibility(VISIBLE);
+        ivSerachLeft.setVisibility(VISIBLE);
+        tvSearchLeft.setVisibility(GONE);
+        distanceLeft.setVisibility(GONE);
+    }
+
+    public void setSearchLeft(String text, Drawable drawable) {
+        llSerachLeft.setVisibility(VISIBLE);
+        tvSearchLeft.setVisibility(VISIBLE);
+        distanceLeft.setVisibility(GONE);
+        tvSearchLeft.setText(text);
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+        tvSearchLeft.setCompoundDrawables(null, null, drawable, null);
+        tvSearchLeft.setCompoundDrawablePadding(10);
     }
 
     /**
@@ -412,6 +451,10 @@ public class ZnzToolBar extends LinearLayout {
      */
     public void setOnSearchClickListener(OnClickListener onNavSearchClickListener) {
         llSearch.setOnClickListener(onNavSearchClickListener);
+    }
+
+    public void setOnSearchLeftClickListener(OnClickListener onNavSearchClickListener) {
+        llSerachLeft.setOnClickListener(onNavSearchClickListener);
     }
 
     public void setOnSearchRightClickListener(OnClickListener onNavSearchClickListener) {

@@ -25,7 +25,10 @@ public class PeopleListAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-
+        znzToolBar.setSearchLeftImage(R.drawable.topback);
+        znzToolBar.setOnSearchLeftClickListener(v -> {
+            finish();
+        });
     }
 
     @Override

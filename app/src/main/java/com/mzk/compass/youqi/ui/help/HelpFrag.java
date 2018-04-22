@@ -54,6 +54,11 @@ public class HelpFrag extends BaseAppListFragment {
     @Override
     protected void initializeNavigation() {
         znzToolBar.setSearchEnableEdit(false);
+        znzToolBar.setSearchLeftImage(R.mipmap.fenlei);
+        znzToolBar.setSearchRightImage(R.mipmap.xiaoxi);
+        znzToolBar.setOnSearchLeftClickListener(v -> {
+            gotoActivity(TypeListAct.class);
+        });
     }
 
     @Override

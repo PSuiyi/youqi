@@ -65,6 +65,7 @@ public class OrderTabAct extends BaseAppActivity {
     protected void initializeView() {
         commonViewPager.setAdapter(new ViewPageAdapter(getSupportFragmentManager(), tabNames, fragmentList));
         commonTabLayout.setupWithViewPager(commonViewPager);
+        commonTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         commonViewPager.setOffscreenPageLimit(fragmentList.size());
 
         commonTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
