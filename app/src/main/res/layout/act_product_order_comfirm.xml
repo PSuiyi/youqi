@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_common_navigation" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TitleBlodStyle"
+                    android:padding="@dimen/distance_view"
+                    android:text="商品介绍"
+                    android:textSize="@dimen/text_size_20" />
+
+                <View style="@style/LineLeft" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/distance_view">
+
+                    <TextView
+                        style="@style/TitleGrayTextStyle"
+                        android:text="商品名称：" />
+
+                    <View style="@style/WeightView" />
+
+                    <TextView
+                        style="@style/TitleTextStyle"
+                        android:text="有限责任公司注册" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/distance_view">
+
+                    <TextView
+                        style="@style/TitleGrayTextStyle"
+                        android:text="单价：" />
+
+                    <View style="@style/WeightView" />
+
+                    <TextView
+                        style="@style/TitleTextStyle"
+                        android:text="398元" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/distance_view">
+
+                    <TextView
+                        style="@style/TitleGrayTextStyle"
+                        android:text="数量：" />
+
+                    <View style="@style/WeightView" />
+
+                    <TextView
+                        style="@style/TitleTextStyle"
+                        android:text="x1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/distance_view">
+
+                    <TextView
+                        style="@style/TitleGrayTextStyle"
+                        android:text="合计：" />
+
+                    <View style="@style/WeightView" />
+
+                    <TextView
+                        style="@style/TitleTextStyle"
+                        android:text="¥1000" />
+                </LinearLayout>
+
+                <View style="@style/LineDivider" />
+
+                <LinearLayout
+                    android:id="@+id/tvPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/distance_view">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/dianhua" />
+
+                    <TextView
+                        style="@style/TitleGrayTextStyle"
+                        android:layout_marginLeft="@dimen/distance_divider"
+                        android:text="客服电话" />
+
+                    <View style="@style/WeightView" />
+
+                    <TextView
+                        style="@style/TitleTextStyle"
+                        android:text="400-8888-8888" />
+                </LinearLayout>
+
+                <View style="@style/LineDivider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/distance_view">
+
+                    <TextView
+                        style="@style/TitleGrayTextStyle"
+                        android:text="电话：" />
+
+                    <EditText
+                        style="@style/EditPhoneStyle"
+                        android:layout_weight="1"
+                        android:hint="建议预留电话，方便客服联系你"
+                        android:textSize="@dimen/title_size" />
+                </LinearLayout>
+
+                <View style="@style/LineLeft" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/distance_view">
+
+                    <TextView
+                        style="@style/TitleGrayTextStyle"
+                        android:text="备注信息：" />
+
+                    <EditText
+                        style="@style/EditMultiStyle"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/distance_view"
+                        android:background="#F6F6F6"
+                        android:hint="请填写备注，50个字"
+                        android:minHeight="150dp"
+                        android:padding="@dimen/distance_view"
+                        android:textSize="@dimen/title_size" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/distance_divider"
+                    android:src="@mipmap/xuanzhong" />
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:text="已阅读并同意" />
+
+                <TextView
+                    style="@style/TextRedStyle"
+                    android:text="《优企注册条款》" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <View style="@style/Line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/TextRedStyle"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/distance_view"
+            android:paddingRight="@dimen/distance_view"
+            android:text="共计：¥999.00"
+            android:textSize="@dimen/text_size_18" />
+
+
+        <TextView
+            android:id="@+id/tvBuy"
+            style="@style/BtnStyle"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:text="立即购买" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -168,6 +168,10 @@
         <item name="android:layout_marginRight">@dimen/distance_view</item>
     </style>
 
+    <style name="LineLeft" parent="Line">
+        <item name="android:layout_marginLeft">@dimen/distance_view</item>
+    </style>
+
     <style name="LineVer">
         <item name="android:layout_width">@dimen/line_space</item>
         <item name="android:layout_height">match_parent</item>

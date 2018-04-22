@@ -34,47 +34,7 @@
                     android:text="待付款" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#F6F6F6"
-                android:orientation="horizontal"
-                android:padding="@dimen/distance_view">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@mipmap/default_image_square" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/distance_view"
-                    android:orientation="vertical">
-
-                    <TextView
-                        style="@style/TitleTextStyle"
-                        android:text="有限责任公司注册" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/distance_view"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            style="@style/TitleRedTextStyle"
-                            android:text="¥999.00" />
-
-                        <View style="@style/WeightView" />
-
-                        <TextView
-                            style="@style/TextStyle"
-                            android:text="x1" />
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-
+           <include layout="@layout/include_item_product"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

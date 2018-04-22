@@ -51,6 +51,8 @@
         <activity android:name=".ui.setting.AboutUsAct" />
         <activity android:name=".ui.mine.message.MessageDetailAct" />
         <activity android:name=".ui.mine.message.MessageReplyAct" />
+        <activity android:name=".ui.help.ProductOrderComfirmAct" />
+        <activity android:name=".ui.help.OrderPayAct" />
     </application>
 
 </manifest>
