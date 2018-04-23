@@ -49,9 +49,9 @@ public class MessageTabAct extends BaseAppActivity {
         tabNames.add("交易信息");
         tabNames.add("系统信息");
 
-        fragmentList.add(new MessageListFrag());
-        fragmentList.add(new MessageListFrag());
-        fragmentList.add(new MessageListFrag());
+        fragmentList.add(MessageListFrag.newInstance("互动消息"));
+        fragmentList.add(MessageListFrag.newInstance("交易信息"));
+        fragmentList.add(MessageListFrag.newInstance("系统信息"));
     }
 
     @Override

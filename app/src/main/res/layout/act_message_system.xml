@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_common_navigation" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/distance_view">
+
+        <TextView
+            style="@style/TextStyle"
+            android:text="系统信息标题通知"
+            android:textSize="@dimen/text_size_20" />
+
+        <TextView
+            style="@style/TextSamllGrayStyle"
+            android:layout_marginTop="5dp"
+            android:text="2018.01.09 19:09" />
+
+        <TextView
+            style="@style/TextGrayStyle"
+            android:layout_marginTop="5dp"
+            android:text="系统消息是指网站管理者以信息广播形式向目标用户发布的公开的消息、公告、通知、提示等。具有群发性，高可达性等消息特性系统消息是指网站管理者以信息广播形式向目标用户发布的公开的消息、公告、通知、提示等。具有群发性，高可达性等消息特性。" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -29,6 +29,13 @@
             android:background="@color/background"
             android:orientation="vertical">
 
+            <EditText
+                style="@style/EditStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/distance_view"
+                android:gravity="top"
+                android:hint="请输入文字200字以内" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

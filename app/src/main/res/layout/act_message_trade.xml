@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_common_navigation" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/distance_view">
+
+            <TextView
+                style="@style/TextStyle"
+                android:text="有鱼钓" />
+
+            <View style="@style/WeightView" />
+
+            <TextView
+                style="@style/TextSamllGrayStyle"
+                android:text="2018.01.09 19:09" />
+        </LinearLayout>
+
+        <View
+            style="@style/Line"
+            android:paddingLeft="@dimen/distance_view"
+            android:paddingRight="@dimen/distance_view" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/distance_view">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/default_header" />
+
+            <TextView
+                style="@style/TextStyle"
+                android:layout_marginLeft="10dp"
+                android:text="赵大千" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_marginBottom="@dimen/distance_view"
+            android:layout_marginLeft="@dimen/distance_view"
+            android:layout_marginRight="@dimen/distance_view"
+            android:text="您好：看到你的项目有鱼钓，很感兴趣，希望我们有合作的机会。有时间的话，我们找个地方面谈吧。您好：看到你的项目有鱼钓，很感兴趣，希望我们有合作的机会。有时间的话，我们找个地方面谈吧。您好：看到你的项目有鱼钓，很感兴趣，希望我们有合作的机会。有时间的话，我们找个地方面谈吧。" />
+    </LinearLayout>
+
+</LinearLayout>

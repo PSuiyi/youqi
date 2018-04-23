@@ -1,10 +1,13 @@
 package com.mzk.compass.youqi.ui.mine.message;
 
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.MessageAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
+import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 
 /**
  * Date： 2018/4/1 2018
@@ -12,6 +15,17 @@ import com.mzk.compass.youqi.base.BaseAppListFragment;
  * Description：
  */
 public class MessageListFrag extends BaseAppListFragment {
+
+    private String from;
+
+    public static MessageListFrag newInstance(String from) {
+        Bundle args = new Bundle();
+        args.putString("from", from);
+        MessageListFrag fragment = new MessageListFrag();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     protected int[] getLayoutResource() {
         return new int[]{R.layout.common_list_layout};
@@ -19,7 +33,9 @@ public class MessageListFrag extends BaseAppListFragment {
 
     @Override
     protected void initializeVariate() {
-
+        if (getArguments() != null) {
+            from = getArguments().getString("from");
+        }
     }
 
     @Override
@@ -36,6 +52,19 @@ public class MessageListFrag extends BaseAppListFragment {
     protected void initializeView() {
         adapter = new MessageAdapter(dataList);
         rvRefresh.setAdapter(adapter);
+        adapter.setOnItemClickListener((adapter, view, position) -> {
+            switch (from) {
+                case "互动消息":
+                    gotoActivity(MessageInteractAct.class);
+                    break;
+                case "交易信息":
+                    gotoActivity(MessageTradeAct.class);
+                    break;
+                case "系统信息":
+                    gotoActivity(MessageSystemAct.class);
+                    break;
+            }
+        });
     }
 
     @Override

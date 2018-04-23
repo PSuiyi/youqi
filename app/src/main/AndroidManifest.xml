@@ -49,12 +49,14 @@
         <activity android:name=".ui.mine.UpdateIntroAct" />
         <activity android:name=".ui.mine.CustomerServiceAct" />
         <activity android:name=".ui.setting.AboutUsAct" />
-        <activity android:name=".ui.mine.message.MessageDetailAct" />
+        <activity android:name=".ui.mine.message.MessageInteractAct" />
         <activity android:name=".ui.mine.message.MessageReplyAct" />
         <activity android:name=".ui.help.ProductOrderComfirmAct" />
         <activity android:name=".ui.help.OrderPayAct" />
         <activity android:name=".ui.help.TypeListAct" />
         <activity android:name=".ui.home.organ.OrganDetailAct" />
+        <activity android:name=".ui.mine.message.MessageTradeAct" />
+        <activity android:name=".ui.mine.message.MessageSystemAct" />
     </application>
 
 </manifest>
