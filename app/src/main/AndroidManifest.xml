@@ -57,6 +57,10 @@
         <activity android:name=".ui.home.organ.OrganDetailAct" />
         <activity android:name=".ui.mine.message.MessageTradeAct" />
         <activity android:name=".ui.mine.message.MessageSystemAct" />
+        <activity android:name=".ui.mine.identify.IdentifyMangerAct" />
+        <activity android:name=".ui.mine.identify.IdentifyPersonalAct" />
+        <activity android:name=".ui.mine.identify.MemberMangerAct" />
+        <activity android:name=".ui.mine.identify.MemberDetailAct" />
     </application>
 
 </manifest>

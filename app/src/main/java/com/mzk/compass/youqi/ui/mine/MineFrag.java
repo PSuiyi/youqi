@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppFragment;
 import com.mzk.compass.youqi.ui.mine.article.ArticleTabAct;
+import com.mzk.compass.youqi.ui.mine.identify.IdentifyMangerAct;
 import com.mzk.compass.youqi.ui.mine.message.MessageTabAct;
 import com.mzk.compass.youqi.ui.mine.order.OrderTabAct;
 import com.mzk.compass.youqi.ui.setting.SettingAct;
@@ -94,6 +95,7 @@ public class MineFrag extends BaseAppFragment {
                 .withTextSize(14)
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
                 .withOnClickListener(v -> {
+                    gotoActivity(IdentifyMangerAct.class);
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
