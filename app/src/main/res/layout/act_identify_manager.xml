@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <include layout="@layout/include_common_navigation" />
@@ -11,11 +12,40 @@
     <include layout="@layout/include_common_network_status" />
 
     <LinearLayout
+        android:id="@+id/llCompany"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/distance_view">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/gerenrenzheng" />
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_marginLeft="10dp"
+            android:text="企业认证管理" />
+
+        <View style="@style/WeightView" />
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:src="@drawable/listarr" />
+    </LinearLayout>
+
+    <View
+        style="@style/Line"
+        android:layout_marginLeft="@dimen/distance_view"
+        android:layout_marginRight="@dimen/distance_view" />
+
+    <LinearLayout
         android:id="@+id/llPersonal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="@dimen/distance_view">
@@ -32,14 +62,9 @@
 
         <View style="@style/WeightView" />
 
-        <TextView
-            style="@style/TextGrayStyle"
-            android:text="未认证" />
-
         <ImageView
             android:layout_width="12dp"
             android:layout_height="12dp"
-            android:layout_marginLeft="10dp"
             android:src="@drawable/listarr" />
     </LinearLayout>
 </LinearLayout>

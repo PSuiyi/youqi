@@ -1,7 +1,6 @@
 package com.mzk.compass.youqi.ui.mine.identify;
 
 import android.os.Bundle;
-import android.view.View;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
@@ -10,7 +9,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * Created by Administrator on 2018/4/24.
+ * Created by Administrator on 2018/4/23.
  */
 
 public class IdentifyPersonalAct extends BaseAppActivity {
@@ -27,7 +26,7 @@ public class IdentifyPersonalAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("个人认证管理");
+        setTitleName("认证管理");
     }
 
     @Override
@@ -46,14 +45,8 @@ public class IdentifyPersonalAct extends BaseAppActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.llCompany, R.id.llPersonal})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.llCompany:
-                break;
-            case R.id.llPersonal:
-                gotoActivity(IdentifyMangerAct.class);
-                break;
-        }
+    @OnClick(R.id.llPersonal)
+    public void onViewClicked() {
+        gotoActivity(MemberMangerAct.class);
     }
 }
