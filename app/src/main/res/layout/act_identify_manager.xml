@@ -37,10 +37,7 @@
             android:src="@drawable/listarr" />
     </LinearLayout>
 
-    <View
-        style="@style/Line"
-        android:layout_marginLeft="@dimen/distance_view"
-        android:layout_marginRight="@dimen/distance_view" />
+    <View style="@style/LineBoth" />
 
     <LinearLayout
         android:id="@+id/llPersonal"

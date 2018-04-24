@@ -13,10 +13,10 @@ import butterknife.OnClick;
  * Created by Administrator on 2018/4/24.
  */
 
-public class CompanyManagerAct extends BaseAppActivity {
+public class CompanyCreateAct extends BaseAppActivity {
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.act_company_manager, 1};
+        return new int[]{R.layout.act_compant_create, 1};
     }
 
     @Override
@@ -26,7 +26,7 @@ public class CompanyManagerAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("企业认证管理");
+        setTitleName("创建企业");
     }
 
     @Override
@@ -46,15 +46,13 @@ public class CompanyManagerAct extends BaseAppActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.llCreate, R.id.llManager, R.id.llIdentify})
+    @OnClick({R.id.tvAgree, R.id.tvDisagree})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.llCreate:
-                gotoActivity(CompanyCreateAct.class);
+            case R.id.tvAgree:
+                gotoActivity(CompanyCreateNextAct.class);
                 break;
-            case R.id.llManager:
-                break;
-            case R.id.llIdentify:
+            case R.id.tvDisagree:
                 break;
         }
     }

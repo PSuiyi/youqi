@@ -63,6 +63,9 @@
         <activity android:name=".ui.mine.identify.personal.MemberMangerAct" />
         <activity android:name=".ui.mine.identify.personal.MemberDetailAct" />
         <activity android:name=".ui.mine.identify.company.CompanyManagerAct" />
+        <activity android:name=".ui.mine.identify.company.CompanyCreateAct" />
+        <activity android:name=".ui.mine.identify.company.CompanyCreateNextAct" />
+        <activity android:name=".ui.mine.identify.company.IndustryAct" />
 
     </application>
 

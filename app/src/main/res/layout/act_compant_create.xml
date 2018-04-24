@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_common_navigation" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        style="@style/TextStyle"
+        android:layout_marginTop="24dp"
+        android:text="美之科"
+        android:textSize="@dimen/title_larger_size" />
+
+    <TextView
+        style="@style/TextStyle"
+        android:layout_marginTop="20dp"
+        android:text="南京美之科信息技术有限公司" />
+
+    <TextView
+        style="@style/TextStyle"
+        android:layout_marginTop="20dp"
+        android:text="邀请你加入！" />
+
+    <TextView
+        android:id="@+id/tvAgree"
+        style="@style/BtnStyle"
+        android:layout_marginLeft="@dimen/distance_view"
+        android:layout_marginRight="@dimen/distance_view"
+        android:layout_marginTop="36dp"
+        android:text="同意" />
+
+    <TextView
+        android:id="@+id/tvDisagree"
+        style="@style/BtnStyle"
+        android:layout_marginLeft="@dimen/distance_view"
+        android:layout_marginRight="@dimen/distance_view"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/bg_border_gray"
+        android:text="拒绝"
+        android:textColor="@color/text_color" />
+</LinearLayout>

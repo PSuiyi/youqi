@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_common_navigation" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:layout_width="60dp"
+                    android:text="Logo" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@mipmap/ic_launcher" />
+
+                <View style="@style/WeightView" />
+
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="11dp"
+                    android:src="@drawable/listarr" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/distance_view"
+                android:paddingLeft="10dp"
+                android:paddingRight="@dimen/distance_view"
+                android:paddingTop="@dimen/distance_view">
+
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/bg_red_radius_30" />
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:layout_width="60dp"
+                    android:text="企业名称" />
+
+                <EditText
+                    android:id="@+id/etCompany"
+                    style="@style/EditSingleStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:hint="请输入" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/distance_view"
+                android:paddingLeft="10dp"
+                android:paddingRight="@dimen/distance_view"
+                android:paddingTop="@dimen/distance_view">
+
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/bg_red_radius_30" />
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:layout_width="60dp"
+                    android:text="企业简称" />
+
+                <EditText
+                    android:id="@+id/etName"
+                    style="@style/EditSingleStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:hint="请输入" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:layout_width="60dp"
+                    android:text="公司地址" />
+
+                <EditText
+                    style="@style/EditSingleStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:hint="请输入" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:layout_width="60dp"
+                    android:text="公司网址" />
+
+                <EditText
+                    style="@style/EditSingleStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:hint="请输入" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
+            <LinearLayout
+                android:id="@+id/llHangye"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:layout_width="60dp"
+                    android:text="所属行业" />
+
+                <TextView
+                    android:id="@+id/tvHangye"
+                    style="@style/TextStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:hint="请选择" />
+
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="11dp"
+                    android:src="@drawable/listarr" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:layout_width="60dp"
+                    android:text="传真" />
+
+                <EditText
+                    style="@style/EditSingleStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:hint="请输入" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:layout_width="60dp"
+                    android:text="邮箱" />
+
+                <EditText
+                    style="@style/EditSingleStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:hint="请输入" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:layout_width="60dp"
+                    android:text="企业简介" />
+
+                <EditText
+                    style="@style/EditSingleStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:hint="请输入" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
