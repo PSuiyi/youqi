@@ -28,7 +28,7 @@
         <TextView
             style="@style/TextStyle"
             android:layout_marginLeft="10dp"
-            android:text="个人认证管理" />
+            android:text="投资人认证 " />
 
         <View style="@style/WeightView" />
 
