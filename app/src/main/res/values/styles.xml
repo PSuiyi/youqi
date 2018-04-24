@@ -1,5 +1,9 @@
 <resources>
 
+    <style name="AppSplash" parent="AppTheme">
+        <item name="android:windowBackground">@mipmap/splash</item>
+    </style>
+
     <style name="MenuStyle" parent="TextDrawableStyle">
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
