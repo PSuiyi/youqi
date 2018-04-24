@@ -1,4 +1,4 @@
-package com.mzk.compass.youqi.ui.mine.identify;
+package com.mzk.compass.youqi.ui.mine.identify.personal;
 
 import android.os.Bundle;
 import android.widget.TextView;

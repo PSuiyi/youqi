@@ -1,6 +1,7 @@
-package com.mzk.compass.youqi.ui.mine.identify;
+package com.mzk.compass.youqi.ui.mine.identify.company;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
@@ -9,14 +10,13 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * Created by Administrator on 2018/4/23.
- */
+ * Created by Administrator on 2018/4/24.
+ */ 
 
-public class IdentifyPersonalAct extends BaseAppActivity {
-
+public class CompanyManagerAct extends BaseAppActivity {
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.act_identify_personal, 1};
+        return new int[]{R.layout.act_company_manager, 1};
     }
 
     @Override
@@ -26,11 +26,12 @@ public class IdentifyPersonalAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("认证管理");
+        setTitleName("企业认证管理");
     }
 
     @Override
     protected void initializeView() {
+
     }
 
     @Override
@@ -45,8 +46,15 @@ public class IdentifyPersonalAct extends BaseAppActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.llPersonal)
-    public void onViewClicked() {
-        gotoActivity(MemberMangerAct.class);
+    @OnClick({R.id.llCreate, R.id.llManager, R.id.llIdentify})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.llCreate:
+                break;
+            case R.id.llManager:
+                break;
+            case R.id.llIdentify:
+                break;
+        }
     }
 }

@@ -5,6 +5,8 @@ import android.view.View;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.mzk.compass.youqi.ui.mine.identify.company.CompanyManagerAct;
+import com.mzk.compass.youqi.ui.mine.identify.personal.IdentifyPersonalAct;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -27,7 +29,7 @@ public class IdentifyManagerAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("个人认证管理");
+        setTitleName("认证管理");
     }
 
     @Override
@@ -50,6 +52,7 @@ public class IdentifyManagerAct extends BaseAppActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.llCompany:
+                gotoActivity(CompanyManagerAct.class);
                 break;
             case R.id.llPersonal:
                 gotoActivity(IdentifyPersonalAct.class);

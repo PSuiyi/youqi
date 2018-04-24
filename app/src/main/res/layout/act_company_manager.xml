@@ -12,7 +12,7 @@
     <include layout="@layout/include_common_network_status" />
 
     <LinearLayout
-        android:id="@+id/llCompany"
+        android:id="@+id/llCreate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -22,12 +22,12 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@mipmap/qiyerenzheng" />
+            android:src="@mipmap/changjianqiye" />
 
         <TextView
             style="@style/TextStyle"
             android:layout_marginLeft="10dp"
-            android:text="企业认证管理" />
+            android:text="创建企业" />
 
         <View style="@style/WeightView" />
 
@@ -43,7 +43,7 @@
         android:layout_marginRight="@dimen/distance_view" />
 
     <LinearLayout
-        android:id="@+id/llPersonal"
+        android:id="@+id/llManager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -53,12 +53,43 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@mipmap/gerenrenzheng" />
+            android:src="@mipmap/chengyuanguanli" />
 
         <TextView
             style="@style/TextStyle"
             android:layout_marginLeft="10dp"
-            android:text="个人认证管理" />
+            android:text="成员管理" />
+
+        <View style="@style/WeightView" />
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:src="@drawable/listarr" />
+    </LinearLayout>
+
+    <View
+        style="@style/Line"
+        android:layout_marginLeft="@dimen/distance_view"
+        android:layout_marginRight="@dimen/distance_view" />
+
+    <LinearLayout
+        android:id="@+id/llIdentify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/distance_view">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@mipmap/qiyerenzheng" />
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_marginLeft="10dp"
+            android:text="企业认证" />
 
         <View style="@style/WeightView" />
 

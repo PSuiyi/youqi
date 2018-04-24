@@ -9,7 +9,6 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppFragment;
 import com.mzk.compass.youqi.ui.mine.article.ArticleTabAct;
 import com.mzk.compass.youqi.ui.mine.identify.IdentifyManagerAct;
-import com.mzk.compass.youqi.ui.mine.identify.IdentifyPersonalAct;
 import com.mzk.compass.youqi.ui.mine.message.MessageTabAct;
 import com.mzk.compass.youqi.ui.mine.order.OrderTabAct;
 import com.mzk.compass.youqi.ui.setting.SettingAct;
