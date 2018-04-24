@@ -53,8 +53,10 @@ public class CompanyManagerAct extends BaseAppActivity {
                 gotoActivity(CompanyCreateAct.class);
                 break;
             case R.id.llManager:
+                gotoActivity(IdentifyProcessAct.class);
                 break;
             case R.id.llIdentify:
+                gotoActivity(CompanyIdentifyAct.class);
                 break;
         }
     }

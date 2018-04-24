@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/distance_view"
+            android:background="@color/background"
+            android:orientation="vertical"
+            android:padding="@dimen/distance_view">
+
+            <TextView
+                style="@style/TextStyle"
+                android:text="注册公司" />
+
+            <TextView
+                style="@style/TextStyle"
+                android:layout_marginTop="5dp"
+                android:text="完成"
+                android:textColor="@color/text_blue_industry" />
+
+            <TextView
+                style="@style/TextSamllStyle"
+                android:layout_marginTop="5dp"
+                android:text="2017.03.15 12:30:25"
+                android:textColor="@color/text_blue_industry" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

@@ -16,7 +16,6 @@ import butterknife.Bind;
 
 public class IndustryAdapter extends BaseQuickAdapter<IndustryBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
 
-    @Bind(R.id.rbIndustry)
     RadioButton rbIndustry;
 
     public IndustryAdapter(@Nullable List dataList) {
@@ -26,8 +25,16 @@ public class IndustryAdapter extends BaseQuickAdapter<IndustryBean, BaseViewHold
     @Override
     protected void convert(BaseViewHolder helper, IndustryBean bean) {
         setOnItemClickListener(this);
+        rbIndustry = helper.getView(R.id.rbIndustry);
+        rbIndustry.setClickable(false);
+        rbIndustry.setFocusable(false);
         mDataManager.setValueToView(rbIndustry, bean.getName());
         rbIndustry.setChecked(bean.isSelect());
+        if (bean.isSelect()) {
+            rbIndustry.setTextColor(mDataManager.getColor(R.color.text_blue_industry));
+        } else {
+            rbIndustry.setTextColor(mDataManager.getColor(R.color.text_gray));
+        }
     }
 
     @Override

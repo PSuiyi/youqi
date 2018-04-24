@@ -6,6 +6,7 @@
 
     <RadioButton
         android:id="@+id/rbIndustry"
+        style="@style/TextGrayStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="7.5dp"
