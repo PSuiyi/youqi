@@ -11,6 +11,8 @@ import com.mzk.compass.youqi.ui.mine.article.ArticleTabAct;
 import com.mzk.compass.youqi.ui.mine.identify.IdentifyManagerAct;
 import com.mzk.compass.youqi.ui.mine.message.MessageTabAct;
 import com.mzk.compass.youqi.ui.mine.order.OrderTabAct;
+import com.mzk.compass.youqi.ui.mine.vip.RechargeAct;
+import com.mzk.compass.youqi.ui.mine.vip.VipCenterAct;
 import com.mzk.compass.youqi.ui.setting.SettingAct;
 import com.znz.compass.znzlibray.views.rowview.ZnzRowDescription;
 import com.znz.compass.znzlibray.views.rowview.ZnzRowGroupView;
@@ -106,7 +108,7 @@ public class MineFrag extends BaseAppFragment {
                 .withTextSize(14)
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
                 .withOnClickListener(v -> {
-
+                    gotoActivity(RechargeAct.class);
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()

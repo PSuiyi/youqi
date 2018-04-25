@@ -78,7 +78,7 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@mipmap/qiyerenzheng" />
+            android:src="@mipmap/renzheng_qiyerenzheng" />
 
         <TextView
             style="@style/TextStyle"

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="text_blue_message">#6B90CA</color>
+    <color name="red_light">#FEF0F1</color>
     <color name="bg_blue_message">#E7F3FC</color>
     <color name="text_blue_industry">#5A83C4</color>
 </resources>

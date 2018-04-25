@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_common_navigation" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
+
+    <TextView
+        style="@style/TextStyle"
+        android:layout_margin="@dimen/distance_view"
+        android:text="VIP会员"
+        android:textSize="@dimen/text_size_20" />
+
+    <View style="@style/LineBoth" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvPrice"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nav_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/TextStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="共计：¥99.00"
+            android:textSize="@dimen/title_larger_size" />
+
+        <TextView
+            android:id="@+id/tvSubmit"
+            style="@style/TitleWhiteTextStyle"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:background="@color/red"
+            android:gravity="center"
+            android:text="确认支付" />
+
+    </LinearLayout>
+</LinearLayout>

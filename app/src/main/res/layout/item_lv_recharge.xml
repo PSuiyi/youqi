@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/llPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/bg_border_gray"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/distance_view">
+
+            <TextView
+                android:id="@+id/tvMonth"
+                style="@style/TextStyle"
+                android:text="1个月"
+                android:textSize="@dimen/title_larger_size" />
+
+            <View style="@style/WeightView" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                style="@style/TextStyle"
+                android:text="¥99.00"
+                android:textColor="@color/red"
+                android:textSize="@dimen/title_larger_size" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

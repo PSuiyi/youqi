@@ -68,6 +68,7 @@
         <activity android:name=".ui.mine.identify.company.IndustryAct" />
         <activity android:name=".ui.mine.identify.company.CompanyIdentifyAct" />
         <activity android:name=".ui.mine.identify.company.IdentifyProcessAct" />
+        <activity android:name=".ui.mine.vip.RechargeAct" />
 
     </application>
 

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_common_navigation" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/vipbg"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <View style="@style/WeightView" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp">
+
+                <view
+                    android:id="@+id/tag"
+                    android:layout_width="5dp"
+                    android:layout_height="5dp"
+                    android:layout_centerHorizontal="true" />
+
+                <ImageView
+                    android:id="@+id/ivHeader"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/default_header" />
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@id/tag"
+                    android:src="@mipmap/vip" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    style="@style/TextWhiteStyle"
+                    android:layout_below="@id/ivHeader"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/distance_view"
+                    android:text="叶雨"
+                    android:textSize="@dimen/text_size_20" />
+
+                <TextView
+                    style="@style/TextWhiteStyle"
+                    android:layout_below="@id/tvName"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:text="VIP 到期日 2018-3-17" />
+            </RelativeLayout>
+
+            <View style="@style/WeightView" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/nav_height">
+
+            <LinearLayout
+                android:id="@+id/llBack"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:minWidth="60dp"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:src="@drawable/topback_white"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="会员中心"
+                android:textColor="@color/gray80"
+                android:textSize="@dimen/nav_size"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/distance_view">
+
+        <TextView
+            style="@style/TextSamllStyle"
+            android:text="@string/vip_discribe" />
+
+        <TextView
+            android:id="@+id/tvRecharge"
+            style="@style/BtnStyle"
+            android:layout_marginTop="20dp"
+            android:text="续费" />
+    </LinearLayout>
+
+</LinearLayout>
