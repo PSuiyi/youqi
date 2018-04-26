@@ -69,6 +69,14 @@
         <activity android:name=".ui.mine.identify.company.CompanyIdentifyAct" />
         <activity android:name=".ui.mine.identify.company.IdentifyProcessAct" />
         <activity android:name=".ui.mine.vip.RechargeAct" />
+        <activity android:name=".ui.mine.account.AccountManagerAct" />
+        <activity android:name=".ui.mine.account.UpdatePsdAct" />
+        <activity android:name=".ui.mine.account.CheckPhoneAct" />
+        <activity android:name=".ui.mine.account.UpdatePhoneAct" />
+        <activity android:name=".ui.mine.account.ManagerSuccessAct" />
+        <activity android:name=".ui.mine.account.BindCardAct" />
+        <activity android:name=".ui.mine.account.BankCardListAct" />
+        <activity android:name=".ui.mine.account.IdentifyAct" />
 
     </application>
 

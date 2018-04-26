@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_common_navigation" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/distance_view">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="65dp"
+            android:src="@mipmap/chenggong" />
+
+        <TextView
+            android:id="@+id/tvStatus"
+            style="@style/TitleTextStyle"
+            android:layout_marginTop="30dp"
+            android:text="修改成功" />
+
+        <TextView
+            style="@style/BtnStyle"
+            android:layout_marginTop="90dp"
+            android:text="确定" />
+    </LinearLayout>
+
+</LinearLayout>

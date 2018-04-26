@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_common_navigation" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/distance_view">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/distance_view"
+                android:paddingTop="@dimen/distance_view">
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:layout_width="60dp"
+                    android:text="姓名" />
+
+                <EditText
+                    style="@style/EditStyle"
+                    android:layout_width="match_parent"
+                    android:hint="请输入" />
+            </LinearLayout>
+
+            <View style="@style/Line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/distance_view"
+                android:paddingTop="@dimen/distance_view">
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:layout_width="60dp"
+                    android:text="证件号" />
+
+                <EditText
+                    style="@style/EditStyle"
+                    android:layout_width="match_parent"
+                    android:hint="请输入" />
+            </LinearLayout>
+
+            <View style="@style/Line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/distance_view"
+                android:paddingTop="@dimen/distance_view">
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:text="证件上传" />
+
+            </LinearLayout>
+
+            <View style="@style/Line" />
+
+            <TextView
+                style="@style/TextSamllGrayStyle"
+                android:layout_marginLeft="@dimen/distance_divider"
+                android:layout_marginRight="@dimen/distance_divider"
+                android:layout_marginTop="@dimen/distance_view"
+                android:text="证件信息不能被遮挡，且清晰可见；照片支持jpg/jpeg/png格式，最大不超过5M。" />
+
+            <TextView
+                style="@style/TextGrayStyle"
+                android:layout_marginBottom="@dimen/distance_view"
+                android:layout_marginLeft="@dimen/distance_divider"
+                android:layout_marginRight="@dimen/distance_divider"
+                android:layout_marginTop="@dimen/distance_view"
+                android:text="正面" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/dianjishanchuan" />
+
+            <TextView
+                style="@style/TextGrayStyle"
+                android:layout_marginBottom="@dimen/distance_view"
+                android:layout_marginLeft="@dimen/distance_divider"
+                android:layout_marginRight="@dimen/distance_divider"
+                android:layout_marginTop="@dimen/distance_view"
+                android:text="反面" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/dianjishanchuan" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
