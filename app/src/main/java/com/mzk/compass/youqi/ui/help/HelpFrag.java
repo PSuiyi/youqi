@@ -1,5 +1,6 @@
 package com.mzk.compass.youqi.ui.help;
 
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,8 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.ProductAdapter;
 import com.mzk.compass.youqi.adapter.ProductGridAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
+import com.mzk.compass.youqi.common.Constants;
+import com.mzk.compass.youqi.ui.common.SearchCommonAct;
 import com.znz.compass.znzlibray.bean.BaseZnzBean;
 import com.znz.compass.znzlibray.utils.DipUtil;
 import com.znz.compass.znzlibray.views.imageloder.GlideApp;
@@ -58,6 +61,12 @@ public class HelpFrag extends BaseAppListFragment {
         znzToolBar.setSearchRightImage(R.mipmap.xiaoxi);
         znzToolBar.setOnSearchLeftClickListener(v -> {
             gotoActivity(TypeListAct.class);
+        });
+        znzToolBar.setOnSearchClickListener(view -> {
+            mDataManager.saveTempData(Constants.SearchType.SEARCHTYPE, "2");
+            Bundle bundle = new Bundle();
+            bundle.putString("from", "搜索投资人");
+            gotoActivity(SearchCommonAct.class, bundle);
         });
     }
 

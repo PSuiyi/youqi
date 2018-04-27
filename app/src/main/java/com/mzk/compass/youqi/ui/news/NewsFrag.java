@@ -13,6 +13,8 @@ import android.widget.LinearLayout;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.ViewPageAdapter;
 import com.mzk.compass.youqi.base.BaseAppFragment;
+import com.mzk.compass.youqi.common.Constants;
+import com.mzk.compass.youqi.ui.common.SearchCommonAct;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.compass.znzlibray.views.imageloder.GlideApp;
@@ -84,6 +86,12 @@ public class NewsFrag extends BaseAppFragment {
     @Override
     protected void initializeNavigation() {
         znzToolBar.setSearchEnableEdit(false);
+        znzToolBar.setOnSearchClickListener(view -> {
+            mDataManager.saveTempData(Constants.SearchType.SEARCHTYPE, "1");
+            Bundle bundle = new Bundle();
+            bundle.putString("from", "搜索项目");
+            gotoActivity(SearchCommonAct.class, bundle);
+        });
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.mzk.compass.youqi.ui.home;
 
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,6 +12,7 @@ import com.mzk.compass.youqi.base.BaseAppListFragment;
 import com.mzk.compass.youqi.bean.MultiBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.common.CityListAct;
+import com.mzk.compass.youqi.ui.common.SearchCommonAct;
 import com.mzk.compass.youqi.ui.help.ProductListAct;
 import com.mzk.compass.youqi.ui.home.people.PeopleListAct;
 import com.mzk.compass.youqi.ui.home.project.ProjectListAct;
@@ -62,6 +64,12 @@ public class HomeFrag extends BaseAppListFragment {
         znzToolBar.setSearchRightImage(R.mipmap.xiaoxi);
         znzToolBar.setOnSearchLeftClickListener(v -> {
             gotoActivity(CityListAct.class);
+        });
+        znzToolBar.setOnSearchClickListener(view -> {
+            mDataManager.saveTempData(Constants.SearchType.SEARCHTYPE, "1");
+            Bundle bundle = new Bundle();
+            bundle.putString("from", "搜索项目");
+            gotoActivity(SearchCommonAct.class, bundle);
         });
     }
 

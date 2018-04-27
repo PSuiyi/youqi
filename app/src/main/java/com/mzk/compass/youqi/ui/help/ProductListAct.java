@@ -1,7 +1,11 @@
 package com.mzk.compass.youqi.ui.help;
 
+import android.os.Bundle;
+
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.mzk.compass.youqi.common.Constants;
+import com.mzk.compass.youqi.ui.common.SearchCommonAct;
 import com.mzk.compass.youqi.ui.home.ProductListFrag;
 import com.znz.compass.znzlibray.utils.FragmentUtil;
 
@@ -29,6 +33,12 @@ public class ProductListAct extends BaseAppActivity {
         znzToolBar.setSearchLeftImage(R.drawable.topback);
         znzToolBar.setOnSearchLeftClickListener(v -> {
             finish();
+        });
+        znzToolBar.setOnSearchClickListener(view -> {
+            mDataManager.saveTempData(Constants.SearchType.SEARCHTYPE, "1");
+            Bundle bundle = new Bundle();
+            bundle.putString("from", "搜索项目");
+            gotoActivity(SearchCommonAct.class, bundle);
         });
     }
 
