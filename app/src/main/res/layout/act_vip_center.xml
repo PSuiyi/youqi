@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="60dp">
 
-                <view
+                <View
                     android:id="@+id/tag"
                     android:layout_width="5dp"
                     android:layout_height="5dp"

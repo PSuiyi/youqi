@@ -70,6 +70,7 @@ public class LoginCodeAct extends BaseAppActivity {
                 gotoActivity(TabHomeActivity.class);
                 break;
             case R.id.tvFoget:
+                gotoActivity(ForgetPsdAct.class);
                 break;
             case R.id.tvLoginPsd:
                 gotoActivityWithClearStack(LoginAct.class);

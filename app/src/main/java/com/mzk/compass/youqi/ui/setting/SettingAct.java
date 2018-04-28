@@ -1,9 +1,11 @@
 package com.mzk.compass.youqi.ui.setting;
 
 import android.os.Bundle;
+import android.widget.LinearLayout;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.mzk.compass.youqi.ui.login.LoginAct;
 import com.znz.compass.znzlibray.views.rowview.ZnzRowDescription;
 import com.znz.compass.znzlibray.views.rowview.ZnzRowGroupView;
 
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Date： 2018/3/26 2018
@@ -21,6 +24,8 @@ import butterknife.ButterKnife;
 public class SettingAct extends BaseAppActivity {
     @Bind(R.id.commonRowGroup)
     ZnzRowGroupView commonRowGroup;
+    @Bind(R.id.llLogout)
+    LinearLayout llLogout;
     private ArrayList rowDescriptionList;
 
     @Override
@@ -90,5 +95,10 @@ public class SettingAct extends BaseAppActivity {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+    }
+
+    @OnClick(R.id.llLogout)
+    public void onViewClicked() {
+        mDataManager.logout(activity, LoginAct.class);
     }
 }

@@ -14,36 +14,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/distance_view"
-        android:paddingLeft="35dp"
-        android:paddingRight="35dp"
-        android:paddingTop="@dimen/distance_view">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:src="@mipmap/logoda" />
+        android:paddingLeft="@dimen/distance_view"
+        android:paddingRight="@dimen/distance_view">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="50dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/suo" />
+                android:src="@mipmap/shouji" />
 
             <View style="@style/LineEdit" />
 
             <com.znz.compass.znzlibray.views.EditTextWithDel
-                style="@style/EditStyle"
-                android:hint="请输入密码" />
+                style="@style/EditPhoneStyle"
+                android:hint="请输入手机号" />
 
         </LinearLayout>
 
@@ -58,14 +48,14 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/suo" />
+                android:src="@mipmap/yanzhengma" />
 
             <View style="@style/LineEdit" />
 
             <com.znz.compass.znzlibray.views.EditTextWithDel
                 style="@style/EditStyle"
                 android:layout_weight="1"
-                android:hint="请确认密码" />
+                android:hint="请输入验证码" />
 
             <View style="@style/LineEdit" />
 
@@ -76,27 +66,10 @@
 
         <View style="@style/Line" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-
-            <TextView
-                style="@style/TextGrayStyle"
-                android:text="已阅读并同意" />
-
-            <TextView
-                android:id="@+id/tvRemind"
-                style="@style/TextRedStyle"
-                android:text="《优企注册条款》" />
-        </LinearLayout>
-
         <TextView
             android:id="@+id/tvSubmit"
             style="@style/BtnStyle"
             android:layout_marginTop="20dp"
-            android:text="注册" />
+            android:text="下一步" />
     </LinearLayout>
-
 </LinearLayout>

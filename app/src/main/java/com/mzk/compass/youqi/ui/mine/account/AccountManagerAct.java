@@ -61,10 +61,10 @@ public class AccountManagerAct extends BaseAppActivity {
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
-                .withTitle("银行卡 ")
+                .withTitle("银行卡")
                 .withEnableArraw(true)
                 .withTextSize(14)
-                .withValue(" 已绑定")
+                .withValue("已绑定")
                 .withValueColor(mDataManager.getColor(R.color.text_gray))
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
                 .withOnClickListener(v -> {
@@ -75,7 +75,7 @@ public class AccountManagerAct extends BaseAppActivity {
                 .withTitle("身份认证")
                 .withEnableArraw(true)
                 .withTextSize(14)
-                .withValue(" 去绑定")
+                .withValue("去绑定")
                 .withValueColor(mDataManager.getColor(R.color.text_gray))
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
                 .withOnClickListener(v -> {

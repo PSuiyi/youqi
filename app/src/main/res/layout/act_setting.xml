@@ -26,20 +26,26 @@
                 android:layout_height="wrap_content" />
 
             <LinearLayout
+                android:id="@+id/llLogout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="@dimen/distance_view">
+                android:layout_marginBottom="@dimen/distance_view"
+                android:layout_marginTop="@dimen/distance_view"
+                android:orientation="vertical">
+
+                <View style="@style/Line" />
 
                 <TextView
-                    style="@style/TitleWhiteTextStyle"
+                    style="@style/TitleRedTextStyle"
                     android:layout_width="match_parent"
-                    android:background="@color/black"
+
                     android:gravity="center"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
+                    android:padding="@dimen/distance_view"
                     android:text="退出登录" />
+
+                <View style="@style/Line" />
             </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
