@@ -9,9 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
+import com.mzk.compass.youqi.ui.publish.PublishAct;
+import com.mzk.compass.youqi.ui.publish.PublishStateAct;
 import com.znz.compass.znzlibray.common.DataManager;
 
 import static com.znz.compass.znzlibray.utils.ViewHolder.init;
@@ -100,8 +101,24 @@ public class PopupWindowManager {
         LinearLayout llParent = init(view, R.id.llParent);
         llParent.setOnClickListener(view1 -> hidePopupWindow());
         popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
+    }
 
 
+    public void showPublish(View parent, OnPopupWindowClickListener listener) {
+        hidePopupWindow();
+        View view = initPopupWindow(R.layout.pop_publish);
+        LinearLayout llParent = init(view, R.id.llParent);
+        llParent.setOnClickListener(view1 -> hidePopupWindow());
+
+        init(view, R.id.tvPublish1).setOnClickListener(v -> {
+            mDataManager.gotoActivity(PublishAct.class);
+        });
+
+        init(view, R.id.tvPublish2).setOnClickListener(v -> {
+            mDataManager.gotoActivity(PublishStateAct.class);
+        });
+
+        popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
     }
 
     public interface OnPopupWindowClickListener {

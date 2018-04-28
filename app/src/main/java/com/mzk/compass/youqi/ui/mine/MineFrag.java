@@ -112,6 +112,16 @@ public class MineFrag extends BaseAppFragment {
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
+                .withIconResId(R.mipmap.wodedongtai)
+                .withTitle("我的动态")
+                .withEnableArraw(true)
+                .withTextSize(14)
+                .withTitleColor(mDataManager.getColor(R.color.text_color))
+                .withOnClickListener(v -> {
+                    gotoActivity(ArticleTabAct.class);
+                })
+                .build());
+        rowDescriptionList.add(new ZnzRowDescription.Builder()
                 .withIconResId(R.mipmap.wodetougao)
                 .withTitle("我的投稿")
                 .withEnableArraw(true)
