@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/TitleBlodStyle"
+        android:padding="@dimen/distance_view"
+        android:text="项目简介"
+        android:textSize="@dimen/text_size_20" />
+
+    <View style="@style/LineBoth" />
+
+    <TextView
+        style="@style/TitleTextStyle"
+        android:padding="@dimen/distance_view"
+        android:text="请输入您的项目简介，能够让人一眼看出产品是什么，解决了那些问题或满足了哪些需求请详细介绍项目所处市场，目前的市场规模及预测，您可以采用图表来更清晰的说明。" />
+
+    <View style="@style/LineBoth" />
+</LinearLayout>

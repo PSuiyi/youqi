@@ -13,7 +13,7 @@
         android:padding="@dimen/distance_view">
 
         <TextView
-            style="@style/TextStyle"
+            style="@style/TextGrayStyle"
             android:text="查看更多" />
 
         <ImageView

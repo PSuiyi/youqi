@@ -112,10 +112,12 @@ public class PopupWindowManager {
 
         init(view, R.id.tvPublish1).setOnClickListener(v -> {
             mDataManager.gotoActivity(PublishAct.class);
+            hidePopupWindow();
         });
 
         init(view, R.id.tvPublish2).setOnClickListener(v -> {
             mDataManager.gotoActivity(PublishStateAct.class);
+            hidePopupWindow();
         });
 
         popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);

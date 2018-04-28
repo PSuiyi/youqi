@@ -75,7 +75,17 @@ public class Constants {
         int Project = 1;
         int People = 2;
         int Organ = 3;
+
+        int ProjectIntro = 10;
+        int ProjectTeam = 11;
+        int ProjectProduct = 12;
+        int ProjectMarket = 13;
+        int ProjectSolution = 14;
+        int ProjectMoney = 15;
+        int ProjectFinancing = 16;
+        int ProjectData = 17;
     }
+
 
     public interface TreeType {
         int TreeDetail = 0;
