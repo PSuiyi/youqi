@@ -87,7 +87,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="@dimen/distance_view">
+                    android:paddingBottom="@dimen/distance_view"
+                    android:paddingLeft="@dimen/distance_view"
+                    android:paddingRight="@dimen/distance_view">
 
                     <TextView
                         style="@style/TextWhiteStyle"

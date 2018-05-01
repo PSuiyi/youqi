@@ -9,10 +9,10 @@ import android.widget.LinearLayout;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.ViewPageAdapter;
 import com.mzk.compass.youqi.base.BaseAppActivity;
-import com.mzk.compass.youqi.ui.home.InvestorListFrag;
-import com.mzk.compass.youqi.ui.home.OrganListFrag;
+import com.mzk.compass.youqi.ui.home.people.PeopleListFrag;
+import com.mzk.compass.youqi.ui.home.organ.OrganListFrag;
 import com.mzk.compass.youqi.ui.home.ProductListFrag;
-import com.mzk.compass.youqi.ui.home.ProjectListFrag;
+import com.mzk.compass.youqi.ui.home.project.ProjectListFrag;
 import com.mzk.compass.youqi.ui.news.NewsListFrag;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
@@ -57,7 +57,7 @@ public class MineFavTabAct extends BaseAppActivity {
         tabNames.add("资讯");
 
         fragmentList.add(new ProjectListFrag());
-        fragmentList.add(new InvestorListFrag());
+        fragmentList.add(new PeopleListFrag());
         fragmentList.add(new OrganListFrag());
         fragmentList.add(new ProductListFrag());
         fragmentList.add(new NewsListFrag());

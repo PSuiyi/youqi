@@ -6,7 +6,6 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.common.SearchCommonAct;
-import com.mzk.compass.youqi.ui.home.ProjectListFrag;
 import com.znz.compass.znzlibray.utils.FragmentUtil;
 
 /**

@@ -6,7 +6,6 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.common.SearchCommonAct;
-import com.mzk.compass.youqi.ui.home.InvestorListFrag;
 import com.znz.compass.znzlibray.utils.FragmentUtil;
 
 /**
@@ -15,7 +14,7 @@ import com.znz.compass.znzlibray.utils.FragmentUtil;
  * Description：
  */
 public class PeopleListAct extends BaseAppActivity {
-    private InvestorListFrag fragment;
+    private PeopleListFrag fragment;
 
     @Override
     protected int[] getLayoutResource() {
@@ -43,7 +42,7 @@ public class PeopleListAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
-        fragment = new InvestorListFrag();
+        fragment = new PeopleListFrag();
         FragmentUtil.addFragmentToActivity(getSupportFragmentManager(), fragment, R.id.container);
     }
 

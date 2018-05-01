@@ -1,4 +1,4 @@
-package com.mzk.compass.youqi.ui.home;
+package com.mzk.compass.youqi.ui.home.people;
 
 import android.support.v7.widget.RecyclerView;
 
@@ -11,7 +11,7 @@ import com.mzk.compass.youqi.base.BaseAppListFragment;
  * User： PSuiyi
  * Description：
  */
-public class InvestorListFrag extends BaseAppListFragment {
+public class PeopleListFrag extends BaseAppListFragment {
     @Override
     protected int[] getLayoutResource() {
         return new int[]{R.layout.common_list_layout};

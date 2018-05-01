@@ -1,9 +1,9 @@
-package com.mzk.compass.youqi.ui.home;
+package com.mzk.compass.youqi.ui.home.project;
 
 import android.support.v7.widget.RecyclerView;
 
 import com.mzk.compass.youqi.R;
-import com.mzk.compass.youqi.adapter.OrderAdapter;
+import com.mzk.compass.youqi.adapter.ProjectAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
 
 /**
@@ -11,7 +11,7 @@ import com.mzk.compass.youqi.base.BaseAppListFragment;
  * User： PSuiyi
  * Description：
  */
-public class OrganListFrag extends BaseAppListFragment {
+public class ProjectListFrag extends BaseAppListFragment {
     @Override
     protected int[] getLayoutResource() {
         return new int[]{R.layout.common_list_layout};
@@ -34,7 +34,7 @@ public class OrganListFrag extends BaseAppListFragment {
 
     @Override
     protected void initializeView() {
-        adapter = new OrderAdapter(dataList);
+        adapter = new ProjectAdapter(dataList);
         rvRefresh.setAdapter(adapter);
     }
 
