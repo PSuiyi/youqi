@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
@@ -13,9 +14,12 @@ import com.mzk.compass.youqi.bean.MultiBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.common.CityListAct;
 import com.mzk.compass.youqi.ui.common.SearchCommonAct;
+import com.mzk.compass.youqi.ui.help.ProductDetailAct;
 import com.mzk.compass.youqi.ui.help.ProductListAct;
 import com.mzk.compass.youqi.ui.home.people.PeopleListAct;
+import com.mzk.compass.youqi.ui.home.project.ProjectDetailAct;
 import com.mzk.compass.youqi.ui.home.project.ProjectListAct;
+import com.mzk.compass.youqi.ui.mine.message.MessageTabAct;
 import com.znz.compass.znzlibray.utils.BitmapUtil;
 import com.znz.compass.znzlibray.views.imageloder.GlideApp;
 
@@ -36,6 +40,11 @@ public class HomeFrag extends BaseAppListFragment {
     private TextView tvMenu2;
     private TextView tvMenu3;
     private TextView tvMenu4;
+    private LinearLayout llHot1;
+    private LinearLayout llHot2;
+    private LinearLayout llHot3;
+    private LinearLayout llHot4;
+    private LinearLayout llHot5;
     private BGABanner banner;
     private List<String> imgPath = new ArrayList<>();
 
@@ -71,6 +80,10 @@ public class HomeFrag extends BaseAppListFragment {
             bundle.putString("from", "搜索项目");
             gotoActivity(SearchCommonAct.class, bundle);
         });
+
+        znzToolBar.setOnSearchRightClickListener(v -> {
+            gotoActivity(MessageTabAct.class);
+        });
     }
 
     @Override
@@ -100,6 +113,29 @@ public class HomeFrag extends BaseAppListFragment {
         });
         tvMenu4.setOnClickListener(v -> {
             gotoActivity(ProductListAct.class);
+        });
+
+
+        llHot1 = bindViewById(header, R.id.llHot1);
+        llHot2 = bindViewById(header, R.id.llHot2);
+        llHot3 = bindViewById(header, R.id.llHot3);
+        llHot4 = bindViewById(header, R.id.llHot4);
+        llHot5 = bindViewById(header, R.id.llHot5);
+
+        llHot1.setOnClickListener(v -> {
+            gotoActivity(ProjectDetailAct.class);
+        });
+        llHot2.setOnClickListener(v -> {
+            gotoActivity(ProjectDetailAct.class);
+        });
+        llHot3.setOnClickListener(v -> {
+            gotoActivity(ProjectDetailAct.class);
+        });
+        llHot4.setOnClickListener(v -> {
+            gotoActivity(ProjectDetailAct.class);
+        });
+        llHot5.setOnClickListener(v -> {
+            gotoActivity(ProjectDetailAct.class);
         });
 
         banner = bindViewById(header, R.id.banner);

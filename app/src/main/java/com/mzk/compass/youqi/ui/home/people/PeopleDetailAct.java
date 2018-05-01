@@ -40,6 +40,7 @@ public class PeopleDetailAct extends BaseAppListActivity {
     TextView tvOption5;
     private RecyclerView rvDetail;
     private RecyclerView rvMenu;
+    private TextView tvRecommend;
 
     private DetailAdapter detailAdapter;
 
@@ -72,6 +73,11 @@ public class PeopleDetailAct extends BaseAppListActivity {
         adapter.addHeaderView(header);
         rvMenu = bindViewById(header, R.id.rvMenu);
         rvDetail = bindViewById(header, R.id.rvDetail);
+
+        tvRecommend = bindViewById(header, R.id.tvRecommend);
+        tvRecommend.setOnClickListener(v -> {
+            gotoActivity(RecommendSelfAct.class);
+        });
 
         //菜单栏
         List<MenuBean> menuBeanList = new ArrayList<>();

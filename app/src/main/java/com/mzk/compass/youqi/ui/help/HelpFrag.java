@@ -14,8 +14,8 @@ import com.mzk.compass.youqi.adapter.ProductGridAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.common.SearchCommonAct;
+import com.mzk.compass.youqi.ui.mine.message.MessageTabAct;
 import com.znz.compass.znzlibray.bean.BaseZnzBean;
-import com.znz.compass.znzlibray.utils.DipUtil;
 import com.znz.compass.znzlibray.views.imageloder.GlideApp;
 
 import java.util.ArrayList;
@@ -67,6 +67,10 @@ public class HelpFrag extends BaseAppListFragment {
             Bundle bundle = new Bundle();
             bundle.putString("from", "搜索投资人");
             gotoActivity(SearchCommonAct.class, bundle);
+        });
+
+        znzToolBar.setOnSearchRightClickListener(v -> {
+            gotoActivity(MessageTabAct.class);
         });
     }
 

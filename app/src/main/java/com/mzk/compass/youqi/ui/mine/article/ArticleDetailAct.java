@@ -1,17 +1,17 @@
-package com.mzk.compass.youqi.ui.mine.order;
+package com.mzk.compass.youqi.ui.mine.article;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 
 /**
- * Date： 2018/4/1 2018
+ * Date： 2018/5/1 2018
  * User： PSuiyi
  * Description：
  */
-public class OrderDetailAct extends BaseAppActivity {
+public class ArticleDetailAct extends BaseAppActivity {
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.act_order_detail, 1};
+        return new int[]{R.layout.act_article_detail, 1};
     }
 
     @Override
@@ -21,7 +21,7 @@ public class OrderDetailAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("订单详情");
+        setTitleName("投稿详情");
     }
 
     @Override

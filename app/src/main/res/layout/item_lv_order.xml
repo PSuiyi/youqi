@@ -34,7 +34,7 @@
                     android:text="待付款" />
             </LinearLayout>
 
-           <include layout="@layout/include_item_product"/>
+            <include layout="@layout/include_item_product" />
 
             <LinearLayout
                 android:layout_width="match_parent"
