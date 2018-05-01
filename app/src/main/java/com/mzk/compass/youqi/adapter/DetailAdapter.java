@@ -18,7 +18,11 @@ public class DetailAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseView
         addItemType(Constants.MultiType.ProjectIntro, R.layout.item_lv_project_intro);
         addItemType(Constants.MultiType.ProjectTeam, R.layout.item_lv_project_team);
         addItemType(Constants.MultiType.ProjectProduct, R.layout.item_lv_project_product);
-        addItemType(Constants.MultiType.Organ, R.layout.item_lv_home_organ);
+        addItemType(Constants.MultiType.ProjectMarket, R.layout.item_lv_project_market);
+        addItemType(Constants.MultiType.ProjectSolution, R.layout.item_lv_project_solution);
+        addItemType(Constants.MultiType.ProjectMoney, R.layout.item_lv_project_money);
+        addItemType(Constants.MultiType.ProjectFinancing, R.layout.item_lv_project_financing);
+        addItemType(Constants.MultiType.ProjectData, R.layout.item_lv_project_data);
     }
 
     @Override

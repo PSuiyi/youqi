@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/TitleBlodStyle"
+            android:padding="@dimen/distance_view"
+            android:text="项目资料"
+            android:textSize="@dimen/text_size_20" />
+
+        <View style="@style/WeightView" />
+
+        <TextView
+            style="@style/TextGrayStyle"
+            android:layout_marginRight="@dimen/distance_view"
+            android:text="路演资料仅限投资人及VIP用户可见" />
+    </LinearLayout>
+
+    <View style="@style/LineBoth" />
+
+    <TextView
+        style="@style/TitleTextStyle"
+        android:padding="@dimen/distance_view"
+        android:text="请详细介绍项目所处市场，目前的市场规模及预测，您可以采用图表来更清晰的说明。请详细介绍项目所处市场，目前的市场规模及预测，您可以采用图表来更清晰的说明。" />
+
+    <View style="@style/LineBoth" />
+</LinearLayout>

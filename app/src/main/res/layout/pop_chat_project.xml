@@ -28,18 +28,18 @@
                 android:id="@+id/tvPublish1"
                 style="@style/TitleTextStyle"
                 android:drawablePadding="8dp"
-                android:drawableTop="@mipmap/fabuxiang"
+                android:drawableTop="@mipmap/liuyan"
                 android:gravity="center"
-                android:text="发布项目" />
+                android:text="站内信" />
 
             <TextView
                 android:id="@+id/tvPublish2"
                 style="@style/TitleTextStyle"
                 android:layout_marginLeft="60dp"
                 android:drawablePadding="8dp"
-                android:drawableTop="@mipmap/fabudongtai"
+                android:drawableTop="@mipmap/dinahua"
                 android:gravity="center"
-                android:text="发布动态" />
+                android:text="电话" />
         </LinearLayout>
 
         <View style="@style/Line" />

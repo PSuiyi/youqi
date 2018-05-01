@@ -27,5 +27,14 @@
         android:scaleType="centerCrop"
         android:src="@mipmap/shichanggaikuotu1" />
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/distance_view"
+        android:layout_marginLeft="@dimen/distance_view"
+        android:layout_marginRight="@dimen/distance_view"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/shichanggaikuotu2" />
+
     <View style="@style/LineBoth" />
 </LinearLayout>

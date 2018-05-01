@@ -18,6 +18,7 @@ import com.mzk.compass.youqi.bean.MenuBean;
 import com.mzk.compass.youqi.bean.MultiBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.home.people.PeopleListAct;
+import com.mzk.compass.youqi.utils.PopupWindowManager;
 import com.znz.compass.znzlibray.bean.BaseZnzBean;
 
 import java.util.ArrayList;
@@ -121,6 +122,11 @@ public class ProjectDetailAct extends BaseAppListActivity {
         multiBeanList.add(new MultiBean(Constants.MultiType.ProjectIntro));
         multiBeanList.add(new MultiBean(Constants.MultiType.ProjectTeam));
         multiBeanList.add(new MultiBean(Constants.MultiType.ProjectProduct));
+        multiBeanList.add(new MultiBean(Constants.MultiType.ProjectMarket));
+        multiBeanList.add(new MultiBean(Constants.MultiType.ProjectSolution));
+        multiBeanList.add(new MultiBean(Constants.MultiType.ProjectMoney));
+        multiBeanList.add(new MultiBean(Constants.MultiType.ProjectFinancing));
+        multiBeanList.add(new MultiBean(Constants.MultiType.ProjectData));
         detailAdapter = new DetailAdapter(multiBeanList);
         rvProject.setAdapter(detailAdapter);
     }
@@ -153,6 +159,12 @@ public class ProjectDetailAct extends BaseAppListActivity {
             case R.id.tvOption1:
                 break;
             case R.id.tvOption2:
+                PopupWindowManager.getInstance(activity).showChatProject(view, new PopupWindowManager.OnPopupWindowClickListener() {
+                    @Override
+                    public void onPopupWindowClick(String type, String[] values) {
+
+                    }
+                });
                 break;
             case R.id.tvOption3:
                 break;

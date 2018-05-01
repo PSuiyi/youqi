@@ -123,6 +123,25 @@ public class PopupWindowManager {
         popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
     }
 
+    public void showChatProject(View parent, OnPopupWindowClickListener listener) {
+        hidePopupWindow();
+        View view = initPopupWindow(R.layout.pop_chat_project);
+        LinearLayout llParent = init(view, R.id.llParent);
+        llParent.setOnClickListener(view1 -> hidePopupWindow());
+
+        init(view, R.id.tvPublish1).setOnClickListener(v -> {
+            mDataManager.gotoActivity(PublishAct.class);
+            hidePopupWindow();
+        });
+
+        init(view, R.id.tvPublish2).setOnClickListener(v -> {
+            mDataManager.gotoActivity(PublishStateAct.class);
+            hidePopupWindow();
+        });
+
+        popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
+    }
+
     public interface OnPopupWindowClickListener {
         void onPopupWindowClick(String type, String[] values);
     }

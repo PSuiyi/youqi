@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/TitleBlodStyle"
+        android:padding="@dimen/distance_view"
+        android:text="融资情况"
+        android:textSize="@dimen/text_size_20" />
+
+    <View style="@style/LineBoth" />
+
+    <TextView
+        style="@style/TitleTextStyle"
+        android:padding="@dimen/distance_view"
+        android:text="请说明您这轮融资的计划，融资的依据，以及融资之后的财务使用规划。" />
+
+    <View style="@style/LineBoth" />
+</LinearLayout>

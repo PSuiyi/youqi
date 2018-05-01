@@ -81,6 +81,8 @@
         <activity android:name=".ui.login.ForgetPsdAct" />
         <activity android:name=".ui.login.ForgetPsd2Act" />
         <activity android:name=".ui.publish.PublishStateAct" />
+        <activity android:name=".ui.mine.state.StateListAct" />
+        <activity android:name=".ui.mine.state.StateDetailAct" />
 
     </application>
 

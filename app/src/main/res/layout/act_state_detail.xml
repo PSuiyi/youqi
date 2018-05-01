@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_common_navigation" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/distance_view">
+
+        <TextView
+            style="@style/TitleTextStyle"
+            android:text="今天，投资趋向人工智能！ 互联网大数据！物联网今天，投资趋向人工智能！ 互联网大数据！物联网 今天，投资趋向人工智能！ 互联网大数据！物联网 今天，投资趋向人工智能！ 互联网大数据！物联网 今天，投资趋向人工智能！ 互联网大数据！物联网 今天，投资趋向人工智能！ 互联网大数据！物联网 " />
+
+        <TextView
+            style="@style/TimeTextStyle"
+            android:layout_marginTop="@dimen/distance_divider" />
+
+    </LinearLayout>
+
+</LinearLayout>
