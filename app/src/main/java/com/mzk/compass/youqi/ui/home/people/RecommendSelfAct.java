@@ -1,17 +1,17 @@
-package com.mzk.compass.youqi.ui.home.organ;
+package com.mzk.compass.youqi.ui.home.people;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 
 /**
- * Date： 2018/4/22 2018
+ * Date： 2018/5/1 2018
  * User： PSuiyi
  * Description：
  */
-public class OrganDetailAct extends BaseAppActivity {
+public class RecommendSelfAct extends BaseAppActivity {
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.act_organ_detail, 1};
+        return new int[]{R.layout.act_recommend_self, 1};
     }
 
     @Override
@@ -21,7 +21,7 @@ public class OrganDetailAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("机构详情");
+        setTitleName("自荐");
     }
 
     @Override

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_common_navigation" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
+
+    <TextView
+        style="@style/TitleBlodStyle"
+        android:padding="@dimen/distance_view"
+        android:text="简介"
+        android:textSize="@dimen/text_size_20" />
+
+    <View style="@style/LineBoth" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/distance_view">
+
+        <TextView
+            style="@style/TitleGrayTextStyle"
+            android:text="请选择" />
+
+        <View style="@style/WeightView" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:src="@mipmap/fanhui" />
+    </LinearLayout>
+
+    <View style="@style/LineBoth" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/distance_view">
+
+        <EditText
+            style="@style/EditMultiStyle"
+            android:layout_width="match_parent"
+            android:background="#F6F6F6"
+            android:hint="您好：真诚向您推荐我们的创业项目，希望您在百忙中抽出时间了解一下我们的项目，如果您对我们的项目有意向，可通过小鱼办公与我们进行视频会议。谢谢。"
+            android:minHeight="140dp"
+            android:padding="@dimen/distance_view" />
+
+
+        <TextView
+            style="@style/BtnStyle"
+            android:layout_marginTop="@dimen/distance_view"
+            android:text="确定" />
+
+    </LinearLayout>
+
+</LinearLayout>

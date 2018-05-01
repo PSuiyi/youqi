@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.mzk.compass.youqi.R;
+import com.mzk.compass.youqi.ui.home.people.PeopleDetailAct;
 import com.znz.compass.znzlibray.bean.BaseZnzBean;
 import com.znz.compass.znzlibray.utils.DipUtil;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
@@ -44,6 +45,6 @@ public class PeopleGridHomeAdapter extends BaseQuickAdapter<BaseZnzBean, BaseVie
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
+        gotoActivity(PeopleDetailAct.class);
     }
 }

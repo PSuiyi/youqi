@@ -83,6 +83,8 @@
         <activity android:name=".ui.publish.PublishStateAct" />
         <activity android:name=".ui.mine.state.StateListAct" />
         <activity android:name=".ui.mine.state.StateDetailAct" />
+        <activity android:name=".ui.home.people.PeopleDetailAct" />
+        <activity android:name=".ui.home.people.RecommendSelfAct" />
 
     </application>
 

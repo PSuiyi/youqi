@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_common_navigation" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/jigouxiangqingbg"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/distance_view">
+
+                    <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                        android:id="@+id/ivImage"
+                        android:layout_width="90dp"
+                        android:layout_height="90dp"
+                        android:layout_marginTop="2dp"
+                        android:foreground="@color/gray20"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/jigoulogo" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/distance_view"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/TitleTextStyle"
+                                android:text="源贷码财富管理投资股份有限公司"
+                                android:textColor="@color/white" />
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            style="@style/TextWhiteStyle"
+                            android:layout_marginTop="@dimen/distance_text"
+                            android:background="@drawable/bg_red_radius_2"
+                            android:paddingLeft="4dp"
+                            android:paddingRight="4dp"
+                            android:text="机构投资" />
+
+                        <TextView
+                            style="@style/TextWhiteStyle"
+                            android:layout_marginTop="@dimen/distance_text"
+                            android:text="地址 ：南京市" />
+
+                        <TextView
+                            style="@style/TextWhiteStyle"
+                            android:layout_marginTop="@dimen/distance_text"
+                            android:text="网址 ：www.njmzk.com" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/distance_view">
+
+                    <TextView
+                        style="@style/TextWhiteStyle"
+                        android:text="所属行业： 智能硬件互联网 大消费金融 医疗健康 旅游 文化 娱乐 体育 运动 物流" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/distance_divider"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/TextDrawableStyle"
+                            android:drawableLeft="@mipmap/shoucangxiaobai"
+                            android:text="2585"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size_12" />
+
+                        <TextView
+                            style="@style/TextDrawableStyle"
+                            android:layout_marginLeft="@dimen/distance_divider"
+                            android:drawableLeft="@mipmap/pinglunxiaohui"
+                            android:text="2585"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size_12" />
+
+                        <View style="@style/WeightView" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/distance_view"
+                            android:src="@mipmap/zhuanfabai" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/shoucanghuang" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    style="@style/LineBoth"
+                    android:background="@color/white" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/distance_view">
+
+                    <TextView
+                        style="@style/TitleRedTextStyle"
+                        android:layout_width="150dp"
+                        android:background="@drawable/bg_border_red"
+                        android:gravity="center"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp"
+                        android:text="自荐" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TitleBlodStyle"
+                    android:padding="@dimen/distance_view"
+                    android:text="简介"
+                    android:textSize="@dimen/text_size_20" />
+
+                <View style="@style/LineBoth" />
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:padding="@dimen/distance_view"
+                    android:text="源贷码财富管理投资股份有限公司，是经陕西省工商总局核准，于2013年注册成立的股份有限公司，注册资本1亿元人民币。主要经营业务：资产管理、财务顾问、投资咨询商品、企业改制、重组及上市咨询、商业贸易、电子商务。" />
+
+
+                <TextView
+                    style="@style/TitleBlodStyle"
+                    android:padding="@dimen/distance_view"
+                    android:text="投资偏好"
+                    android:textSize="@dimen/text_size_20" />
+
+                <View style="@style/LineBoth" />
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:padding="@dimen/distance_view"
+                    android:text="A轮 种子轮 天使轮"></TextView>
+
+                <TextView
+                    style="@style/TitleBlodStyle"
+                    android:padding="@dimen/distance_view"
+                    android:text="过往投资案例"
+                    android:textSize="@dimen/text_size_20" />
+
+                <View style="@style/LineBoth" />
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:padding="@dimen/distance_view"
+                    android:text="请详细介绍您的产品，有哪些功能或亮点？如何解决痛点、如何满足用户需求？或者您可以添加产品图片，并为产品图片做出相应注释。" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/distance_view"
+                    android:layout_marginLeft="@dimen/distance_view"
+                    android:layout_marginRight="@dimen/distance_view"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/touzianlitu" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <View style="@style/Line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/nav_height"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvOption1"
+            style="@style/MenuBottomStyle"
+            android:drawableTop="@mipmap/pinlun"
+            android:text="评论"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvOption2"
+            style="@style/MenuBottomStyle"
+            android:drawableTop="@mipmap/zijian"
+            android:text="自荐" />
+
+        <TextView
+            android:id="@+id/tvOption3"
+            style="@style/MenuBottomStyle"
+            android:drawableTop="@mipmap/shoucang"
+            android:text="收藏" />
+
+        <TextView
+            android:id="@+id/tvOption4"
+            style="@style/MenuBottomStyle"
+            android:drawableTop="@mipmap/zhuanfa"
+            android:text="分享" />
+
+        <TextView
+            android:id="@+id/tvOption5"
+            style="@style/MenuBottomStyle"
+            android:drawableTop="@mipmap/huidaodingbu"
+            android:text="返回顶部" />
+    </LinearLayout>
+
+</LinearLayout>

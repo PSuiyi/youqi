@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/distance_view">
+
+        <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+            android:id="@+id/ivImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="2dp"
+            android:foreground="@color/gray20"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/default_header" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/distance_view"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TitleBlodStyle"
+                    android:text="赵大千" />
+
+                <View style="@style/WeightView" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/distance_view"
+                    android:src="@mipmap/zhuanfa" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/shoucang" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/distance_text"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:text="机构投资经理 | 红杉资本" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/distance_divider"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TagBlueStyle"
+                    android:text="人工智能" />
+
+                <TextView
+                    style="@style/TagBlueStyle"
+                    android:layout_marginLeft="@dimen/distance_view"
+                    android:text="人工智能" />
+
+                <TextView
+                    style="@style/TagBlueStyle"
+                    android:layout_marginLeft="@dimen/distance_view"
+                    android:text="人工智能" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/distance_divider"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TagBlueStyle"
+                    android:text="人工智能" />
+
+                <TextView
+                    style="@style/TagBlueStyle"
+                    android:layout_marginLeft="@dimen/distance_view"
+                    android:text="人工智能" />
+
+                <TextView
+                    style="@style/TagBlueStyle"
+                    android:layout_marginLeft="@dimen/distance_view"
+                    android:text="人工智能" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/distance_divider"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextDrawableStyle"
+                    android:drawableLeft="@mipmap/shoucangxiaohui"
+                    android:text="2585"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_size_12" />
+
+                <TextView
+                    style="@style/TextDrawableStyle"
+                    android:layout_marginLeft="@dimen/distance_divider"
+                    android:drawableLeft="@mipmap/pinglunxiaohui"
+                    android:text="2585"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_size_12" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <View style="@style/Line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/distance_view">
+
+        <TextView
+            style="@style/TitleRedTextStyle"
+            android:layout_width="150dp"
+            android:background="@drawable/bg_border_red"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:text="自荐" />
+    </LinearLayout>
+
+    <View style="@style/Line" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View style="@style/Line" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvDetail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        style="@style/TitleBlodStyle"
+        android:padding="@dimen/distance_view"
+        android:text="评论"
+        android:textSize="@dimen/text_size_20" />
+
+    <View style="@style/LineBoth" />
+
+</LinearLayout>
