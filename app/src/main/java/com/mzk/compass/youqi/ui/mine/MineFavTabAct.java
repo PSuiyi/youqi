@@ -70,7 +70,6 @@ public class MineFavTabAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
-        commonTabLayout.setTabMode(TabLayout.MODE_FIXED);
         commonViewPager.setAdapter(new ViewPageAdapter(getSupportFragmentManager(), tabNames, fragmentList));
         commonTabLayout.setupWithViewPager(commonViewPager);
         commonViewPager.setOffscreenPageLimit(fragmentList.size());

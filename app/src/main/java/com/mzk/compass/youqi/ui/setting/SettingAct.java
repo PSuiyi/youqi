@@ -50,6 +50,7 @@ public class SettingAct extends BaseAppActivity {
             rowDescriptionList.add(new ZnzRowDescription.Builder()
                     .withTitle("清理缓存")
                     .withTextSize(14)
+                    .withEnableArraw(true)
 //                    .withValue(DataCleanManager.getTotalCacheSize(activity))
                     .withOnClickListener(v -> {
                     })
