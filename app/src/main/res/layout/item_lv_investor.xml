@@ -74,11 +74,11 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        style="@style/TextStyle"
+                        style="@style/TagBlueStyle"
                         android:text="文化娱乐" />
 
                     <TextView
-                        style="@style/TextStyle"
+                        style="@style/TagBlueStyle"
                         android:layout_marginLeft="@dimen/distance_divider"
                         android:text="休闲" />
 

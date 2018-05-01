@@ -86,6 +86,7 @@
         <activity android:name=".ui.home.people.PeopleDetailAct" />
         <activity android:name=".ui.home.people.RecommendSelfAct" />
         <activity android:name=".ui.mine.article.ArticleDetailAct" />
+        <activity android:name=".ui.home.PeopleApproveAct" />
 
     </application>
 

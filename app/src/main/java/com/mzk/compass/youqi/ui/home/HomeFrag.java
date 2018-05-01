@@ -19,7 +19,9 @@ import com.mzk.compass.youqi.ui.help.ProductListAct;
 import com.mzk.compass.youqi.ui.home.people.PeopleListAct;
 import com.mzk.compass.youqi.ui.home.project.ProjectDetailAct;
 import com.mzk.compass.youqi.ui.home.project.ProjectListAct;
+import com.mzk.compass.youqi.ui.mine.identify.company.CompanyIdentifyAct;
 import com.mzk.compass.youqi.ui.mine.message.MessageTabAct;
+import com.mzk.compass.youqi.ui.publish.PublishAct;
 import com.znz.compass.znzlibray.utils.BitmapUtil;
 import com.znz.compass.znzlibray.views.imageloder.GlideApp;
 
@@ -106,13 +108,13 @@ public class HomeFrag extends BaseAppListFragment {
             gotoActivity(ProjectListAct.class);
         });
         tvMenu2.setOnClickListener(v -> {
-            gotoActivity(ProductListAct.class);
+            gotoActivity(PublishAct.class);
         });
         tvMenu3.setOnClickListener(v -> {
             gotoActivity(PeopleListAct.class);
         });
         tvMenu4.setOnClickListener(v -> {
-            gotoActivity(ProductListAct.class);
+            gotoActivity(PeopleApproveAct.class);
         });
 
 

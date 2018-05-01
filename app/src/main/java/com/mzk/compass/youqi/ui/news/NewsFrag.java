@@ -15,6 +15,7 @@ import com.mzk.compass.youqi.adapter.ViewPageAdapter;
 import com.mzk.compass.youqi.base.BaseAppFragment;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.common.SearchCommonAct;
+import com.mzk.compass.youqi.ui.mine.message.MessageTabAct;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.compass.znzlibray.views.imageloder.GlideApp;
@@ -91,6 +92,11 @@ public class NewsFrag extends BaseAppFragment {
             Bundle bundle = new Bundle();
             bundle.putString("from", "搜索项目");
             gotoActivity(SearchCommonAct.class, bundle);
+        });
+
+        znzToolBar.setSearchRightImage(R.mipmap.xiaoxi);
+        znzToolBar.setOnSearchRightClickListener(v -> {
+            gotoActivity(MessageTabAct.class);
         });
     }
 

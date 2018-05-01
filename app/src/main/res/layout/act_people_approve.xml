@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_common_navigation" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <ImageView style="@style/DotRedStyle" />
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:text="真实姓名" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
+            <EditText
+                style="@style/EditStyle"
+                android:layout_width="match_parent"
+                android:hint="请输入姓名"
+                android:padding="@dimen/distance_view"
+                android:textSize="@dimen/title_size" />
+
+            <View style="@style/LineBoth" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <ImageView style="@style/DotRedStyle" />
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:text="关注行业" />
+
+                <View style="@style/WeightView" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/distance_view"
+                    android:src="@drawable/listarr" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <TextView
+                    style="@style/TagBlueStyle"
+                    android:text="人工智能" />
+
+                <TextView
+                    style="@style/TagBlueStyle"
+                    android:layout_marginLeft="@dimen/distance_view"
+                    android:text="人工智能" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <ImageView style="@style/DotRedStyle" />
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:text="投资轮次" />
+
+                <View style="@style/WeightView" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/distance_view"
+                    android:src="@drawable/listarr" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <TextView
+                    style="@style/TagBlueStyle"
+                    android:text="种子轮" />
+
+                <TextView
+                    style="@style/TagBlueStyle"
+                    android:layout_marginLeft="@dimen/distance_view"
+                    android:text="种子轮" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <ImageView style="@style/DotRedStyle" />
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:text="投资人身份" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <TextView
+                    style="@style/EditStyle"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:hint="请选择投资人身份"
+
+                    android:textSize="@dimen/title_size" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/distance_view"
+                    android:src="@drawable/listarr" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:text="上传名片" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/mingpian" />
+
+                <View
+                    android:layout_width="@dimen/distance_view"
+                    android:layout_height="0dp" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/mingpian" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:text="投资案例" />
+
+                <View style="@style/WeightView" />
+
+                <TextView
+                    style="@style/TitleGrayTextStyle"
+                    android:text="请去pc端填写完善" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/distance_divider"
+                    android:src="@mipmap/xuanzhong" />
+
+                <TextView
+                    style="@style/TextGrayStyle"
+                    android:text="已阅读并同意" />
+
+                <TextView
+                    android:id="@+id/tvRemind"
+                    style="@style/TextRedStyle"
+                    android:text="《认证协议》" />
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/BtnStyle"
+                android:text="保存" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
