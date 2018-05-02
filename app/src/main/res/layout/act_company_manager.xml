@@ -25,7 +25,7 @@
             android:src="@mipmap/changjianqiye" />
 
         <TextView
-            style="@style/TextStyle"
+            style="@style/TitleTextStyle"
             android:layout_marginLeft="10dp"
             android:text="创建企业" />
 
@@ -53,7 +53,7 @@
             android:src="@mipmap/chengyuanguanli" />
 
         <TextView
-            style="@style/TextStyle"
+            style="@style/TitleTextStyle"
             android:layout_marginLeft="10dp"
             android:text="成员管理" />
 
@@ -81,7 +81,7 @@
             android:src="@mipmap/renzheng_qiyerenzheng" />
 
         <TextView
-            style="@style/TextStyle"
+            style="@style/TitleTextStyle"
             android:layout_marginLeft="10dp"
             android:text="企业认证" />
 

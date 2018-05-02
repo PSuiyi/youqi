@@ -20,17 +20,17 @@
             android:padding="@dimen/distance_view">
 
             <TextView
-                style="@style/TextStyle"
+                style="@style/TitleTextStyle"
                 android:text="注册公司" />
 
             <TextView
-                style="@style/TextStyle"
+                style="@style/TitleTextStyle"
                 android:layout_marginTop="5dp"
                 android:text="完成"
                 android:textColor="@color/text_blue_industry" />
 
             <TextView
-                style="@style/TextSamllStyle"
+                style="@style/TextStyle"
                 android:layout_marginTop="5dp"
                 android:text="2017.03.15 12:30:25"
                 android:textColor="@color/text_blue_industry" />

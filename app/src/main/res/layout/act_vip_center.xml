@@ -117,7 +117,7 @@
         android:padding="@dimen/distance_view">
 
         <TextView
-            style="@style/TextSamllStyle"
+            style="@style/TextStyle"
             android:text="@string/vip_discribe" />
 
         <TextView

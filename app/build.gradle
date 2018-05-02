@@ -11,6 +11,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a"
+        }
     }
     buildTypes {
         release {
@@ -54,8 +57,8 @@ apply plugin: 'com.bugtags.library.plugin'
 //Bugtags 插件配置
 bugtags {
     //自动上传符号表功能配置，如果需要根据 build varint 配置，请参考帮助中心->符号表->Android 符号表->配置自动上传符号表
-    appKey "9e0b38db2ae31e05a49a125bce1faa15"  //这里是你的 appKey
-    appSecret "d50d0ba6f0c1e47efd5d51d519d5b91c"    //这里是你的 appSecret，管理员在设置页可以查看
+    appKey "f8a8976eb07316f15ce7e91241c0afb1"  //这里是你的 appKey
+    appSecret "033b530179f406c97d05a8143714442b"    //这里是你的 appSecret，管理员在设置页可以查看
     mappingUploadEnabled true
 
     //网络跟踪功能配置(企业版)

@@ -36,11 +36,11 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        style="@style/TextGrayStyle"
+                        style="@style/TitleGrayTextStyle"
                         android:text="客服姓名：" />
 
                     <TextView
-                        style="@style/TextStyle"
+                        style="@style/TitleTextStyle"
                         android:text="赵大千" />
                 </LinearLayout>
 
@@ -52,11 +52,11 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        style="@style/TextGrayStyle"
+                        style="@style/TitleGrayTextStyle"
                         android:text="客服电话：" />
 
                     <TextView
-                        style="@style/TextStyle"
+                        style="@style/TitleTextStyle"
                         android:text="025-12333434" />
                 </LinearLayout>
             </LinearLayout>

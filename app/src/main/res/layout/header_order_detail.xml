@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/dingdanbg"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/distance_view">
+
+            <TextView
+                style="@style/TitleWhiteTextStyle"
+                android:text="待付款"
+                android:textSize="20sp" />
+
+            <TextView
+                style="@style/TextWhiteStyle"
+                android:layout_marginTop="@dimen/distance_divider"
+                android:text="你已提交了订单，待付款" />
+        </LinearLayout>
+
+        <include layout="@layout/include_item_product" />
+
+        <View style="@style/Line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/distance_view">
+
+            <View style="@style/WeightView" />
+
+            <TextView
+                style="@style/TextStyle"
+                android:text="合计：" />
+
+            <TextView
+                style="@style/TitleRedTextStyle"
+                android:text="¥999.00" />
+        </LinearLayout>
+
+        <View style="@style/LineDivider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/distance_view">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TitleGrayTextStyle"
+                    android:text="电 话：" />
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:text="13112345678" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/distance_divider"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TitleGrayTextStyle"
+                    android:text="订单编号：" />
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:text="201803191703017555" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/distance_divider"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TitleGrayTextStyle"
+                    android:text="下单时间：" />
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:text="2016.09.20 10:49:49" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/distance_divider"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TitleGrayTextStyle"
+                    android:text="备注信息：" />
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:text="我的地址是南京市江宁区横溪镇6号" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <View style="@style/LineDivider" />
+
+        <TextView
+            style="@style/TitleBlodStyle"
+            android:padding="@dimen/distance_view"
+            android:text="订单状态"
+            android:textSize="@dimen/text_size_20" />
+
+        <View style="@style/LineBoth" />
+
+
+    </LinearLayout>
+</LinearLayout>

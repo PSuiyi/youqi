@@ -25,7 +25,7 @@
             android:src="@mipmap/renzheng_qiyerenzhengguanli" />
 
         <TextView
-            style="@style/TextStyle"
+            style="@style/TitleTextStyle"
             android:layout_marginLeft="10dp"
             android:text="企业认证管理" />
 
@@ -53,7 +53,7 @@
             android:src="@mipmap/gerenrenzheng" />
 
         <TextView
-            style="@style/TextStyle"
+            style="@style/TitleTextStyle"
             android:layout_marginLeft="10dp"
             android:text="个人认证管理" />
 
