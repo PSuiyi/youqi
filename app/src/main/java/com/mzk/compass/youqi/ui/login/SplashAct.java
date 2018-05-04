@@ -5,7 +5,6 @@ import android.view.WindowManager;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
-import com.mzk.compass.youqi.ui.TabHomeActivity;
 
 import java.util.concurrent.TimeUnit;
 

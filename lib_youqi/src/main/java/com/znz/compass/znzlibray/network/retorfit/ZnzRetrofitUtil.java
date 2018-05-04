@@ -43,8 +43,7 @@ public class ZnzRetrofitUtil {
             WITH_COMMON_PARAMS = withCommonParams;
 
             mDataManager = DataManager.getInstance(ZnzApplication.getContext());
-//            BASE_URL = "http://app.hello-jobs.cc:8080/hellojobs_api/s/api/";
-            BASE_URL = "http://syapi.znzkj.net/hellojobs_api/s/api/";  //测试环境
+            BASE_URL = "http://106.14.211.82/";  //测试环境
 
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
 

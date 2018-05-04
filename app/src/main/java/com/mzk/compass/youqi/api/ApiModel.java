@@ -59,8 +59,7 @@ public class ApiModel extends BaseModel {
      * @param znzHttpListener
      */
     public void requestCode(Map<String, String> params, ZnzHttpListener znzHttpListener) {
-        params.put("request_code", "10002");
-        request(apiService.post(params), znzHttpListener);
+        request(apiService.requestCode(params), znzHttpListener);
     }
 
     /**
@@ -92,8 +91,7 @@ public class ApiModel extends BaseModel {
      * @param znzHttpListener
      */
     public void requestLogin(Map<String, String> params, ZnzHttpListener znzHttpListener) {
-        params.put("request_code", "10000");
-        request(apiService.post(params), znzHttpListener);
+        request(apiService.requestLogin(params), znzHttpListener);
     }
 
     /**

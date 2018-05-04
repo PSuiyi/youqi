@@ -134,20 +134,7 @@ public class BaseModel<V extends IView> implements IModel {
 
             switch (serviceType) {
                 case 1:
-                    if (responseJson.getString("Success").equals("true")) {
-                        listener.onSuccess(responseJson);
-                        handleLoding(false, lodingType);
-                    } else if (responseJson.getString("ErrorNum").equals("-21")) {
-                        listener.onSuccess(responseJson);
-                        handleLoding(false, lodingType);
-                    } else {
-                        listener.onFail(responseJson.getString("msg"));
-//                        mDataManager.showToast(responseJson.getString("msg"));
-                        handleLoding(false, lodingType);
-                    }
-                    break;
-                case 2:
-                    if (responseJson.getString("status_code").equals("00000")) {
+                    if (responseJson.getString("status_code").equals("0")) {
                         listener.onSuccess(responseJson);
                         handleLoding(false, lodingType);
                     } else if (responseJson.getString("status_code").equals("90000")) {
@@ -156,14 +143,17 @@ public class BaseModel<V extends IView> implements IModel {
                         listener.onSuccess(responseJson);
                     } else {
                         listener.onFail(responseJson.getString("msg"));
-//                        mDataManager.showToast(responseJson.getString("msg"));
+                        mDataManager.showToast(responseJson.getString("msg"));
                         handleLoding(false, lodingType);
                     }
+                    break;
+                case 2:
+
                     break;
             }
         } catch (Exception e) {
             e.printStackTrace();
-//            mDataManager.showToast(e.getMessage());
+            mDataManager.showToast(e.getMessage());
             listener.onFail(e.getMessage());
             handleLoding(false, lodingType);
         }

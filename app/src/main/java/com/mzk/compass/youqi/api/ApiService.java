@@ -24,6 +24,14 @@ public interface ApiService {
     @POST("baj_api/s/api")
     Observable<ResponseBody> post(@FieldMap Map<String, String> params);
 
+    @FormUrlEncoded
+    @POST("login/get-code")
+    Observable<ResponseBody> requestCode(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("login/login")
+    Observable<ResponseBody> requestLogin(@FieldMap Map<String, String> params);
+
     @Multipart
     @POST("baj_api/s/api")
     Observable<ResponseBody> uploadImageSingle(@QueryMap Map<String, String> params, @Part MultipartBody.Part file);

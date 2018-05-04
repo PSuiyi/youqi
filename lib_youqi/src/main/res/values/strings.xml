@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="alert_cancel">取消</string>
-    <string name="znz_str_no_data">沒有相關資訊</string>
-    <string name="token_time_out">登入權杖失效</string>
-    <string name="token_time_out_description">您的帳戶在另外一個設備上登入或者登入權杖已過期，請重新登入</string>
-    <string name="alert_sure">確定</string>
-    <string name="common_no_data">暫無數據</string>
-    <string name="str_loading">正在載入</string>
+    <string name="znz_str_no_data">没有相关信息</string>
+    <string name="token_time_out">登录令牌失效</string>
+    <string name="token_time_out_description">您的账户在另外一个设备上登录或者登录令牌已过期，请重新登录</string>
+    <string name="alert_sure">确定</string>
+    <string name="common_no_data">暂无数据</string>
+    <string name="str_loading">正在载入</string>
 </resources>
