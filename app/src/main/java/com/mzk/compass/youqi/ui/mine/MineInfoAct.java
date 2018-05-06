@@ -6,9 +6,17 @@ import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.mzk.compass.youqi.common.Constants;
+import com.mzk.compass.youqi.event.EventRefresh;
+import com.mzk.compass.youqi.event.EventTags;
+import com.mzk.compass.youqi.utils.AppUtils;
+import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.rowview.ZnzRowDescription;
 import com.znz.compass.znzlibray.views.rowview.ZnzRowGroupView;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
@@ -30,6 +38,7 @@ public class MineInfoAct extends BaseAppActivity {
     @Bind(R.id.tvIntro)
     TextView tvIntro;
     private ArrayList<ZnzRowDescription> rowDescriptionList = new ArrayList<>();
+    private AppUtils appUtils;
 
     @Override
     protected int[] getLayoutResource() {
@@ -38,7 +47,7 @@ public class MineInfoAct extends BaseAppActivity {
 
     @Override
     protected void initializeVariate() {
-
+        appUtils = AppUtils.getInstance(context);
     }
 
     @Override
@@ -51,7 +60,7 @@ public class MineInfoAct extends BaseAppActivity {
         rowDescriptionList.add(new ZnzRowDescription.Builder()
                 .withTitle("姓名")
                 .withEnableArraw(true)
-                .withValue("叶雨")
+                .withValue(mDataManager.readTempData(Constants.User.NICKNAME))
                 .withTextSize(14)
                 .withGravity(true)
                 .withValueColor(mDataManager.getColor(R.color.text_gray))
@@ -66,7 +75,7 @@ public class MineInfoAct extends BaseAppActivity {
                 .withTitle("所属公司")
                 .withEnableArraw(true)
                 .withGravity(true)
-                .withValue("南京美之科有限公司")
+                .withValue(appUtils.getCompanyName())
                 .withTextSize(14)
                 .withValueColor(mDataManager.getColor(R.color.text_gray))
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
@@ -80,7 +89,7 @@ public class MineInfoAct extends BaseAppActivity {
                 .withTitle("职务")
                 .withEnableArraw(true)
                 .withGravity(true)
-                .withValue("经理")
+                .withValue(mDataManager.readTempData(Constants.User.DUTY))
                 .withTextSize(14)
                 .withValueColor(mDataManager.getColor(R.color.text_gray))
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
@@ -94,7 +103,7 @@ public class MineInfoAct extends BaseAppActivity {
                 .withTitle("邮箱")
                 .withEnableArraw(true)
                 .withGravity(true)
-                .withValue("fhdghkajh@qq.com")
+                .withValue(mDataManager.readTempData(Constants.User.EMAIL))
                 .withTextSize(14)
                 .withValueColor(mDataManager.getColor(R.color.text_gray))
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
@@ -108,7 +117,7 @@ public class MineInfoAct extends BaseAppActivity {
                 .withTitle("地址")
                 .withEnableArraw(true)
                 .withGravity(true)
-                .withValue("江苏省南京市浦口区仙霞西路198号")
+                .withValue(mDataManager.readTempData(Constants.User.NICKNAME))
                 .withTextSize(14)
                 .withValueColor(mDataManager.getColor(R.color.text_gray))
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
@@ -119,18 +128,12 @@ public class MineInfoAct extends BaseAppActivity {
                 })
                 .build());
         commonRowGroup.notifyDataChanged(rowDescriptionList);
+        mDataManager.setValueToView(tvIntro, mDataManager.readTempData(Constants.User.INTRODUCE));
     }
 
     @Override
     protected void loadDataFromServer() {
 
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 
     @OnClick({R.id.llHeader, R.id.llIntro})
@@ -143,4 +146,32 @@ public class MineInfoAct extends BaseAppActivity {
                 break;
         }
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventManager.register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventManager.unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventRefresh event) {
+        switch (event.getFlag()) {
+            case EventTags.REFRESH_USERINFO:
+                rowDescriptionList.get(0).setValue(mDataManager.readTempData(Constants.User.NICKNAME));
+                rowDescriptionList.get(1).setValue(appUtils.getCompanyName());
+                rowDescriptionList.get(2).setValue(mDataManager.readTempData(Constants.User.DUTY));
+                rowDescriptionList.get(3).setValue(mDataManager.readTempData(Constants.User.EMAIL));
+                rowDescriptionList.get(4).setValue(mDataManager.readTempData(Constants.User.ADDRESS));
+                commonRowGroup.notifyDataChanged(rowDescriptionList);
+                mDataManager.setValueToView(tvIntro, mDataManager.readTempData(Constants.User.INTRODUCE));
+                break;
+        }
+    }
+
 }

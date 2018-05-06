@@ -17,39 +17,20 @@ public class Constants {
      * SharePreference key
      */
     public interface User {
-        String BIRTHDAY = "birthday";
-        String QQ = "qq";
-        String F_PINYIN = "f_pinyin";
-        String HEAD_IMG_PATH = "head_img_path";
-        String ALIPAY = "alipay";
-        String LAST_LOGIN_TIME = "last_login_time";
-        String CREATE_TIME = "create_time";
-        String LNG = "lng";
-        String SIGNATURE = "signature";
-        String SEX = "sex";
-        String WECHAT = "wechat";
-        String CITY_CODE = "city_code";
-        String PASSWORD = "password";
-        String CITY_NAME = "city_name";
-        String UPDATE_TIME = "update_time";
-        String LOGIN_NAME = "login_name";
-        String PHONE = "phone";
-        String USER_ID = "user_id";
-        String NICK_NAME = "nick_name";
-        String ID = "id";
-        String MICROBLOG = "microblog";
-        String LAT = "lat";
-        String COMMUNITY_ID = "quarters_id";
-        String COMMUNITY_NAME = "community_name";
-        String PNAME = "pname";
-        String HOUSE_HUHAO_ID = "HOUSE_HUHAO_ID";
-        String HOUSE_NO = "HOUSE_NO";//房号编码
-        String AREA_ID = "AREA_ID";//第三方小区id
-        String BUILDING_NO_ID = "BUILDING_NO_ID";
-        String UNIT_ID = "UNIT_ID";
-        String USER_TYPE = "USER_TYPE";
-        String USER_STATUS = "USER_STATUS";
-        String USER_LEVEL = "USER_LEVEL";
+        String AVATAR = "avatar";
+        String ISVIP = "isVip";
+        String USERNAME = "username";
+        String NICKNAME = "nickname";
+        String YONGJIN = "yongjin";
+        String USERTYPE = "usertype";
+        String BALANCE = "balance";
+        String COMPANYNAME = "companyName";
+        String EMAIL = "email";
+        String ADDRESS = "address";
+        String INTRODUCE = "introduce";
+        String CNAME = "cname";
+        String VIPTIME = "vipTime";
+        String DUTY = "duty";
     }
 
     /**

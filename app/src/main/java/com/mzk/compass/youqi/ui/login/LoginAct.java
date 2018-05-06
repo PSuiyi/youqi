@@ -6,11 +6,13 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.ui.TabHomeActivity;
 import com.mzk.compass.youqi.view.EditTextPsd;
+import com.znz.compass.znzlibray.common.ZnzConstants;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.EditTextWithDel;
@@ -126,19 +128,22 @@ public class LoginAct extends BaseAppActivity {
                     params.put("login_type", "2");
                     params.put("code", mDataManager.getValueFromView(etCode));
                 } else {
-                    if (StringUtil.isBlank(mDataManager.getValueFromView(etPsd))) {
+                    if (StringUtil.isBlank(etPsd.getEditText())) {
                         mDataManager.showToast("请输入密码");
                         return;
                     }
                     params.put("login_type", "1");
-                    params.put("password", mDataManager.getValueFromView(etPsd));
+                    params.put("password", etPsd.getEditText());
                 }
-
                 mModel.requestLogin(params, new ZnzHttpListener() {
                     @Override
                     public void onSuccess(JSONObject responseOriginal) {
                         super.onSuccess(responseOriginal);
-                        gotoActivity(TabHomeActivity.class);
+                        JSONObject jsonObject = JSON.parseObject(responseOriginal.getString("data"));
+                        String token = jsonObject.getString("token");
+                        mDataManager.saveTempData(ZnzConstants.ACCESS_TOKEN, token);
+                        mDataManager.saveBooleanTempData(ZnzConstants.IS_LOGIN, true);
+                        gotoActivityWithClearStack(TabHomeActivity.class);
                     }
 
                     @Override
@@ -179,11 +184,11 @@ public class LoginAct extends BaseAppActivity {
                 if (isCode) {
                     mDataManager.setViewVisibility(llCode, false);
                     mDataManager.setViewVisibility(llPsd, true);
-                    tvLoginType.setText("密码登录");
+                    tvLoginType.setText("验证码登录");
                 } else {
                     mDataManager.setViewVisibility(llCode, true);
                     mDataManager.setViewVisibility(llPsd, false);
-                    tvLoginType.setText("验证码登录");
+                    tvLoginType.setText("密码登录");
                 }
                 isCode = !isCode;
                 break;

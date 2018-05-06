@@ -5,7 +5,7 @@ package com.mzk.compass.youqi.event;
  */
 
 public interface EventTags {
-    int REFRESH_DELETE = 0X100; //个人中心删除
+    int REFRESH_USERINFO = 0X100; //修改个人资料
     int REFRESH_SEARCH_VALUE = 0x101;
     int REFRESH_SEARCH_HISTORY = 0x102;//搜索历史记录刷新
     int REFRESH_SEARCH = 0x103;//搜索

@@ -45,7 +45,7 @@ public class ZnzLoggingInterceptor implements Interceptor {
                 sb.append(buffer.readString(charset));
             }
             KLog.e(String.format(Locale.getDefault(), "\n%s:%s%s", request.method(), request.url(), sb.toString())
-                    + "&access_token=" + DataManager.getInstance(ZnzApplication.getContext()).getAccessToken()
+                    + "&token=" + DataManager.getInstance(ZnzApplication.getContext()).getAccessToken()
             );
         }
 

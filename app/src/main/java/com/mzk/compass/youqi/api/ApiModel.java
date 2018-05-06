@@ -80,8 +80,7 @@ public class ApiModel extends BaseModel {
      * @param znzHttpListener
      */
     public void requestRegister(Map<String, String> params, ZnzHttpListener znzHttpListener) {
-        params.put("request_code", "10001");
-        request(apiService.post(params), znzHttpListener);
+        request(apiService.requestRegister(params), znzHttpListener);
     }
 
     /**
@@ -311,8 +310,7 @@ public class ApiModel extends BaseModel {
      * @param znzHttpListener
      */
     public void requestUserDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
-        params.put("request_code", "30000");
-        request(apiService.post(params), znzHttpListener);
+        request(apiService.requestUserDetail(params), znzHttpListener);
     }
 
 
@@ -335,8 +333,7 @@ public class ApiModel extends BaseModel {
      * @param znzHttpListener
      */
     public void requestUpdateUserInfo(Map<String, String> params, ZnzHttpListener znzHttpListener) {
-        params.put("request_code", "30001");
-        request(apiService.post(params), znzHttpListener);
+        request(apiService.requestUpdateUserInfo(params), znzHttpListener);
     }
 
     /**

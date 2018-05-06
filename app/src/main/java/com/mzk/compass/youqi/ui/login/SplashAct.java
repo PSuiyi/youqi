@@ -5,6 +5,8 @@ import android.view.WindowManager;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.mzk.compass.youqi.ui.TabHomeActivity;
+import com.znz.compass.znzlibray.common.ZnzConstants;
 
 import java.util.concurrent.TimeUnit;
 
@@ -43,14 +45,14 @@ public class SplashAct extends BaseAppActivity {
 //                        mDataManager.saveBooleanTempData(ZnzConstants.IS_APP_OPEND, true);
 //                    } else {
 //                        gotoActivity(TabHomeActivity.class);
-////                        if (mDataManager.readBooleanTempData(ZnzConstants.IS_LOGIN)) {
-////                            gotoActivity(TabHomeActivity.class);
-////                        } else {
-////                            gotoActivity(LoginAct.class);
-////                        }
+                    if (mDataManager.readBooleanTempData(ZnzConstants.IS_LOGIN)) {
+                        gotoActivity(TabHomeActivity.class);
+                    } else {
+                        gotoActivity(LoginAct.class);
+                    }
 //                    }
-                    gotoActivity(LoginAct.class);
-                    finish();
+//                    gotoActivity(LoginAct.class);
+//                    finish();
                 })
                 .subscribe();
     }

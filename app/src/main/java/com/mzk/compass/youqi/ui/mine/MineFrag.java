@@ -4,9 +4,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppFragment;
+import com.mzk.compass.youqi.bean.UserBean;
+import com.mzk.compass.youqi.common.Constants;
+import com.mzk.compass.youqi.event.EventRefresh;
+import com.mzk.compass.youqi.event.EventTags;
 import com.mzk.compass.youqi.ui.mine.account.AccountManagerAct;
 import com.mzk.compass.youqi.ui.mine.article.ArticleTabAct;
 import com.mzk.compass.youqi.ui.mine.identify.IdentifyManagerAct;
@@ -16,10 +25,21 @@ import com.mzk.compass.youqi.ui.mine.order.OrderTabAct;
 import com.mzk.compass.youqi.ui.mine.state.StateListAct;
 import com.mzk.compass.youqi.ui.mine.vip.VipCenterAct;
 import com.mzk.compass.youqi.ui.setting.SettingAct;
+import com.mzk.compass.youqi.utils.AppUtils;
+import com.znz.compass.znzlibray.eventbus.EventManager;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzlibray.utils.TimeUtils;
+import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.rowview.ZnzRowDescription;
 import com.znz.compass.znzlibray.views.rowview.ZnzRowGroupView;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -33,6 +53,23 @@ import butterknife.OnClick;
 public class MineFrag extends BaseAppFragment {
     @Bind(R.id.commonRowGroup)
     ZnzRowGroupView commonRowGroup;
+    @Bind(R.id.tvNickName)
+    TextView tvNickName;
+    @Bind(R.id.tvCompany)
+    TextView tvCompany;
+    @Bind(R.id.ivHeader)
+    HttpImageView ivHeader;
+    @Bind(R.id.llInfo)
+    LinearLayout llInfo;
+    @Bind(R.id.ivMessage)
+    ImageView ivMessage;
+    @Bind(R.id.tvYongjin)
+    TextView tvYongjin;
+    @Bind(R.id.tvBalance)
+    TextView tvBalance;
+    @Bind(R.id.ivVip)
+    ImageView ivVip;
+    private UserBean bean;
 
     private ArrayList<ZnzRowDescription> rowDescriptionList = new ArrayList<>();
 
@@ -165,11 +202,41 @@ public class MineFrag extends BaseAppFragment {
                 })
                 .build());
         commonRowGroup.notifyDataChanged(rowDescriptionList);
+        setData();
     }
 
     @Override
     protected void loadDataFromServer() {
+        Map<String, String> params = new HashMap<>();
+        mModel.requestUserDetail(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                bean = JSON.parseObject(responseOriginal.getString("data"), UserBean.class);
+                AppUtils.getInstance(context).saveUserData(bean);
+                setData();
+            }
+        });
+    }
 
+    private void setData() {
+        mDataManager.setValueToView(tvNickName, AppUtils.getInstance(context).getUserName());
+        mDataManager.setValueToView(tvCompany, AppUtils.getInstance(context).getCompanyName());
+        if (StringUtil.isBlank(mDataManager.readTempData(Constants.User.ISVIP))) {
+            mDataManager.setViewVisibility(ivVip, false);
+        } else {
+            if (mDataManager.readTempData(Constants.User.ISVIP).equals("1")) {
+                mDataManager.setViewVisibility(ivVip, true);
+                rowDescriptionList.get(5).setValue("VIP会员" + TimeUtils.getFormatTime(mDataManager.readTempData(Constants.User.VIPTIME), "yyyy-MM-dd") + "到期");
+            } else {
+                mDataManager.setViewVisibility(ivVip, false);
+                rowDescriptionList.get(5).setValue("");
+            }
+            commonRowGroup.notifyDataChanged(rowDescriptionList);
+        }
+        ivHeader.loadHeaderImage(mDataManager.readTempData(Constants.User.AVATAR));
+        mDataManager.setValueToView(tvYongjin, mDataManager.readTempData(Constants.User.YONGJIN));
+        mDataManager.setValueToView(tvBalance, mDataManager.readTempData(Constants.User.BALANCE));
     }
 
     @Override
@@ -194,6 +261,27 @@ public class MineFrag extends BaseAppFragment {
                 break;
             case R.id.ivMessage:
                 gotoActivity(MessageTabAct.class);
+                break;
+        }
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventManager.register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventManager.unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventRefresh event) {
+        switch (event.getFlag()) {
+            case EventTags.REFRESH_USERINFO:
+                setData();
                 break;
         }
     }

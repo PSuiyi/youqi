@@ -20,6 +20,7 @@
         android:padding="@dimen/distance_view">
 
         <EditText
+            android:id="@+id/etContent"
             style="@style/EditStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

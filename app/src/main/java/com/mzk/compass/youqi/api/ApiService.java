@@ -32,6 +32,17 @@ public interface ApiService {
     @POST("login/login")
     Observable<ResponseBody> requestLogin(@FieldMap Map<String, String> params);
 
+    @FormUrlEncoded
+    @POST("login/register")
+    Observable<ResponseBody> requestRegister(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("ucenter/index")
+    Observable<ResponseBody> requestUserDetail(@FieldMap Map<String, String> params);
+    @FormUrlEncoded
+    @POST("ucenter/update-info")
+    Observable<ResponseBody> requestUpdateUserInfo(@FieldMap Map<String, String> params);
+
     @Multipart
     @POST("baj_api/s/api")
     Observable<ResponseBody> uploadImageSingle(@QueryMap Map<String, String> params, @Part MultipartBody.Part file);

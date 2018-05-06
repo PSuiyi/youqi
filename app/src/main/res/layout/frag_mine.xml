@@ -49,6 +49,7 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/tvNickName"
                                 style="@style/TextWhiteStyle"
                                 android:drawablePadding="10dp"
                                 android:text="叶雨"
@@ -56,14 +57,17 @@
                                 android:textStyle="bold" />
 
                             <ImageView
+                                android:id="@+id/ivVip"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/distance_view"
-                                android:src="@mipmap/vip" />
+                                android:src="@mipmap/vip"
+                                android:visibility="gone"/>
 
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/tvCompany"
                             style="@style/TextWhiteStyle"
                             android:layout_marginTop="5dp"
                             android:text="南京xxxxxx有限公司"
@@ -71,6 +75,7 @@
                     </LinearLayout>
 
                     <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                        android:id="@+id/ivHeader"
                         android:layout_width="72dp"
                         android:layout_height="72dp"
                         android:scaleType="centerCrop"
@@ -103,6 +108,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvYongjin"
                         style="@style/TextStyle"
                         android:text="700元"
                         android:textColor="@color/red" />
@@ -126,6 +132,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvBalance"
                         style="@style/TextStyle"
                         android:text="200元"
                         android:textColor="@color/red" />
