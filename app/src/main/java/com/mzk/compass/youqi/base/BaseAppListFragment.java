@@ -64,9 +64,9 @@ public abstract class BaseAppListFragment<T extends BaseZnzBean> extends BaseLis
             }
 
             if (isNormalList) {
-                params.put("limit", "100");
+                params.put("pageSize", "100");
             } else {
-                params.put("limit", "10");
+                params.put("pageSize", "10");
             }
             params.put("page", currentPageIndex + "");
 

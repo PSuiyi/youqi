@@ -52,11 +52,11 @@ public class MineProjectTabAct extends BaseAppActivity {
         tabNames.add("已拒绝");
         tabNames.add("已下架");
 
-        fragmentList.add(new ProjectListFrag());
-        fragmentList.add(new ProjectListFrag());
-        fragmentList.add(new ProjectListFrag());
-        fragmentList.add(new ProjectListFrag());
-        fragmentList.add(new ProjectListFrag());
+        fragmentList.add(ProjectListFrag.newInstance("全部"));
+        fragmentList.add(ProjectListFrag.newInstance("待审核"));
+        fragmentList.add(ProjectListFrag.newInstance("已发布"));
+        fragmentList.add(ProjectListFrag.newInstance("已拒绝"));
+        fragmentList.add(ProjectListFrag.newInstance("已下架"));
     }
 
     @Override

@@ -107,7 +107,7 @@ public class Register2Act extends BaseAppActivity {
                 Map<String, String> params = new HashMap<>();
                 params.put("mobile", phone);
                 params.put("code", code);
-                params.put("password", mDataManager.getValueFromView(etPsd));
+                params.put("password", etPsd.getEditText());
                 mModel.requestRegister(params, new ZnzHttpListener() {
                     @Override
                     public void onSuccess(JSONObject responseOriginal) {

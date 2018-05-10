@@ -43,7 +43,7 @@ public class ProjectListAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
-        fragment = new ProjectListFrag();
+        fragment = ProjectListFrag.newInstance("全部");
         FragmentUtil.addFragmentToActivity(getSupportFragmentManager(), fragment, R.id.container);
     }
 

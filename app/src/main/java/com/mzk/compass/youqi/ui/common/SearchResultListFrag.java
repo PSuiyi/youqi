@@ -17,6 +17,7 @@ import com.mzk.compass.youqi.adapter.PeopleAdapter;
 import com.mzk.compass.youqi.adapter.ProductAdapter;
 import com.mzk.compass.youqi.adapter.ProjectAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
+import com.mzk.compass.youqi.bean.ProjectBean;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
 import com.znz.compass.znzlibray.bean.BaseZnzBean;
@@ -84,6 +85,10 @@ public class SearchResultListFrag extends BaseAppListFragment<BaseZnzBean> {
     protected void initializeView() {
         switch (from) {
             case "搜索项目":
+                dataList.add(new ProjectBean());
+                dataList.add(new ProjectBean());
+                dataList.add(new ProjectBean());
+                dataList.add(new ProjectBean());
                 rvRefresh.setLayoutManager(new LinearLayoutManager(activity));
                 adapter = new ProjectAdapter(dataList);
                 break;
@@ -96,6 +101,10 @@ public class SearchResultListFrag extends BaseAppListFragment<BaseZnzBean> {
                 adapter = new PeopleAdapter(dataList);
                 break;
             case "搜索投资机构":
+                dataList.add(new ProjectBean());
+                dataList.add(new ProjectBean());
+                dataList.add(new ProjectBean());
+                dataList.add(new ProjectBean());
                 rvRefresh.setLayoutManager(new LinearLayoutManager(activity));
                 adapter = new ProjectAdapter(dataList);
                 break;

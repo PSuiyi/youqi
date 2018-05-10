@@ -39,9 +39,14 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("ucenter/index")
     Observable<ResponseBody> requestUserDetail(@FieldMap Map<String, String> params);
+
     @FormUrlEncoded
     @POST("ucenter/update-info")
     Observable<ResponseBody> requestUpdateUserInfo(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("project/list-my-project")
+    Observable<ResponseBody> requestProjectList(@FieldMap Map<String, String> params);
 
     @Multipart
     @POST("baj_api/s/api")
