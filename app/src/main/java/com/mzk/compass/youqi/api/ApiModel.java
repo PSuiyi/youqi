@@ -132,6 +132,14 @@ public class ApiModel extends BaseModel {
     public Observable<ResponseBody> requestProjectList(Map<String, String> params) {
         return apiService.requestProjectList(params);
     }
+    /**
+     * 订单列表
+     * @param params
+     * @return
+     */
+    public Observable<ResponseBody> requestOrderList(Map<String, String> params) {
+        return apiService.requestOrderList(params);
+    }
 
     /**
      * 单张图片上传

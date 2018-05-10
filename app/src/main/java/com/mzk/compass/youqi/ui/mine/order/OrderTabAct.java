@@ -49,11 +49,11 @@ public class OrderTabAct extends BaseAppActivity {
         tabNames.add("待确认服务结果");
         tabNames.add("已取消 ");
 
-        fragmentList.add(new OrderListFrag());
-        fragmentList.add(new OrderListFrag());
-        fragmentList.add(new OrderListFrag());
-        fragmentList.add(new OrderListFrag());
-        fragmentList.add(new OrderListFrag());
+        fragmentList.add(OrderListFrag.newInstance("全部"));
+        fragmentList.add(OrderListFrag.newInstance("待付款"));
+        fragmentList.add(OrderListFrag.newInstance("待服务"));
+        fragmentList.add(OrderListFrag.newInstance("待确认服务结果"));
+        fragmentList.add(OrderListFrag.newInstance("已取消"));
     }
 
     @Override

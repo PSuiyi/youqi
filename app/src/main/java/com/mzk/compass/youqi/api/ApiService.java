@@ -48,6 +48,10 @@ public interface ApiService {
     @POST("project/list-my-project")
     Observable<ResponseBody> requestProjectList(@FieldMap Map<String, String> params);
 
+    @FormUrlEncoded
+    @POST("order/list")
+    Observable<ResponseBody> requestOrderList(@FieldMap Map<String, String> params);
+
     @Multipart
     @POST("baj_api/s/api")
     Observable<ResponseBody> uploadImageSingle(@QueryMap Map<String, String> params, @Part MultipartBody.Part file);

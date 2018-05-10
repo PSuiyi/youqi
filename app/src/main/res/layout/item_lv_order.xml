@@ -24,12 +24,14 @@
                 android:padding="@dimen/distance_view">
 
                 <TextView
+                    android:id="@+id/tvOrderCode"
                     style="@style/TitleTextStyle"
                     android:text="订单编号 201803191703017555" />
 
                 <View style="@style/WeightView" />
 
                 <TextView
+                    android:id="@+id/tvState"
                     style="@style/TitleRedTextStyle"
                     android:text="待付款" />
             </LinearLayout>
@@ -47,6 +49,7 @@
                     android:text="共1项服务，合计：" />
 
                 <TextView
+                    android:id="@+id/tvTotalMoney"
                     style="@style/TitleRedTextStyle"
                     android:text="¥999.00" />
 

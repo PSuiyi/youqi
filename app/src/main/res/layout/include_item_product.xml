@@ -12,6 +12,7 @@
         android:padding="@dimen/distance_view">
 
         <ImageView
+            android:id="@+id/ivLogo"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@mipmap/default_image_square" />
@@ -23,6 +24,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvProjectName"
                 style="@style/TitleTextStyle"
                 android:text="有限责任公司注册" />
 
@@ -33,12 +35,14 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tvPrice"
                     style="@style/TitleRedTextStyle"
                     android:text="¥999.00" />
 
                 <View style="@style/WeightView" />
 
                 <TextView
+                    android:id="@+id/tvCount"
                     style="@style/TextStyle"
                     android:text="x1" />
             </LinearLayout>

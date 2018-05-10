@@ -13,6 +13,8 @@ import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.math.BigDecimal;
+
 /**
  * Date： 2017/5/15 2017
  * User： PSuiyi
@@ -112,4 +114,18 @@ public class AppUtils {
         return result;
     }
 
+    public String getMoney(String price, String num) {
+        if (StringUtil.isBlank(price)) {
+            return "0";
+        }
+        if (StringUtil.isBlank(num)) {
+            return "0";
+        }
+
+        BigDecimal pric = new BigDecimal(price);
+        BigDecimal number = new BigDecimal(num);
+
+        double money = pric.multiply(number).doubleValue();
+        return "￥" + money;
+    }
 }
