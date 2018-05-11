@@ -15,6 +15,7 @@ import com.mzk.compass.youqi.base.BaseAppListActivity;
 public class NewsDetailAct extends BaseAppListActivity {
 
     private View header;
+    private String id;
 
     @Override
     protected int[] getLayoutResource() {
@@ -23,7 +24,9 @@ public class NewsDetailAct extends BaseAppListActivity {
 
     @Override
     protected void initializeVariate() {
-
+        if (getIntent().hasExtra("id")) {
+            id = getIntent().getStringExtra("id");
+        }
     }
 
     @Override

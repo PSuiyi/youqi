@@ -286,6 +286,17 @@ public class ApiModel extends BaseModel {
         request(apiService.post(params), znzHttpListener);
     }
 
+
+    /**
+     * 优企助首页
+     *
+     * @param params
+     * @param znzHttpListener
+     */
+    public void requestHelpHome(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestHelpHome(params), znzHttpListener);
+    }
+
     /**
      * 商家列表
      *
@@ -339,14 +350,17 @@ public class ApiModel extends BaseModel {
 
     /**
      * 项目列表
+     *
      * @param params
      * @return
      */
     public Observable<ResponseBody> requestProjectList(Map<String, String> params) {
         return apiService.requestProjectList(params);
     }
+
     /**
      * 订单列表
+     *
      * @param params
      * @return
      */

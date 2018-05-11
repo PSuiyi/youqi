@@ -6,8 +6,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.mzk.compass.youqi.R;
+import com.mzk.compass.youqi.bean.ProductBean;
 import com.mzk.compass.youqi.ui.help.ProductDetailAct;
-import com.znz.compass.znzlibray.bean.BaseZnzBean;
 import com.znz.compass.znzlibray.utils.DipUtil;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
@@ -20,14 +20,14 @@ import java.util.List;
  * Description：
  */
 
-public class ProductGridAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
+public class ProductGridAdapter extends BaseQuickAdapter<ProductBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
 
-    public ProductGridAdapter(@Nullable List<BaseZnzBean> dataList) {
+    public ProductGridAdapter(@Nullable List dataList) {
         super(R.layout.item_gv_product, dataList);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, BaseZnzBean bean) {
+    protected void convert(BaseViewHolder helper, ProductBean bean) {
         setOnItemClickListener(this);
 
         LinearLayout llContainer = helper.getView(R.id.llContainer);

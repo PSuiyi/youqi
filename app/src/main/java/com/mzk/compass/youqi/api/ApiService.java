@@ -43,6 +43,9 @@ public interface ApiService {
     @GET("news/get-new-cate")
     Observable<ResponseBody> requestNewsType(@QueryMap Map<String, String> params);
 
+    @GET("product/index")
+    Observable<ResponseBody> requestHelpHome(@QueryMap Map<String, String> params);
+
     @FormUrlEncoded
     @POST("ucenter/index")
     Observable<ResponseBody> requestUserDetail(@FieldMap Map<String, String> params);

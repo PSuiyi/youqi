@@ -1,5 +1,6 @@
 package com.mzk.compass.youqi.adapter;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
@@ -46,6 +47,8 @@ public class NewsAdapter extends BaseQuickAdapter<NewsBean, BaseViewHolder> impl
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        gotoActivity(NewsDetailAct.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("id", bean.getId());
+        gotoActivity(NewsDetailAct.class, bundle);
     }
 }

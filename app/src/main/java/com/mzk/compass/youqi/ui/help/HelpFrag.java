@@ -8,18 +8,24 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.ProductAdapter;
 import com.mzk.compass.youqi.adapter.ProductGridAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
+import com.mzk.compass.youqi.bean.ProductBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.common.SearchCommonAct;
 import com.mzk.compass.youqi.ui.mine.message.MessageTabAct;
 import com.znz.compass.znzlibray.bean.BaseZnzBean;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.views.imageloder.GlideApp;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import cn.bingoogolapple.bgabanner.BGABanner;
 
@@ -38,7 +44,7 @@ public class HelpFrag extends BaseAppListFragment {
     private List<String> imgPath = new ArrayList<>();
     private RecyclerView rvProduct;
     private ProductGridAdapter productGridAdapter;
-    private List<BaseZnzBean> productList = new ArrayList<>();
+    private List<ProductBean> productList = new ArrayList<>();
     private View tvMenu5;
     private View tvMenu6;
     private View tvMenu7;
@@ -116,7 +122,7 @@ public class HelpFrag extends BaseAppListFragment {
             gotoActivity(ProductListAct.class);
         });
         tvMenu8.setOnClickListener(v -> {
-            gotoActivity(ProductListAct.class);
+            gotoActivity(TypeListAct.class);
         });
 
         banner = bindViewById(header, R.id.banner);
@@ -144,12 +150,6 @@ public class HelpFrag extends BaseAppListFragment {
             }
         });
 
-        productList.add(new BaseZnzBean());
-        productList.add(new BaseZnzBean());
-        productList.add(new BaseZnzBean());
-        productList.add(new BaseZnzBean());
-        productList.add(new BaseZnzBean());
-
         productGridAdapter = new ProductGridAdapter(productList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(activity) {
             @Override
@@ -165,7 +165,21 @@ public class HelpFrag extends BaseAppListFragment {
 
     @Override
     protected void loadDataFromServer() {
+        Map<String, String> params = new HashMap<>();
+        mModel.requestHelpHome(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                productList.clear();
+                productList.addAll(JSONArray.parseArray(responseObject.getString("MobileHelpBannerUnder"), ProductBean.class));
+                productGridAdapter.notifyDataSetChanged();
+            }
 
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
+            }
+        });
     }
 
     @Override
