@@ -142,7 +142,7 @@ public abstract class BaseAppListFragment<T extends BaseZnzBean> extends BaseLis
                                 //页码自增
                                 currentPageIndex++;
                             }
-                        } else if (jsonObject.getString("statusCode").equals("90000")) {
+                        } else if (jsonObject.getString("status_code").equals("90000")) {
                             mDataManager.tokenTimeOut(context);
                         } else {
                             mDataManager.showToast(jsonObject.getString("msg"));
