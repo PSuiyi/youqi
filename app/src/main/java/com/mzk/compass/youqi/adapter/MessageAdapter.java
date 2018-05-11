@@ -2,24 +2,34 @@ package com.mzk.compass.youqi.adapter;
 
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
-import com.mzk.compass.youqi.ui.mine.message.MessageInteractAct;
-import com.znz.compass.znzlibray.bean.BaseZnzBean;
+import com.mzk.compass.youqi.bean.MessageBean;
+import com.znz.compass.znzlibray.utils.TimeUtils;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 
 import java.util.List;
 
-public class MessageAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
+import butterknife.Bind;
+
+public class MessageAdapter extends BaseQuickAdapter<MessageBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
+
+    @Bind(R.id.tvTitle)
+    TextView tvTitle;
+    @Bind(R.id.tvTime)
+    TextView tvTime;
 
     public MessageAdapter(@Nullable List dataList) {
         super(R.layout.item_lv_message, dataList);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, BaseZnzBean bean) {
-//        setOnItemClickListener(this);
+    protected void convert(BaseViewHolder helper, MessageBean bean) {
+        mDataManager.setValueToView(tvTitle,bean.getMsgwarning());
+        mDataManager.setValueToView(tvTime, TimeUtils.getFormatTime(bean.getTime(),"yyyy-MM-dd HH:mm"));
     }
 
     @Override

@@ -20,6 +20,7 @@
             android:padding="@dimen/distance_view">
 
             <TextView
+                android:id="@+id/tvTitle"
                 style="@style/TitleTextStyle"
                 android:text="国家税务总局关于贯彻落实进一步扩大小型微利企业减半征收企业所得税范围有关问题的公告" />
 
@@ -29,11 +30,14 @@
                 android:layout_marginTop="@dimen/distance_text"
                 android:orientation="horizontal">
 
-                <TextView style="@style/TimeTextStyle" />
+                <TextView
+                    android:id="@+id/tvTime"
+                    style="@style/TimeTextStyle" />
 
                 <View style="@style/WeightView" />
 
                 <TextView
+                    android:id="@+id/tvState"
                     style="@style/TextStyle"
                     android:background="@drawable/bg_line_gray_4"
                     android:paddingLeft="4dp"

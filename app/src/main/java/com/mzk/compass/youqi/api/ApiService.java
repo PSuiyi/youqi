@@ -60,6 +60,15 @@ public interface ApiService {
     @GET("order/list")
     Observable<ResponseBody> requestOrderList(@QueryMap Map<String, String> params);
 
+    @GET("message/list")
+    Observable<ResponseBody> requestMessageList(@QueryMap Map<String, String> params);
+
+    @GET("state/index")
+    Observable<ResponseBody> requestStateList(@QueryMap Map<String, String> params);
+
+    @GET("contribution/index")
+    Observable<ResponseBody> requestArticleList(@QueryMap Map<String, String> params);
+
     @Multipart
     @POST("baj_api/s/api")
     Observable<ResponseBody> uploadImageSingle(@QueryMap Map<String, String> params, @Part MultipartBody.Part file);

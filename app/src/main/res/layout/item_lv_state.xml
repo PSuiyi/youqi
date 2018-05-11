@@ -19,11 +19,13 @@
             android:padding="@dimen/distance_view">
 
             <TextView
+                android:id="@+id/tvTitle"
                 style="@style/TitleTextStyle"
                 android:text="今天，投资趋向人工智能！ 互联网大数据！物联网 " />
 
 
             <TextView
+                android:id="@+id/tvTime"
                 style="@style/TimeTextStyle"
                 android:layout_marginTop="@dimen/distance_divider" />
         </LinearLayout>

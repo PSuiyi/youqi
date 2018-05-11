@@ -369,6 +369,36 @@ public class ApiModel extends BaseModel {
     }
 
     /**
+     * 消息列表
+     *
+     * @param params
+     * @return
+     */
+    public Observable<ResponseBody> requestMessageList(Map<String, String> params) {
+        return apiService.requestMessageList(params);
+    }
+
+    /**
+     * 动态列表
+     *
+     * @param params
+     * @return
+     */
+    public Observable<ResponseBody> requestStateList(Map<String, String> params) {
+        return apiService.requestStateList(params);
+    }
+
+    /**
+     * 投稿列表
+     *
+     * @param params
+     * @return
+     */
+    public Observable<ResponseBody> requestArticleList(Map<String, String> params) {
+        return apiService.requestArticleList(params);
+    }
+
+    /**
      * 单张图片上传
      *
      * @param url

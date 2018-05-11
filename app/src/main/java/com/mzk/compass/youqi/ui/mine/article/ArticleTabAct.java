@@ -51,10 +51,10 @@ public class ArticleTabAct extends BaseAppActivity {
         tabNames.add("审核中");
         tabNames.add("拒绝");
 
-        fragmentList.add(new ArticleListFrag());
-        fragmentList.add(new ArticleListFrag());
-        fragmentList.add(new ArticleListFrag());
-        fragmentList.add(new ArticleListFrag());
+        fragmentList.add(ArticleListFrag.newInstance("全部"));
+        fragmentList.add(ArticleListFrag.newInstance("已采纳"));
+        fragmentList.add(ArticleListFrag.newInstance("审核中"));
+        fragmentList.add(ArticleListFrag.newInstance("拒绝"));
     }
 
     @Override
