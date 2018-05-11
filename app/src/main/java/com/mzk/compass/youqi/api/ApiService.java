@@ -54,13 +54,11 @@ public interface ApiService {
     @POST("ucenter/update-info")
     Observable<ResponseBody> requestUpdateUserInfo(@FieldMap Map<String, String> params);
 
-    @FormUrlEncoded
-    @POST("project/list-my-project")
-    Observable<ResponseBody> requestProjectList(@FieldMap Map<String, String> params);
+    @GET("project/list-my-project")
+    Observable<ResponseBody> requestProjectList(@QueryMap Map<String, String> params);
 
-    @FormUrlEncoded
-    @POST("order/list")
-    Observable<ResponseBody> requestOrderList(@FieldMap Map<String, String> params);
+    @GET("order/list")
+    Observable<ResponseBody> requestOrderList(@QueryMap Map<String, String> params);
 
     @Multipart
     @POST("baj_api/s/api")
