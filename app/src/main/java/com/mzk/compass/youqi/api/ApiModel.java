@@ -94,6 +94,219 @@ public class ApiModel extends BaseModel {
     }
 
     /**
+     * 第三方登录
+     *
+     * @param params
+     * @return
+     */
+    public void requestAutherLogin(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("request_code", "10023");
+        request(apiService.post(params), znzHttpListener);
+    }
+
+    /**
+     * 收货地址列表
+     */
+    public Observable<ResponseBody> requestAddressList(Map<String, String> params) {
+        params.put("request_code", "40000");
+        return apiService.post(params);
+    }
+
+    /**
+     * 新增收货地址
+     *
+     * @param params
+     * @param znzHttpListener
+     */
+    public void requestAddressAdd(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("request_code", "40001");
+        request(apiService.post(params), znzHttpListener);
+    }
+
+    /**
+     * 删除收货地址
+     *
+     * @param params
+     * @param znzHttpListener
+     */
+    public void requestAddressDelete(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("request_code", "40005");
+        request(apiService.post(params), znzHttpListener);
+    }
+
+    /**
+     * 修改收货地址
+     */
+    public void requestAddressModify(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("request_code", "40002");
+        request(apiService.post(params), znzHttpListener);
+    }
+
+    /**
+     * 获取默认地址
+     */
+    public void requestDefaultAddress(ZnzHttpListener znzHttpListener) {
+        Map<String, String> params = new HashMap<>();
+        params.put("request_code", "40007");
+        request(apiService.post(params), znzHttpListener);
+    }
+
+    /**
+     * 城市列表
+     *
+     * @param params
+     * @return
+     */
+    public void requestCityList(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("request_code", "40003");
+        request(apiService.post(params), znzHttpListener);
+    }
+
+    /**
+     * 创建投诉
+     *
+     * @param params
+     * @param znzHttpListener
+     */
+    public void requestPublishPost(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("request_code", "10011");
+        request(apiService.post(params), znzHttpListener);
+    }
+
+    /**
+     * 帖子列表
+     *
+     * @param params
+     * @return
+     */
+    public Observable<ResponseBody> requestPostList(Map<String, String> params) {
+        params.put("request_code", "10008");
+        return apiService.post(params);
+    }
+
+    /**
+     * 帖子评论回复列表
+     *
+     * @param params
+     */
+    public Observable<ResponseBody> requestPostCommentList(Map<String, String> params) {
+        params.put("request_code", "10010");
+        return apiService.post(params);
+    }
+
+    /**
+     * 帖子详情
+     *
+     * @param params
+     * @param znzHttpListener
+     */
+    public void requestPostDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("request_code", "10009");
+        request(apiService.post(params), znzHttpListener, LODING_LODING);
+    }
+
+    /**
+     * 帖子回复
+     *
+     * @param params
+     * @param znzHttpListener
+     */
+    public void requestPostComment(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("request_code", "10013");
+        request(apiService.post(params), znzHttpListener);
+    }
+
+    /**
+     * 帖子评论回复
+     *
+     * @param params
+     * @param znzHttpListener
+     */
+    public void requestPostCommentReply(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("request_code", "10012");
+        request(apiService.post(params), znzHttpListener);
+    }
+
+    /**
+     * 便民服务列表页面
+     *
+     * @param params
+     * @return
+     */
+    public Observable<ResponseBody> requestBianMinList(Map<String, String> params) {
+        params.put("request_code", "20002");
+        return apiService.post(params);
+    }
+
+    /**
+     * 查询收藏列表接口 收藏文章
+     *
+     * @param params
+     * @return
+     */
+    public Observable<ResponseBody> requestCollectArticleList(Map<String, String> params) {
+        params.put("request_code", "20007");
+        return apiService.post(params);
+    }
+
+    /**
+     * 查询收藏列表接口 收藏商品
+     *
+     * @param params
+     * @return
+     */
+    public Observable<ResponseBody> requestCollectGoodesList(Map<String, String> params) {
+        params.put("request_code", "20009");
+        return apiService.post(params);
+    }
+
+    /**
+     * 文章列表
+     *
+     * @param params
+     * @return
+     */
+    public Observable<ResponseBody> requestNewsList(Map<String, String> params) {
+        return apiService.requestNewsList(params);
+    }
+
+    public void requestNewsType(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestNewsType(params), znzHttpListener);
+    }
+
+    /**
+     * 文章详情
+     *
+     * @param params
+     * @param params
+     * @return
+     */
+    public void requestNewsDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("request_code", "20006");
+        request(apiService.post(params), znzHttpListener);
+    }
+
+    /**
+     * 商家列表
+     *
+     * @param params
+     */
+    public Observable<ResponseBody> requestBianMinServiceDetailList(Map<String, String> params) {
+        params.put("request_code", "20003");
+        return apiService.post(params);
+    }
+
+    /**
+     * 商家详情
+     *
+     * @param params
+     */
+    public void requestShangJiaDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        params.put("request_code", "20004");
+        request(apiService.post(params), znzHttpListener);
+    }
+
+    /**
      * 用户详情
      *
      * @param params

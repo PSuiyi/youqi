@@ -35,7 +35,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tvName"
+                    android:id="@+id/tvTitle"
                     style="@style/TitleTextStyle"
                     android:singleLine="true"
                     android:text="黄渤、光线、多米音乐怎么还是凉了" />
@@ -55,7 +55,8 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        style="@style/TextStyle"
+                        android:id="@+id/tvTag"
+                        style="@style/TagGrayStyle"
                         android:text="文化娱乐" />
 
                     <View style="@style/WeightView" />

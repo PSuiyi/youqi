@@ -2,16 +2,21 @@ package com.mzk.compass.youqi.ui.news;
 
 import android.support.v7.widget.RecyclerView;
 
+import com.alibaba.fastjson.JSONArray;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.NewsAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
+import com.mzk.compass.youqi.bean.NewsBean;
+
+import okhttp3.ResponseBody;
+import rx.Observable;
 
 /**
  * Date： 2018/3/31 2018
  * User： PSuiyi
  * Description：
  */
-public class NewsListFrag extends BaseAppListFragment {
+public class NewsListFrag extends BaseAppListFragment<NewsBean> {
     @Override
     protected int[] getLayoutResource() {
         return new int[]{R.layout.common_list_layout};
@@ -44,8 +49,15 @@ public class NewsListFrag extends BaseAppListFragment {
     }
 
     @Override
-    protected void onRefreshSuccess(String response) {
+    protected Observable<ResponseBody> requestCustomeRefreshObservable() {
+        params.put("cateId", "0");
+        return mModel.requestNewsList(params);
+    }
 
+    @Override
+    protected void onRefreshSuccess(String response) {
+        dataList.addAll(JSONArray.parseArray(responseJson.getString("data"), NewsBean.class));
+        adapter.notifyDataSetChanged();
     }
 
     @Override

@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.znz.compass.znzlibray.R;
+import com.znz.compass.znzlibray.common.ZnzConstants;
 import com.znz.compass.znzlibray.utils.GlideCircleTransform;
 import com.znz.compass.znzlibray.utils.GlideRoundTransform;
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -52,8 +53,8 @@ public class HttpImageView extends AppCompatImageView {
      * @param url_image
      */
     public void loadRectImage(String url_image) {
-        default_image = R.mipmap.logotes;
-        error_image = R.mipmap.logotes;
+        default_image = R.mipmap.default_image_rect;
+        error_image = R.mipmap.default_image_rect;
         loadHttpImage(url_image);
     }
 
@@ -260,19 +261,22 @@ public class HttpImageView extends AppCompatImageView {
      *
      * @param url_image
      */
-    public void loadHttpImage(final String url_image) {
+    public void loadHttpImage(String url_image) {
         if (StringUtil.isBlank(url_image)) {
             this.setImageResource(default_image);
-        } else {
-            GlideApp.with(context)
-                    .load(url_image)
-                    .thumbnail(0.1f)
-                    .centerCrop()
-                    .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                    .error(error_image)
-                    .placeholder(default_image)
-                    .into(this);
+            return;
         }
+
+        url_image = ZnzConstants.IMAGE_ULR + url_image;
+
+        GlideApp.with(context)
+                .load(url_image)
+                .thumbnail(0.1f)
+                .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+                .error(error_image)
+                .placeholder(default_image)
+                .into(this);
     }
 
     /**

@@ -101,17 +101,17 @@ public abstract class BaseAppListFragment<T extends BaseZnzBean> extends BaseLis
 
                         jsonObject = JSON.parseObject(responseStr);
                         int totalCount = 0;
-                        if (jsonObject.getString("status_code").equals("00000")) {
+                        if (jsonObject.getString("status_code").equals("0")) {
                             try {
                                 if (!isNormalList) {
-                                    totalCount = StringUtil.stringToInt(JSON.parseObject(jsonObject.getString("page")).getString("total_count"));
+                                    totalCount = StringUtil.stringToInt(JSON.parseObject(jsonObject.getString("data")).getString("totalCount"));
                                 }
-                                responseJson = JSON.parseObject(jsonObject.getString("object"));
+                                responseJson = JSON.parseObject(jsonObject.getString("data"));
                             } catch (Exception e) {
                                 e.printStackTrace();
                             } finally {
-                                if (!StringUtil.isBlank(jsonObject.getString("object")) && !jsonObject.getString("object").equals("[]")) {
-                                    onRefreshSuccess(jsonObject.getString("object"));
+                                if (!StringUtil.isBlank(jsonObject.getString("data")) && !jsonObject.getString("data").equals("[]")) {
+                                    onRefreshSuccess(jsonObject.getString("data"));
                                 } else {
                                     onRefreshSuccess("[]");
                                 }
