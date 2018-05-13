@@ -18,11 +18,13 @@
             android:paddingLeft="@dimen/distance_view">
 
             <TextView
+                android:id="@+id/tvState"
                 style="@style/TitleWhiteTextStyle"
                 android:text="待付款"
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/tvSubsricbe"
                 style="@style/TextWhiteStyle"
                 android:layout_marginTop="@dimen/distance_divider"
                 android:text="你已提交了订单，待付款" />
@@ -45,6 +47,7 @@
                 android:text="合计：" />
 
             <TextView
+                android:id="@+id/tvTotalMoney"
                 style="@style/TitleRedTextStyle"
                 android:text="¥999.00" />
         </LinearLayout>
@@ -67,6 +70,7 @@
                     android:text="电 话：" />
 
                 <TextView
+                    android:id="@+id/tvPhone"
                     style="@style/TitleTextStyle"
                     android:text="13112345678" />
 
@@ -83,6 +87,7 @@
                     android:text="订单编号：" />
 
                 <TextView
+                    android:id="@+id/tvOrderCode"
                     style="@style/TitleTextStyle"
                     android:text="201803191703017555" />
 
@@ -99,6 +104,7 @@
                     android:text="下单时间：" />
 
                 <TextView
+                    android:id="@+id/tvTime"
                     style="@style/TitleTextStyle"
                     android:text="2016.09.20 10:49:49" />
 
@@ -115,6 +121,7 @@
                     android:text="备注信息：" />
 
                 <TextView
+                    android:id="@+id/tvNode"
                     style="@style/TitleTextStyle"
                     android:text="我的地址是南京市江宁区横溪镇6号" />
 

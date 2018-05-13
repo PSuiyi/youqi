@@ -5,15 +5,21 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.CustomerAdapter;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.mzk.compass.youqi.bean.CustomerServiceBean;
 import com.znz.compass.znzlibray.bean.BaseZnzBean;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -28,7 +34,7 @@ public class CustomerServiceAct extends BaseAppActivity {
     @Bind(R.id.rvKefu)
     RecyclerView rvKefu;
     private CustomerAdapter adapter;
-    private List<BaseZnzBean> dataList = new ArrayList<>();
+    private List<CustomerServiceBean> dataList = new ArrayList<>();
 
     @Override
     protected int[] getLayoutResource() {
@@ -37,10 +43,6 @@ public class CustomerServiceAct extends BaseAppActivity {
 
     @Override
     protected void initializeVariate() {
-        dataList.add(new BaseZnzBean());
-        dataList.add(new BaseZnzBean());
-        dataList.add(new BaseZnzBean());
-        dataList.add(new BaseZnzBean());
     }
 
     @Override
@@ -59,7 +61,7 @@ public class CustomerServiceAct extends BaseAppActivity {
                     new UIAlertDialog(activity)
                             .builder()
                             .setTitle("确定拨打电话")
-                            .setMsg("联系电话：15390870645")
+                            .setMsg("联系电话：" + dataList.get(position).getTel())
                             .setNegativeButton("取消", null)
                             .setPositiveButton("确定", v2 -> {
 
@@ -72,7 +74,20 @@ public class CustomerServiceAct extends BaseAppActivity {
 
     @Override
     protected void loadDataFromServer() {
-
+        Map<String, String> params = new HashMap<>();
+        mModel.requestCustomerService(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                dataList.addAll(JSON.parseArray(responseOriginal.getString("data"),CustomerServiceBean.class));
+                adapter.notifyDataSetChanged();
+                if (dataList.isEmpty()){
+                    showNoData();
+                }else{
+                    hideNoData();
+                }
+            }
+        });
     }
 
     @Override

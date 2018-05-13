@@ -1,5 +1,6 @@
 package com.mzk.compass.youqi.adapter;
 
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,6 +11,7 @@ import com.mzk.compass.youqi.bean.OrderBean;
 import com.mzk.compass.youqi.ui.mine.order.OrderDetailAct;
 import com.mzk.compass.youqi.utils.AppUtils;
 import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 
@@ -24,7 +26,7 @@ public class OrderAdapter extends BaseQuickAdapter<OrderBean, BaseViewHolder> im
     @Bind(R.id.tvState)
     TextView tvState;
     @Bind(R.id.ivLogo)
-    ImageView ivLogo;
+    HttpImageView ivLogo;
     @Bind(R.id.tvProjectName)
     TextView tvProjectName;
     @Bind(R.id.tvPrice)
@@ -47,6 +49,7 @@ public class OrderAdapter extends BaseQuickAdapter<OrderBean, BaseViewHolder> im
         mDataManager.setValueToView(tvProjectName, bean.getName());
         mDataManager.setValueToView(tvPrice, "￥" + bean.getRealPrice());
         mDataManager.setValueToView(tvCount, "x" + bean.getNum());
+        ivLogo.loadHttpImage(bean.getMobilePhoto());
         mDataManager.setValueToView(tvTotalMoney, appUtils.getMoney(bean.getRealPrice(), bean.getNum()));
         if (StringUtil.isBlank(bean.getState())) {
             mDataManager.setViewVisibility(tvState, false);
@@ -77,6 +80,8 @@ public class OrderAdapter extends BaseQuickAdapter<OrderBean, BaseViewHolder> im
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        gotoActivity(OrderDetailAct.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("id", bean.getId());
+        gotoActivity(OrderDetailAct.class, bundle);
     }
 }

@@ -11,7 +11,7 @@
         android:orientation="horizontal"
         android:padding="@dimen/distance_view">
 
-        <ImageView
+        <com.znz.compass.znzlibray.views.imageloder.HttpImageView
             android:id="@+id/ivLogo"
             android:layout_width="60dp"
             android:layout_height="60dp"

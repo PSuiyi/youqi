@@ -26,6 +26,11 @@ public class OrderBean extends BaseZnzBean {
     private String realPrice;
     private String mobilePhoto;
 
+    private String note;
+    private String addTime;
+    private String buyerTel;
+    private String adminid;
+
     public String getId() {
         return id;
     }
@@ -80,5 +85,37 @@ public class OrderBean extends BaseZnzBean {
 
     public void setMobilePhoto(String mobilePhoto) {
         this.mobilePhoto = mobilePhoto;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(String addTime) {
+        this.addTime = addTime;
+    }
+
+    public String getBuyerTel() {
+        return buyerTel;
+    }
+
+    public void setBuyerTel(String buyerTel) {
+        this.buyerTel = buyerTel;
+    }
+
+    public String getAdminid() {
+        return adminid;
+    }
+
+    public void setAdminid(String adminid) {
+        this.adminid = adminid;
     }
 }

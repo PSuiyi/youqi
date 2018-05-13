@@ -51,6 +51,14 @@ public interface ApiService {
     Observable<ResponseBody> requestUserDetail(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("order/detail")
+    Observable<ResponseBody> requestOrderDetail(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("order/operate")
+    Observable<ResponseBody> requestUpdateOrder(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("ucenter/update-info")
     Observable<ResponseBody> requestUpdateUserInfo(@FieldMap Map<String, String> params);
 
@@ -69,12 +77,15 @@ public interface ApiService {
     @GET("contribution/index")
     Observable<ResponseBody> requestArticleList(@QueryMap Map<String, String> params);
 
+    @GET("ucenter/get-my-custom-service")
+    Observable<ResponseBody> requestCustomerService(@QueryMap Map<String, String> params);
+
     @Multipart
-    @POST("baj_api/s/api")
+    @POST("")
     Observable<ResponseBody> uploadImageSingle(@QueryMap Map<String, String> params, @Part MultipartBody.Part file);
 
     @Multipart
-    @POST("baj_api/s/api")
+    @POST("")
     Observable<ResponseBody> uploadImageMulti(@QueryMap Map<String, String> params, @Part() List<MultipartBody.Part> parts);
 
 }

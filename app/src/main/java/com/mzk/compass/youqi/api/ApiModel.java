@@ -399,6 +399,36 @@ public class ApiModel extends BaseModel {
     }
 
     /**
+     * 专属客服列表
+     *
+     * @param params
+     * @return
+     */
+    public void requestCustomerService(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestCustomerService(params), znzHttpListener);
+    }
+
+    /**
+     * 订单详情
+     *
+     * @param params
+     * @return
+     */
+    public void requestOrderDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestOrderDetail(params), znzHttpListener);
+    }
+
+    /**
+     * 修改订单状态
+     *
+     * @param params
+     * @return
+     */
+    public void requestUpdateOrder(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestUpdateOrder(params), znzHttpListener);
+    }
+
+    /**
      * 单张图片上传
      *
      * @param url
@@ -406,12 +436,6 @@ public class ApiModel extends BaseModel {
      */
     public void uploadImageSingle(String url, ZnzHttpListener znzHttpListener) {
         Map<String, String> params = new HashMap();
-        params.put("request_code", "93333");
-        if (ZnzConstants.APP_DEBUG) {
-            params.put("bucket", "imgtest");
-        } else {
-            params.put("bucket", "imgtest");
-        }
         File file = new File(url);
         Luban.get(context)
                 .load(file)
@@ -436,12 +460,6 @@ public class ApiModel extends BaseModel {
      */
     public void uploadImageMulti(List<File> url, ZnzHttpListener znzHttpListener) {
         Map<String, String> params = new HashMap();
-        params.put("request_code", "93333");
-        if (ZnzConstants.APP_DEBUG) {
-            params.put("bucket", "imgtest");
-        } else {
-            params.put("bucket", "imgtest");
-        }
         List<MultipartBody.Part> partLlist = new ArrayList<>();
         for (File file : url) {
             RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpg"), file);

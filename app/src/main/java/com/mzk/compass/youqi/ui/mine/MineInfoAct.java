@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.common.Constants;
@@ -11,6 +12,8 @@ import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
 import com.mzk.compass.youqi.utils.AppUtils;
 import com.znz.compass.znzlibray.eventbus.EventManager;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.views.gallery.inter.IPhotoSelectCallback;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.rowview.ZnzRowDescription;
 import com.znz.compass.znzlibray.views.rowview.ZnzRowGroupView;
@@ -19,6 +22,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -129,6 +133,7 @@ public class MineInfoAct extends BaseAppActivity {
                 .build());
         commonRowGroup.notifyDataChanged(rowDescriptionList);
         mDataManager.setValueToView(tvIntro, mDataManager.readTempData(Constants.User.INTRODUCE));
+        ivHeader.loadHeaderImage(mDataManager.readTempData(Constants.User.AVATAR));
     }
 
     @Override
@@ -140,6 +145,42 @@ public class MineInfoAct extends BaseAppActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.llHeader:
+                mDataManager.openPhotoSelectSingle(activity, new IPhotoSelectCallback() {
+                    @Override
+                    public void onStart() {
+
+                    }
+
+                    @Override
+                    public void onSuccess(List<String> photoList) {
+                        if (!photoList.isEmpty()) {
+                            ivHeader.loadHeaderImage(photoList.get(0));
+                            mModel.uploadImageSingle(photoList.get(0), new ZnzHttpListener() {
+                                @Override
+                                public void onSuccess(JSONObject responseOriginal) {
+                                    super.onSuccess(responseOriginal);
+                                    String url = responseOriginal.getString("data");
+                                    ivHeader.loadHeaderImage(url);
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onCancel() {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                }, true);
                 break;
             case R.id.llIntro:
                 gotoActivity(UpdateIntroAct.class);

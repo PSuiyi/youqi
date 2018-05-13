@@ -2,25 +2,34 @@ package com.mzk.compass.youqi.adapter;
 
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
-import com.znz.compass.znzlibray.bean.BaseZnzBean;
-import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
+import com.mzk.compass.youqi.bean.CustomerServiceBean;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 
 import java.util.List;
 
-public class CustomerAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
+import butterknife.Bind;
+
+public class CustomerAdapter extends BaseQuickAdapter<CustomerServiceBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
+
+    @Bind(R.id.tvName)
+    TextView tvName;
+    @Bind(R.id.tvTel)
+    TextView tvTel;
 
     public CustomerAdapter(@Nullable List dataList) {
         super(R.layout.item_lv_customer, dataList);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, BaseZnzBean bean) {
+    protected void convert(BaseViewHolder helper, CustomerServiceBean bean) {
         setOnItemClickListener(this);
         helper.addOnClickListener(R.id.tvPhone);
+        mDataManager.setValueToView(tvName, bean.getUname());
+        mDataManager.setValueToView(tvTel, bean.getTel());
     }
 
     @Override

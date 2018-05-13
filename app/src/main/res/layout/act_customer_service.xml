@@ -7,15 +7,15 @@
 
     <include layout="@layout/include_common_navigation" />
 
-    <include layout="@layout/include_common_remind" />
-
-    <include layout="@layout/include_common_network_status" />
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:scaleType="centerCrop"
         android:src="@mipmap/kefu" />
+
+    <include layout="@layout/include_common_remind" />
+
+    <include layout="@layout/include_common_network_status" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvKefu"

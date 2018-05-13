@@ -10,7 +10,13 @@ import com.mzk.compass.youqi.adapter.OrderAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
 import com.mzk.compass.youqi.bean.OrderBean;
 import com.mzk.compass.youqi.bean.ProjectBean;
+import com.mzk.compass.youqi.event.EventRefresh;
+import com.mzk.compass.youqi.event.EventTags;
 import com.mzk.compass.youqi.ui.home.project.ProjectListFrag;
+import com.znz.compass.znzlibray.eventbus.EventManager;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import okhttp3.ResponseBody;
 import rx.Observable;
@@ -97,5 +103,26 @@ public class OrderListFrag extends BaseAppListFragment<OrderBean> {
     @Override
     protected void onRefreshFail(String error) {
 
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventManager.register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventManager.unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventRefresh event) {
+        switch (event.getFlag()) {
+            case EventTags.REFRESH_ORDER:
+                resetRefresh();
+                break;
+        }
     }
 }

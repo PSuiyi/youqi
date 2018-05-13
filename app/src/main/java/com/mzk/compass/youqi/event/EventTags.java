@@ -21,4 +21,6 @@ public interface EventTags {
     int REFRESH_POP = 0x600;//popwindow消失刷新当前界面
     int REFRESH_DELETE_MINE_MEETING = 0X601; //我的预约长按删除，刷新右上角图标
 
+    int REFRESH_ORDER = 0X700; //订单取消或者确认服务，刷新订单列表
+
 }
