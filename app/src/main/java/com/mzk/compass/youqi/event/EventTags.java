@@ -12,7 +12,7 @@ public interface EventTags {
     int REFRESH_SEARCH_POP = 0x104;//搜索条件
     int REFRESH_NICKNAME = 0x105;//修改名称后刷新界面
 
-    int GOTO_RECOMMEND = 0x200;//首页推荐点击跳转到推荐模块
+    int REFRESH_MESSAGE_EDIT = 0x200;//消息编辑
     int REFRESH_CITY = 0x300;//城市选择 刷新
 
     int REFRESH_PALTFORM_MESSAGE_NUM = 0X400;//刷新平台消息未读消息数目

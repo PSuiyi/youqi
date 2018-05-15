@@ -427,6 +427,15 @@ public class ApiModel extends BaseModel {
     public void requestUpdateOrder(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         request(apiService.requestUpdateOrder(params), znzHttpListener);
     }
+    /**
+     * 消息详情
+     *
+     * @param params
+     * @return
+     */
+    public void requestMessageDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestMessageDetail(params), znzHttpListener);
+    }
 
     /**
      * 单张图片上传

@@ -55,6 +55,10 @@ public interface ApiService {
     Observable<ResponseBody> requestOrderDetail(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("message/detail")
+    Observable<ResponseBody> requestMessageDetail(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("order/operate")
     Observable<ResponseBody> requestUpdateOrder(@FieldMap Map<String, String> params);
 

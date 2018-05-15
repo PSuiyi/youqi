@@ -4,13 +4,18 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.ViewPageAdapter;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.mzk.compass.youqi.event.EventRefresh;
+import com.mzk.compass.youqi.event.EventTags;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +42,7 @@ public class MessageTabAct extends BaseAppActivity {
 
     private List<String> tabNames = new ArrayList<>();
     private List<Fragment> fragmentList = new ArrayList<>();
+    private boolean isEdit = false;
 
     @Override
     protected int[] getLayoutResource() {
@@ -58,6 +64,20 @@ public class MessageTabAct extends BaseAppActivity {
     protected void initializeNavigation() {
         setTitleName("消息");
         znzToolBar.setNavRightText("编辑");
+        znzToolBar.setOnNavRightClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isEdit) {
+                    isEdit = false;
+                    znzToolBar.setNavRightText("编辑");
+                    EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_MESSAGE_EDIT, "完成"));
+                } else {
+                    isEdit = true;
+                    znzToolBar.setNavRightText("完成");
+                    EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_MESSAGE_EDIT, "编辑"));
+                }
+            }
+        });
     }
 
     @Override

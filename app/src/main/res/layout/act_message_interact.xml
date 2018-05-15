@@ -43,10 +43,12 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tvTitle"
                         style="@style/TextStyle"
                         android:text="有鱼钓" />
 
                     <TextView
+                        android:id="@+id/tvTag"
                         style="@style/TextWhiteStyle"
                         android:layout_marginLeft="@dimen/distance_divider"
                         android:background="@drawable/bg_red_radius_2"
@@ -56,6 +58,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tvDiscribe"
                     style="@style/TextSamllGrayStyle"
                     android:layout_marginTop="5dp"
                     android:text="好玩有趣的钓鱼软件，同城交友，人脉扩展！" />
@@ -104,12 +107,14 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                        android:id="@+id/ivHeader"
                         android:layout_width="22dp"
                         android:layout_height="22dp"
                         android:src="@mipmap/default_header" />
 
                     <TextView
+                        android:id="@+id/tvUserName"
                         style="@style/TextSamllStyle"
                         android:layout_marginLeft="10dp"
                         android:text="赵大千" />
@@ -117,6 +122,7 @@
                     <View style="@style/WeightView" />
 
                     <TextView
+                        android:id="@+id/tvTime"
                         style="@style/TextSamllGrayStyle"
                         android:text="2018.01.09 19:09" />
                 </LinearLayout>
@@ -129,6 +135,7 @@
             android:layout_marginRight="@dimen/distance_view" />
 
         <TextView
+            android:id="@+id/tvContent"
             style="@style/TextStyle"
             android:layout_margin="@dimen/distance_view"
             android:text="您好：真诚向您推荐我们的创业项目，希望您在百忙中抽出时间了解一下我们的项目，如果您对我们的项目有意向，可通过小鱼办公与我们进行视频会议。谢谢。您好：真诚向您推荐我们的创业项目，希望您在百忙中抽出时间了解一下我们的项目，如果您对我们的项目有意向，可通过小鱼办公与我们进行视频会议。谢谢。您好：真诚向您推荐我们的创业项目，希望您在百忙中抽出时间了解一下我们的项目，如果您对我们的项目有意向，可通过小鱼办公与我们进行视频会议。谢谢。" />

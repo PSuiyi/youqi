@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/mSwipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvCommonRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <View style="@style/Line" />
+
+    <LinearLayout
+        android:id="@+id/llSelectAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/distance_divider"
+        android:paddingLeft="@dimen/distance_view"
+        android:paddingRight="@dimen/distance_view"
+        android:paddingTop="@dimen/distance_divider"
+        android:visibility="gone">
+
+        <CheckBox
+            android:id="@+id/cbSelectAll"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:button="@drawable/bg_cb_select"
+            android:paddingRight="@dimen/distance_view" />
+
+        <TextView
+            style="@style/TextSamllStyle"
+            android:layout_marginLeft="@dimen/distance_divider"
+            android:text="全选" />
+
+        <View style="@style/WeightView" />
+
+        <TextView
+            android:id="@+id/tvDelete"
+            style="@style/TextSamllStyle"
+            android:background="@color/red"
+            android:paddingBottom="5dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="5dp"
+            android:text="删除"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</LinearLayout>

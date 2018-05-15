@@ -1,7 +1,12 @@
 package com.mzk.compass.youqi.ui.mine.message;
 
+import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2018/4/19.
@@ -9,6 +14,9 @@ import com.mzk.compass.youqi.base.BaseAppActivity;
  */
 
 public class MessageTradeAct extends BaseAppActivity {
+
+    private String id;
+
     @Override
     protected int[] getLayoutResource() {
         return new int[]{R.layout.act_message_trade, 1};
@@ -16,7 +24,9 @@ public class MessageTradeAct extends BaseAppActivity {
 
     @Override
     protected void initializeVariate() {
-
+        if (getIntent().hasExtra("id")) {
+            id = getIntent().getStringExtra("id");
+        }
     }
 
     @Override
@@ -35,6 +45,13 @@ public class MessageTradeAct extends BaseAppActivity {
 
     @Override
     protected void loadDataFromServer() {
-
+        Map<String, String> params = new HashMap<>();
+        params.put("id", id);
+        mModel.requestMessageDetail(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+            }
+        });
     }
 }

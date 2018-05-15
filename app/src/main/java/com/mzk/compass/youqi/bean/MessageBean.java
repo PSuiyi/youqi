@@ -20,6 +20,8 @@ public class MessageBean extends BaseZnzBean {
     private String state;
     private String time;
 
+    private boolean edit;
+
     public String getId() {
         return id;
     }
@@ -50,5 +52,13 @@ public class MessageBean extends BaseZnzBean {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public boolean isEdit() {
+        return edit;
+    }
+
+    public void setEdit(boolean edit) {
+        this.edit = edit;
     }
 }
