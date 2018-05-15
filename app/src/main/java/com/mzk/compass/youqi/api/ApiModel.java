@@ -432,6 +432,55 @@ public class ApiModel extends BaseModel {
     }
 
     /**
+     * 账户管理首页
+     *
+     * @param params
+     * @return
+     */
+    public void requestAccountManger(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestAccountManger(params), znzHttpListener);
+    }
+
+    /**
+     * 修改密码
+     *
+     * @param params
+     * @return
+     */
+    public void requestUpdatePsd(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestUpdatePsd(params), znzHttpListener);
+    }
+
+    /**
+     * 手机验证码
+     *
+     * @param params
+     * @return
+     */
+    public void requestUpdate(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestUpdate(params), znzHttpListener);
+    }
+
+    /**
+     * 发布动态
+     *
+     * @param params
+     * @return
+     */
+    public void requestAddState(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestAddState(params), znzHttpListener);
+    }
+    /**
+     * 用户反馈
+     *
+     * @param params
+     * @return
+     */
+    public void requestFeedBack(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestFeedBack(params), znzHttpListener);
+    }
+
+    /**
      * 修改订单状态
      *
      * @param params
@@ -440,6 +489,7 @@ public class ApiModel extends BaseModel {
     public void requestUpdateOrder(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         request(apiService.requestUpdateOrder(params), znzHttpListener);
     }
+
     /**
      * 消息详情
      *

@@ -32,7 +32,9 @@
             <View style="@style/LineEdit" />
 
             <com.znz.compass.znzlibray.views.EditTextWithDel
-                style="@style/EditStyle"
+                android:id="@+id/etOldPsd"
+                style="@style/EditPasswordStyle"
+                android:layout_width="match_parent"
                 android:hint="请输入旧密码" />
 
         </LinearLayout>
@@ -53,7 +55,9 @@
             <View style="@style/LineEdit" />
 
             <com.znz.compass.znzlibray.views.EditTextWithDel
-                style="@style/EditStyle"
+                android:id="@+id/etNewPsd"
+                style="@style/EditPasswordStyle"
+                android:layout_width="match_parent"
                 android:hint="请输入新密码" />
 
         </LinearLayout>
@@ -74,7 +78,9 @@
             <View style="@style/LineEdit" />
 
             <com.znz.compass.znzlibray.views.EditTextWithDel
-                style="@style/EditStyle"
+                android:id="@+id/etConfirmPsd"
+                style="@style/EditPasswordStyle"
+                android:layout_width="match_parent"
                 android:hint="请确认新密码" />
 
         </LinearLayout>
@@ -82,6 +88,7 @@
         <View style="@style/Line" />
 
         <TextView
+            android:id="@+id/tvSubmit"
             style="@style/BtnStyle"
             android:layout_marginTop="20dp"
             android:text="确定" />

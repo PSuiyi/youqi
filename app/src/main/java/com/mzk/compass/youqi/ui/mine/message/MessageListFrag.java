@@ -55,11 +55,6 @@ public class MessageListFrag extends BaseAppListFragment<MessageBean> {
         if (getArguments() != null) {
             from = getArguments().getString("from");
         }
-        dataList.add(new MessageBean());
-        dataList.add(new MessageBean());
-        dataList.add(new MessageBean());
-        dataList.add(new MessageBean());
-        dataList.add(new MessageBean());
     }
 
     @Override
@@ -98,6 +93,7 @@ public class MessageListFrag extends BaseAppListFragment<MessageBean> {
                     break;
                 case R.id.cbSelect:
                     bean.setSelect(true);
+                    adapter.notifyDataSetChanged();
                     break;
             }
         });
@@ -108,21 +104,21 @@ public class MessageListFrag extends BaseAppListFragment<MessageBean> {
 
     }
 
-//    @Override
-//    protected Observable<ResponseBody> requestCustomeRefreshObservable() {
-//        switch (from) {
-//            case "互动消息":
-//                params.put("type", "0");
-//                break;
-//            case "交易信息":
-//                params.put("type", "1");
-//                break;
-//            case "系统信息":
-//                params.put("type", "2");
-//                break;
-//        }
-//        return mModel.requestMessageList(params);
-//    }
+    @Override
+    protected Observable<ResponseBody> requestCustomeRefreshObservable() {
+        switch (from) {
+            case "互动消息":
+                params.put("type", "0");
+                break;
+            case "交易信息":
+                params.put("type", "1");
+                break;
+            case "系统信息":
+                params.put("type", "2");
+                break;
+        }
+        return mModel.requestMessageList(params);
+    }
 
     @Override
     protected void onRefreshSuccess(String response) {

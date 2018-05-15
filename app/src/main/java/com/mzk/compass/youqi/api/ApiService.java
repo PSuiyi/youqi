@@ -61,12 +61,32 @@ public interface ApiService {
     Observable<ResponseBody> requestOrderDetail(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("account/index")
+    Observable<ResponseBody> requestAccountManger(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("account/modify-pass")
+    Observable<ResponseBody> requestUpdatePsd(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("message/detail")
     Observable<ResponseBody> requestMessageDetail(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
     @POST("order/operate")
     Observable<ResponseBody> requestUpdateOrder(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("account/auto-send-code")
+    Observable<ResponseBody> requestUpdate(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("state/add")
+    Observable<ResponseBody> requestAddState(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("ucenter/add-feedback")
+    Observable<ResponseBody> requestFeedBack(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
     @POST("ucenter/update-info")

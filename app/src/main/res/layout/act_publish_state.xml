@@ -18,6 +18,7 @@
         android:padding="@dimen/distance_view">
 
         <EditText
+            android:id="@+id/etContent"
             style="@style/EditMultiStyle"
             android:layout_width="match_parent"
             android:background="#F6F6F6"
