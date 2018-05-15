@@ -29,9 +29,9 @@ import rx.android.schedulers.AndroidSchedulers;
  * 列表基类
  */
 
-public abstract class BaseListActivity< T> extends BaseZnzActivity implements BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
+public abstract class BaseListActivity<T> extends BaseZnzActivity implements BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
     protected ArrayList<T> dataList = new ArrayList<>();
-    protected int currentPageIndex = 1; // 当前页码
+    protected int currentPageIndex = ZnzConstants.PAGE_INDEX; // 当前页码
     protected RecyclerView rvRefresh;
     protected SwipeRefreshLayout mSwipeRefreshLayout;
     protected BaseQuickAdapter adapter;
@@ -207,7 +207,7 @@ public abstract class BaseListActivity< T> extends BaseZnzActivity implements Ba
      * 手动刷新
      */
     protected void resetRefresh() {
-        currentPageIndex = 1;
+        currentPageIndex = ZnzConstants.PAGE_INDEX;
         customeRefreshRequest(ACTION_PULL_TO_REFRESH);
     }
 

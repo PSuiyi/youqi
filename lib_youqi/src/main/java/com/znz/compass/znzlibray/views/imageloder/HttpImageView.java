@@ -126,54 +126,44 @@ public class HttpImageView extends AppCompatImageView {
      * @param url_image
      * @param canCache
      */
-    public void loadHeaderImage(final String url_image, boolean canCache) {
+    public void loadHeaderImage(String url_image, boolean canCache) {
         default_image = R.mipmap.default_header;
         error_image = R.mipmap.default_header;
 
         try {
             if (StringUtil.isBlank(url_image)) {
-                if (canCache) {
-                    GlideApp.with(context)
-                            .load(default_image)
-                            .centerCrop()
-                            .error(error_image)
-                            .diskCacheStrategy(DiskCacheStrategy.ALL)
-                            .placeholder(default_image)
-                            .transform(new GlideCircleTransform(context))
-                            .into(this);
-                } else {
-                    GlideApp.with(context)
-                            .load(default_image)
-                            .centerCrop()
-                            .diskCacheStrategy(DiskCacheStrategy.NONE)
-                            .skipMemoryCache(true)
-                            .error(error_image)
-                            .placeholder(default_image)
-                            .transform(new GlideCircleTransform(context))
-                            .into(this);
-                }
+                GlideApp.with(context)
+                        .load(default_image)
+                        .centerCrop()
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .skipMemoryCache(true)
+                        .error(error_image)
+                        .placeholder(default_image)
+                        .transform(new GlideCircleTransform(context))
+                        .into(this);
+                return;
+            }
 
+            url_image = ZnzConstants.IMAGE_ULR + url_image;
+            if (canCache) {
+                GlideApp.with(context)
+                        .load(url_image)
+                        .centerCrop()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .error(error_image)
+                        .placeholder(default_image)
+                        .transform(new GlideCircleTransform(context))
+                        .into(this);
             } else {
-                if (canCache) {
-                    GlideApp.with(context)
-                            .load(url_image)
-                            .centerCrop()
-                            .diskCacheStrategy(DiskCacheStrategy.ALL)
-                            .error(error_image)
-                            .placeholder(default_image)
-                            .transform(new GlideCircleTransform(context))
-                            .into(this);
-                } else {
-                    GlideApp.with(context)
-                            .load(url_image)
-                            .centerCrop()
-                            .diskCacheStrategy(DiskCacheStrategy.NONE)
-                            .skipMemoryCache(true)
-                            .error(error_image)
-                            .placeholder(default_image)
-                            .transform(new GlideCircleTransform(context))
-                            .into(this);
-                }
+                GlideApp.with(context)
+                        .load(url_image)
+                        .centerCrop()
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .skipMemoryCache(true)
+                        .error(error_image)
+                        .placeholder(default_image)
+                        .transform(new GlideCircleTransform(context))
+                        .into(this);
             }
         } catch (Exception e) {
             e.printStackTrace();

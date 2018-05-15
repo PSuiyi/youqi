@@ -23,26 +23,31 @@
             android:orientation="vertical"
             android:padding="@dimen/distance_view">
 
-            <ImageView
+            <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                android:id="@+id/ivImage"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@mipmap/default_header" />
 
             <TextView
+                android:id="@+id/tvUserName"
                 style="@style/TextBlodStyle"
                 android:layout_marginTop="@dimen/distance_text"
                 android:text="雷欧凯" />
 
             <TextView
+                android:id="@+id/tvOrganName"
                 style="@style/TextStyle"
                 android:layout_marginTop="@dimen/distance_divider"
                 android:text="瑞琪投资"
                 android:textSize="@dimen/text_size_14" />
 
             <TextView
+                android:id="@+id/tvTag"
                 style="@style/TextGrayStyle"
                 android:layout_marginTop="@dimen/distance_text"
                 android:gravity="center"
+                android:singleLine="true"
                 android:text="米创办人，董事长兼CEO。"
                 android:textSize="@dimen/text_size_12" />
         </LinearLayout>

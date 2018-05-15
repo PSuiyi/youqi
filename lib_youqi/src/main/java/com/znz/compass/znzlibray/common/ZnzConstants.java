@@ -39,6 +39,7 @@ public class ZnzConstants {
      */
     public static final String SERVICE_IP = "SERVICE_IP"; // SERVICE_IP
     public static final int LODING_TIME = 400; //loding滞留时间
+    public static final int PAGE_INDEX = 0; //分页起始页
 
 
     public static final boolean APP_DEBUG = true; //是否是测试环境

@@ -10,10 +10,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.ViewPageAdapter;
 import com.mzk.compass.youqi.base.BaseAppFragment;
+import com.mzk.compass.youqi.bean.TypeBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.common.SearchCommonAct;
 import com.mzk.compass.youqi.ui.mine.message.MessageTabAct;
@@ -56,6 +58,8 @@ public class NewsFrag extends BaseAppFragment {
     private List<String> imgPath = new ArrayList<>();
     private List<String> path = new ArrayList<>();
 
+    private List<TypeBean> typeBeanList = new ArrayList<>();
+
     @Override
     protected int[] getLayoutResource() {
         return new int[]{R.layout.frag_news, 2};
@@ -63,19 +67,6 @@ public class NewsFrag extends BaseAppFragment {
 
     @Override
     protected void initializeVariate() {
-        tabNames.add("政策解读");
-        tabNames.add("资讯推送");
-        tabNames.add("风口行业");
-        tabNames.add("财税资讯");
-        tabNames.add("创业事迹");
-
-        fragmentList.add(new NewsListFrag());
-        fragmentList.add(new NewsListFrag());
-        fragmentList.add(new NewsListFrag());
-        fragmentList.add(new NewsListFrag());
-        fragmentList.add(new NewsListFrag());
-
-
         imgPath.add("http://pic.58pic.com/58pic/11/79/25/56e58PICEkR.jpg");
         imgPath.add("http://pic18.nipic.com/20111216/6647776_200041153000_2.jpg");
         imgPath.add("http://file06.16sucai.com/2016/0419/ef244d70b96ff51ec4c0a6d8d0811597.jpg");
@@ -106,11 +97,6 @@ public class NewsFrag extends BaseAppFragment {
 
     @Override
     protected void initializeView() {
-        commonViewPager.setAdapter(new ViewPageAdapter(getChildFragmentManager(), tabNames, fragmentList));
-        commonTabLayout.setupWithViewPager(commonViewPager);
-        commonViewPager.setOffscreenPageLimit(fragmentList.size());
-
-
         banner.setData(imgPath, path);
         banner.setDelegate((banner, itemView, model, position) -> {
         });
@@ -135,7 +121,17 @@ public class NewsFrag extends BaseAppFragment {
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
+                typeBeanList.clear();
+                typeBeanList.addAll(JSONArray.parseArray(responseOriginal.getString("data"), TypeBean.class));
 
+                for (TypeBean typeBean : typeBeanList) {
+                    tabNames.add(typeBean.getName());
+                    fragmentList.add(new NewsListFrag().newInstance(typeBean.getId()));
+                }
+
+                commonViewPager.setAdapter(new ViewPageAdapter(getChildFragmentManager(), tabNames, fragmentList));
+                commonTabLayout.setupWithViewPager(commonViewPager);
+                commonViewPager.setOffscreenPageLimit(fragmentList.size());
             }
 
             @Override

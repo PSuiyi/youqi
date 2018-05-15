@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.znz.compass.znzlibray.base_znz.BaseModel;
 import com.znz.compass.znzlibray.base_znz.IView;
-import com.znz.compass.znzlibray.common.ZnzConstants;
 import com.znz.compass.znzlibray.network.retorfit.ZnzRetrofitUtil;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 
@@ -295,6 +294,20 @@ public class ApiModel extends BaseModel {
      */
     public void requestHelpHome(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         request(apiService.requestHelpHome(params), znzHttpListener);
+    }
+
+    public Observable<ResponseBody> requestHelpRecommend(Map<String, String> params) {
+        return apiService.requestHelpRecommend(params);
+    }
+
+    /**
+     * 首页
+     *
+     * @param params
+     * @param znzHttpListener
+     */
+    public void requestHome(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestHome(params), znzHttpListener);
     }
 
     /**

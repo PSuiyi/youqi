@@ -46,6 +46,12 @@ public interface ApiService {
     @GET("product/index")
     Observable<ResponseBody> requestHelpHome(@QueryMap Map<String, String> params);
 
+    @GET("product/get-help-recommend-product")
+    Observable<ResponseBody> requestHelpRecommend(@QueryMap Map<String, String> params);
+
+    @GET("site/index")
+    Observable<ResponseBody> requestHome(@QueryMap Map<String, String> params);
+
     @FormUrlEncoded
     @POST("ucenter/index")
     Observable<ResponseBody> requestUserDetail(@FieldMap Map<String, String> params);

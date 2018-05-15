@@ -1,5 +1,6 @@
 package com.mzk.compass.youqi.ui.news;
 
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSONArray;
@@ -17,6 +18,17 @@ import rx.Observable;
  * Description：
  */
 public class NewsListFrag extends BaseAppListFragment<NewsBean> {
+
+    private String id;
+
+    public static NewsListFrag newInstance(String id) {
+        Bundle args = new Bundle();
+        args.putString("id", id);
+        NewsListFrag fragment = new NewsListFrag();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     protected int[] getLayoutResource() {
         return new int[]{R.layout.common_list_layout};
@@ -24,7 +36,9 @@ public class NewsListFrag extends BaseAppListFragment<NewsBean> {
 
     @Override
     protected void initializeVariate() {
-
+        if (getArguments() != null) {
+            id = getArguments().getString("id");
+        }
     }
 
     @Override
@@ -50,7 +64,7 @@ public class NewsListFrag extends BaseAppListFragment<NewsBean> {
 
     @Override
     protected Observable<ResponseBody> requestCustomeRefreshObservable() {
-        params.put("cateId", "0");
+        params.put("cateId", id);
         return mModel.requestNewsList(params);
     }
 

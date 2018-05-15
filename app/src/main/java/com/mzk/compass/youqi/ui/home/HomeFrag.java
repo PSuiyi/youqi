@@ -1,33 +1,40 @@
 package com.mzk.compass.youqi.ui.home;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.MultiAdapter;
-import com.mzk.compass.youqi.base.BaseAppListFragment;
+import com.mzk.compass.youqi.base.BaseAppFragment;
 import com.mzk.compass.youqi.bean.MultiBean;
+import com.mzk.compass.youqi.bean.OrganBean;
+import com.mzk.compass.youqi.bean.PeopleBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.common.CityListAct;
 import com.mzk.compass.youqi.ui.common.SearchCommonAct;
-import com.mzk.compass.youqi.ui.help.ProductDetailAct;
-import com.mzk.compass.youqi.ui.help.ProductListAct;
 import com.mzk.compass.youqi.ui.home.people.PeopleListAct;
 import com.mzk.compass.youqi.ui.home.project.ProjectDetailAct;
 import com.mzk.compass.youqi.ui.home.project.ProjectListAct;
-import com.mzk.compass.youqi.ui.mine.identify.company.CompanyIdentifyAct;
 import com.mzk.compass.youqi.ui.mine.message.MessageTabAct;
 import com.mzk.compass.youqi.ui.publish.PublishAct;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.BitmapUtil;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.imageloder.GlideApp;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import butterknife.Bind;
 import cn.bingoogolapple.bgabanner.BGABanner;
 
 /**
@@ -35,8 +42,10 @@ import cn.bingoogolapple.bgabanner.BGABanner;
  * User： PSuiyi
  * Description：
  */
-public class HomeFrag extends BaseAppListFragment {
+public class HomeFrag extends BaseAppFragment {
 
+    @Bind(R.id.rvHome)
+    RecyclerView rvHome;
     private View header;
     private TextView tvMenu1;
     private TextView tvMenu2;
@@ -50,22 +59,16 @@ public class HomeFrag extends BaseAppListFragment {
     private BGABanner banner;
     private List<String> imgPath = new ArrayList<>();
 
+    private List<MultiBean> dataList = new ArrayList<>();
+    private MultiAdapter adapter;
+
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.common_list_layout_withnav, 2};
+        return new int[]{R.layout.frag_home, 2};
     }
 
     @Override
     protected void initializeVariate() {
-        dataList.add(new MultiBean(Constants.MultiType.Section, "精选创业项目"));
-        dataList.add(new MultiBean(Constants.MultiType.Project));
-        dataList.add(new MultiBean(Constants.MultiType.Project));
-        dataList.add(new MultiBean(Constants.MultiType.Project));
-        dataList.add(new MultiBean(Constants.MultiType.Project));
-        dataList.add(new MultiBean(Constants.MultiType.Section, "明星投资人"));
-        dataList.add(new MultiBean(Constants.MultiType.People));
-        dataList.add(new MultiBean(Constants.MultiType.Section, "精选机构"));
-        dataList.add(new MultiBean(Constants.MultiType.Organ));
     }
 
     @Override
@@ -89,14 +92,10 @@ public class HomeFrag extends BaseAppListFragment {
     }
 
     @Override
-    protected RecyclerView.LayoutManager getLayoutManager() {
-        return null;
-    }
-
-    @Override
     protected void initializeView() {
         adapter = new MultiAdapter(dataList);
-        rvRefresh.setAdapter(adapter);
+        rvHome.setLayoutManager(new LinearLayoutManager(activity));
+        rvHome.setAdapter(adapter);
 
         header = View.inflate(activity, R.layout.header_home, null);
         tvMenu1 = bindViewById(header, R.id.tvMenu1);
@@ -168,16 +167,35 @@ public class HomeFrag extends BaseAppListFragment {
 
     @Override
     protected void loadDataFromServer() {
+        Map<String, String> params = new HashMap<>();
+        mModel.requestHome(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                dataList.add(new MultiBean(Constants.MultiType.Section, "精选创业项目"));
+                dataList.add(new MultiBean(Constants.MultiType.Project));
+                dataList.add(new MultiBean(Constants.MultiType.Project));
+                dataList.add(new MultiBean(Constants.MultiType.Project));
+                dataList.add(new MultiBean(Constants.MultiType.Project));
 
-    }
 
-    @Override
-    protected void onRefreshSuccess(String response) {
+                if (!StringUtil.isBlank(responseObject.getString("MobileCompanyInvestorStar"))) {
+                    dataList.add(new MultiBean(Constants.MultiType.Section, "明星投资人"));
+                    MultiBean multiBean = new MultiBean(Constants.MultiType.People);
+                    multiBean.setPeopleList(JSONArray.parseArray(responseObject.getString("MobileCompanyInvestorStar"), PeopleBean.class));
+                    dataList.add(multiBean);
+                }
 
-    }
+                if (!StringUtil.isBlank(responseObject.getString("MobileCompanyInstitution"))) {
+                    dataList.add(new MultiBean(Constants.MultiType.Section, "精选机构"));
+                    dataList.add(new MultiBean(Constants.MultiType.Organ, JSONArray.parseArray(responseObject.getString("MobileCompanyInstitution"), OrganBean.class)));
+                }
+            }
 
-    @Override
-    protected void onRefreshFail(String error) {
-
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
+            }
+        });
     }
 }

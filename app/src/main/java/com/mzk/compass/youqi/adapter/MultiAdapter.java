@@ -37,14 +37,7 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
             case Constants.MultiType.Project:
                 break;
             case Constants.MultiType.People:
-                List<BaseZnzBean> dataList = new ArrayList<>();
-                dataList.add(new BaseZnzBean());
-                dataList.add(new BaseZnzBean());
-                dataList.add(new BaseZnzBean());
-                dataList.add(new BaseZnzBean());
-                dataList.add(new BaseZnzBean());
-                dataList.add(new BaseZnzBean());
-                PeopleGridHomeAdapter adapter = new PeopleGridHomeAdapter(dataList);
+                PeopleGridHomeAdapter adapter = new PeopleGridHomeAdapter(bean.getPeopleList());
                 RecyclerView rvPeople = helper.getView(R.id.rvRecycler);
                 LinearLayoutManager layoutManager = new LinearLayoutManager(mContext) {
                     @Override
@@ -57,16 +50,7 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
                 rvPeople.setAdapter(adapter);
                 break;
             case Constants.MultiType.Organ:
-                List<BaseZnzBean> dataList2 = new ArrayList<>();
-                dataList2.add(new BaseZnzBean());
-                dataList2.add(new BaseZnzBean());
-                dataList2.add(new BaseZnzBean());
-                dataList2.add(new BaseZnzBean());
-                dataList2.add(new BaseZnzBean());
-                dataList2.add(new BaseZnzBean());
-                dataList2.add(new BaseZnzBean());
-                dataList2.add(new BaseZnzBean());
-                OrganGridAdapter adapter2 = new OrganGridAdapter(dataList2);
+                OrganGridAdapter adapter2 = new OrganGridAdapter(bean.getOrganList());
                 RecyclerView rvOrgan = helper.getView(R.id.rvRecycler);
                 rvOrgan.setLayoutManager(new GridLayoutManager(mContext, 4));
                 rvOrgan.setAdapter(adapter2);

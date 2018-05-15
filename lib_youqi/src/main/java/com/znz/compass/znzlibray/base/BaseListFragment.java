@@ -9,6 +9,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.znz.compass.znzlibray.R;
 import com.znz.compass.znzlibray.base_znz.BaseZnzFragment;
 import com.znz.compass.znzlibray.bean.BaseZnzBean;
+import com.znz.compass.znzlibray.common.ZnzConstants;
 import com.znz.compass.znzlibray.network_status.NetUtils;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 
@@ -27,7 +28,7 @@ import rx.Subscriber;
 
 public abstract class BaseListFragment<T extends BaseZnzBean> extends BaseZnzFragment implements BaseQuickAdapter.RequestLoadMoreListener, SwipeRefreshLayout.OnRefreshListener {
     protected ArrayList<T> dataList = new ArrayList<>();
-    protected int currentPageIndex = 1; // 当前页码
+    protected int currentPageIndex = ZnzConstants.PAGE_INDEX; // 当前页码
     protected RecyclerView rvRefresh;
     protected SwipeRefreshLayout mSwipeRefreshLayout;
     protected BaseQuickAdapter adapter;
@@ -207,7 +208,7 @@ public abstract class BaseListFragment<T extends BaseZnzBean> extends BaseZnzFra
      * 手动刷新
      */
     protected void resetRefresh() {
-        currentPageIndex = 1;
+        currentPageIndex = ZnzConstants.PAGE_INDEX;
         customeRefreshRequest(ACTION_PULL_TO_REFRESH);
     }
 

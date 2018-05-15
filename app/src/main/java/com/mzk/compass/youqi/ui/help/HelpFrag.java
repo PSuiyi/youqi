@@ -14,11 +14,11 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.ProductAdapter;
 import com.mzk.compass.youqi.adapter.ProductGridAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
+import com.mzk.compass.youqi.bean.NewsBean;
 import com.mzk.compass.youqi.bean.ProductBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.common.SearchCommonAct;
 import com.mzk.compass.youqi.ui.mine.message.MessageTabAct;
-import com.znz.compass.znzlibray.bean.BaseZnzBean;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.views.imageloder.GlideApp;
 
@@ -28,6 +28,8 @@ import java.util.List;
 import java.util.Map;
 
 import cn.bingoogolapple.bgabanner.BGABanner;
+import okhttp3.ResponseBody;
+import rx.Observable;
 
 /**
  * Date： 2018/3/29 2018
@@ -171,7 +173,7 @@ public class HelpFrag extends BaseAppListFragment {
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 productList.clear();
-                productList.addAll(JSONArray.parseArray(responseObject.getString("MobileHelpBannerUnder"), ProductBean.class));
+                productList.addAll(JSONArray.parseArray(responseOriginal.getString("data"), ProductBean.class));
                 productGridAdapter.notifyDataSetChanged();
             }
 
@@ -182,9 +184,16 @@ public class HelpFrag extends BaseAppListFragment {
         });
     }
 
+
+    @Override
+    protected Observable<ResponseBody> requestCustomeRefreshObservable() {
+        return mModel.requestHelpRecommend(params);
+    }
+
     @Override
     protected void onRefreshSuccess(String response) {
-
+        dataList.addAll(JSONArray.parseArray(responseJson.getString("data"), NewsBean.class));
+        adapter.notifyDataSetChanged();
     }
 
     @Override

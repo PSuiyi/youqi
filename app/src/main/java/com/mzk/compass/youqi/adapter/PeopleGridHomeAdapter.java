@@ -4,15 +4,19 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
+import com.mzk.compass.youqi.bean.PeopleBean;
 import com.mzk.compass.youqi.ui.home.people.PeopleDetailAct;
-import com.znz.compass.znzlibray.bean.BaseZnzBean;
 import com.znz.compass.znzlibray.utils.DipUtil;
+import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 
 import java.util.List;
+
+import butterknife.Bind;
 
 /**
  * Date： 2017/5/4 2017
@@ -20,14 +24,25 @@ import java.util.List;
  * Description：
  */
 
-public class PeopleGridHomeAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
+public class PeopleGridHomeAdapter extends BaseQuickAdapter<PeopleBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
 
-    public PeopleGridHomeAdapter(@Nullable List<BaseZnzBean> dataList) {
+    @Bind(R.id.ivImage)
+    HttpImageView ivImage;
+    @Bind(R.id.tvUserName)
+    TextView tvUserName;
+    @Bind(R.id.tvOrganName)
+    TextView tvOrganName;
+    @Bind(R.id.tvTag)
+    TextView tvTag;
+    @Bind(R.id.llContainer)
+    LinearLayout llContainer;
+
+    public PeopleGridHomeAdapter(@Nullable List dataList) {
         super(R.layout.item_gv_people_home, dataList);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, BaseZnzBean bean) {
+    protected void convert(BaseViewHolder helper, PeopleBean bean) {
         setOnItemClickListener(this);
 
         LinearLayout llContainer = helper.getView(R.id.llContainer);
@@ -41,6 +56,11 @@ public class PeopleGridHomeAdapter extends BaseQuickAdapter<BaseZnzBean, BaseVie
             layoutParams.rightMargin = DipUtil.dip2px(5);
         }
         llContainer.setLayoutParams(layoutParams);
+
+        ivImage.loadHeaderImage(bean.getAvatar());
+        mDataManager.setValueToView(tvUserName, bean.getTitle());
+        mDataManager.setValueToView(tvOrganName, bean.getGroupName());
+        mDataManager.setValueToView(tvTag, bean.getIntroduce());
     }
 
     @Override

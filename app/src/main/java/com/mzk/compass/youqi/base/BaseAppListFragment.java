@@ -60,7 +60,7 @@ public abstract class BaseAppListFragment<T extends BaseZnzBean> extends BaseLis
             setTempDataList();
         } else {
             if (action == ACTION_PULL_TO_REFRESH) {
-                currentPageIndex = 1;
+                currentPageIndex = ZnzConstants.PAGE_INDEX;
             }
 
             if (isNormalList) {
@@ -123,7 +123,7 @@ public abstract class BaseAppListFragment<T extends BaseZnzBean> extends BaseLis
                                         adapter.getHeaderLayout().removeView(headerNoDataView);
                                         isAddHeaderNoData = false;
                                     }
-                                    if (totalCount > currentPageIndex * 10) {
+                                    if (totalCount > (currentPageIndex + 1) * 10) {
                                         adapter.setEnableLoadMore(true);
                                     } else {
                                         adapter.setEnableLoadMore(false);
