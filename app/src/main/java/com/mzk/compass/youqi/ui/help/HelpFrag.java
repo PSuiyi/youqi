@@ -192,7 +192,7 @@ public class HelpFrag extends BaseAppListFragment {
 
     @Override
     protected void onRefreshSuccess(String response) {
-        dataList.addAll(JSONArray.parseArray(responseJson.getString("data"), NewsBean.class));
+        dataList.addAll(JSONArray.parseArray(response, ProductBean.class));
         adapter.notifyDataSetChanged();
     }
 

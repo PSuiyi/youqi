@@ -52,6 +52,9 @@ public interface ApiService {
     @GET("site/index")
     Observable<ResponseBody> requestHome(@QueryMap Map<String, String> params);
 
+    @GET("site/get-home-chosen-project")
+    Observable<ResponseBody> requestHomeRecommend(@QueryMap Map<String, String> params);
+
     @FormUrlEncoded
     @POST("ucenter/index")
     Observable<ResponseBody> requestUserDetail(@FieldMap Map<String, String> params);

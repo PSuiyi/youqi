@@ -1,5 +1,6 @@
 package com.mzk.compass.youqi.bean;
 
+import com.mzk.compass.youqi.adapter.TagYouBean;
 import com.znz.compass.znzlibray.bean.BaseZnzBean;
 
 import java.util.List;
@@ -35,7 +36,7 @@ public class ProjectBean extends BaseZnzBean {
     private String visiteNum;
     private String commentsNum;
     private String rongzistate;
-    private List<String> tradeid;
+    private List<TagYouBean> tradeid;
 
     public String getId() {
         return id;
@@ -117,11 +118,11 @@ public class ProjectBean extends BaseZnzBean {
         this.rongzistate = rongzistate;
     }
 
-    public List<String> getTradeid() {
+    public List<TagYouBean> getTradeid() {
         return tradeid;
     }
 
-    public void setTradeid(List<String> tradeid) {
+    public void setTradeid(List<TagYouBean> tradeid) {
         this.tradeid = tradeid;
     }
 }

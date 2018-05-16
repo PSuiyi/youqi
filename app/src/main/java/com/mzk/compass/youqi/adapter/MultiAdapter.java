@@ -9,12 +9,10 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.bean.MultiBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.home.project.ProjectDetailAct;
-import com.znz.compass.znzlibray.bean.BaseZnzBean;
 import com.znz.compass.znzlibray.views.recyclerview.BaseMultiItemQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
@@ -22,7 +20,7 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
     public MultiAdapter(List dataList) {
         super(dataList);
         addItemType(Constants.MultiType.Section, R.layout.item_lv_section);
-        addItemType(Constants.MultiType.Project, R.layout.item_lv_project);
+        addItemType(Constants.MultiType.Project, R.layout.item_lv_recycle);
         addItemType(Constants.MultiType.People, R.layout.item_lv_recycle);
         addItemType(Constants.MultiType.Organ, R.layout.item_lv_home_organ);
     }
@@ -35,6 +33,16 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
                 helper.setText(R.id.tvTitle, bean.getSection());
                 break;
             case Constants.MultiType.Project:
+                ProjectAdapter projectAdapter = new ProjectAdapter(bean.getProjectBeanList());
+                RecyclerView rvProject = helper.getView(R.id.rvRecycler);
+                LinearLayoutManager proLayoutManager = new LinearLayoutManager(mContext) {
+                    @Override
+                    public boolean canScrollVertically() {
+                        return false;
+                    }
+                };
+                rvProject.setLayoutManager(proLayoutManager);
+                rvProject.setAdapter(projectAdapter);
                 break;
             case Constants.MultiType.People:
                 PeopleGridHomeAdapter adapter = new PeopleGridHomeAdapter(bean.getPeopleList());

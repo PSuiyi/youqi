@@ -12,6 +12,7 @@ public class MultiBean extends BaseZnzBean implements MultiItemEntity {
     private String section;
     private List<OrganBean> organList = new ArrayList<>();
     private List<PeopleBean> peopleList = new ArrayList<>();
+    private List<ProjectBean> projectBeanList = new ArrayList<>();
 
     public MultiBean() {
     }
@@ -29,7 +30,6 @@ public class MultiBean extends BaseZnzBean implements MultiItemEntity {
         this.itemType = itemType;
         this.organList = organList;
     }
-
 
     public String getSection() {
         return section;
@@ -53,6 +53,15 @@ public class MultiBean extends BaseZnzBean implements MultiItemEntity {
 
     public void setPeopleList(List<PeopleBean> peopleList) {
         this.peopleList = peopleList;
+    }
+
+
+    public List<ProjectBean> getProjectBeanList() {
+        return projectBeanList;
+    }
+
+    public void setProjectBeanList(List<ProjectBean> projectBeanList) {
+        this.projectBeanList = projectBeanList;
     }
 
     @Override

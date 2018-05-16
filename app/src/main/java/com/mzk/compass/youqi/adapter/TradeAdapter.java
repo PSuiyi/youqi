@@ -5,8 +5,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
-import com.mzk.compass.youqi.ui.mine.article.ArticleDetailAct;
-import com.znz.compass.znzlibray.bean.BaseZnzBean;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 
@@ -14,7 +12,7 @@ import java.util.List;
 
 import butterknife.Bind;
 
-public class TradeAdapter extends BaseQuickAdapter<String, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
+public class TradeAdapter extends BaseQuickAdapter<TagYouBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
 
     @Bind(R.id.tvCategory)
     TextView tvCategory;
@@ -24,8 +22,8 @@ public class TradeAdapter extends BaseQuickAdapter<String, BaseViewHolder> imple
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, String bean) {
-        mDataManager.setValueToView(tvCategory, bean);
+    protected void convert(BaseViewHolder helper, TagYouBean bean) {
+        mDataManager.setValueToView(tvCategory, bean.getName());
     }
 
     @Override

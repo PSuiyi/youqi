@@ -16,6 +16,7 @@ import com.mzk.compass.youqi.base.BaseAppFragment;
 import com.mzk.compass.youqi.bean.MultiBean;
 import com.mzk.compass.youqi.bean.OrganBean;
 import com.mzk.compass.youqi.bean.PeopleBean;
+import com.mzk.compass.youqi.bean.ProjectBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.common.CityListAct;
 import com.mzk.compass.youqi.ui.common.SearchCommonAct;
@@ -61,6 +62,7 @@ public class HomeFrag extends BaseAppFragment {
 
     private List<MultiBean> dataList = new ArrayList<>();
     private MultiAdapter adapter;
+    private List<ProjectBean> projectBeanList = new ArrayList<>();
 
     @Override
     protected int[] getLayoutResource() {
@@ -167,29 +169,47 @@ public class HomeFrag extends BaseAppFragment {
 
     @Override
     protected void loadDataFromServer() {
-        Map<String, String> params = new HashMap<>();
-        mModel.requestHome(params, new ZnzHttpListener() {
+        Map<String, String> params2 = new HashMap<>();
+        params2.put("page", "0");
+        mModel.requestHomeRecommend(params2, new ZnzHttpListener() {
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
-                dataList.add(new MultiBean(Constants.MultiType.Section, "精选创业项目"));
-                dataList.add(new MultiBean(Constants.MultiType.Project));
-                dataList.add(new MultiBean(Constants.MultiType.Project));
-                dataList.add(new MultiBean(Constants.MultiType.Project));
-                dataList.add(new MultiBean(Constants.MultiType.Project));
+                projectBeanList.addAll(JSONArray.parseArray(responseOriginal.getString("data"), ProjectBean.class));
 
 
-                if (!StringUtil.isBlank(responseObject.getString("MobileCompanyInvestorStar"))) {
-                    dataList.add(new MultiBean(Constants.MultiType.Section, "明星投资人"));
-                    MultiBean multiBean = new MultiBean(Constants.MultiType.People);
-                    multiBean.setPeopleList(JSONArray.parseArray(responseObject.getString("MobileCompanyInvestorStar"), PeopleBean.class));
-                    dataList.add(multiBean);
-                }
+                Map<String, String> params = new HashMap<>();
+                mModel.requestHome(params, new ZnzHttpListener() {
+                    @Override
+                    public void onSuccess(JSONObject responseOriginal) {
+                        super.onSuccess(responseOriginal);
+                        if (!projectBeanList.isEmpty()) {
+                            dataList.add(new MultiBean(Constants.MultiType.Section, "精选创业项目"));
+                            MultiBean multiBean = new MultiBean(Constants.MultiType.Project);
+                            multiBean.setProjectBeanList(projectBeanList);
+                            dataList.add(multiBean);
+                        }
 
-                if (!StringUtil.isBlank(responseObject.getString("MobileCompanyInstitution"))) {
-                    dataList.add(new MultiBean(Constants.MultiType.Section, "精选机构"));
-                    dataList.add(new MultiBean(Constants.MultiType.Organ, JSONArray.parseArray(responseObject.getString("MobileCompanyInstitution"), OrganBean.class)));
-                }
+                        if (!StringUtil.isBlank(responseObject.getString("MobileCompanyInvestorStar"))) {
+                            dataList.add(new MultiBean(Constants.MultiType.Section, "明星投资人"));
+                            MultiBean multiBean = new MultiBean(Constants.MultiType.People);
+                            multiBean.setPeopleList(JSONArray.parseArray(responseObject.getString("MobileCompanyInvestorStar"), PeopleBean.class));
+                            dataList.add(multiBean);
+                        }
+
+                        if (!StringUtil.isBlank(responseObject.getString("MobileCompanyInstitution"))) {
+                            dataList.add(new MultiBean(Constants.MultiType.Section, "精选机构"));
+                            dataList.add(new MultiBean(Constants.MultiType.Organ, JSONArray.parseArray(responseObject.getString("MobileCompanyInstitution"), OrganBean.class)));
+                        }
+
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onFail(String error) {
+                        super.onFail(error);
+                    }
+                });
             }
 
             @Override

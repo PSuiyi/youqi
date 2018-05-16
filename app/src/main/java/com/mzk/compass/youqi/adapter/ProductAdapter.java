@@ -7,9 +7,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
+import com.mzk.compass.youqi.bean.ProductBean;
 import com.mzk.compass.youqi.ui.help.ProductDetailAct;
-import com.znz.compass.znzlibray.bean.BaseZnzBean;
 import com.znz.compass.znzlibray.utils.DipUtil;
+import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 
@@ -17,17 +18,27 @@ import java.util.List;
 
 import butterknife.Bind;
 
-public class ProductAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
+public class ProductAdapter extends BaseQuickAdapter<ProductBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
 
     @Bind(R.id.tvMoneyOld)
     TextView tvMoneyOld;
+    @Bind(R.id.ivImage)
+    HttpImageView ivImage;
+    @Bind(R.id.tvTitle)
+    TextView tvTitle;
+    @Bind(R.id.tvMoney)
+    TextView tvMoney;
+    @Bind(R.id.tvCount)
+    TextView tvCount;
+    @Bind(R.id.llContainer)
+    LinearLayout llContainer;
 
     public ProductAdapter(@Nullable List dataList) {
         super(R.layout.item_gv_service, dataList);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, BaseZnzBean bean) {
+    protected void convert(BaseViewHolder helper, ProductBean bean) {
         setOnItemClickListener(this);
 
         tvMoneyOld.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG); //下划线
@@ -45,6 +56,12 @@ public class ProductAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder
                     DipUtil.dip2px(15),
                     DipUtil.dip2px(5));
         }
+
+        mDataManager.setValueToView(tvTitle, bean.getTitle());
+        mDataManager.setValueToView(tvMoney, "¥" + bean.getRealPrice());
+        mDataManager.setValueToView(tvMoneyOld, "原价：¥" + bean.getMarketPrice());
+        mDataManager.setValueToView(tvCount, bean.getShowNum());
+        ivImage.loadSquareImage(bean.getImage());
     }
 
     @Override

@@ -310,6 +310,10 @@ public class ApiModel extends BaseModel {
         request(apiService.requestHome(params), znzHttpListener);
     }
 
+    public void requestHomeRecommend(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestHomeRecommend(params), znzHttpListener);
+    }
+
     /**
      * 商家列表
      *

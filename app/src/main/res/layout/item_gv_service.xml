@@ -23,12 +23,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:orientation="vertical"
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/tvName"
+                android:id="@+id/tvTitle"
                 style="@style/TitleTextStyle"
                 android:ellipsize="end"
                 android:maxLines="2"
@@ -64,6 +63,7 @@
                 <View style="@style/WeightView" />
 
                 <TextView
+                    android:id="@+id/tvCount"
                     style="@style/TextStyle"
                     android:text="成交量：192" />
             </LinearLayout>

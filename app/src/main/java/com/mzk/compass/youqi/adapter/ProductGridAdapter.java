@@ -9,10 +9,13 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.bean.ProductBean;
 import com.mzk.compass.youqi.ui.help.ProductDetailAct;
 import com.znz.compass.znzlibray.utils.DipUtil;
+import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 
 import java.util.List;
+
+import butterknife.Bind;
 
 /**
  * Date： 2017/5/4 2017
@@ -21,6 +24,9 @@ import java.util.List;
  */
 
 public class ProductGridAdapter extends BaseQuickAdapter<ProductBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
+
+    @Bind(R.id.ivImage)
+    HttpImageView ivImage;
 
     public ProductGridAdapter(@Nullable List dataList) {
         super(R.layout.item_gv_product, dataList);
@@ -41,6 +47,8 @@ public class ProductGridAdapter extends BaseQuickAdapter<ProductBean, BaseViewHo
             layoutParams.rightMargin = DipUtil.dip2px(5);
         }
         llContainer.setLayoutParams(layoutParams);
+
+        ivImage.loadRectImage(bean.getImage());
     }
 
     @Override
