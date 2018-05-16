@@ -2,7 +2,6 @@ package com.mzk.compass.youqi.ui.home.project;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.widget.LinearLayout;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -69,30 +68,46 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
         switch (from) {
             case "全部":
                 params.put("state", "0");
-                break;
+                return mModel.requestProjectMineList(params);
             case "待审核":
                 params.put("state", "1");
-                break;
+                return mModel.requestProjectMineList(params);
             case "已发布":
                 params.put("state", "2");
-                break;
+                return mModel.requestProjectMineList(params);
             case "已拒绝":
                 params.put("state", "4");
-                break;
+                return mModel.requestProjectMineList(params);
             case "已下架":
                 params.put("state", "3");
-                break;
+                return mModel.requestProjectMineList(params);
             case "收藏":
                 params.put("state", "0");
-                break;
+                return mModel.requestProjectMineList(params);
+            case "首页全部项目":
+                return mModel.requestProjectList(params);
+            default:
+                return mModel.requestProjectList(params);
         }
-        return mModel.requestProjectList(params);
     }
 
     @Override
     protected void onRefreshSuccess(String response) {
-        JSONObject json = JSON.parseObject(response);
-        dataList.addAll(JSON.parseArray(json.getString("data"), ProjectBean.class));
+        switch (from) {
+            case "全部":
+            case "待审核":
+            case "已发布":
+            case "已拒绝":
+            case "已下架":
+            case "收藏":
+                JSONObject json = JSON.parseObject(response);
+                dataList.addAll(JSON.parseArray(json.getString("data"), ProjectBean.class));
+                break;
+            case "首页全部项目":
+                dataList.addAll(JSON.parseArray(responseJson.getString("projectData"), ProjectBean.class));
+                break;
+        }
+
         adapter.notifyDataSetChanged();
     }
 

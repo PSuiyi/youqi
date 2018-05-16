@@ -96,6 +96,9 @@ public interface ApiService {
     Observable<ResponseBody> requestUpdateUserInfo(@FieldMap Map<String, String> params);
 
     @GET("project/list-my-project")
+    Observable<ResponseBody> requestProjectMineList(@QueryMap Map<String, String> params);
+
+    @GET("project/index")
     Observable<ResponseBody> requestProjectList(@QueryMap Map<String, String> params);
 
     @GET("order/list")

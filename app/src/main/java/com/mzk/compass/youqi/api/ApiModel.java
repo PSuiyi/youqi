@@ -366,11 +366,16 @@ public class ApiModel extends BaseModel {
     }
 
     /**
-     * 项目列表
+     * 项目列表我的
      *
      * @param params
      * @return
      */
+    public Observable<ResponseBody> requestProjectMineList(Map<String, String> params) {
+        return apiService.requestProjectMineList(params);
+    }
+
+    //全部项目
     public Observable<ResponseBody> requestProjectList(Map<String, String> params) {
         return apiService.requestProjectList(params);
     }
@@ -474,6 +479,7 @@ public class ApiModel extends BaseModel {
     public void requestAddState(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         request(apiService.requestAddState(params), znzHttpListener);
     }
+
     /**
      * 用户反馈
      *
