@@ -5,6 +5,8 @@ import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.mzk.compass.youqi.bean.StateBean;
+import com.znz.compass.znzlibray.utils.TimeUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -20,6 +22,8 @@ public class StateDetailAct extends BaseAppActivity {
     @Bind(R.id.tvTime)
     TextView tvTime;
 
+    private StateBean bean;
+
     @Override
     protected int[] getLayoutResource() {
         return new int[]{R.layout.act_state_detail, 1};
@@ -27,7 +31,9 @@ public class StateDetailAct extends BaseAppActivity {
 
     @Override
     protected void initializeVariate() {
-
+        if (getIntent().hasExtra("bean")) {
+            bean = (StateBean) getIntent().getSerializableExtra("bean");
+        }
     }
 
     @Override
@@ -37,7 +43,8 @@ public class StateDetailAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
-
+        mDataManager.setValueToView(tvContent, bean.getContent());
+        mDataManager.setValueToView(tvTime, TimeUtils.getFormatTime(bean.getAddTime(), "yyyy-MM-dd HH:mm"));
     }
 
     @Override

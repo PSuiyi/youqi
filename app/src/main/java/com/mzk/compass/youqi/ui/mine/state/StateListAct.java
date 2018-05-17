@@ -88,7 +88,7 @@ public class StateListAct extends BaseAppListActivity<StateBean> {
                     break;
                 case R.id.llContainer:
                     Bundle bundle = new Bundle();
-                    bundle.putString("id", bean.getId());
+                    bundle.putSerializable("bean", bean);
                     gotoActivity(StateDetailAct.class, bundle);
                     break;
                 case R.id.cbSelect:

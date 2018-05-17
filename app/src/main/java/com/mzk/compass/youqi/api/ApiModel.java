@@ -452,6 +452,26 @@ public class ApiModel extends BaseModel {
     }
 
     /**
+     * 发布按钮认证状态
+     *
+     * @param params
+     * @return
+     */
+    public void requestCheckIdentify(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestCheckIdentify(params), znzHttpListener);
+    }
+
+    /**
+     * banner
+     *
+     * @param params
+     * @return
+     */
+    public void requestBanner(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestBanner(params), znzHttpListener);
+    }
+
+    /**
      * 手机验证码
      *
      * @param params
@@ -470,6 +490,7 @@ public class ApiModel extends BaseModel {
     public void requestAddState(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         request(apiService.requestAddState(params), znzHttpListener);
     }
+
     /**
      * 用户反馈
      *

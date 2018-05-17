@@ -92,6 +92,10 @@ public interface ApiService {
     @POST("ucenter/update-info")
     Observable<ResponseBody> requestUpdateUserInfo(@FieldMap Map<String, String> params);
 
+    @FormUrlEncoded
+    @POST("site/release")
+    Observable<ResponseBody> requestCheckIdentify(@FieldMap Map<String, String> params);
+
     @GET("project/list-my-project")
     Observable<ResponseBody> requestProjectList(@QueryMap Map<String, String> params);
 
@@ -109,6 +113,9 @@ public interface ApiService {
 
     @GET("ucenter/get-my-custom-service")
     Observable<ResponseBody> requestCustomerService(@QueryMap Map<String, String> params);
+
+    @GET("site/get-banner")
+    Observable<ResponseBody> requestBanner(@QueryMap Map<String, String> params);
 
     @Multipart
     @POST("")

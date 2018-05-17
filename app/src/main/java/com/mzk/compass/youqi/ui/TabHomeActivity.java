@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.ui.help.HelpFrag;
@@ -17,7 +19,12 @@ import com.mzk.compass.youqi.ui.home.HomeFrag;
 import com.mzk.compass.youqi.ui.mine.MineFrag;
 import com.mzk.compass.youqi.ui.news.NewsFrag;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.FragmentUtil;
+import com.znz.compass.znzlibray.utils.StringUtil;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -98,12 +105,30 @@ public class TabHomeActivity extends BaseAppActivity {
                 fragmentUtil.switchContent(meetingFragment, R.id.main_container, fragmentManager);
                 break;
             case R.id.llAdd:
-                PopupWindowManager.getInstance(activity).showPublish(llAdd, new PopupWindowManager.OnPopupWindowClickListener() {
+                Map<String, String> params = new HashMap<>();
+                mModel.requestCheckIdentify(params, new ZnzHttpListener() {
                     @Override
-                    public void onPopupWindowClick(String type, String[] values) {
-                        
+                    public void onSuccess(JSONObject responseOriginal) {
+                        super.onSuccess(responseOriginal);
+                        JSONObject json = JSON.parseObject(responseOriginal.getString("data"));
+                        if (json != null) {
+                            String status = json.getString("usertype");
+                            if (!StringUtil.isBlank(status) & status.equals("1")) {
+                                PopupWindowManager.getInstance(activity).showPublish(llAdd, new PopupWindowManager.OnPopupWindowClickListener() {
+                                    @Override
+                                    public void onPopupWindowClick(String type, String[] values) {
+
+                                    }
+                                });
+                            } else {
+                                mDataManager.showToast("当前用户非投资人，请认证投资人");
+                            }
+                        } else {
+                            mDataManager.showToast("当前用户非投资人，请认证投资人");
+                        }
                     }
                 });
+
                 break;
             case R.id.radioButton3:
                 if (groupFragment == null) {

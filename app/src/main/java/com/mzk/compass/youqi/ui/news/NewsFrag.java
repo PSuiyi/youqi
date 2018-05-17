@@ -10,11 +10,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.ViewPageAdapter;
 import com.mzk.compass.youqi.base.BaseAppFragment;
+import com.mzk.compass.youqi.bean.BannerBean;
 import com.mzk.compass.youqi.bean.TypeBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.common.SearchCommonAct;
@@ -67,16 +69,6 @@ public class NewsFrag extends BaseAppFragment {
 
     @Override
     protected void initializeVariate() {
-        imgPath.add("http://pic.58pic.com/58pic/11/79/25/56e58PICEkR.jpg");
-        imgPath.add("http://pic18.nipic.com/20111216/6647776_200041153000_2.jpg");
-        imgPath.add("http://file06.16sucai.com/2016/0419/ef244d70b96ff51ec4c0a6d8d0811597.jpg");
-        imgPath.add("http://pic.58pic.com/58pic/16/50/28/38E58PICcgV_1024.jpg");
-        imgPath.add("http://pic.qiantucdn.com/58pic/18/21/29/55ed2fef9346d_1024.jpg");
-        path.add("http://pic.58pic.com/58pic/11/79/25/56e58PICEkR.jpg");
-        path.add("http://pic18.nipic.com/20111216/6647776_200041153000_2.jpg");
-        path.add("http://file06.16sucai.com/2016/0419/ef244d70b96ff51ec4c0a6d8d0811597.jpg");
-        path.add("http://pic.58pic.com/58pic/16/50/28/38E58PICcgV_1024.jpg");
-        path.add("http://pic.qiantucdn.com/58pic/18/21/29/55ed2fef9346d_1024.jpg");
     }
 
     @Override
@@ -97,7 +89,6 @@ public class NewsFrag extends BaseAppFragment {
 
     @Override
     protected void initializeView() {
-        banner.setData(imgPath, path);
         banner.setDelegate((banner, itemView, model, position) -> {
         });
         banner.setAdapter(new BGABanner.Adapter<ImageView, String>() {
@@ -137,6 +128,22 @@ public class NewsFrag extends BaseAppFragment {
             @Override
             public void onFail(String error) {
                 super.onFail(error);
+            }
+        });
+        Map<String, String> params1 = new HashMap<>();
+        params1.put("bannerType", "MobileNewsBanner");
+        mModel.requestBanner(params1, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                List<BannerBean> list = new ArrayList<>();
+                list.addAll(JSON.parseArray(responseOriginal.getString("data"), BannerBean.class));
+                if (!list.isEmpty()) {
+                    for (BannerBean bannerBean : list) {
+                        imgPath.add(bannerBean.getImage());
+                    }
+                    banner.setData(imgPath, imgPath);
+                }
             }
         });
     }
