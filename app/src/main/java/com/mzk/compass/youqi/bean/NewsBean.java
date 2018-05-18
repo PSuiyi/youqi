@@ -25,7 +25,25 @@ public class NewsBean extends BaseZnzBean {
     private String name;
     private String addTime;
     private String title;
+    private String collectionNum;
+    private String visiteNum;
     private String isCollected;
+
+    public String getCollectionNum() {
+        return collectionNum;
+    }
+
+    public void setCollectionNum(String collectionNum) {
+        this.collectionNum = collectionNum;
+    }
+
+    public String getVisiteNum() {
+        return visiteNum;
+    }
+
+    public void setVisiteNum(String visiteNum) {
+        this.visiteNum = visiteNum;
+    }
 
     public String getId() {
         return id;

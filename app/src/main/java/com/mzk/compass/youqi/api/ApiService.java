@@ -108,6 +108,18 @@ public interface ApiService {
     @GET("order/list")
     Observable<ResponseBody> requestOrderList(@QueryMap Map<String, String> params);
 
+    @GET("comment/index")
+    Observable<ResponseBody> requestCommentList(@QueryMap Map<String, String> params);
+
+    @GET("investor/detail")
+    Observable<ResponseBody> requestPeopleDetail(@QueryMap Map<String, String> params);
+
+    @GET("investor/list")
+    Observable<ResponseBody> requestPeopleList(@QueryMap Map<String, String> params);
+
+    @GET("news/detail")
+    Observable<ResponseBody> requestNewsDetail(@QueryMap Map<String, String> params);
+
     @GET("message/list")
     Observable<ResponseBody> requestMessageList(@QueryMap Map<String, String> params);
 

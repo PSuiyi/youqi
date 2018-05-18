@@ -8,7 +8,10 @@ import android.view.View;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.bean.MultiBean;
 import com.mzk.compass.youqi.common.Constants;
+import com.mzk.compass.youqi.ui.home.organ.OrganListAct;
+import com.mzk.compass.youqi.ui.home.people.PeopleListAct;
 import com.mzk.compass.youqi.ui.home.project.ProjectDetailAct;
+import com.mzk.compass.youqi.ui.home.project.ProjectListAct;
 import com.znz.compass.znzlibray.views.recyclerview.BaseMultiItemQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
@@ -70,6 +73,17 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         switch (bean.getItemType()) {
             case Constants.MultiType.Section:
+                switch (bean.getSection()) {
+                    case "精选创业项目":
+                        gotoActivity(ProjectListAct.class);
+                        break;
+                    case "明星投资人":
+                        gotoActivity(PeopleListAct.class);
+                        break;
+                    case "精选机构":
+                        gotoActivity(OrganListAct.class);
+                        break;
+                }
                 break;
             case Constants.MultiType.Project:
                 gotoActivity(ProjectDetailAct.class);

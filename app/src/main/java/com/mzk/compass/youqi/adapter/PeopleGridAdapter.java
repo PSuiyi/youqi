@@ -1,11 +1,12 @@
 package com.mzk.compass.youqi.adapter;
 
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.mzk.compass.youqi.R;
+import com.mzk.compass.youqi.bean.PeopleBean;
 import com.mzk.compass.youqi.ui.home.people.PeopleDetailAct;
-import com.znz.compass.znzlibray.bean.BaseZnzBean;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 
@@ -17,19 +18,21 @@ import java.util.List;
  * Description：
  */
 
-public class PeopleGridAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
+public class PeopleGridAdapter extends BaseQuickAdapter<PeopleBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
 
-    public PeopleGridAdapter(@Nullable List<BaseZnzBean> dataList) {
+    public PeopleGridAdapter(@Nullable List dataList) {
         super(R.layout.item_gv_people, dataList);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, BaseZnzBean bean) {
+    protected void convert(BaseViewHolder helper, PeopleBean bean) {
         setOnItemClickListener(this);
     }
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        gotoActivity(PeopleDetailAct.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("id", bean.getId());
+        gotoActivity(PeopleDetailAct.class, bundle);
     }
 }

@@ -1,6 +1,9 @@
 package com.mzk.compass.youqi.bean;
 
+import com.mzk.compass.youqi.adapter.TagYouBean;
 import com.znz.compass.znzlibray.bean.BaseZnzBean;
+
+import java.util.List;
 
 /**
  * Date： 2018/5/11 2018
@@ -28,6 +31,7 @@ public class PeopleBean extends BaseZnzBean {
     private String title;
     private String link;
     private String image;
+    private String username;
     private String sort;
     private String contentType;
     private String id;
@@ -36,6 +40,41 @@ public class PeopleBean extends BaseZnzBean {
     private String groupName;
     private String avatar;
     private String introduce;
+    private String commentsNum;
+    private String collectionNum;
+    private List<TagYouBean> tradeid;
+
+    public List<TagYouBean> getTradeid() {
+        return tradeid;
+    }
+
+    public void setTradeid(List<TagYouBean> tradeid) {
+        this.tradeid = tradeid;
+    }
+
+    public String getCommentsNum() {
+        return commentsNum;
+    }
+
+    public void setCommentsNum(String commentsNum) {
+        this.commentsNum = commentsNum;
+    }
+
+    public String getCollectionNum() {
+        return collectionNum;
+    }
+
+    public void setCollectionNum(String collectionNum) {
+        this.collectionNum = collectionNum;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getAdPositionid() {
         return adPositionid;

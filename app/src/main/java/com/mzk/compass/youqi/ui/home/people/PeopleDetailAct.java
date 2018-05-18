@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.CommentAdapter;
 import com.mzk.compass.youqi.adapter.DetailAdapter;
@@ -14,9 +15,12 @@ import com.mzk.compass.youqi.base.BaseAppListActivity;
 import com.mzk.compass.youqi.bean.MenuBean;
 import com.mzk.compass.youqi.bean.MultiBean;
 import com.mzk.compass.youqi.common.Constants;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -43,6 +47,7 @@ public class PeopleDetailAct extends BaseAppListActivity {
     private TextView tvRecommend;
 
     private DetailAdapter detailAdapter;
+    private String id;
 
     @Override
     protected int[] getLayoutResource() {
@@ -51,7 +56,9 @@ public class PeopleDetailAct extends BaseAppListActivity {
 
     @Override
     protected void initializeVariate() {
-
+        if (getIntent().hasExtra("id")) {
+            id = getIntent().getStringExtra("id");
+        }
     }
 
     @Override
@@ -102,7 +109,19 @@ public class PeopleDetailAct extends BaseAppListActivity {
 
     @Override
     protected void loadDataFromServer() {
+        Map<String, String> params = new HashMap<>();
+        params.put("investorId", id);
+        mModel.requestPeopleDetail(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+            }
 
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
+            }
+        });
     }
 
     @Override

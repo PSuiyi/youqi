@@ -188,9 +188,16 @@ public class ApiModel extends BaseModel {
      *
      * @param params
      */
-    public Observable<ResponseBody> requestPostCommentList(Map<String, String> params) {
-        params.put("request_code", "10010");
-        return apiService.post(params);
+    public Observable<ResponseBody> requestCommentList(Map<String, String> params) {
+        return apiService.requestCommentList(params);
+    }
+
+    public Observable<ResponseBody> requestPeopleList(Map<String, String> params) {
+        return apiService.requestPeopleList(params);
+    }
+
+    public void requestPeopleDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestPeopleDetail(params), znzHttpListener, LODING_LODING);
     }
 
     /**
@@ -281,8 +288,7 @@ public class ApiModel extends BaseModel {
      * @return
      */
     public void requestNewsDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
-        params.put("request_code", "20006");
-        request(apiService.post(params), znzHttpListener);
+        request(apiService.requestNewsDetail(params), znzHttpListener);
     }
 
 
