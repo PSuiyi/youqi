@@ -11,7 +11,7 @@ import com.mzk.compass.youqi.adapter.ViewPageAdapter;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.ui.home.people.PeopleListFrag;
 import com.mzk.compass.youqi.ui.home.organ.OrganListFrag;
-import com.mzk.compass.youqi.ui.home.ProductListFrag;
+import com.mzk.compass.youqi.ui.home.product.ProductListFrag;
 import com.mzk.compass.youqi.ui.home.project.ProjectListFrag;
 import com.mzk.compass.youqi.ui.news.NewsListFrag;
 import com.znz.compass.znzlibray.views.ZnzRemind;

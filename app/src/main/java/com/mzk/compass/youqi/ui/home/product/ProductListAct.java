@@ -1,4 +1,4 @@
-package com.mzk.compass.youqi.ui.help;
+package com.mzk.compass.youqi.ui.home.product;
 
 import android.os.Bundle;
 
@@ -6,7 +6,6 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.common.SearchCommonAct;
-import com.mzk.compass.youqi.ui.home.ProductListFrag;
 import com.znz.compass.znzlibray.utils.FragmentUtil;
 
 /**

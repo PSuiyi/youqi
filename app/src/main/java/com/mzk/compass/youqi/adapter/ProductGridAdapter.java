@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.bean.ProductBean;
-import com.mzk.compass.youqi.ui.help.ProductDetailAct;
+import com.mzk.compass.youqi.ui.home.product.ProductDetailAct;
 import com.znz.compass.znzlibray.utils.DipUtil;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
