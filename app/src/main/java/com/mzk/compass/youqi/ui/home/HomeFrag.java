@@ -31,6 +31,7 @@ import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.BitmapUtil;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.imageloder.GlideApp;
+import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,6 +66,13 @@ public class HomeFrag extends BaseAppFragment {
     private List<MultiBean> dataList = new ArrayList<>();
     private MultiAdapter adapter;
     private List<ProjectBean> projectBeanList = new ArrayList<>();
+
+    private HttpImageView ivImage1;
+    private HttpImageView ivImage2;
+    private HttpImageView ivImage3;
+    private HttpImageView ivImage4;
+    private HttpImageView ivImage5;
+    private List<ProjectBean> hotList = new ArrayList<>();
 
     @Override
     protected int[] getLayoutResource() {
@@ -106,6 +114,12 @@ public class HomeFrag extends BaseAppFragment {
         tvMenu2 = bindViewById(header, R.id.tvMenu2);
         tvMenu3 = bindViewById(header, R.id.tvMenu3);
         tvMenu4 = bindViewById(header, R.id.tvMenu4);
+
+        ivImage1 = bindViewById(header, R.id.ivImage1);
+        ivImage2 = bindViewById(header, R.id.ivImage2);
+        ivImage3 = bindViewById(header, R.id.ivImage3);
+        ivImage4 = bindViewById(header, R.id.ivImage4);
+        ivImage5 = bindViewById(header, R.id.ivImage5);
 
         tvMenu1.setOnClickListener(v -> {
             gotoActivity(ProjectListAct.class);
@@ -172,12 +186,27 @@ public class HomeFrag extends BaseAppFragment {
                 super.onSuccess(responseOriginal);
                 projectBeanList.addAll(JSONArray.parseArray(responseOriginal.getString("data"), ProjectBean.class));
 
-
                 Map<String, String> params = new HashMap<>();
                 mModel.requestHome(params, new ZnzHttpListener() {
                     @Override
                     public void onSuccess(JSONObject responseOriginal) {
                         super.onSuccess(responseOriginal);
+                        if (!StringUtil.isBlank(responseObject.getString("mobileCompanyRecommendBig"))) {
+                            hotList.addAll(JSONArray.parseArray(responseObject.getString("mobileCompanyRecommendBig"), ProjectBean.class));
+                            if (!StringUtil.isBlank(responseObject.getString("mobileCompanyRecommendSmall"))) {
+                                hotList.addAll(JSONArray.parseArray(responseObject.getString("mobileCompanyRecommendSmall"), ProjectBean.class));
+                            }
+                            if (!hotList.isEmpty()) {
+                                if (hotList.size() >= 5) {
+                                    ivImage1.loadVerImage(hotList.get(0).getLogo());
+                                    ivImage2.loadVerImage(hotList.get(1).getLogo());
+                                    ivImage3.loadVerImage(hotList.get(2).getLogo());
+                                    ivImage4.loadVerImage(hotList.get(3).getLogo());
+                                    ivImage5.loadVerImage(hotList.get(4).getLogo());
+                                }
+                            }
+                        }
+
                         if (!projectBeanList.isEmpty()) {
                             dataList.add(new MultiBean(Constants.MultiType.Section, "精选创业项目"));
                             MultiBean multiBean = new MultiBean(Constants.MultiType.Project);
@@ -185,16 +214,16 @@ public class HomeFrag extends BaseAppFragment {
                             dataList.add(multiBean);
                         }
 
-                        if (!StringUtil.isBlank(responseObject.getString("MobileCompanyInvestorStar"))) {
+                        if (!StringUtil.isBlank(responseObject.getString("mobileCompanyInvestorStar"))) {
                             dataList.add(new MultiBean(Constants.MultiType.Section, "明星投资人"));
                             MultiBean multiBean = new MultiBean(Constants.MultiType.People);
-                            multiBean.setPeopleList(JSONArray.parseArray(responseObject.getString("MobileCompanyInvestorStar"), PeopleBean.class));
+                            multiBean.setPeopleList(JSONArray.parseArray(responseObject.getString("mobileCompanyInvestorStar"), PeopleBean.class));
                             dataList.add(multiBean);
                         }
 
-                        if (!StringUtil.isBlank(responseObject.getString("MobileCompanyInstitution"))) {
+                        if (!StringUtil.isBlank(responseObject.getString("mobileCompanyInstitution"))) {
                             dataList.add(new MultiBean(Constants.MultiType.Section, "精选机构"));
-                            dataList.add(new MultiBean(Constants.MultiType.Organ, JSONArray.parseArray(responseObject.getString("MobileCompanyInstitution"), OrganBean.class)));
+                            dataList.add(new MultiBean(Constants.MultiType.Organ, JSONArray.parseArray(responseObject.getString("mobileCompanyInstitution"), OrganBean.class)));
                         }
 
                         adapter.notifyDataSetChanged();

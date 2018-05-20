@@ -40,6 +40,7 @@ public class ProductListAct extends BaseAppActivity {
             bundle.putString("from", "搜索项目");
             gotoActivity(SearchCommonAct.class, bundle);
         });
+        znzToolBar.setSearchHint("找商品");
     }
 
     @Override

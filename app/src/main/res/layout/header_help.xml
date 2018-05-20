@@ -79,7 +79,7 @@
             android:id="@+id/tvMenu8"
             style="@style/MenuStyle"
             android:drawableTop="@mipmap/quanbufenlei"
-            android:text="全部分类" />
+            android:text="其他服务" />
     </LinearLayout>
 
     <View style="@style/LineDivider" />
