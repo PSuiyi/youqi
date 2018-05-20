@@ -30,6 +30,105 @@ public class OrganBean extends BaseZnzBean {
     private String id;
     private String shorName;
     private String summary;
+    private String collectionNum;
+    private String logo;
+    private String isCollected;
+    private String cname;
+    private String visiteNum;
+    private String example;
+    private String address;
+    private String website;
+    private String city;
+    private String province;
+    private String area;
+
+    public String getExample() {
+        return example;
+    }
+
+    public void setExample(String example) {
+        this.example = example;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getCname() {
+        return cname;
+    }
+
+    public void setCname(String cname) {
+        this.cname = cname;
+    }
+
+    public String getCollectionNum() {
+        return collectionNum;
+    }
+
+    public void setCollectionNum(String collectionNum) {
+        this.collectionNum = collectionNum;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public String getIsCollected() {
+        return isCollected;
+    }
+
+    public void setIsCollected(String isCollected) {
+        this.isCollected = isCollected;
+    }
+
+    public String getVisiteNum() {
+        return visiteNum;
+    }
+
+    public void setVisiteNum(String visiteNum) {
+        this.visiteNum = visiteNum;
+    }
 
     public String getAdPositionid() {
         return adPositionid;

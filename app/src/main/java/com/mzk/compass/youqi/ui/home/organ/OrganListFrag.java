@@ -6,7 +6,7 @@ import com.alibaba.fastjson.JSON;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.OrganAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
-import com.mzk.compass.youqi.bean.ProductBean;
+import com.mzk.compass.youqi.bean.OrganBean;
 
 import okhttp3.ResponseBody;
 import rx.Observable;
@@ -56,7 +56,7 @@ public class OrganListFrag extends BaseAppListFragment {
 
     @Override
     protected void onRefreshSuccess(String response) {
-        dataList.addAll(JSON.parseArray(responseJson.getString("data"), ProductBean.class));
+        dataList.addAll(JSON.parseArray(responseJson.getString("data"), OrganBean.class));
         adapter.notifyDataSetChanged();
     }
 

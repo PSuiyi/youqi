@@ -1,5 +1,6 @@
 package com.mzk.compass.youqi.adapter;
 
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
@@ -44,6 +45,8 @@ public class OrganGridAdapter extends BaseQuickAdapter<OrganBean, BaseViewHolder
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        gotoActivity(OrganDetailAct.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("id", bean.getAdPositionid());
+        gotoActivity(OrganDetailAct.class, bundle);
     }
 }

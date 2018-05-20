@@ -55,6 +55,7 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/tvName"
                                 style="@style/TitleTextStyle"
                                 android:text="源贷码财富管理投资股份有限公司"
                                 android:textColor="@color/white" />
@@ -63,6 +64,7 @@
 
 
                         <TextView
+                            android:id="@+id/tvType"
                             style="@style/TextWhiteStyle"
                             android:layout_marginTop="@dimen/distance_text"
                             android:background="@drawable/bg_red_radius_2"
@@ -70,15 +72,39 @@
                             android:paddingRight="4dp"
                             android:text="机构投资" />
 
-                        <TextView
-                            style="@style/TextWhiteStyle"
-                            android:layout_marginTop="@dimen/distance_text"
-                            android:text="地址 ：南京市" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
-                        <TextView
-                            style="@style/TextWhiteStyle"
-                            android:layout_marginTop="@dimen/distance_text"
-                            android:text="网址 ：www.njmzk.com" />
+                            <TextView
+                                style="@style/TextWhiteStyle"
+                                android:layout_marginTop="@dimen/distance_text"
+                                android:text="地址 ：" />
+
+                            <TextView
+                                android:id="@+id/tvAddress"
+                                style="@style/TextWhiteStyle"
+                                android:layout_marginTop="@dimen/distance_text"
+                                android:text="南京市" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/TextWhiteStyle"
+                                android:layout_marginTop="@dimen/distance_text"
+                                android:text="网址 ：" />
+
+                            <TextView
+                                android:id="@+id/tvWeb"
+                                style="@style/TextWhiteStyle"
+                                android:layout_marginTop="@dimen/distance_text"
+                                android:text="www.njmzk.com" />
+                        </LinearLayout>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -92,6 +118,7 @@
                     android:paddingRight="@dimen/distance_view">
 
                     <TextView
+                        android:id="@+id/tvIndusty"
                         style="@style/TextWhiteStyle"
                         android:text="所属行业： 智能硬件互联网 大消费金融 医疗健康 旅游 文化 娱乐 体育 运动 物流" />
 
@@ -103,6 +130,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tvCountFav"
                             style="@style/TextDrawableStyle"
                             android:drawableLeft="@mipmap/shoucangxiaobai"
                             android:text="2585"
@@ -110,9 +138,10 @@
                             android:textSize="@dimen/text_size_12" />
 
                         <TextView
+                            android:id="@+id/tvCountView"
                             style="@style/TextDrawableStyle"
                             android:layout_marginLeft="@dimen/distance_divider"
-                            android:drawableLeft="@mipmap/pinglunxiaohui"
+                            android:drawableLeft="@mipmap/liulanxiaobai"
                             android:text="2585"
                             android:textColor="@color/white"
                             android:textSize="@dimen/text_size_12" />
@@ -120,12 +149,14 @@
                         <View style="@style/WeightView" />
 
                         <ImageView
+                            android:id="@+id/ivShare"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/distance_view"
                             android:src="@mipmap/zhuanfabai" />
 
                         <ImageView
+                            android:id="@+id/ivFav"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@mipmap/shoucanghuang" />
@@ -145,6 +176,7 @@
                     android:padding="@dimen/distance_view">
 
                     <TextView
+                        android:id="@+id/tvRecommend"
                         style="@style/TitleRedTextStyle"
                         android:layout_width="150dp"
                         android:background="@drawable/bg_border_red"
@@ -169,11 +201,12 @@
 
                 <View style="@style/LineBoth" />
 
-                <TextView
-                    style="@style/TitleTextStyle"
-                    android:padding="@dimen/distance_view"
-                    android:text="源贷码财富管理投资股份有限公司，是经陕西省工商总局核准，于2013年注册成立的股份有限公司，注册资本1亿元人民币。主要经营业务：资产管理、财务顾问、投资咨询商品、企业改制、重组及上市咨询、商业贸易、电子商务。" />
-
+                <com.znz.compass.znzlibray.views.WebViewWithProgress
+                    android:id="@+id/wvDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/distance_view"
+                    android:scrollbars="none" />
 
                 <TextView
                     style="@style/TitleBlodStyle"
@@ -184,6 +217,7 @@
                 <View style="@style/LineBoth" />
 
                 <TextView
+                    android:id="@+id/tvLike"
                     style="@style/TitleTextStyle"
                     android:padding="@dimen/distance_view"
                     android:text="A轮 种子轮 天使轮"></TextView>
@@ -196,19 +230,12 @@
 
                 <View style="@style/LineBoth" />
 
-                <TextView
-                    style="@style/TitleTextStyle"
-                    android:padding="@dimen/distance_view"
-                    android:text="请详细介绍您的产品，有哪些功能或亮点？如何解决痛点、如何满足用户需求？或者您可以添加产品图片，并为产品图片做出相应注释。" />
-
-                <ImageView
+                <com.znz.compass.znzlibray.views.WebViewWithProgress
+                    android:id="@+id/wvModel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/distance_view"
-                    android:layout_marginLeft="@dimen/distance_view"
-                    android:layout_marginRight="@dimen/distance_view"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/touzianlitu" />
+                    android:layout_margin="@dimen/distance_view"
+                    android:scrollbars="none" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

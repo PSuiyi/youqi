@@ -11,11 +11,14 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.CommentAdapter;
 import com.mzk.compass.youqi.adapter.DetailAdapter;
 import com.mzk.compass.youqi.adapter.MenuAdapter;
+import com.mzk.compass.youqi.adapter.TradeAdapter;
 import com.mzk.compass.youqi.base.BaseAppListActivity;
 import com.mzk.compass.youqi.bean.MenuBean;
 import com.mzk.compass.youqi.bean.MultiBean;
+import com.mzk.compass.youqi.bean.PeopleBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,6 +52,16 @@ public class PeopleDetailAct extends BaseAppListActivity {
     private DetailAdapter detailAdapter;
     private String id;
 
+    private HttpImageView ivUserHeader;
+    private TextView tvName;
+    private TextView tvTag1;
+    private TextView tvTag2;
+    private TextView tvCountFav;
+    private TextView tvCountComment;
+    private RecyclerView rvTrade;
+
+private PeopleBean bean;
+
     @Override
     protected int[] getLayoutResource() {
         return new int[]{R.layout.act_people_detail, 1};
@@ -80,6 +93,13 @@ public class PeopleDetailAct extends BaseAppListActivity {
         adapter.addHeaderView(header);
         rvMenu = bindViewById(header, R.id.rvMenu);
         rvDetail = bindViewById(header, R.id.rvDetail);
+        ivUserHeader = bindViewById(header, R.id.ivUserHeader);
+        tvName = bindViewById(header, R.id.tvName);
+        tvTag1 = bindViewById(header, R.id.tvTag1);
+        tvTag2 = bindViewById(header, R.id.tvTag2);
+        rvTrade = bindViewById(header, R.id.rvTrade);
+        tvCountFav = bindViewById(header, R.id.tvCountFav);
+        tvCountComment = bindViewById(header, R.id.tvCountComment);
 
         tvRecommend = bindViewById(header, R.id.tvRecommend);
         tvRecommend.setOnClickListener(v -> {
@@ -115,6 +135,24 @@ public class PeopleDetailAct extends BaseAppListActivity {
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
+                bean = JSONObject.parseObject(responseOriginal.getString("data"),PeopleBean.class);
+                ivUserHeader.loadHeaderImage(bean.getAvatar());
+                mDataManager.setValueToView(tvName, bean.getUsername());
+                mDataManager.setValueToView(tvCountComment, bean.getCommentsNum());
+                mDataManager.setValueToView(tvCountFav, bean.getCollectionNum());
+                mDataManager.setValueToView(tvTag1, bean.getName());
+                mDataManager.setValueToView(tvTag2, bean.getGroupName());
+
+                if (bean.getTradeid() != null & bean.getTradeid().size() > 0) {
+                    mDataManager.setViewVisibility(rvTrade, true);
+                    TradeAdapter adapter = new TradeAdapter(bean.getTradeid());
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
+                    layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                    rvTrade.setLayoutManager(layoutManager);
+                    rvTrade.setAdapter(adapter);
+                } else {
+                    mDataManager.setViewVisibility(rvTrade, false);
+                }
             }
 
             @Override
