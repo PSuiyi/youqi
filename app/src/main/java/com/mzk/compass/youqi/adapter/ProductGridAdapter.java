@@ -1,5 +1,6 @@
 package com.mzk.compass.youqi.adapter;
 
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,8 @@ public class ProductGridAdapter extends BaseQuickAdapter<ProductBean, BaseViewHo
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        gotoActivity(ProductDetailAct.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("id", bean.getId());
+        gotoActivity(ProductDetailAct.class, bundle);
     }
 }

@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.CommentAdapter;
@@ -15,6 +16,7 @@ import com.mzk.compass.youqi.adapter.TradeAdapter;
 import com.mzk.compass.youqi.base.BaseAppListActivity;
 import com.mzk.compass.youqi.bean.MenuBean;
 import com.mzk.compass.youqi.bean.MultiBean;
+import com.mzk.compass.youqi.bean.NewsBean;
 import com.mzk.compass.youqi.bean.PeopleBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
@@ -28,6 +30,8 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.ResponseBody;
+import rx.Observable;
 
 /**
  * Date： 2018/4/5 2018
@@ -163,10 +167,17 @@ private PeopleBean bean;
     }
 
     @Override
-    protected void onRefreshSuccess(String response) {
-
+    protected Observable<ResponseBody> requestCustomeRefreshObservable() {
+        params.put("type", "投资人");
+        params.put("id", id);
+        return mModel.requestCommentList(params);
     }
 
+    @Override
+    protected void onRefreshSuccess(String response) {
+        dataList.addAll(JSONArray.parseArray(responseJson.getString("data"), NewsBean.class));
+        adapter.notifyDataSetChanged();
+    }
     @Override
     protected void onRefreshFail(String error) {
 

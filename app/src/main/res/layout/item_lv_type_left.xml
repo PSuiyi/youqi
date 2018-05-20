@@ -20,13 +20,11 @@
 
             <RadioButton
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:background="@null"
                 android:button="@null"
                 android:drawableLeft="@mipmap/kaigongsi"
                 android:drawablePadding="8dp"
-                android:paddingTop="30dp"
-                android:paddingBottom="30dp"
                 android:text="开公司"
                 android:textSize="@dimen/title_size" />
 
