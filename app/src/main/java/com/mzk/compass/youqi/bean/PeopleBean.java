@@ -37,12 +37,21 @@ public class PeopleBean extends BaseZnzBean {
     private String id;
     private String realName;
     private String uid;
+    private String name;
     private String groupName;
     private String avatar;
     private String introduce;
     private String commentsNum;
     private String collectionNum;
     private List<TagYouBean> tradeid;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public List<TagYouBean> getTradeid() {
         return tradeid;

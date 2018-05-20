@@ -1,6 +1,7 @@
 package com.mzk.compass.youqi.adapter;
 
 import android.graphics.Paint;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -10,6 +11,7 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.bean.ProductBean;
 import com.mzk.compass.youqi.ui.home.product.ProductDetailAct;
 import com.znz.compass.znzlibray.utils.DipUtil;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
@@ -57,7 +59,11 @@ public class ProductAdapter extends BaseQuickAdapter<ProductBean, BaseViewHolder
                     DipUtil.dip2px(5));
         }
 
-        mDataManager.setValueToView(tvTitle, bean.getTitle());
+        if (!StringUtil.isBlank(bean.getTitle())) {
+            mDataManager.setValueToView(tvTitle, bean.getTitle());
+        } else {
+            mDataManager.setValueToView(tvTitle, bean.getName());
+        }
         mDataManager.setValueToView(tvMoney, "¥" + bean.getRealPrice());
         mDataManager.setValueToView(tvMoneyOld, "原价：¥" + bean.getMarketPrice());
         mDataManager.setValueToView(tvCount, bean.getShowNum());
@@ -66,6 +72,12 @@ public class ProductAdapter extends BaseQuickAdapter<ProductBean, BaseViewHolder
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        gotoActivity(ProductDetailAct.class);
+        Bundle bundle = new Bundle();
+        if (!StringUtil.isBlank(bean.getId())) {
+            bundle.putString("id", bean.getId());
+        } else {
+            bundle.putString("id", bean.getAdPositionid());
+        }
+        gotoActivity(ProductDetailAct.class, bundle);
     }
 }

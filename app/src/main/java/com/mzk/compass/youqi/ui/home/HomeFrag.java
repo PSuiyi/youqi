@@ -196,15 +196,15 @@ public class HomeFrag extends BaseAppFragment {
                             if (!StringUtil.isBlank(responseObject.getString("mobileCompanyRecommendSmall"))) {
                                 hotList.addAll(JSONArray.parseArray(responseObject.getString("mobileCompanyRecommendSmall"), ProjectBean.class));
                             }
-                            if (!hotList.isEmpty()) {
-                                if (hotList.size() >= 5) {
-                                    ivImage1.loadVerImage(hotList.get(0).getLogo());
-                                    ivImage2.loadVerImage(hotList.get(1).getLogo());
-                                    ivImage3.loadVerImage(hotList.get(2).getLogo());
-                                    ivImage4.loadVerImage(hotList.get(3).getLogo());
-                                    ivImage5.loadVerImage(hotList.get(4).getLogo());
-                                }
-                            }
+//                            if (!hotList.isEmpty()) {
+//                                if (hotList.size() >= 5) {
+//                                    ivImage1.loadVerImage(hotList.get(0).getLogo());
+//                                    ivImage2.loadVerImage(hotList.get(1).getLogo());
+//                                    ivImage3.loadVerImage(hotList.get(2).getLogo());
+//                                    ivImage4.loadVerImage(hotList.get(3).getLogo());
+//                                    ivImage5.loadVerImage(hotList.get(4).getLogo());
+//                                }
+//                            }
                         }
 
                         if (!projectBeanList.isEmpty()) {
@@ -241,6 +241,7 @@ public class HomeFrag extends BaseAppFragment {
                 super.onFail(error);
             }
         });
+
         Map<String, String> params1 = new HashMap<>();
         params1.put("bannerType", "MobileCompanyBanner");
         mModel.requestBanner(params1, new ZnzHttpListener() {

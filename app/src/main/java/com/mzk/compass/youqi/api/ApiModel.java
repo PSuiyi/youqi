@@ -200,6 +200,18 @@ public class ApiModel extends BaseModel {
         request(apiService.requestPeopleDetail(params), znzHttpListener, LODING_LODING);
     }
 
+    public Observable<ResponseBody> requestProductList(Map<String, String> params) {
+        return apiService.requestProductList(params);
+    }
+
+    public void requestProductDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestProductDetail(params), znzHttpListener, LODING_LODING);
+    }
+
+    public Observable<ResponseBody> requestOrganList(Map<String, String> params) {
+        return apiService.requestOrganList(params);
+    }
+
     /**
      * 帖子详情
      *

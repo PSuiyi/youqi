@@ -54,7 +54,7 @@ public class PeopleAdapter extends BaseQuickAdapter<PeopleBean, BaseViewHolder> 
         mDataManager.setValueToView(tvName, bean.getUsername());
         mDataManager.setValueToView(tvCountComment, bean.getCommentsNum());
         mDataManager.setValueToView(tvCountFav, bean.getCollectionNum());
-        mDataManager.setValueToView(tvTag1, bean.getRealName());
+        mDataManager.setValueToView(tvTag1, bean.getName());
         mDataManager.setValueToView(tvTag2, bean.getGroupName());
 
         if (bean.getTradeid() != null & bean.getTradeid().size() > 0) {

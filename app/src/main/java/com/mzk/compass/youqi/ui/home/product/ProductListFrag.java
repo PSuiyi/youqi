@@ -3,9 +3,14 @@ package com.mzk.compass.youqi.ui.home.product;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.alibaba.fastjson.JSON;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.ProductAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
+import com.mzk.compass.youqi.bean.ProductBean;
+
+import okhttp3.ResponseBody;
+import rx.Observable;
 
 /**
  * Date： 2018/3/31 2018
@@ -25,7 +30,6 @@ public class ProductListFrag extends BaseAppListFragment {
 
     @Override
     protected void initializeNavigation() {
-
     }
 
     @Override
@@ -45,8 +49,14 @@ public class ProductListFrag extends BaseAppListFragment {
     }
 
     @Override
-    protected void onRefreshSuccess(String response) {
+    protected Observable<ResponseBody> requestCustomeRefreshObservable() {
+        return mModel.requestProductList(params);
+    }
 
+    @Override
+    protected void onRefreshSuccess(String response) {
+        dataList.addAll(JSON.parseArray(responseJson.getString("productData"), ProductBean.class));
+        adapter.notifyDataSetChanged();
     }
 
     @Override

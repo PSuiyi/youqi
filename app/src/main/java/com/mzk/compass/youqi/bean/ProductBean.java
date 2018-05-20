@@ -30,6 +30,78 @@ public class ProductBean extends BaseZnzBean {
     private String marketPrice;
     private String realPrice;
     private String showNum;
+    private String name;
+    private String mobilePhoto;
+    private String content;
+    private String companyid;
+    private String tel;
+    private String productTypeid;
+    private String isCollected;
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMobilePhoto() {
+        return mobilePhoto;
+    }
+
+    public void setMobilePhoto(String mobilePhoto) {
+        this.mobilePhoto = mobilePhoto;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getCompanyid() {
+        return companyid;
+    }
+
+    public void setCompanyid(String companyid) {
+        this.companyid = companyid;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public String getProductTypeid() {
+        return productTypeid;
+    }
+
+    public void setProductTypeid(String productTypeid) {
+        this.productTypeid = productTypeid;
+    }
+
+    public String getIsCollected() {
+        return isCollected;
+    }
+
+    public void setIsCollected(String isCollected) {
+        this.isCollected = isCollected;
+    }
 
     public String getAdPositionid() {
         return adPositionid;

@@ -82,6 +82,7 @@ public class HelpFrag extends BaseAppListFragment {
         znzToolBar.setOnSearchRightClickListener(v -> {
             gotoActivity(MessageTabAct.class);
         });
+        znzToolBar.setSearchHint("找商品");
     }
 
     @Override
@@ -126,7 +127,7 @@ public class HelpFrag extends BaseAppListFragment {
             gotoActivity(ProductListAct.class);
         });
         tvMenu8.setOnClickListener(v -> {
-            gotoActivity(TypeListAct.class);
+            gotoActivity(ProductListAct.class);
         });
 
         banner = bindViewById(header, R.id.banner);

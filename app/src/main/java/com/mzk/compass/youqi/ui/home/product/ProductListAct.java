@@ -19,7 +19,7 @@ public class ProductListAct extends BaseAppActivity {
 
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.act_project_list, 2};
+        return new int[]{R.layout.act_product_list, 2};
     }
 
     @Override
