@@ -52,6 +52,7 @@
                             android:text="有鱼钓" />
 
                         <TextView
+                            android:id="@+id/tvTag"
                             style="@style/TagStyle"
                             android:layout_marginLeft="@dimen/distance_divider"
                             android:text="天使轮" />
@@ -78,12 +79,14 @@
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
-                        <ImageView
+                        <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                            android:id="@+id/ivLogo"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@mipmap/logo2" />
 
                         <TextView
+                            android:id="@+id/tvCompanyName"
                             style="@style/TextStyle"
                             android:text="美之科" />
 

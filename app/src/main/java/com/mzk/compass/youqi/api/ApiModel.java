@@ -216,6 +216,10 @@ public class ApiModel extends BaseModel {
         request(apiService.requestOrganDetail(params), znzHttpListener, LODING_LODING);
     }
 
+    public void requestProjectDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestProjectDetail(params), znzHttpListener, LODING_LODING);
+    }
+
     /**
      * 帖子详情
      *

@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.CommentAdapter;
 import com.mzk.compass.youqi.adapter.DetailAdapter;
@@ -16,17 +18,25 @@ import com.mzk.compass.youqi.adapter.PeopleGridAdapter;
 import com.mzk.compass.youqi.base.BaseAppListActivity;
 import com.mzk.compass.youqi.bean.MenuBean;
 import com.mzk.compass.youqi.bean.MultiBean;
+import com.mzk.compass.youqi.bean.NewsBean;
 import com.mzk.compass.youqi.bean.PeopleBean;
+import com.mzk.compass.youqi.bean.ProjectBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.home.people.PeopleListAct;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.ResponseBody;
+import rx.Observable;
 
 /**
  * Date： 2018/4/5 2018
@@ -51,7 +61,14 @@ public class ProjectDetailAct extends BaseAppListActivity {
 
     private DetailAdapter detailAdapter;
     private String id;
+    private ProjectBean bean;
     private List<PeopleBean> userList = new ArrayList<>();
+
+    private HttpImageView ivImage;
+    private TextView tvName;
+    private TextView tvTag;
+    private TextView tvContent;
+    private RecyclerView rvTrade;
 
     @Override
     protected int[] getLayoutResource() {
@@ -130,13 +147,37 @@ public class ProjectDetailAct extends BaseAppListActivity {
 
     @Override
     protected void loadDataFromServer() {
+        Map<String, String> params = new HashMap<>();
+        params.put("projectId", id);
+        mModel.requestProjectDetail(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                bean = JSONObject.parseObject(responseOriginal.getString("data"), ProjectBean.class);
 
+            }
+
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
+            }
+        });
+    }
+
+
+    @Override
+    protected Observable<ResponseBody> requestCustomeRefreshObservable() {
+        params.put("type", "项目");
+        params.put("id", id);
+        return mModel.requestCommentList(params);
     }
 
     @Override
     protected void onRefreshSuccess(String response) {
-
+        dataList.addAll(JSONArray.parseArray(responseJson.getString("data"), NewsBean.class));
+        adapter.notifyDataSetChanged();
     }
+
 
     @Override
     protected void onRefreshFail(String error) {
