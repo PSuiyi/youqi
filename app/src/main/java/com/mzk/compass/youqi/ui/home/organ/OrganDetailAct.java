@@ -101,12 +101,12 @@ public class OrganDetailAct extends BaseAppActivity {
     protected void loadDataFromServer() {
         Map<String, String> params = new HashMap<>();
         params.put("companyId", id);
-        mModel.requestPeopleDetail(params, new ZnzHttpListener() {
+        mModel.requestOrganDetail(params, new ZnzHttpListener() {
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 bean = JSONObject.parseObject(responseOriginal.getString("data"), OrganBean.class);
-                ivImage.loadHeaderImage(bean.getLogo());
+                ivImage.loadSquareImage(bean.getLogo());
                 mDataManager.setValueToView(tvName, bean.getCname());
                 mDataManager.setValueToView(tvCountView, bean.getVisiteNum());
                 mDataManager.setValueToView(tvCountFav, bean.getCollectionNum());

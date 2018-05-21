@@ -36,7 +36,25 @@ public class ProjectBean extends BaseZnzBean {
     private String visiteNum;
     private String commentsNum;
     private String rongzistate;
+    private String companyName;
+    private String companyLogo;
     private List<TagYouBean> tradeid;
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getCompanyLogo() {
+        return companyLogo;
+    }
+
+    public void setCompanyLogo(String companyLogo) {
+        this.companyLogo = companyLogo;
+    }
 
     public String getId() {
         return id;

@@ -126,6 +126,9 @@ public interface ApiService {
     @GET("company/list")
     Observable<ResponseBody> requestOrganList(@QueryMap Map<String, String> params);
 
+    @GET("company/detail")
+    Observable<ResponseBody> requestOrganDetail(@QueryMap Map<String, String> params);
+
     @GET("news/detail")
     Observable<ResponseBody> requestNewsDetail(@QueryMap Map<String, String> params);
 

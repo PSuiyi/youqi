@@ -76,7 +76,7 @@ public class ProductAdapter extends BaseQuickAdapter<ProductBean, BaseViewHolder
         if (!StringUtil.isBlank(bean.getId())) {
             bundle.putString("id", bean.getId());
         } else {
-            bundle.putString("id", bean.getAdPositionid());
+            bundle.putString("id", bean.getLink());
         }
         gotoActivity(ProductDetailAct.class, bundle);
     }

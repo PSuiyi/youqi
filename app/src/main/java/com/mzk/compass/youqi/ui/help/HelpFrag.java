@@ -170,7 +170,7 @@ public class HelpFrag extends BaseAppListFragment {
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 productList.clear();
-                productList.addAll(JSONArray.parseArray(responseOriginal.getString("data"), ProductBean.class));
+                productList.addAll(JSONArray.parseArray(responseObject.getString("mobileHelpBannerUnder"), ProductBean.class));
                 productGridAdapter.notifyDataSetChanged();
             }
 
@@ -179,6 +179,7 @@ public class HelpFrag extends BaseAppListFragment {
                 super.onFail(error);
             }
         });
+
         Map<String, String> params1 = new HashMap<>();
         params1.put("bannerType", "MobileHelpBanner");
         mModel.requestBanner(params1, new ZnzHttpListener() {

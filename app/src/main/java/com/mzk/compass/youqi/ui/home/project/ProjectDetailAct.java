@@ -16,10 +16,10 @@ import com.mzk.compass.youqi.adapter.PeopleGridAdapter;
 import com.mzk.compass.youqi.base.BaseAppListActivity;
 import com.mzk.compass.youqi.bean.MenuBean;
 import com.mzk.compass.youqi.bean.MultiBean;
+import com.mzk.compass.youqi.bean.PeopleBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.home.people.PeopleListAct;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
-import com.znz.compass.znzlibray.bean.BaseZnzBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +50,8 @@ public class ProjectDetailAct extends BaseAppListActivity {
     private RecyclerView rvProject;
 
     private DetailAdapter detailAdapter;
+    private String id;
+    private List<PeopleBean> userList = new ArrayList<>();
 
     @Override
     protected int[] getLayoutResource() {
@@ -58,7 +60,9 @@ public class ProjectDetailAct extends BaseAppListActivity {
 
     @Override
     protected void initializeVariate() {
-
+        if (getIntent().hasExtra("id")) {
+            id = getIntent().getStringExtra("id");
+        }
     }
 
     @Override
@@ -83,13 +87,6 @@ public class ProjectDetailAct extends BaseAppListActivity {
         rvPeople = bindViewById(header, R.id.rvPeople);
         rvProject = bindViewById(header, R.id.rvProject);
 
-        List<BaseZnzBean> userList = new ArrayList<>();
-        userList.add(new BaseZnzBean());
-        userList.add(new BaseZnzBean());
-        userList.add(new BaseZnzBean());
-        userList.add(new BaseZnzBean());
-        userList.add(new BaseZnzBean());
-        userList.add(new BaseZnzBean());
         PeopleGridAdapter peopleGridAdapter = new PeopleGridAdapter(userList);
         rvPeople.setLayoutManager(new GridLayoutManager(activity, 6));
         rvPeople.setAdapter(peopleGridAdapter);

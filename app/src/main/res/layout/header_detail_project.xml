@@ -64,22 +64,12 @@
                         android:singleLine="true"
                         android:text="好玩有趣的钓鱼软件，同城交友，人脉扩展！" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/distance_text"
-                        android:orientation="horizontal">
 
-                        <TextView
-                            style="@style/TagBlueStyle"
-                            android:text="文化娱乐" />
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvTrade"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
-                        <TextView
-                            style="@style/TagBlueStyle"
-                            android:layout_marginLeft="@dimen/distance_divider"
-                            android:text="休闲" />
-
-                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -98,6 +88,7 @@
                             android:text="美之科" />
 
                         <TextView
+                            android:id="@+id/tvShizhi"
                             style="@style/TextGrayStyle"
                             android:layout_marginLeft="3dp"
                             android:text="200~500万" />
@@ -112,6 +103,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tvCountFav"
                             style="@style/TextDrawableStyle"
                             android:drawableLeft="@mipmap/shoucangxiaohui"
                             android:text="2585"
@@ -119,6 +111,7 @@
                             android:textSize="@dimen/text_size_12" />
 
                         <TextView
+                            android:id="@+id/tvCountComment"
                             style="@style/TextDrawableStyle"
                             android:layout_marginLeft="@dimen/distance_divider"
                             android:drawableLeft="@mipmap/pinglunxiaohui"
@@ -127,6 +120,7 @@
                             android:textSize="@dimen/text_size_12" />
 
                         <TextView
+                            android:id="@+id/tvCountView"
                             style="@style/TextDrawableStyle"
                             android:layout_marginLeft="@dimen/distance_divider"
                             android:drawableLeft="@mipmap/liulanxiaohui"
@@ -137,11 +131,13 @@
                         <View style="@style/WeightView" />
 
                         <ImageView
+                            android:id="@+id/ivShare"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@mipmap/zhuanfa" />
 
                         <ImageView
+                            android:id="@+id/ivFav"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/distance_view"
@@ -173,6 +169,7 @@
                     android:text="地址：" />
 
                 <TextView
+                    android:id="@+id/tvAddress"
                     style="@style/TitleTextStyle"
                     android:text="南京市建邺区路山路188号" />
 
@@ -189,6 +186,7 @@
                     android:text="状态：" />
 
                 <TextView
+                    android:id="@+id/tvState"
                     style="@style/TitleTextStyle"
                     android:text="运营中" />
 
@@ -205,6 +203,7 @@
                     android:text="公司：" />
 
                 <TextView
+                    android:id="@+id/tvCompany"
                     style="@style/TitleTextStyle"
                     android:text="江苏南京美之科信息技术有限公司" />
 
@@ -221,6 +220,7 @@
                     android:text="营业额：" />
 
                 <TextView
+                    android:id="@+id/tvMoney"
                     style="@style/TitleTextStyle"
                     android:text="天使轮" />
 
@@ -237,6 +237,7 @@
                     android:text="成立时间：" />
 
                 <TextView
+                    android:id="@+id/tvTime"
                     style="@style/TitleTextStyle"
                     android:text="2017-01-17" />
 
