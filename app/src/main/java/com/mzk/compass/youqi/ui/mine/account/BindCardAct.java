@@ -1,10 +1,14 @@
 package com.mzk.compass.youqi.ui.mine.account;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzlibray.views.EditTextWithDel;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -13,6 +17,13 @@ import butterknife.OnClick;
  */
 
 public class BindCardAct extends BaseAppActivity {
+    @Bind(R.id.etBankCode)
+    EditTextWithDel etBankCode;
+    @Bind(R.id.etBank)
+    EditTextWithDel etBank;
+    @Bind(R.id.tvSubmit)
+    TextView tvSubmit;
+
     @Override
     protected int[] getLayoutResource() {
         return new int[]{R.layout.act_bind_card, 1};
@@ -36,13 +47,6 @@ public class BindCardAct extends BaseAppActivity {
     @Override
     protected void loadDataFromServer() {
 
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
     }
 
     @OnClick(R.id.tvSubmit)

@@ -150,6 +150,9 @@ public interface ApiService {
     @GET("site/get-banner")
     Observable<ResponseBody> requestBanner(@QueryMap Map<String, String> params);
 
+    @GET("ucenter/aboutus")
+    Observable<ResponseBody> requestAboutUs(@QueryMap Map<String, String> params);
+
     @Multipart
     @POST("")
     Observable<ResponseBody> uploadImageSingle(@QueryMap Map<String, String> params, @Part MultipartBody.Part file);

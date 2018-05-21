@@ -507,6 +507,16 @@ public class ApiModel extends BaseModel {
     }
 
     /**
+     * 关于我们
+     *
+     * @param params
+     * @return
+     */
+    public void requestAboutUs(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestAboutUs(params), znzHttpListener);
+    }
+
+    /**
      * 手机验证码
      *
      * @param params

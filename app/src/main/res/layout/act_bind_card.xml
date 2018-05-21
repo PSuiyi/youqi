@@ -27,6 +27,7 @@
                 android:text="银行卡号" />
 
             <com.znz.compass.znzlibray.views.EditTextWithDel
+                android:id="@+id/etBankCode"
                 style="@style/EditStyle"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="10dp"
@@ -46,6 +47,7 @@
                 android:text="输入银行" />
 
             <com.znz.compass.znzlibray.views.EditTextWithDel
+                android:id="@+id/etBank"
                 style="@style/EditStyle"
                 android:layout_width="match_parent"
                 android:layout_marginLeft="10dp"
