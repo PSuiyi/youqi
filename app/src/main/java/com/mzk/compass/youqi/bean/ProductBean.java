@@ -38,6 +38,8 @@ public class ProductBean extends BaseZnzBean {
     private String productTypeid;
     private String isCollected;
     private String id;
+    private String count;
+    private String totalMoney;
 
     public String getId() {
         return id;
@@ -173,5 +175,21 @@ public class ProductBean extends BaseZnzBean {
 
     public void setShowNum(String showNum) {
         this.showNum = showNum;
+    }
+
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String count) {
+        this.count = count;
+    }
+
+    public String getTotalMoney() {
+        return totalMoney;
+    }
+
+    public void setTotalMoney(String totalMoney) {
+        this.totalMoney = totalMoney;
     }
 }

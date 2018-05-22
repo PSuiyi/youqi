@@ -166,9 +166,30 @@
                 <View style="@style/WeightView" />
 
 
+                <ImageView
+                    android:id="@+id/ivDown"
+                    android:layout_width="25dp"
+                    android:layout_height="22dp"
+                    android:padding="@dimen/distance_divider"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/jian" />
+
                 <TextView
-                    style="@style/TitleTextStyle"
+                    android:id="@+id/tvNumber"
+                    style="@style/TextGrayStyle"
+                    android:layout_width="35dp"
+                    android:layout_height="22dp"
+                    android:gravity="center"
+                    android:singleLine="true"
                     android:text="1" />
+
+                <ImageView
+                    android:id="@+id/ivAdd"
+                    android:layout_width="25dp"
+                    android:layout_height="22dp"
+                    android:padding="@dimen/distance_divider"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/jia" />
 
             </LinearLayout>
 

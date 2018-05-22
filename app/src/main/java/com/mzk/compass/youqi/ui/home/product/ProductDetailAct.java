@@ -12,11 +12,13 @@ import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.bean.ProductBean;
 import com.mzk.compass.youqi.ui.help.ProductOrderComfirmAct;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.WebViewWithProgress;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIActionSheetDialog;
 import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -58,6 +60,8 @@ public class ProductDetailAct extends BaseAppActivity {
     TextView tvAddress;
     @Bind(R.id.wvDetail)
     WebViewWithProgress wvDetail;
+    @Bind(R.id.tvNumber)
+    TextView tvNumber;
     private String id;
     private ProductBean bean;
 
@@ -92,11 +96,13 @@ public class ProductDetailAct extends BaseAppActivity {
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 bean = JSONObject.parseObject(responseOriginal.getString("data"), ProductBean.class);
+                bean.setCount("1");
                 ivImage.loadSquareImage(bean.getMobilePhoto());
                 mDataManager.setValueToView(tvTitle, bean.getName());
                 mDataManager.setValueToView(tvMoney, "¥" + bean.getRealPrice());
                 mDataManager.setValueToView(tvMoneyOld, "原价：¥" + bean.getMarketPrice());
                 mDataManager.setValueToView(tvCountPayed, bean.getShowNum());
+                mDataManager.setValueToView(tvNumber, bean.getCount());
                 wvDetail.loadContent(bean.getContent());
             }
 
@@ -114,7 +120,7 @@ public class ProductDetailAct extends BaseAppActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.llCity, R.id.llArea, R.id.tvFav, R.id.tvPhone, R.id.tvBuy})
+    @OnClick({R.id.llCity, R.id.llArea, R.id.tvFav, R.id.tvPhone, R.id.tvBuy, R.id.ivDown, R.id.ivAdd})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.llCity:
@@ -150,8 +156,44 @@ public class ProductDetailAct extends BaseAppActivity {
                 mDataManager.callPhone(activity, "400-8888-8888");
                 break;
             case R.id.tvBuy:
-                gotoActivity(ProductOrderComfirmAct.class);
+                Map<String, String> params = new HashMap<>();
+                params.put("num", bean.getCount());
+                params.put("productId", bean.getId());
+                mModel.requestOrderConfirm(params, new ZnzHttpListener() {
+                    @Override
+                    public void onSuccess(JSONObject responseOriginal) {
+                        super.onSuccess(responseOriginal);
+                        bean.setTotalMoney(getTotalMoney());
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("bean", bean);
+                        gotoActivity(ProductOrderComfirmAct.class, bundle);
+                    }
+                });
+                break;
+            case R.id.ivDown:
+                if (StringUtil.stringToInt(mDataManager.getValueFromView(tvNumber)) <= 1) {
+                    return;
+                }
+                bean.setCount(StringUtil.getNumDown(mDataManager.getValueFromView(tvNumber)));
+                mDataManager.setValueToView(tvNumber, bean.getCount());
+                break;
+            case R.id.ivAdd:
+                bean.setCount(StringUtil.getNumUP(mDataManager.getValueFromView(tvNumber)));
+                mDataManager.setValueToView(tvNumber, bean.getCount());
                 break;
         }
+    }
+
+    private String getTotalMoney() {
+        if (StringUtil.isBlank(bean.getRealPrice())) {
+            return "0";
+        }
+        if (StringUtil.isBlank(bean.getCount())) {
+            return "0";
+        }
+        BigDecimal b1 = new BigDecimal(bean.getRealPrice());
+        BigDecimal b2 = new BigDecimal(bean.getCount());
+        double total = b1.multiply(b2).doubleValue();
+        return total + "";
     }
 }

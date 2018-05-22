@@ -55,8 +55,10 @@ public class AboutUsAct extends BaseAppActivity {
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
-                JSONObject json = JSON.parseObject(responseOriginal.getString("data"));
-                mDataManager.setValueToView(tvContent, json.getString("content"));
+                if (!StringUtil.isBlank(responseOriginal.getString("data"))) {
+                    JSONObject json = JSON.parseObject(responseOriginal.getString("data"));
+                    mDataManager.setValueToView(tvContent, json.getString("content"));
+                }
             }
         });
     }

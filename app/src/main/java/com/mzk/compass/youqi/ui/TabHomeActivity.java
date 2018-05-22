@@ -111,7 +111,7 @@ public class TabHomeActivity extends BaseAppActivity {
                     public void onSuccess(JSONObject responseOriginal) {
                         super.onSuccess(responseOriginal);
                         JSONObject json = JSON.parseObject(responseOriginal.getString("data"));
-                        if (json != null) {
+                        if (!StringUtil.isBlank(json.getString("usertype"))) {
                             String status = json.getString("usertype");
                             if (!StringUtil.isBlank(status) & status.equals("1")) {
                                 PopupWindowManager.getInstance(activity).showPublish(llAdd, new PopupWindowManager.OnPopupWindowClickListener() {

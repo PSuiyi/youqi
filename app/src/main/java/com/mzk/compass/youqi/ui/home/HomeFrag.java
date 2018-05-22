@@ -248,6 +248,7 @@ public class HomeFrag extends BaseAppFragment {
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
+                imgPath.clear();
                 List<BannerBean> list = new ArrayList<>();
                 list.addAll(JSON.parseArray(responseOriginal.getString("data"), BannerBean.class));
                 if (!list.isEmpty()) {

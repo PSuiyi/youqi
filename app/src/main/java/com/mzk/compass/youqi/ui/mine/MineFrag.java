@@ -212,9 +212,11 @@ public class MineFrag extends BaseAppFragment {
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
-                bean = JSON.parseObject(responseOriginal.getString("data"), UserBean.class);
-                AppUtils.getInstance(context).saveUserData(bean);
-                setData();
+                if (!StringUtil.isBlank(responseOriginal.getString("data"))) {
+                    bean = JSON.parseObject(responseOriginal.getString("data"), UserBean.class);
+                    AppUtils.getInstance(context).saveUserData(bean);
+                    setData();
+                }
             }
         });
     }

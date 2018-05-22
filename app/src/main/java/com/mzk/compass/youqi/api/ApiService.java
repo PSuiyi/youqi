@@ -153,6 +153,16 @@ public interface ApiService {
     @GET("ucenter/aboutus")
     Observable<ResponseBody> requestAboutUs(@QueryMap Map<String, String> params);
 
+    @GET("order/confirm")
+    Observable<ResponseBody> requestOrderConfirm(@QueryMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("order/submit")
+    Observable<ResponseBody> requestOrderSubmit(@FieldMap Map<String, String> params);
+
+    @GET("order/pay")
+    Observable<ResponseBody> requestOrderPay(@QueryMap Map<String, String> params);
+
     @Multipart
     @POST("")
     Observable<ResponseBody> uploadImageSingle(@QueryMap Map<String, String> params, @Part MultipartBody.Part file);

@@ -557,6 +557,36 @@ public class ApiModel extends BaseModel {
     }
 
     /**
+     * 订单确认
+     *
+     * @param params
+     * @return
+     */
+    public void requestOrderConfirm(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestOrderConfirm(params), znzHttpListener);
+    }
+
+    /**
+     * 订单提交
+     *
+     * @param params
+     * @return
+     */
+    public void requestOrderSubmit(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestOrderSubmit(params), znzHttpListener);
+    }
+
+    /**
+     * 订单支付界面
+     *
+     * @param params
+     * @return
+     */
+    public void requestOrderPay(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestOrderPay(params), znzHttpListener);
+    }
+
+    /**
      * 消息详情
      *
      * @param params
