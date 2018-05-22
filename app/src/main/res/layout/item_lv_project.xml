@@ -60,10 +60,10 @@
                     android:singleLine="true"
                     android:text="好玩有趣的钓鱼软件，同城交友，人脉扩展！" />
 
-               <android.support.v7.widget.RecyclerView
-                   android:id="@+id/rvTrade"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvTrade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -81,6 +81,7 @@
                     <TextView
                         android:id="@+id/tvCompanyName"
                         style="@style/TextStyle"
+                        android:layout_marginLeft="3dp"
                         android:text="美之科" />
 
                     <TextView

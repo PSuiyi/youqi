@@ -42,8 +42,53 @@ public class PeopleBean extends BaseZnzBean {
     private String avatar;
     private String introduce;
     private String commentsNum;
+    private String projectid;
+    private String userPhoto;
+    private String userName;
+    private String position;
+    private String profile;
     private String collectionNum;
     private List<TagYouBean> tradeid;
+
+    public String getProjectid() {
+        return projectid;
+    }
+
+    public void setProjectid(String projectid) {
+        this.projectid = projectid;
+    }
+
+    public String getUserPhoto() {
+        return userPhoto;
+    }
+
+    public void setUserPhoto(String userPhoto) {
+        this.userPhoto = userPhoto;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
 
     public String getName() {
         return name;

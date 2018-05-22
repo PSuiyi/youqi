@@ -69,7 +69,8 @@
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/rvTrade"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/distance_text" />
 
 
                     <LinearLayout
@@ -88,6 +89,7 @@
                         <TextView
                             android:id="@+id/tvCompanyName"
                             style="@style/TextStyle"
+                            android:layout_marginLeft="3dp"
                             android:text="美之科" />
 
                         <TextView

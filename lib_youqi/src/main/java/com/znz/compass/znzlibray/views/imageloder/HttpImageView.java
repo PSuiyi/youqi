@@ -139,7 +139,7 @@ public class HttpImageView extends AppCompatImageView {
                         .skipMemoryCache(true)
                         .error(error_image)
                         .placeholder(default_image)
-                        .transform(new GlideCircleTransform(context))
+                        .circleCrop()
                         .into(this);
                 return;
             }
@@ -152,7 +152,7 @@ public class HttpImageView extends AppCompatImageView {
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
                         .error(error_image)
                         .placeholder(default_image)
-                        .transform(new GlideCircleTransform(context))
+                        .circleCrop()
                         .into(this);
             } else {
                 GlideApp.with(context)
@@ -162,7 +162,7 @@ public class HttpImageView extends AppCompatImageView {
                         .skipMemoryCache(true)
                         .error(error_image)
                         .placeholder(default_image)
-                        .transform(new GlideCircleTransform(context))
+                        .circleCrop()
                         .into(this);
             }
         } catch (Exception e) {

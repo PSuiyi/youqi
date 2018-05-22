@@ -7,7 +7,6 @@ import android.widget.TextView;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.bean.NewsBean;
 import com.mzk.compass.youqi.ui.news.NewsDetailAct;
-import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.utils.TimeUtils;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
@@ -42,7 +41,7 @@ public class NewsAdapter extends BaseQuickAdapter<NewsBean, BaseViewHolder> impl
         mDataManager.setValueToView(tvTitle, bean.getTitle());
         mDataManager.setValueToView(tvContent, bean.getSummary());
         mDataManager.setValueToView(tvTag, bean.getName());
-        mDataManager.setValueToView(tvTime, TimeUtils.getFriendlyTimeSpanByNow(StringUtil.stringToLong(bean.getAddTime())));
+        mDataManager.setValueToView(tvTime, TimeUtils.getFriendlyTimeSpanByNow(bean.getAddTime()));
     }
 
     @Override

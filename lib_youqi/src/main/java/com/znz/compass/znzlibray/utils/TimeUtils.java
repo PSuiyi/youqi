@@ -687,7 +687,7 @@ public class TimeUtils {
         if (StringUtil.isBlank(time)) {
             return "暂无数据";
         }
-        return getFriendlyTimeSpanByNow(time, DEFAULT_PATTERN);
+        return getFriendlyTimeSpanByNow(StringUtil.stringToLong(time));
     }
 
     /**
@@ -748,7 +748,7 @@ public class TimeUtils {
     @SuppressLint("DefaultLocale")
     public static String getFriendlyTimeSpanByNow(long millis) {
         try {
-            long now = System.currentTimeMillis();
+            long now = System.currentTimeMillis() / 1000;
             long span;
             if (now > millis) {
                 span = now - millis;

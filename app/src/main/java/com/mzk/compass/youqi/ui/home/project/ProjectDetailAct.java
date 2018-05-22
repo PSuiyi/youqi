@@ -5,6 +5,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import com.mzk.compass.youqi.adapter.CommentAdapter;
 import com.mzk.compass.youqi.adapter.DetailAdapter;
 import com.mzk.compass.youqi.adapter.MenuAdapter;
 import com.mzk.compass.youqi.adapter.PeopleGridAdapter;
+import com.mzk.compass.youqi.adapter.TradeAdapter;
 import com.mzk.compass.youqi.base.BaseAppListActivity;
 import com.mzk.compass.youqi.bean.MenuBean;
 import com.mzk.compass.youqi.bean.MultiBean;
@@ -25,6 +27,8 @@ import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.home.people.PeopleListAct;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzlibray.utils.TimeUtils;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 
 import java.util.ArrayList;
@@ -65,9 +69,22 @@ public class ProjectDetailAct extends BaseAppListActivity {
     private List<PeopleBean> userList = new ArrayList<>();
 
     private HttpImageView ivImage;
+    private HttpImageView ivLogo;
     private TextView tvName;
     private TextView tvTag;
     private TextView tvContent;
+    private TextView tvCompanyName;
+    private TextView tvShizhi;
+    private TextView tvCountFav;
+    private TextView tvCountComment;
+    private TextView tvCountView;
+    private ImageView ivShare;
+    private ImageView ivFav;
+    private TextView tvAddress;
+    private TextView tvState;
+    private TextView tvMoney;
+    private TextView tvTime;
+    private TextView tvCompany;
     private RecyclerView rvTrade;
 
     @Override
@@ -103,6 +120,25 @@ public class ProjectDetailAct extends BaseAppListActivity {
         rvMenu = bindViewById(header, R.id.rvMenu);
         rvPeople = bindViewById(header, R.id.rvPeople);
         rvProject = bindViewById(header, R.id.rvProject);
+
+        ivImage = bindViewById(header, R.id.ivImage);
+        ivLogo = bindViewById(header, R.id.ivLogo);
+        tvName = bindViewById(header, R.id.tvName);
+        tvAddress = bindViewById(header, R.id.tvAddress);
+        tvCompany = bindViewById(header, R.id.tvCompany);
+        tvContent = bindViewById(header, R.id.tvContent);
+        tvCompanyName = bindViewById(header, R.id.tvCompanyName);
+        tvCountComment = bindViewById(header, R.id.tvCountComment);
+        tvCountFav = bindViewById(header, R.id.tvCountFav);
+        tvCountView = bindViewById(header, R.id.tvCountView);
+        tvMoney = bindViewById(header, R.id.tvMoney);
+        ivShare = bindViewById(header, R.id.ivShare);
+        ivFav = bindViewById(header, R.id.ivFav);
+        tvTime = bindViewById(header, R.id.tvTime);
+        tvTag = bindViewById(header, R.id.tvTag);
+        rvTrade = bindViewById(header, R.id.rvTrade);
+        tvShizhi = bindViewById(header, R.id.tvShizhi);
+        tvState = bindViewById(header, R.id.tvState);
 
         PeopleGridAdapter peopleGridAdapter = new PeopleGridAdapter(userList);
         rvPeople.setLayoutManager(new GridLayoutManager(activity, 6));
@@ -154,7 +190,49 @@ public class ProjectDetailAct extends BaseAppListActivity {
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 bean = JSONObject.parseObject(responseOriginal.getString("data"), ProjectBean.class);
+                ivImage.loadHttpImage(bean.getLogo());
+                ivLogo.loadHeaderImage(bean.getCompanyLogo());
+                mDataManager.setValueToView(tvName, bean.getName());
+                mDataManager.setValueToView(tvTag, bean.getRname());
+                mDataManager.setValueToView(tvContent, bean.getTitle());
+                mDataManager.setValueToView(tvCountFav, bean.getCollectionNum());
+                mDataManager.setValueToView(tvCountComment, bean.getCommentsNum());
+                mDataManager.setValueToView(tvCountView, bean.getVisiteNum());
+                mDataManager.setValueToView(tvCompanyName, bean.getCompanyName());
+                mDataManager.setValueToView(tvShizhi, bean.getRongzijine());
 
+                mDataManager.setValueToView(tvAddress, bean.getProvince() + bean.getCity() + bean.getArea() + bean.getAddress());
+                //运营状态 1运营中 2 已运营 3 未运营
+                if (!StringUtil.isBlank(bean.getRunState())) {
+                    switch (bean.getRunState()) {
+                        case "1":
+                            tvState.setText("运营中");
+                            break;
+                        case "2":
+                            tvState.setText("已运营");
+                            break;
+                        case "3":
+                            tvState.setText("未运营");
+                            break;
+                    }
+                } else {
+                    tvState.setText("未运营");
+                }
+
+                mDataManager.setValueToView(tvCompany, bean.getCompanyName());
+                mDataManager.setValueToView(tvTime, TimeUtils.getFormatTime(bean.getCreateTime(), "yyyy-MM-dd"));
+
+
+                if (bean.getTradeid() != null & bean.getTradeid().size() > 0) {
+                    mDataManager.setViewVisibility(rvTrade, true);
+                    TradeAdapter adapter = new TradeAdapter(bean.getTradeid());
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
+                    layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                    rvTrade.setLayoutManager(layoutManager);
+                    rvTrade.setAdapter(adapter);
+                } else {
+                    mDataManager.setViewVisibility(rvTrade, false);
+                }
             }
 
             @Override
