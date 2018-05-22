@@ -15,18 +15,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?android:attr/selectableItemBackground"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/distance_view">
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:background="@null"
-                android:button="@null"
-                android:drawableLeft="@mipmap/kaigongsi"
-                android:drawablePadding="8dp"
-                android:text="开公司"
-                android:textSize="@dimen/title_size" />
+            <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                android:id="@+id/ivIcon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@mipmap/kaigongsi" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                style="@style/TextStyle"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/distance_divider"
+                android:text="开公司" />
 
         </LinearLayout>
 

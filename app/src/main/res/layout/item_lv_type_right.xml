@@ -21,7 +21,8 @@
             android:paddingRight="@dimen/distance_view">
 
             <TextView
-                style="@style/TitleTextStyle"
+                android:id="@+id/tvTitle"
+                style="@style/TextStyle"
                 android:text="公司注册" />
 
         </LinearLayout>

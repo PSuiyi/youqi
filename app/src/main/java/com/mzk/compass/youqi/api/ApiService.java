@@ -163,6 +163,9 @@ public interface ApiService {
     @GET("order/pay")
     Observable<ResponseBody> requestOrderPay(@QueryMap Map<String, String> params);
 
+    @GET("product/get-product-type")
+    Observable<ResponseBody> requestCategory(@QueryMap Map<String, String> params);
+
     @Multipart
     @POST("")
     Observable<ResponseBody> uploadImageSingle(@QueryMap Map<String, String> params, @Part MultipartBody.Part file);

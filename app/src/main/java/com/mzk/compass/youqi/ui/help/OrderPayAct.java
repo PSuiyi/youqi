@@ -73,7 +73,7 @@ public class OrderPayAct extends BaseAppActivity {
                 super.onSuccess(responseOriginal);
                 bean = JSON.parseObject(responseOriginal.getString("data"), OrderConfirmBean.class);
                 if (bean != null) {
-                    ivLogo.loadVerImage(bean.getProductMobileImage());
+                    ivLogo.loadHttpImage(bean.getProductMobileImage());
                     mDataManager.setValueToView(tvProjectName, bean.getProductName());
                     mDataManager.setValueToView(tvPrice, "￥" + bean.getProductPrice());
                     mDataManager.setValueToView(tvCount, "x" + bean.getNum());

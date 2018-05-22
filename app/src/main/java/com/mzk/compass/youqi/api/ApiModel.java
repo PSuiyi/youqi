@@ -577,6 +577,16 @@ public class ApiModel extends BaseModel {
     }
 
     /**
+     * 商品分类
+     *
+     * @param params
+     * @return
+     */
+    public void requestCategory(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestCategory(params), znzHttpListener);
+    }
+
+    /**
      * 订单支付界面
      *
      * @param params
