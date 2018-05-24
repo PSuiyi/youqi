@@ -76,6 +76,10 @@ public interface ApiService {
     Observable<ResponseBody> requestMessageDetail(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("project/add")
+    Observable<ResponseBody> requestPublishProject(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("order/operate")
     Observable<ResponseBody> requestUpdateOrder(@FieldMap Map<String, String> params);
 
@@ -167,11 +171,11 @@ public interface ApiService {
     Observable<ResponseBody> requestCategory(@QueryMap Map<String, String> params);
 
     @Multipart
-    @POST("")
+    @POST("upload/upload")
     Observable<ResponseBody> uploadImageSingle(@QueryMap Map<String, String> params, @Part MultipartBody.Part file);
 
     @Multipart
-    @POST("")
+    @POST("upload/upload")
     Observable<ResponseBody> uploadImageMulti(@QueryMap Map<String, String> params, @Part() List<MultipartBody.Part> parts);
 
 }

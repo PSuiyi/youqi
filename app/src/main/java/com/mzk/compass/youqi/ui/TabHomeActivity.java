@@ -18,6 +18,7 @@ import com.mzk.compass.youqi.ui.help.HelpFrag;
 import com.mzk.compass.youqi.ui.home.HomeFrag;
 import com.mzk.compass.youqi.ui.mine.MineFrag;
 import com.mzk.compass.youqi.ui.news.NewsFrag;
+import com.mzk.compass.youqi.ui.publish.PublishAct;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.FragmentUtil;
@@ -121,14 +122,13 @@ public class TabHomeActivity extends BaseAppActivity {
                                     }
                                 });
                             } else {
-                                mDataManager.showToast("当前用户非投资人，请认证投资人");
+                                mDataManager.gotoActivity(PublishAct.class);
                             }
                         } else {
-                            mDataManager.showToast("当前用户非投资人，请认证投资人");
+                            mDataManager.gotoActivity(PublishAct.class);
                         }
                     }
                 });
-
                 break;
             case R.id.radioButton3:
                 if (groupFragment == null) {

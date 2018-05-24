@@ -36,6 +36,7 @@
             <View style="@style/LineBoth" />
 
             <EditText
+                android:id="@+id/etName"
                 style="@style/EditStyle"
                 android:layout_width="match_parent"
                 android:hint="请输入项目名称"
@@ -60,6 +61,7 @@
             <View style="@style/LineBoth" />
 
             <LinearLayout
+                android:id="@+id/llAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -80,9 +82,10 @@
             <View style="@style/LineBoth" />
 
             <EditText
+                android:id="@+id/etAddress"
                 style="@style/EditStyle"
                 android:layout_width="match_parent"
-                android:hint="请输入项目名称"
+                android:hint="请输入详细地址"
                 android:padding="@dimen/distance_view"
                 android:textSize="@dimen/title_size" />
 
@@ -103,7 +106,8 @@
 
             <View style="@style/LineBoth" />
 
-            <ImageView
+            <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                android:id="@+id/ivLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/distance_view"
@@ -127,6 +131,7 @@
             <View style="@style/LineBoth" />
 
             <EditText
+                android:id="@+id/etUserName"
                 style="@style/EditStyle"
                 android:layout_width="match_parent"
                 android:hint="请输入姓名"
@@ -151,7 +156,8 @@
             <View style="@style/LineBoth" />
 
             <EditText
-                style="@style/EditStyle"
+                android:id="@+id/etPhone"
+                style="@style/EditPhoneStyle"
                 android:layout_width="match_parent"
                 android:hint="请输入电话"
                 android:padding="@dimen/distance_view"
@@ -175,6 +181,32 @@
             <View style="@style/LineBoth" />
 
             <EditText
+                android:id="@+id/etCompany"
+                style="@style/EditStyle"
+                android:layout_width="match_parent"
+                android:hint="请输入公司名称不超过30个字"
+                android:padding="@dimen/distance_view"
+                android:textSize="@dimen/title_size" />
+
+            <View style="@style/LineBoth" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <ImageView style="@style/DotRedStyle" />
+
+                <TextView
+                    style="@style/TitleTextStyle"
+                    android:text="公司简称" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
+            <EditText
+                android:id="@+id/etCompanySimple"
                 style="@style/EditStyle"
                 android:layout_width="match_parent"
                 android:hint="请输入公司简称不超过6个字"
@@ -184,6 +216,7 @@
             <View style="@style/LineBoth" />
 
             <TextView
+                android:id="@+id/tvSubmit"
                 style="@style/BtnStyle"
                 android:text="保存" />
 

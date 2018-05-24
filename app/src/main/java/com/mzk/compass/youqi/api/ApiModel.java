@@ -172,6 +172,10 @@ public class ApiModel extends BaseModel {
         request(apiService.post(params), znzHttpListener);
     }
 
+    public void requestPublishProject(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestPublishProject(params), znzHttpListener, LODING_PD);
+    }
+
     /**
      * 帖子列表
      *
@@ -612,8 +616,7 @@ public class ApiModel extends BaseModel {
      * @param url
      * @param znzHttpListener
      */
-    public void uploadImageSingle(String url, ZnzHttpListener znzHttpListener) {
-        Map<String, String> params = new HashMap();
+    public void uploadImageSingle(Map<String, String> params, String url, ZnzHttpListener znzHttpListener) {
         File file = new File(url);
         Luban.get(context)
                 .load(file)
@@ -624,8 +627,8 @@ public class ApiModel extends BaseModel {
                 .doOnError(throwable -> throwable.printStackTrace())
                 .onErrorResumeNext(throwable -> Observable.empty())
                 .subscribe(file1 -> {
-                    RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpg"), file1);
-                    MultipartBody.Part body = MultipartBody.Part.createFormData("imgFile", file.getName(), requestBody);
+                    RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file1);
+                    MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
                     request(apiService.uploadImageSingle(params, body), znzHttpListener, LODING_PD);
                 });
     }
@@ -640,8 +643,8 @@ public class ApiModel extends BaseModel {
         Map<String, String> params = new HashMap();
         List<MultipartBody.Part> partLlist = new ArrayList<>();
         for (File file : url) {
-            RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpg"), file);
-            MultipartBody.Part body = MultipartBody.Part.createFormData("imgFile", file.getName() + ".jpg", requestBody);
+            RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+            MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName() + ".jpg", requestBody);
             partLlist.add(body);
         }
         request(apiService.uploadImageMulti(params, partLlist), znzHttpListener);

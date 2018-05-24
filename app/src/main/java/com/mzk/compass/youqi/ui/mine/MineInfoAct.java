@@ -22,10 +22,11 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -155,7 +156,9 @@ public class MineInfoAct extends BaseAppActivity {
                     public void onSuccess(List<String> photoList) {
                         if (!photoList.isEmpty()) {
                             ivHeader.loadHeaderImage(photoList.get(0));
-                            mModel.uploadImageSingle(photoList.get(0), new ZnzHttpListener() {
+                            Map<String, String> params = new HashMap<>();
+                            params.put("dirname", "avatar");
+                            mModel.uploadImageSingle(params, photoList.get(0), new ZnzHttpListener() {
                                 @Override
                                 public void onSuccess(JSONObject responseOriginal) {
                                     super.onSuccess(responseOriginal);

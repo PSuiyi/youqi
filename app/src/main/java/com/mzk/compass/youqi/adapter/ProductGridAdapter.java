@@ -55,7 +55,7 @@ public class ProductGridAdapter extends BaseQuickAdapter<ProductBean, BaseViewHo
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         Bundle bundle = new Bundle();
-        bundle.putString("id", bean.getAdPositionid());
+        bundle.putString("id", bean.getLink());
         gotoActivity(ProductDetailAct.class, bundle);
     }
 }
