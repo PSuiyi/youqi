@@ -441,6 +441,16 @@ public class ApiModel extends BaseModel {
     }
 
     /**
+     * 动态收藏列表
+     *
+     * @param params
+     * @return
+     */
+    public Observable<ResponseBody> requestCollect(Map<String, String> params) {
+        return apiService.requestCollect(params);
+    }
+
+    /**
      * 投稿列表
      *
      * @param params

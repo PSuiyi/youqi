@@ -21,6 +21,12 @@ import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.db.DbManagerSearch;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
+import com.mzk.compass.youqi.ui.home.organ.OrganListFrag;
+import com.mzk.compass.youqi.ui.home.people.PeopleListFrag;
+import com.mzk.compass.youqi.ui.home.product.ProductListFrag;
+import com.mzk.compass.youqi.ui.home.project.ProjectListFrag;
+import com.mzk.compass.youqi.ui.mine.order.OrderListFrag;
+import com.mzk.compass.youqi.ui.news.NewsListFrag;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.utils.FragmentUtil;
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -48,14 +54,18 @@ public class SearchCommonAct extends BaseAppActivity implements TextWatcher {
     @Bind(R.id.container)
     FrameLayout container;
     private SearchHistoryFrag fragment;
-    private SearchResultListFrag fragment2;
+    private ProjectListFrag projectListFrag;
+    private PeopleListFrag peopleListFrag;
+    private OrganListFrag organListFrag;
+    private ProductListFrag productListFrag;
+    private NewsListFrag newsListFrag;
 
     private FragmentUtil fragmentUtil;
     private FragmentManager fragmentManager;
 
     private SearchHistoryBean bean;
     private DbManagerSearch dbManager;
-    private String searchContent;
+    private String searchContent="";
 
     private String from;
 
@@ -70,6 +80,11 @@ public class SearchCommonAct extends BaseAppActivity implements TextWatcher {
             from = getIntent().getStringExtra("from");
         }
         fragment = new SearchHistoryFrag();
+        projectListFrag = ProjectListFrag.newInstance("搜索", searchContent);
+        peopleListFrag = PeopleListFrag.newInstance("搜索", searchContent);
+        organListFrag = OrganListFrag.newInstance("搜索", searchContent);
+        productListFrag = ProductListFrag.newInstance("搜索", searchContent);
+        newsListFrag = NewsListFrag.newInstance("搜索", searchContent);
 
         fragmentUtil = new FragmentUtil();
         fragmentManager = getSupportFragmentManager();
@@ -98,6 +113,9 @@ public class SearchCommonAct extends BaseAppActivity implements TextWatcher {
                 break;
             case "找商品":
                 etSerach.setHint("找商品");
+                break;
+            case "搜索优报道":
+                etSerach.setHint("搜索优报道");
                 break;
         }
         fragmentManager.beginTransaction().add(R.id.container, fragment).commit();
@@ -131,13 +149,63 @@ public class SearchCommonAct extends BaseAppActivity implements TextWatcher {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
                 searchContent = textView.getText().toString().trim();
-                if (fragment2 == null) {
-                    fragment2 = SearchResultListFrag.newInstance(searchContent, from);
-                } else {
-                    fragment2.setSearchData(searchContent, from);
-                    EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_SEARCH_VALUE, searchContent));
+                switch (from) {
+                    case "搜索项目":
+                        if (projectListFrag == null) {
+                            projectListFrag = ProjectListFrag.newInstance("搜索", searchContent);
+                        } else {
+                            projectListFrag.setKeywords(searchContent);
+                            EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_SEARCH_PROJECT, searchContent));
+                        }
+                        fragmentUtil.switchContent(projectListFrag, R.id.container, fragmentManager);
+                        break;
+                    case "找服务":
+                        if (productListFrag == null) {
+                            productListFrag = ProductListFrag.newInstance("搜索", searchContent);
+                        } else {
+                            productListFrag.setKeywords(searchContent);
+                            EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_SEARCH_PRODUCT, searchContent));
+                        }
+                        fragmentUtil.switchContent(productListFrag, R.id.container, fragmentManager);
+                        break;
+                    case "搜索投资人":
+                        if (peopleListFrag == null) {
+                            peopleListFrag = PeopleListFrag.newInstance("搜索", searchContent);
+                        } else {
+                            peopleListFrag.setKeywords(searchContent);
+                            EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_SEARCH_PEOPLE, searchContent));
+                        }
+                        fragmentUtil.switchContent(peopleListFrag, R.id.container, fragmentManager);
+                        break;
+                    case "搜索投资机构":
+                        if (organListFrag == null) {
+                            organListFrag = OrganListFrag.newInstance("搜索", searchContent);
+                        } else {
+                            organListFrag.setKeywords(searchContent);
+                            EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_SEARCH_ORGAN, searchContent));
+                        }
+                        fragmentUtil.switchContent(organListFrag, R.id.container, fragmentManager);
+                        break;
+                    case "找商品":
+                        if (productListFrag == null) {
+                            productListFrag = ProductListFrag.newInstance("搜索", searchContent);
+                        } else {
+                            productListFrag.setKeywords(searchContent);
+                            EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_SEARCH_PRODUCT, searchContent));
+                        }
+                        fragmentUtil.switchContent(productListFrag, R.id.container, fragmentManager);
+                        break;
+                    case "搜索优报道":
+                        if (newsListFrag == null) {
+                            newsListFrag = NewsListFrag.newInstance("搜索", searchContent);
+                        } else {
+                            newsListFrag.setKeywords(searchContent);
+                            EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_SEARCH_NEWS, searchContent));
+                        }
+                        fragmentUtil.switchContent(newsListFrag, R.id.container, fragmentManager);
+                        break;
                 }
-                fragmentUtil.switchContent(fragment2, R.id.container, fragmentManager);
+
             }
             return false;
         });
@@ -167,12 +235,64 @@ public class SearchCommonAct extends BaseAppActivity implements TextWatcher {
                 break;
             case EventTags.REFRESH_SEARCH_VALUE:
                 etSerach.setText(event.getValue());
-                if (fragment2 == null) {
-                    fragment2 = SearchResultListFrag.newInstance(event.getValue(), from);
-                } else {
-                    fragment2.setSearchData(event.getValue(), from);
+                searchContent=event.getValue();
+                switch (from) {
+                    case "搜索项目":
+                        if (projectListFrag == null) {
+                            projectListFrag = ProjectListFrag.newInstance("搜索", searchContent);
+                        } else {
+                            projectListFrag.setKeywords(searchContent);
+                            EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_SEARCH_PROJECT, searchContent));
+                        }
+                        fragmentUtil.switchContent(projectListFrag, R.id.container, fragmentManager);
+                        break;
+                    case "找服务":
+                        if (productListFrag == null) {
+                            productListFrag = ProductListFrag.newInstance("搜索", searchContent);
+                        } else {
+                            productListFrag.setKeywords(searchContent);
+                            EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_SEARCH_PRODUCT, searchContent));
+                        }
+                        fragmentUtil.switchContent(productListFrag, R.id.container, fragmentManager);
+                        break;
+                    case "搜索投资人":
+                        if (peopleListFrag == null) {
+                            peopleListFrag = PeopleListFrag.newInstance("搜索", searchContent);
+                        } else {
+                            peopleListFrag.setKeywords(searchContent);
+                            EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_SEARCH_PEOPLE, searchContent));
+                        }
+                        fragmentUtil.switchContent(peopleListFrag, R.id.container, fragmentManager);
+                        break;
+                    case "搜索投资机构":
+                        if (organListFrag == null) {
+                            organListFrag = OrganListFrag.newInstance("搜索", searchContent);
+                        } else {
+                            organListFrag.setKeywords(searchContent);
+                            EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_SEARCH_ORGAN, searchContent));
+                        }
+                        fragmentUtil.switchContent(organListFrag, R.id.container, fragmentManager);
+                        break;
+                    case "找商品":
+                        if (productListFrag == null) {
+                            productListFrag = ProductListFrag.newInstance("搜索", searchContent);
+                        } else {
+                            productListFrag.setKeywords(searchContent);
+                            EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_SEARCH_PRODUCT, searchContent));
+                        }
+                        fragmentUtil.switchContent(productListFrag, R.id.container, fragmentManager);
+                        break;
+                    case "搜索优报道":
+                        if (newsListFrag == null) {
+                            newsListFrag = NewsListFrag.newInstance("搜索", searchContent);
+                        } else {
+                            newsListFrag.setKeywords(searchContent);
+                            EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_SEARCH_NEWS, searchContent));
+                        }
+                        fragmentUtil.switchContent(newsListFrag, R.id.container, fragmentManager);
+                        break;
                 }
-                fragmentUtil.switchContent(fragment2, R.id.container, fragmentManager);
+
                 break;
         }
     }

@@ -36,7 +36,7 @@ public class ProductListAct extends BaseAppActivity {
         znzToolBar.setOnSearchClickListener(view -> {
             mDataManager.saveTempData(Constants.SearchType.SEARCHTYPE, "1");
             Bundle bundle = new Bundle();
-            bundle.putString("from", "搜索项目");
+            bundle.putString("from", "找商品");
             gotoActivity(SearchCommonAct.class, bundle);
         });
         znzToolBar.setSearchHint("找商品");
@@ -44,7 +44,7 @@ public class ProductListAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
-        fragment = new ProductListFrag();
+        fragment = ProductListFrag.newInstance("商品服务");
         FragmentUtil.addFragmentToActivity(getSupportFragmentManager(), fragment, R.id.container);
     }
 

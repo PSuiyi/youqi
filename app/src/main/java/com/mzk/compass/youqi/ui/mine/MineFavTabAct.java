@@ -57,10 +57,10 @@ public class MineFavTabAct extends BaseAppActivity {
         tabNames.add("资讯");
 
         fragmentList.add(ProjectListFrag.newInstance("收藏"));
-        fragmentList.add(new PeopleListFrag());
-        fragmentList.add(new OrganListFrag());
-        fragmentList.add(new ProductListFrag());
-        fragmentList.add(new NewsListFrag());
+        fragmentList.add(PeopleListFrag.newInstance("收藏"));
+        fragmentList.add(OrganListFrag.newInstance("收藏"));
+        fragmentList.add(ProductListFrag.newInstance("收藏"));
+        fragmentList.add(NewsListFrag.newInstance("收藏", ""));
     }
 
     @Override

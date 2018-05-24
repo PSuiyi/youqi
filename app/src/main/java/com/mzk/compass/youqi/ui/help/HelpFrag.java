@@ -75,7 +75,7 @@ public class HelpFrag extends BaseAppListFragment {
         znzToolBar.setOnSearchClickListener(view -> {
             mDataManager.saveTempData(Constants.SearchType.SEARCHTYPE, "2");
             Bundle bundle = new Bundle();
-            bundle.putString("from", "搜索投资人");
+            bundle.putString("from", "找商品");
             gotoActivity(SearchCommonAct.class, bundle);
         });
 

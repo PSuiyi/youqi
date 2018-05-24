@@ -44,7 +44,7 @@ public class OrganListAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
-        fragment = new OrganListFrag();
+        fragment = OrganListFrag.newInstance("机构");
         FragmentUtil.addFragmentToActivity(getSupportFragmentManager(), fragment, R.id.container);
     }
 

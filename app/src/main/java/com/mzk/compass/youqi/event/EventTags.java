@@ -9,8 +9,11 @@ public interface EventTags {
     int REFRESH_SEARCH_VALUE = 0x101;
     int REFRESH_SEARCH_HISTORY = 0x102;//搜索历史记录刷新
     int REFRESH_SEARCH = 0x103;//搜索
-    int REFRESH_SEARCH_POP = 0x104;//搜索条件
-    int REFRESH_NICKNAME = 0x105;//修改名称后刷新界面
+    int REFRESH_SEARCH_PROJECT = 0x104;//搜索项目
+    int REFRESH_SEARCH_PRODUCT = 0x105;//搜索服务
+    int REFRESH_SEARCH_PEOPLE = 0x106;//搜索投资人
+    int REFRESH_SEARCH_ORGAN = 0x107;//搜索机构
+    int REFRESH_SEARCH_NEWS = 0x108;//搜索报到
 
     int REFRESH_MESSAGE_EDIT = 0x200;//消息编辑
     int REFRESH_CITY = 0x300;//城市选择 刷新

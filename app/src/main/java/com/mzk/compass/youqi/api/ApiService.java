@@ -170,6 +170,9 @@ public interface ApiService {
     @GET("product/get-product-type")
     Observable<ResponseBody> requestCategory(@QueryMap Map<String, String> params);
 
+    @GET("favourite/index")
+    Observable<ResponseBody> requestCollect(@QueryMap Map<String, String> params);
+
     @Multipart
     @POST("upload/upload")
     Observable<ResponseBody> uploadImageSingle(@QueryMap Map<String, String> params, @Part MultipartBody.Part file);

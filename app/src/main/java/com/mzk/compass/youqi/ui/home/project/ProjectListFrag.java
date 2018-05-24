@@ -9,6 +9,12 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.ProjectAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
 import com.mzk.compass.youqi.bean.ProjectBean;
+import com.mzk.compass.youqi.event.EventRefresh;
+import com.mzk.compass.youqi.event.EventTags;
+import com.znz.compass.znzlibray.eventbus.EventManager;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import okhttp3.ResponseBody;
 import rx.Observable;
@@ -21,9 +27,20 @@ import rx.Observable;
 public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
     private String from;
 
+    private String keywords;
+
     public static ProjectListFrag newInstance(String from) {
         Bundle bundle = new Bundle();
         bundle.putString("from", from);
+        ProjectListFrag fragment = new ProjectListFrag();
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
+    public static ProjectListFrag newInstance(String from, String keywords) {
+        Bundle bundle = new Bundle();
+        bundle.putString("from", from);
+        bundle.putString("keywords", keywords);
         ProjectListFrag fragment = new ProjectListFrag();
         fragment.setArguments(bundle);
         return fragment;
@@ -39,6 +56,9 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
     protected void initializeVariate() {
         if (getArguments() != null) {
             from = getArguments().getString("from");
+        }
+        if (getArguments() != null) {
+            keywords = getArguments().getString("keywords");
         }
     }
 
@@ -82,9 +102,12 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
                 params.put("state", "3");
                 return mModel.requestProjectMineList(params);
             case "收藏":
-                params.put("state", "0");
-                return mModel.requestProjectMineList(params);
+                params.put("type", "1");
+                return mModel.requestCollect(params);
             case "首页全部项目":
+                return mModel.requestProjectList(params);
+            case "搜索":
+                params.put("searchKey", keywords);
                 return mModel.requestProjectList(params);
             default:
                 return mModel.requestProjectList(params);
@@ -104,6 +127,7 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
                 dataList.addAll(JSON.parseArray(json.getString("data"), ProjectBean.class));
                 break;
             case "首页全部项目":
+            case "搜索":
                 dataList.addAll(JSON.parseArray(responseJson.getString("projectData"), ProjectBean.class));
                 break;
         }
@@ -114,5 +138,31 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
     @Override
     protected void onRefreshFail(String error) {
 
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventManager.register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventManager.unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventRefresh event) {
+        switch (event.getFlag()) {
+            case EventTags.REFRESH_SEARCH_PROJECT:
+                keywords = event.getValue();
+                resetRefresh();
+                break;
+        }
     }
 }

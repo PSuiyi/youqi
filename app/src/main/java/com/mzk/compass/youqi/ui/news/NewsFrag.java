@@ -77,7 +77,7 @@ public class NewsFrag extends BaseAppFragment {
         znzToolBar.setOnSearchClickListener(view -> {
             mDataManager.saveTempData(Constants.SearchType.SEARCHTYPE, "1");
             Bundle bundle = new Bundle();
-            bundle.putString("from", "搜索项目");
+            bundle.putString("from", "搜索优报道");
             gotoActivity(SearchCommonAct.class, bundle);
         });
 
