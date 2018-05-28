@@ -9,6 +9,14 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.mzk.compass.youqi.view.city.bean.City;
+import com.mzk.compass.youqi.view.city.bean.County;
+import com.mzk.compass.youqi.view.city.bean.Province;
+import com.mzk.compass.youqi.view.city.bean.Street;
+import com.mzk.compass.youqi.view.city.utils.LogUtil;
+import com.mzk.compass.youqi.view.city.widget.AddressSelector;
+import com.mzk.compass.youqi.view.city.widget.BottomDialog;
+import com.mzk.compass.youqi.view.city.widget.OnAddressSelectedListener;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.ZnzRemind;
@@ -30,7 +38,7 @@ import butterknife.OnClick;
  * User： PSuiyi
  * Description：
  */
-public class PublishAct extends BaseAppActivity {
+public class PublishAct extends BaseAppActivity implements OnAddressSelectedListener, AddressSelector.OnDialogCloseListener, AddressSelector.onSelectorAreaPositionListener {
     @Bind(R.id.znzToolBar)
     ZnzToolBar znzToolBar;
     @Bind(R.id.znzRemind)
@@ -57,8 +65,20 @@ public class PublishAct extends BaseAppActivity {
     EditText etCompanySimple;
     @Bind(R.id.ivCompanyLogo)
     HttpImageView ivCompanyLogo;
+    @Bind(R.id.tvArea)
+    TextView tvArea;
     private String logoUrl;
     private String companyLogoUrl;
+    private BottomDialog dialog;
+
+    private int provincePosition;
+    private int cityPosition;
+    private int countyPosition;
+    private int streetPosition;
+    private String provinceCode;
+    private String cityCode;
+    private String countyCode;
+    private String streetCode;
 
     @Override
     protected int[] getLayoutResource() {
@@ -77,7 +97,6 @@ public class PublishAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
-
     }
 
     @Override
@@ -96,6 +115,20 @@ public class PublishAct extends BaseAppActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.llAddress:
+                if (dialog != null) {
+                    dialog.show();
+                } else {
+                    dialog = new BottomDialog(this);
+                    dialog.setOnAddressSelectedListener(this);
+                    dialog.setDialogDismisListener(this);
+                    dialog.setTextSize(14);//设置字体的大小
+                    dialog.setIndicatorBackgroundColor(android.R.color.holo_orange_light);//设置指示器的颜色
+                    dialog.setTextSelectedColor(android.R.color.holo_orange_light);//设置字体获得焦点的颜色
+                    dialog.setTextUnSelectedColor(android.R.color.holo_blue_light);//设置字体没有获得焦点的颜色
+//            dialog.setDisplaySelectorArea("31",1,"2704",1,"2711",0,"15582",1);//设置已选中的地区
+                    dialog.setSelectorAreaPositionListener(this);
+                    dialog.show();
+                }
                 break;
             case R.id.ivCompanyLogo:
                 mDataManager.openPhotoSelectSingle(activity, new IPhotoSelectCallback() {
@@ -253,5 +286,42 @@ public class PublishAct extends BaseAppActivity {
                 });
                 break;
         }
+    }
+
+    @Override
+    public void onAddressSelected(Province province, City city, County county, Street street) {
+        provinceCode = (province == null ? "" : province.id+"");
+        cityCode = (city == null ? "" : city.id+"");
+        countyCode = (county == null ? "" : county.id+"");
+        streetCode = (street == null ? "" : street.id+"");
+        LogUtil.d("数据", "省份id=" + provinceCode);
+        LogUtil.d("数据", "城市id=" + cityCode);
+        LogUtil.d("数据", "乡镇id=" + countyCode);
+        LogUtil.d("数据", "街道id=" + streetCode);
+        String s = (province == null ? "" : province.name) + (city == null ? "" : city.name) + (county == null ? "" : county.name) +
+                (street == null ? "" : street.name);
+        tvArea.setText(s);
+        if (dialog != null) {
+            dialog.dismiss();
+        }
+    }
+
+    @Override
+    public void dialogclose() {
+        if (dialog != null) {
+            dialog.dismiss();
+        }
+    }
+
+    @Override
+    public void selectorAreaPosition(int provincePosition, int cityPosition, int countyPosition, int streetPosition) {
+        this.provincePosition = provincePosition;
+        this.cityPosition = cityPosition;
+        this.countyPosition = countyPosition;
+        this.streetPosition = streetPosition;
+        LogUtil.d("数据", "省份位置=" + provincePosition);
+        LogUtil.d("数据", "城市位置=" + cityPosition);
+        LogUtil.d("数据", "乡镇位置=" + countyPosition);
+        LogUtil.d("数据", "街道位置=" + streetPosition);
     }
 }

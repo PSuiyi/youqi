@@ -68,6 +68,7 @@
                 android:padding="@dimen/distance_view">
 
                 <TextView
+                    android:id="@+id/tvArea"
                     style="@style/TitleTextStyle"
                     android:layout_weight="1"
                     android:hint="请选择项目地址" />
