@@ -71,14 +71,9 @@ public class PublishAct extends BaseAppActivity implements OnAddressSelectedList
     private String companyLogoUrl;
     private BottomDialog dialog;
 
-    private int provincePosition;
-    private int cityPosition;
-    private int countyPosition;
-    private int streetPosition;
     private String provinceCode;
     private String cityCode;
-    private String countyCode;
-    private String streetCode;
+    private String areaCode;
 
     @Override
     protected int[] getLayoutResource() {
@@ -125,7 +120,6 @@ public class PublishAct extends BaseAppActivity implements OnAddressSelectedList
                     dialog.setIndicatorBackgroundColor(android.R.color.holo_orange_light);//设置指示器的颜色
                     dialog.setTextSelectedColor(android.R.color.holo_orange_light);//设置字体获得焦点的颜色
                     dialog.setTextUnSelectedColor(android.R.color.holo_blue_light);//设置字体没有获得焦点的颜色
-//            dialog.setDisplaySelectorArea("31",1,"2704",1,"2711",0,"15582",1);//设置已选中的地区
                     dialog.setSelectorAreaPositionListener(this);
                     dialog.show();
                 }
@@ -225,6 +219,10 @@ public class PublishAct extends BaseAppActivity implements OnAddressSelectedList
                     mDataManager.showToast("请输入项目名称");
                     return;
                 }
+                if (StringUtil.isBlank(areaCode)) {
+                    mDataManager.showToast("请选择地址");
+                    return;
+                }
                 if (StringUtil.isBlank(mDataManager.getValueFromView(etAddress))) {
                     mDataManager.showToast("请输入详细地址");
                     return;
@@ -241,6 +239,10 @@ public class PublishAct extends BaseAppActivity implements OnAddressSelectedList
                     mDataManager.showToast("请输入电话");
                     return;
                 }
+                if (!StringUtil.isMobile(mDataManager.getValueFromView(etPhone))) {
+                    mDataManager.showToast("请输入正确的电话");
+                    return;
+                }
                 if (StringUtil.isBlank(mDataManager.getValueFromView(etCompany))) {
                     mDataManager.showToast("请输入项目名称");
                     return;
@@ -249,15 +251,19 @@ public class PublishAct extends BaseAppActivity implements OnAddressSelectedList
                     mDataManager.showToast("请输入公司简称不超过6个字");
                     return;
                 }
+                if (StringUtil.isBlank(companyLogoUrl)) {
+                    mDataManager.showToast("请上传公司Logo");
+                    return;
+                }
 
                 Map<String, String> params = new HashMap<>();
                 params.put("name", mDataManager.getValueFromView(etName));
                 params.put("address", mDataManager.getValueFromView(etAddress));
                 params.put("userName", mDataManager.getValueFromView(etUserName));
                 params.put("tel", mDataManager.getValueFromView(etPhone));
-                params.put("provinceid", "11");
-                params.put("cityid", "11");
-                params.put("areaid", "11");
+                params.put("provinceid", provinceCode);
+                params.put("cityid", cityCode);
+                params.put("areaid", areaCode);
                 params.put("companyName", mDataManager.getValueFromView(etCompany));
                 params.put("shortName", mDataManager.getValueFromView(etCompanySimple));
                 if (!StringUtil.isBlank(companyLogoUrl)) {
@@ -290,14 +296,12 @@ public class PublishAct extends BaseAppActivity implements OnAddressSelectedList
 
     @Override
     public void onAddressSelected(Province province, City city, County county, Street street) {
-        provinceCode = (province == null ? "" : province.id+"");
-        cityCode = (city == null ? "" : city.id+"");
-        countyCode = (county == null ? "" : county.id+"");
-        streetCode = (street == null ? "" : street.id+"");
+        provinceCode = (province == null ? "" : province.id + "");
+        cityCode = (city == null ? "" : city.id + "");
+        areaCode = (county == null ? "" : county.id + "");
         LogUtil.d("数据", "省份id=" + provinceCode);
         LogUtil.d("数据", "城市id=" + cityCode);
-        LogUtil.d("数据", "乡镇id=" + countyCode);
-        LogUtil.d("数据", "街道id=" + streetCode);
+        LogUtil.d("数据", "乡镇id=" + areaCode);
         String s = (province == null ? "" : province.name) + (city == null ? "" : city.name) + (county == null ? "" : county.name) +
                 (street == null ? "" : street.name);
         tvArea.setText(s);
@@ -315,13 +319,5 @@ public class PublishAct extends BaseAppActivity implements OnAddressSelectedList
 
     @Override
     public void selectorAreaPosition(int provincePosition, int cityPosition, int countyPosition, int streetPosition) {
-        this.provincePosition = provincePosition;
-        this.cityPosition = cityPosition;
-        this.countyPosition = countyPosition;
-        this.streetPosition = streetPosition;
-        LogUtil.d("数据", "省份位置=" + provincePosition);
-        LogUtil.d("数据", "城市位置=" + cityPosition);
-        LogUtil.d("数据", "乡镇位置=" + countyPosition);
-        LogUtil.d("数据", "街道位置=" + streetPosition);
     }
 }

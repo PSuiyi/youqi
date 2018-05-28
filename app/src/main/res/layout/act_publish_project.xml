@@ -186,6 +186,7 @@
                 style="@style/EditStyle"
                 android:layout_width="match_parent"
                 android:hint="请输入公司名称不超过30个字"
+                android:maxLength="30"
                 android:padding="@dimen/distance_view"
                 android:textSize="@dimen/title_size" />
 
@@ -211,6 +212,7 @@
                 style="@style/EditStyle"
                 android:layout_width="match_parent"
                 android:hint="请输入公司简称不超过6个字"
+                android:maxLength="6"
                 android:padding="@dimen/distance_view"
                 android:textSize="@dimen/title_size" />
 
@@ -222,6 +224,8 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:padding="@dimen/distance_view">
+
+                <ImageView style="@style/DotRedStyle" />
 
                 <TextView
                     style="@style/TitleTextStyle"
