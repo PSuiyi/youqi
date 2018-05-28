@@ -8,6 +8,10 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.IndustryAdapter;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.bean.IndustryBean;
+import com.mzk.compass.youqi.event.EventRefresh;
+import com.mzk.compass.youqi.event.EventTags;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +29,8 @@ public class IndustryAct extends BaseAppActivity {
 
     private IndustryAdapter adapter;
     private List<IndustryBean> dataList = new ArrayList<>();
+    private List<IndustryBean> selectList = new ArrayList<>();
+    private String from;
 
     @Override
     protected int[] getLayoutResource() {
@@ -33,43 +39,43 @@ public class IndustryAct extends BaseAppActivity {
 
     @Override
     protected void initializeVariate() {
-        dataList.add(new IndustryBean("人工智能"));
-        dataList.add(new IndustryBean("物联网"));
-        dataList.add(new IndustryBean("云计算"));
-        dataList.add(new IndustryBean("大消费"));
-        dataList.add(new IndustryBean("游戏"));
-        dataList.add(new IndustryBean("其他"));
-        dataList.add(new IndustryBean("旅游"));
-        dataList.add(new IndustryBean("智能硬件"));
-        dataList.add(new IndustryBean("TMT"));
-        dataList.add(new IndustryBean("餐饮服务"));
-        dataList.add(new IndustryBean("本地生活"));
-        dataList.add(new IndustryBean("共享经济"));
-        dataList.add(new IndustryBean("艺术设计"));
-        dataList.add(new IndustryBean("互联网"));
-        dataList.add(new IndustryBean("汽车交通"));
-        dataList.add(new IndustryBean("文化娱乐"));
-        dataList.add(new IndustryBean("影视"));
-        dataList.add(new IndustryBean("社交服务"));
-        dataList.add(new IndustryBean("农业"));
-        dataList.add(new IndustryBean("房产服务"));
-        dataList.add(new IndustryBean("企业服务"));
-        dataList.add(new IndustryBean("区块链"));
-        dataList.add(new IndustryBean("移动互联网"));
-        dataList.add(new IndustryBean("高端制造"));
-        dataList.add(new IndustryBean("医疗健康"));
-        dataList.add(new IndustryBean("社交网络"));
-        dataList.add(new IndustryBean("O2O"));
-        dataList.add(new IndustryBean("短视频"));
-        dataList.add(new IndustryBean("环保"));
-        dataList.add(new IndustryBean("旅游"));
+        if (getIntent().hasExtra("from")) {
+            from = getIntent().getStringExtra("from");
+        }
+        if (getIntent().hasExtra("list")) {
+            dataList = (List<IndustryBean>) getIntent().getSerializableExtra("list");
+        }
     }
 
     @Override
     protected void initializeNavigation() {
-        setTitleName("所属行业");
+        setTitleName(from);
         znzToolBar.setNavRightText("确定");
         znzToolBar.setOnNavRightClickListener(view -> {
+            for (IndustryBean industryBean : dataList) {
+                if (industryBean.isSelect()) {
+                    selectList.add(industryBean);
+                }
+            }
+            if (selectList.isEmpty()) {
+                switch (from) {
+                    case "关注行业":
+                        mDataManager.showToast("请选择行业");
+                        break;
+                    case "投资轮次":
+                        mDataManager.showToast("请选择轮次");
+                        break;
+                }
+                return;
+            }
+            switch (from) {
+                case "关注行业":
+                    EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_HANYE, selectList));
+                    break;
+                case "投资轮次":
+                    EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_LUNCI, selectList));
+                    break;
+            }
             finish();
         });
     }

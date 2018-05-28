@@ -25,5 +25,7 @@ public interface EventTags {
     int REFRESH_DELETE_MINE_MEETING = 0X601; //我的预约长按删除，刷新右上角图标
 
     int REFRESH_ORDER = 0X700; //订单取消或者确认服务，刷新订单列表
+    int REFRESH_HANYE = 0X800; //行业
+    int REFRESH_LUNCI = 0X801; //轮次
 
 }

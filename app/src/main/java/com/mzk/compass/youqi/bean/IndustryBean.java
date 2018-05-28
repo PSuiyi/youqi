@@ -8,12 +8,9 @@ import com.znz.compass.znzlibray.bean.BaseZnzBean;
 
 public class IndustryBean extends BaseZnzBean {
     private String name;
-
+    private boolean isDelete;
+    private String id;
     public IndustryBean() {
-    }
-
-    public IndustryBean(String name) {
-        this.name = name;
     }
 
     public String getName() {
@@ -22,5 +19,21 @@ public class IndustryBean extends BaseZnzBean {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(boolean delete) {
+        isDelete = delete;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

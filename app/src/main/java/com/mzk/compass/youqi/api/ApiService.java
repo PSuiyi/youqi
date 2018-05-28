@@ -173,6 +173,16 @@ public interface ApiService {
     @GET("favourite/index")
     Observable<ResponseBody> requestCollect(@QueryMap Map<String, String> params);
 
+    @GET("investor/index")
+    Observable<ResponseBody> requestIdentifyStatus(@QueryMap Map<String, String> params);
+
+    @GET("investor/get-my-investor-info")
+    Observable<ResponseBody> requestIdentifyDetail(@QueryMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("investor/submit-investor-info")
+    Observable<ResponseBody> requestIdentify(@FieldMap Map<String, String> params);
+
     @Multipart
     @POST("upload/upload")
     Observable<ResponseBody> uploadImageSingle(@Part List<MultipartBody.Part> partLis);

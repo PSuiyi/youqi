@@ -36,6 +36,7 @@
             <View style="@style/LineBoth" />
 
             <EditText
+                android:id="@+id/etName"
                 style="@style/EditStyle"
                 android:layout_width="match_parent"
                 android:hint="请输入姓名"
@@ -45,6 +46,7 @@
             <View style="@style/LineBoth" />
 
             <LinearLayout
+                android:id="@+id/llHangYe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -59,8 +61,8 @@
                 <View style="@style/WeightView" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
                     android:layout_marginLeft="@dimen/distance_view"
                     android:src="@drawable/listarr" />
             </LinearLayout>
@@ -68,25 +70,25 @@
             <View style="@style/LineBoth" />
 
 
+            <View style="@style/LineBoth" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="@dimen/distance_view">
 
-                <TextView
-                    style="@style/TagBlueStyle"
-                    android:text="人工智能" />
-
-                <TextView
-                    style="@style/TagBlueStyle"
-                    android:layout_marginLeft="@dimen/distance_view"
-                    android:text="人工智能" />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvHangye"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
             <View style="@style/LineBoth" />
 
+
             <LinearLayout
+                android:id="@+id/llLunci"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -101,14 +103,13 @@
                 <View style="@style/WeightView" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
                     android:layout_marginLeft="@dimen/distance_view"
                     android:src="@drawable/listarr" />
             </LinearLayout>
 
             <View style="@style/LineBoth" />
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -116,14 +117,11 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/distance_view">
 
-                <TextView
-                    style="@style/TagBlueStyle"
-                    android:text="种子轮" />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvLunCi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-                <TextView
-                    style="@style/TagBlueStyle"
-                    android:layout_marginLeft="@dimen/distance_view"
-                    android:text="种子轮" />
             </LinearLayout>
 
             <View style="@style/LineBoth" />
@@ -145,6 +143,7 @@
             <View style="@style/LineBoth" />
 
             <LinearLayout
+                android:id="@+id/llShenFen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -152,6 +151,7 @@
                 android:padding="@dimen/distance_view">
 
                 <TextView
+                    android:id="@+id/tvShenFen"
                     style="@style/EditStyle"
                     android:layout_width="match_parent"
                     android:layout_weight="1"
@@ -160,8 +160,8 @@
                     android:textSize="@dimen/title_size" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
                     android:layout_marginLeft="@dimen/distance_view"
                     android:src="@drawable/listarr" />
             </LinearLayout>
@@ -184,26 +184,38 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:padding="@dimen/distance_view">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/mingpian" />
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-                <View
-                    android:layout_width="@dimen/distance_view"
-                    android:layout_height="0dp" />
+                    <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                        android:id="@+id/ivCard"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/mingpian" />
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/mingpian" />
+                    <ImageView
+                        android:id="@+id/ivClear"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="right|top"
+                        android:src="@mipmap/shanchu"
+                        android:visibility="gone" />
+                </FrameLayout>
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:layout_marginTop="10dp"
+                    android:text="照片支持jpg/jpeg/bmp格式，最大不超过5M。名片正面，共1张。"
+                    android:textSize="@dimen/text_size_10" />
+
             </LinearLayout>
 
             <View style="@style/LineBoth" />
@@ -228,6 +240,7 @@
             <View style="@style/LineBoth" />
 
             <LinearLayout
+                android:id="@+id/llXieyi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -235,11 +248,13 @@
                 android:padding="@dimen/distance_view">
 
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <CheckBox
+                    android:id="@+id/cbSelect"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
                     android:layout_marginRight="@dimen/distance_divider"
-                    android:src="@mipmap/xuanzhong" />
+                    android:background="@drawable/selector_checkbox"
+                    android:button="@null" />
 
                 <TextView
                     style="@style/TextGrayStyle"
@@ -251,8 +266,17 @@
                     android:text="《认证协议》" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/tvYiRenZheng"
+                style="@style/TextStyle"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:padding="@dimen/distance_view"
+                android:text="如若修改，请去pc端修改"
+                android:visibility="gone" />
 
             <TextView
+                android:id="@+id/tvSubmit"
                 style="@style/BtnStyle"
                 android:text="保存" />
 

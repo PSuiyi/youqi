@@ -33,6 +33,7 @@
         <View style="@style/WeightView" />
 
         <TextView
+            android:id="@+id/tvIdentify"
             style="@style/TextGrayStyle"
             android:text="未认证" />
 

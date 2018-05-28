@@ -511,6 +511,26 @@ public class ApiModel extends BaseModel {
     }
 
     /**
+     * 判断是否认证投资人
+     *
+     * @param params
+     * @return
+     */
+    public void requestIdentifyStatus(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestIdentifyStatus(params), znzHttpListener);
+    }
+
+    /**
+     * 获取认证信息
+     *
+     * @param params
+     * @return
+     */
+    public void requestIdentifyDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestIdentifyDetail(params), znzHttpListener);
+    }
+
+    /**
      * banner
      *
      * @param params
@@ -618,6 +638,16 @@ public class ApiModel extends BaseModel {
      */
     public void requestMessageDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         request(apiService.requestMessageDetail(params), znzHttpListener);
+    }
+
+    /**
+     * 投资人认证
+     *
+     * @param params
+     * @return
+     */
+    public void requestIdentify(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestIdentify(params), znzHttpListener);
     }
 
     /**
