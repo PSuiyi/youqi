@@ -637,9 +637,14 @@ public class ApiModel extends BaseModel {
                 .doOnError(throwable -> throwable.printStackTrace())
                 .onErrorResumeNext(throwable -> Observable.empty())
                 .subscribe(file1 -> {
-                    RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file1);
-                    MultipartBody.Part body = MultipartBody.Part.createFormData("image", file.getName(), requestBody);
-                    request(apiService.uploadImageSingle(params, body), znzHttpListener, LODING_PD);
+                    MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+                    RequestBody body = RequestBody.create(MediaType.parse("multipart/form-data"), file1);//表单类型
+                    for (Map.Entry<String, String> entry : params.entrySet()) {
+                        builder.addFormDataPart(entry.getKey(), entry.getValue());//传入服务器需要的key，和相应value值
+                    }
+                    builder.addFormDataPart("image", file.getName(), body); //添加图片数据，body创建的请求体
+                    List<MultipartBody.Part> parts = builder.build().parts();
+                    request(apiService.uploadImageSingle(parts), znzHttpListener, LODING_PD);
                 });
     }
 

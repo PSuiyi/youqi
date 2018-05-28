@@ -115,6 +115,7 @@ public class MineFrag extends BaseAppFragment {
                 .withTitle("进度查询")
                 .withEnableArraw(true)
                 .withTextSize(14)
+                .withEnableHide(true)
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
                 .withOnClickListener(v -> {
                     gotoActivity(IdentifyProcessAct.class);

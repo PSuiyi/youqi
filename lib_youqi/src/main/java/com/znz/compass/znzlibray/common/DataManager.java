@@ -186,6 +186,9 @@ public class DataManager implements DataManagerConst {
      * @param value
      */
     public void saveTempData(String key, String value) {
+        if (StringUtil.isBlank(value)) {
+            return;
+        }
         SharedPreferences settings = context.getSharedPreferences(CONFIG_NAME,
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();

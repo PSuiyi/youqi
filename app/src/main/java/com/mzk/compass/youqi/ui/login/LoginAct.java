@@ -90,7 +90,9 @@ public class LoginAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
-
+        if (!StringUtil.isBlank(mDataManager.readTempData(ZnzConstants.ACCOUNT))) {
+            mDataManager.setValueToView(etPhone, mDataManager.readTempData(ZnzConstants.ACCOUNT));
+        }
     }
 
     @Override
@@ -142,6 +144,7 @@ public class LoginAct extends BaseAppActivity {
                         JSONObject jsonObject = JSON.parseObject(responseOriginal.getString("data"));
                         String token = jsonObject.getString("token");
                         mDataManager.saveTempData(ZnzConstants.ACCESS_TOKEN, token);
+                        mDataManager.saveTempData(ZnzConstants.ACCOUNT, mDataManager.getValueFromView(etPhone));
                         mDataManager.saveBooleanTempData(ZnzConstants.IS_LOGIN, true);
                         gotoActivityWithClearStack(TabHomeActivity.class);
                     }

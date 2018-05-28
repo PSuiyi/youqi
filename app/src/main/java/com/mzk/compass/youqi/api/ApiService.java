@@ -175,7 +175,7 @@ public interface ApiService {
 
     @Multipart
     @POST("upload/upload")
-    Observable<ResponseBody> uploadImageSingle(@QueryMap Map<String, String> params, @Part MultipartBody.Part file);
+    Observable<ResponseBody> uploadImageSingle(@Part List<MultipartBody.Part> partLis);
 
     @Multipart
     @POST("upload/upload")
