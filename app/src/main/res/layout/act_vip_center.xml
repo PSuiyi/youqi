@@ -42,11 +42,12 @@
                     android:src="@mipmap/default_header" />
 
                 <ImageView
+                    android:id="@+id/ivVip"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="15dp"
-                    android:layout_toRightOf="@id/tag"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/textView2"
+                    android:layout_toRightOf="@+id/textView2"
                     android:src="@mipmap/vip" />
 
                 <TextView
@@ -63,7 +64,8 @@
                     android:layout_below="@id/tvName"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-                    android:text="VIP 到期日 2018-3-17" />
+                    android:text="VIP 到期日 2018-3-17"
+                    android:id="@+id/tvVipTime" />
             </RelativeLayout>
 
             <View style="@style/WeightView" />
@@ -117,7 +119,7 @@
         android:padding="@dimen/distance_view">
 
         <TextView
-            style="@style/TextStyle"
+            style="@style/TextGrayStyle"
             android:text="@string/vip_discribe" />
 
         <TextView

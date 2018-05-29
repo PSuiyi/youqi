@@ -1,5 +1,6 @@
 package com.mzk.compass.youqi.ui.home.product;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,6 +11,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.bean.ProductBean;
+import com.mzk.compass.youqi.event.EventRefresh;
+import com.mzk.compass.youqi.event.EventTags;
 import com.mzk.compass.youqi.ui.help.ProductOrderComfirmAct;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -17,6 +20,8 @@ import com.znz.compass.znzlibray.views.WebViewWithProgress;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIActionSheetDialog;
 import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -104,6 +109,15 @@ public class ProductDetailAct extends BaseAppActivity {
                 mDataManager.setValueToView(tvCountPayed, bean.getShowNum());
                 mDataManager.setValueToView(tvNumber, bean.getCount());
                 wvDetail.loadContent(bean.getContent());
+                if (bean.getIsCollected().equals("true")) {
+                    Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang);
+                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    tvFav.setCompoundDrawables(null, drawable, null, null);
+                } else {
+                    Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucang);
+                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    tvFav.setCompoundDrawables(null, drawable, null, null);
+                }
             }
 
             @Override
@@ -151,6 +165,11 @@ public class ProductDetailAct extends BaseAppActivity {
                         .show();
                 break;
             case R.id.tvFav:
+                if (bean.getIsCollected().equals("true")) {
+                    cancalCollect();
+                } else {
+                    addCollect();
+                }
                 break;
             case R.id.tvPhone:
                 mDataManager.callPhone(activity, "400-8888-8888");
@@ -195,5 +214,41 @@ public class ProductDetailAct extends BaseAppActivity {
         BigDecimal b2 = new BigDecimal(bean.getCount());
         double total = b1.multiply(b2).doubleValue();
         return total + "";
+    }
+
+    private void addCollect() {
+        Map<String, String> params = new HashMap<>();
+        params.put("type", "4");
+        params.put("id", id);
+        mModel.requestAddCollect(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                mDataManager.showToast("收藏成功");
+                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang);
+                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                tvFav.setCompoundDrawables(null, drawable, null, null);
+                bean.setIsCollected("true");
+                EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_PRODUCT));
+            }
+        });
+    }
+
+    private void cancalCollect() {
+        Map<String, String> params = new HashMap<>();
+        params.put("type", "4");
+        params.put("id", id);
+        mModel.requestCancalCollect(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                mDataManager.showToast("取消收藏成功");
+                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucang);
+                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                tvFav.setCompoundDrawables(null, drawable, null, null);
+                bean.setIsCollected("false");
+                EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_PRODUCT));
+            }
+        });
     }
 }

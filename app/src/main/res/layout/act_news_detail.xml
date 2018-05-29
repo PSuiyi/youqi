@@ -34,21 +34,25 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/tvOption1"
             style="@style/MenuBottomStyle"
             android:drawableTop="@mipmap/pinlun"
             android:text="评论" />
 
         <TextView
+            android:id="@+id/tvOption2"
             style="@style/MenuBottomStyle"
             android:drawableTop="@mipmap/shoucang"
             android:text="收藏" />
 
         <TextView
+            android:id="@+id/tvOption3"
             style="@style/MenuBottomStyle"
             android:drawableTop="@mipmap/zhuanfa"
             android:text="分享" />
 
         <TextView
+            android:id="@+id/tvOption4"
             style="@style/MenuBottomStyle"
             android:drawableTop="@mipmap/huidaodingbu"
             android:text="返回顶部" />

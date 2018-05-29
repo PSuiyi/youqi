@@ -139,6 +139,9 @@ public class NewsListFrag extends BaseAppListFragment<NewsBean> {
                 keywords = event.getValue();
                 resetRefresh();
                 break;
+            case EventTags.REFRESH_COLLECT_NEWS:
+                resetRefresh();
+                break;
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.mzk.compass.youqi.ui.home.people;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,8 +20,12 @@ import com.mzk.compass.youqi.bean.MultiBean;
 import com.mzk.compass.youqi.bean.NewsBean;
 import com.mzk.compass.youqi.bean.PeopleBean;
 import com.mzk.compass.youqi.common.Constants;
+import com.mzk.compass.youqi.event.EventRefresh;
+import com.mzk.compass.youqi.event.EventTags;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -64,7 +69,7 @@ public class PeopleDetailAct extends BaseAppListActivity {
     private TextView tvCountComment;
     private RecyclerView rvTrade;
 
-private PeopleBean bean;
+    private PeopleBean bean;
 
     @Override
     protected int[] getLayoutResource() {
@@ -139,14 +144,22 @@ private PeopleBean bean;
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
-                bean = JSONObject.parseObject(responseOriginal.getString("data"),PeopleBean.class);
+                bean = JSONObject.parseObject(responseOriginal.getString("data"), PeopleBean.class);
                 ivUserHeader.loadHeaderImage(bean.getAvatar());
                 mDataManager.setValueToView(tvName, bean.getUsername());
                 mDataManager.setValueToView(tvCountComment, bean.getCommentsNum());
                 mDataManager.setValueToView(tvCountFav, bean.getCollectionNum());
                 mDataManager.setValueToView(tvTag1, bean.getName());
                 mDataManager.setValueToView(tvTag2, bean.getGroupName());
-
+                if (bean.getIsCollected().equals("true")) {
+                    Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang);
+                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    tvOption3.setCompoundDrawables(null, drawable, null, null);
+                } else {
+                    Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucang);
+                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    tvOption3.setCompoundDrawables(null, drawable, null, null);
+                }
                 if (bean.getTradeid() != null & bean.getTradeid().size() > 0) {
                     mDataManager.setViewVisibility(rvTrade, true);
                     TradeAdapter adapter = new TradeAdapter(bean.getTradeid());
@@ -178,6 +191,7 @@ private PeopleBean bean;
         dataList.addAll(JSONArray.parseArray(responseJson.getString("data"), NewsBean.class));
         adapter.notifyDataSetChanged();
     }
+
     @Override
     protected void onRefreshFail(String error) {
 
@@ -199,6 +213,11 @@ private PeopleBean bean;
                 gotoActivity(RecommendSelfAct.class);
                 break;
             case R.id.tvOption3:
+                if (bean.getIsCollected().equals("true")) {
+                    cancalCollect();
+                } else {
+                    addCollect();
+                }
                 break;
             case R.id.tvOption4:
                 break;
@@ -206,5 +225,41 @@ private PeopleBean bean;
                 rvRefresh.smoothScrollToPosition(0);
                 break;
         }
+    }
+
+    private void addCollect() {
+        Map<String, String> params = new HashMap<>();
+        params.put("type", "2");
+        params.put("id", id);
+        mModel.requestAddCollect(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                mDataManager.showToast("收藏成功");
+                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang);
+                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                tvOption3.setCompoundDrawables(null, drawable, null, null);
+                bean.setIsCollected("true");
+                EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_PEOPLE));
+            }
+        });
+    }
+
+    private void cancalCollect() {
+        Map<String, String> params = new HashMap<>();
+        params.put("type", "2");
+        params.put("id", id);
+        mModel.requestCancalCollect(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                mDataManager.showToast("取消收藏成功");
+                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucang);
+                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                tvOption3.setCompoundDrawables(null, drawable, null, null);
+                bean.setIsCollected("false");
+                EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_PEOPLE));
+            }
+        });
     }
 }

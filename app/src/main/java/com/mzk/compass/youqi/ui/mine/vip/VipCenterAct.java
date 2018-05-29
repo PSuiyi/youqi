@@ -7,6 +7,9 @@ import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.mzk.compass.youqi.common.Constants;
+import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzlibray.utils.TimeUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -24,6 +27,12 @@ public class VipCenterAct extends BaseAppActivity {
     TextView tvName;
     @Bind(R.id.tvTitle)
     TextView tvTitle;
+    @Bind(R.id.ivVip)
+    ImageView ivVip;
+    @Bind(R.id.tvVipTime)
+    TextView tvVipTime;
+    @Bind(R.id.tvRecharge)
+    TextView tvRecharge;
 
     @Override
     protected int[] getLayoutResource() {
@@ -42,7 +51,21 @@ public class VipCenterAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
-
+        if (StringUtil.isBlank(mDataManager.readTempData(Constants.User.ISVIP))) {
+            mDataManager.setViewVisibility(ivVip, false);
+            mDataManager.setValueToView(tvVipTime, "你还不是会员，快去购买吧");
+            mDataManager.setValueToView(tvRecharge, "购买");
+        } else {
+            if (mDataManager.readTempData(Constants.User.ISVIP).equals("1")) {
+                mDataManager.setViewVisibility(ivVip, true);
+                mDataManager.setValueToView(tvVipTime, "VIP会员" + TimeUtils.getFormatTime(mDataManager.readTempData(Constants.User.VIPTIME), "yyyy-MM-dd") + "到期");
+                mDataManager.setValueToView(tvRecharge, "续费");
+            } else {
+                mDataManager.setViewVisibility(ivVip, false);
+                mDataManager.setValueToView(tvVipTime, "你还不是会员，快去购买吧");
+                mDataManager.setValueToView(tvRecharge, "购买");
+            }
+        }
     }
 
     @Override
@@ -61,5 +84,12 @@ public class VipCenterAct extends BaseAppActivity {
                 gotoActivity(RechargeAct.class);
                 break;
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

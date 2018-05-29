@@ -48,6 +48,7 @@ public class PeopleBean extends BaseZnzBean {
     private String position;
     private String profile;
     private String collectionNum;
+    private String isCollected;
     private List<TagYouBean> tradeid;
 
     public String getProjectid() {
@@ -224,5 +225,13 @@ public class PeopleBean extends BaseZnzBean {
 
     public void setIntroduce(String introduce) {
         this.introduce = introduce;
+    }
+
+    public String getIsCollected() {
+        return isCollected;
+    }
+
+    public void setIsCollected(String isCollected) {
+        this.isCollected = isCollected;
     }
 }

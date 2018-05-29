@@ -180,8 +180,20 @@ public interface ApiService {
     Observable<ResponseBody> requestIdentifyDetail(@QueryMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("favourite/add")
+    Observable<ResponseBody> requestAddCollect(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("favourite/cancel")
+    Observable<ResponseBody> requestCancalCollect(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("investor/submit-investor-info")
     Observable<ResponseBody> requestIdentify(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("account/approve-personal")
+    Observable<ResponseBody> requestIdentifyPersonal(@FieldMap Map<String, String> params);
 
     @Multipart
     @POST("upload/upload")

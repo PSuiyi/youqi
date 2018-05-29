@@ -27,5 +27,10 @@ public interface EventTags {
     int REFRESH_ORDER = 0X700; //订单取消或者确认服务，刷新订单列表
     int REFRESH_HANYE = 0X800; //行业
     int REFRESH_LUNCI = 0X801; //轮次
+    int REFRESH_COLLECT_PROJECT = 0X900; //收藏项目刷新列表
+    int REFRESH_COLLECT_PEOPLE = 0X901; //收藏投资人刷新列表
+    int REFRESH_COLLECT_ORGAN = 0X902; //收藏机构刷新列表
+    int REFRESH_COLLECT_PRODUCT = 0X903; //收藏商品刷新列表
+    int REFRESH_COLLECT_NEWS = 0X904; //收藏消息刷新列表
 
 }

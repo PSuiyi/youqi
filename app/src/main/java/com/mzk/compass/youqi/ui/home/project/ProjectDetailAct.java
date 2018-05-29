@@ -1,5 +1,6 @@
 package com.mzk.compass.youqi.ui.home.project;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,12 +25,16 @@ import com.mzk.compass.youqi.bean.NewsBean;
 import com.mzk.compass.youqi.bean.PeopleBean;
 import com.mzk.compass.youqi.bean.ProjectBean;
 import com.mzk.compass.youqi.common.Constants;
+import com.mzk.compass.youqi.event.EventRefresh;
+import com.mzk.compass.youqi.event.EventTags;
 import com.mzk.compass.youqi.ui.home.people.PeopleListAct;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.utils.TimeUtils;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -201,6 +206,8 @@ public class ProjectDetailAct extends BaseAppListActivity {
                 mDataManager.setValueToView(tvCompanyName, bean.getCompanyName());
                 mDataManager.setValueToView(tvShizhi, bean.getRongzijine());
 
+
+
                 mDataManager.setValueToView(tvAddress, bean.getProvince() + bean.getCity() + bean.getArea() + bean.getAddress());
                 //运营状态 1运营中 2 已运营 3 未运营
                 if (!StringUtil.isBlank(bean.getRunState())) {
@@ -283,6 +290,11 @@ public class ProjectDetailAct extends BaseAppListActivity {
                 });
                 break;
             case R.id.tvOption3:
+                if (bean.getIsCollected().equals("true")) {
+                    cancalCollect();
+                } else {
+                    addCollect();
+                }
                 break;
             case R.id.tvOption4:
                 break;
@@ -290,5 +302,41 @@ public class ProjectDetailAct extends BaseAppListActivity {
                 rvRefresh.smoothScrollToPosition(0);
                 break;
         }
+    }
+
+    private void addCollect() {
+        Map<String, String> params = new HashMap<>();
+        params.put("type", "1");
+        params.put("id", id);
+        mModel.requestAddCollect(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                mDataManager.showToast("收藏成功");
+                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang);
+                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                tvOption3.setCompoundDrawables(null, drawable, null, null);
+                bean.setIsCollected("true");
+                EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_PROJECT));
+            }
+        });
+    }
+
+    private void cancalCollect() {
+        Map<String, String> params = new HashMap<>();
+        params.put("type", "1");
+        params.put("id", id);
+        mModel.requestCancalCollect(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                mDataManager.showToast("取消收藏成功");
+                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucang);
+                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                tvOption3.setCompoundDrawables(null, drawable, null, null);
+                bean.setIsCollected("false");
+                EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_PROJECT));
+            }
+        });
     }
 }

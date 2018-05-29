@@ -641,6 +641,36 @@ public class ApiModel extends BaseModel {
     }
 
     /**
+     * 添加收藏
+     *
+     * @param params
+     * @return
+     */
+    public void requestAddCollect(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestAddCollect(params), znzHttpListener);
+    }
+
+    /**
+     * 取消收藏
+     *
+     * @param params
+     * @return
+     */
+    public void requestCancalCollect(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestCancalCollect(params), znzHttpListener);
+    }
+
+    /**
+     * 个人身份认证
+     *
+     * @param params
+     * @return
+     */
+    public void requestIdentifyPersonal(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestIdentifyPersonal(params), znzHttpListener);
+    }
+
+    /**
      * 投资人认证
      *
      * @param params

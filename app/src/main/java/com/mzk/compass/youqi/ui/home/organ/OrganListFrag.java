@@ -133,6 +133,9 @@ public class OrganListFrag extends BaseAppListFragment {
                 keywords = event.getValue();
                 resetRefresh();
                 break;
+            case EventTags.REFRESH_COLLECT_ORGAN:
+                resetRefresh();
+                break;
         }
     }
 }

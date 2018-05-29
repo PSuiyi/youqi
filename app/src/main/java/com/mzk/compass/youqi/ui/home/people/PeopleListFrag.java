@@ -132,6 +132,9 @@ public class PeopleListFrag extends BaseAppListFragment {
                 keywords = event.getValue();
                 resetRefresh();
                 break;
+            case EventTags.REFRESH_COLLECT_PEOPLE:
+                resetRefresh();
+                break;
         }
     }
 }

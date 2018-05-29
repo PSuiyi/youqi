@@ -36,6 +36,7 @@
                     android:text="姓名" />
 
                 <EditText
+                    android:id="@+id/etName"
                     style="@style/EditStyle"
                     android:layout_width="match_parent"
                     android:hint="请输入" />
@@ -57,6 +58,7 @@
                     android:text="证件号" />
 
                 <EditText
+                    android:id="@+id/etCard"
                     style="@style/EditStyle"
                     android:layout_width="match_parent"
                     android:hint="请输入" />
@@ -95,7 +97,8 @@
                 android:layout_marginTop="@dimen/distance_view"
                 android:text="正面" />
 
-            <ImageView
+            <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                android:id="@+id/ivFrontCard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -109,7 +112,8 @@
                 android:layout_marginTop="@dimen/distance_view"
                 android:text="反面" />
 
-            <ImageView
+            <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                android:id="@+id/ivBackCard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

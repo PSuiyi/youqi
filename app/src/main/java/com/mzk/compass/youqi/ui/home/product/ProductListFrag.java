@@ -100,7 +100,7 @@ public class ProductListFrag extends BaseAppListFragment {
 
     @Override
     protected void onRefreshSuccess(String response) {
-        dataList.addAll(JSON.parseArray(responseJson.getString("productData"), ProductBean.class));
+        dataList.addAll(JSON.parseArray(responseJson.getString("data"), ProductBean.class));
         adapter.notifyDataSetChanged();
     }
 
@@ -130,6 +130,9 @@ public class ProductListFrag extends BaseAppListFragment {
         switch (event.getFlag()) {
             case EventTags.REFRESH_SEARCH_PRODUCT:
                 keywords = event.getValue();
+                resetRefresh();
+                break;
+            case EventTags.REFRESH_COLLECT_PRODUCT:
                 resetRefresh();
                 break;
         }

@@ -227,7 +227,7 @@ public class PeopleApproveAct extends BaseAppActivity {
                     public void onSuccess(List<String> photoList) {
                         if (!photoList.isEmpty()) {
                             Map<String, String> params = new HashMap<>();
-                            params.put("dirname", "project");
+                            params.put("dirname", "approveinvestors");
                             mModel.uploadImageSingle(params, photoList.get(0), new ZnzHttpListener() {
                                 @Override
                                 public void onSuccess(JSONObject responseOriginal) {

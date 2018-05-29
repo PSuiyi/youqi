@@ -1,6 +1,8 @@
 package com.mzk.compass.youqi.ui.home.organ;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -9,17 +11,22 @@ import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.bean.OrganBean;
+import com.mzk.compass.youqi.event.EventRefresh;
+import com.mzk.compass.youqi.event.EventTags;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.views.WebViewWithProgress;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Date： 2018/4/22 2018
@@ -115,7 +122,15 @@ public class OrganDetailAct extends BaseAppActivity {
                 mDataManager.setValueToView(tvWeb, bean.getWebsite());
                 mDataManager.setValueToView(tvAddress, bean.getProvince() + bean.getCity() + bean.getArea() + bean.getAddress());
 
-
+                if (bean.getIsCollected().equals("true")) {
+                    Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang);
+                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    tvOption3.setCompoundDrawables(null, drawable, null, null);
+                } else {
+                    Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucang);
+                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    tvOption3.setCompoundDrawables(null, drawable, null, null);
+                }
 //                if (bean.getTradeid() != null & bean.getTradeid().size() > 0) {
 //                    mDataManager.setViewVisibility(rvTrade, true);
 //                    TradeAdapter adapter = new TradeAdapter(bean.getTradeid());
@@ -135,10 +150,61 @@ public class OrganDetailAct extends BaseAppActivity {
         });
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+    private void addCollect() {
+        Map<String, String> params = new HashMap<>();
+        params.put("type", "3");
+        params.put("id", id);
+        mModel.requestAddCollect(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                mDataManager.showToast("收藏成功");
+                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang);
+                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                tvOption3.setCompoundDrawables(null, drawable, null, null);
+                bean.setIsCollected("true");
+                EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_ORGAN));
+            }
+        });
+    }
+
+    private void cancalCollect() {
+        Map<String, String> params = new HashMap<>();
+        params.put("type", "3");
+        params.put("id", id);
+        mModel.requestCancalCollect(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                mDataManager.showToast("取消收藏成功");
+                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucang);
+                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                tvOption3.setCompoundDrawables(null, drawable, null, null);
+                bean.setIsCollected("false");
+                EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_ORGAN));
+            }
+        });
+    }
+
+
+    @OnClick({R.id.tvOption1, R.id.tvOption2, R.id.tvOption3, R.id.tvOption4, R.id.tvOption5})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tvOption1:
+                break;
+            case R.id.tvOption2:
+                break;
+            case R.id.tvOption3:
+                if (bean.getIsCollected().equals("true")) {
+                    cancalCollect();
+                } else {
+                    addCollect();
+                }
+                break;
+            case R.id.tvOption4:
+                break;
+            case R.id.tvOption5:
+                break;
+        }
     }
 }

@@ -163,6 +163,9 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
                 keywords = event.getValue();
                 resetRefresh();
                 break;
+            case EventTags.REFRESH_COLLECT_PROJECT:
+                resetRefresh();
+                break;
         }
     }
 }
