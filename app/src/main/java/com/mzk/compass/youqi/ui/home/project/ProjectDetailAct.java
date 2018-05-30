@@ -144,9 +144,6 @@ public class ProjectDetailAct extends BaseAppListActivity {
         tvShizhi = bindViewById(header, R.id.tvShizhi);
         tvState = bindViewById(header, R.id.tvState);
 
-        PeopleGridAdapter peopleGridAdapter = new PeopleGridAdapter(userList);
-        rvPeople.setLayoutManager(new GridLayoutManager(activity, 6));
-        rvPeople.setAdapter(peopleGridAdapter);
 
         llMore.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
@@ -247,6 +244,27 @@ public class ProjectDetailAct extends BaseAppListActivity {
                 super.onFail(error);
             }
         });
+
+        Map<String, String> params1 = new HashMap<>();
+        params1.put("page", "0");
+        params1.put("pageSize", "6");
+        params1.put("projectId", id);
+        mModel.requestPeopleViewList(params1, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                userList.clear();
+                userList.addAll(JSONArray.parseArray(responseJson.getString("data"), PeopleBean.class));
+                PeopleGridAdapter peopleGridAdapter = new PeopleGridAdapter(userList);
+                rvPeople.setLayoutManager(new GridLayoutManager(activity, 6));
+                rvPeople.setAdapter(peopleGridAdapter);
+            }
+
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
+            }
+        });
     }
 
 
@@ -290,7 +308,7 @@ public class ProjectDetailAct extends BaseAppListActivity {
                             gotoActivity(SendMessageAct.class, bundle);
                             break;
                         case "电话":
-                            mDataManager.callPhone(activity, "1245");
+                            mDataManager.callPhone(activity, bean.getTel());
                             break;
                     }
                 });

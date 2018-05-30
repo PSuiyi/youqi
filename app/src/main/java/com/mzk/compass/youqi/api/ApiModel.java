@@ -236,6 +236,10 @@ public class ApiModel extends BaseModel {
         return apiService.requestPeopleViewList(params);
     }
 
+    public void requestPeopleViewList(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestPeopleViewList(params), znzHttpListener);
+    }
+
     /**
      * 帖子详情
      *

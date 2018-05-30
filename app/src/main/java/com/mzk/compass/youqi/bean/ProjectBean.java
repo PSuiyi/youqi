@@ -36,6 +36,7 @@ public class ProjectBean extends BaseZnzBean {
     private String visiteNum;
     private String commentsNum;
     private String rongzistate;
+    private String tel;
     private String companyName;
     private String companyLogo;
     private String address;
@@ -57,6 +58,14 @@ public class ProjectBean extends BaseZnzBean {
     private String showProjectResource;
     private List<TagYouBean> tradeid;
     private List<PeopleBean> team;
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
 
     public String getLink() {
         return link;
