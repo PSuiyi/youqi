@@ -131,12 +131,15 @@ public class RecommendSelfAct extends BaseAppActivity {
                 } else {
                     params.put("type", "1");
                 }
+                params.put("projectId", currentId);
                 params.put("id", id);
                 params.put("content", mDataManager.getValueFromView(etRemark));
                 mModel.requestRecomSelf(params, new ZnzHttpListener() {
                     @Override
                     public void onSuccess(JSONObject responseOriginal) {
                         super.onSuccess(responseOriginal);
+                        mDataManager.showToast("自荐成功");
+                        finish();
                     }
 
                     @Override

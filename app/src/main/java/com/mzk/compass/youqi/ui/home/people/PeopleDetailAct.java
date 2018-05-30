@@ -15,9 +15,9 @@ import com.mzk.compass.youqi.adapter.DetailAdapter;
 import com.mzk.compass.youqi.adapter.MenuAdapter;
 import com.mzk.compass.youqi.adapter.TradeAdapter;
 import com.mzk.compass.youqi.base.BaseAppListActivity;
+import com.mzk.compass.youqi.bean.CommentBean;
 import com.mzk.compass.youqi.bean.MenuBean;
 import com.mzk.compass.youqi.bean.MultiBean;
-import com.mzk.compass.youqi.bean.NewsBean;
 import com.mzk.compass.youqi.bean.PeopleBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.event.EventRefresh;
@@ -191,7 +191,7 @@ public class PeopleDetailAct extends BaseAppListActivity {
 
     @Override
     protected void onRefreshSuccess(String response) {
-        dataList.addAll(JSONArray.parseArray(responseJson.getString("data"), NewsBean.class));
+        dataList.addAll(JSONArray.parseArray(responseJson.getString("data"), CommentBean.class));
         adapter.notifyDataSetChanged();
     }
 

@@ -13,6 +13,7 @@ import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.bean.OrganBean;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
+import com.mzk.compass.youqi.ui.home.people.RecommendSelfAct;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.views.WebViewWithProgress;
 import com.znz.compass.znzlibray.views.ZnzRemind;
@@ -25,7 +26,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -187,12 +187,17 @@ public class OrganDetailAct extends BaseAppActivity {
     }
 
 
-    @OnClick({R.id.tvOption1, R.id.tvOption2, R.id.tvOption3, R.id.tvOption4, R.id.tvOption5})
+    @OnClick({R.id.tvOption1, R.id.tvRecommend, R.id.tvOption2, R.id.tvOption3, R.id.tvOption4, R.id.tvOption5})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvOption1:
                 break;
+            case R.id.tvRecommend:
             case R.id.tvOption2:
+                Bundle bundle = new Bundle();
+                bundle.putString("id", id);
+                bundle.putString("from", "投资机构");
+                gotoActivity(RecommendSelfAct.class, bundle);
                 break;
             case R.id.tvOption3:
                 if (bean.getIsCollected().equals("true")) {

@@ -19,6 +19,7 @@ import com.mzk.compass.youqi.adapter.MenuAdapter;
 import com.mzk.compass.youqi.adapter.PeopleGridAdapter;
 import com.mzk.compass.youqi.adapter.TradeAdapter;
 import com.mzk.compass.youqi.base.BaseAppListActivity;
+import com.mzk.compass.youqi.bean.CommentBean;
 import com.mzk.compass.youqi.bean.MenuBean;
 import com.mzk.compass.youqi.bean.MultiBean;
 import com.mzk.compass.youqi.bean.NewsBean;
@@ -259,7 +260,7 @@ public class ProjectDetailAct extends BaseAppListActivity {
 
     @Override
     protected void onRefreshSuccess(String response) {
-        dataList.addAll(JSONArray.parseArray(responseJson.getString("data"), NewsBean.class));
+        dataList.addAll(JSONArray.parseArray(responseJson.getString("data"), CommentBean.class));
         adapter.notifyDataSetChanged();
     }
 

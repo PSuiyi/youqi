@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.CommentAdapter;
 import com.mzk.compass.youqi.base.BaseAppListActivity;
+import com.mzk.compass.youqi.bean.CommentBean;
 import com.mzk.compass.youqi.bean.NewsBean;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
@@ -130,7 +131,7 @@ public class NewsDetailAct extends BaseAppListActivity {
 
     @Override
     protected void onRefreshSuccess(String response) {
-        dataList.addAll(JSONArray.parseArray(responseJson.getString("data"), NewsBean.class));
+        dataList.addAll(JSONArray.parseArray(responseJson.getString("data"), CommentBean.class));
         adapter.notifyDataSetChanged();
     }
 
