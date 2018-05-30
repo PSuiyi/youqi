@@ -120,6 +120,10 @@ public class PopupWindowManager {
             hidePopupWindow();
         });
 
+        init(view, R.id.tvCancel).setOnClickListener(v -> {
+            hidePopupWindow();
+        });
+
         popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
     }
 
@@ -130,12 +134,20 @@ public class PopupWindowManager {
         llParent.setOnClickListener(view1 -> hidePopupWindow());
 
         init(view, R.id.tvPublish1).setOnClickListener(v -> {
-            mDataManager.gotoActivity(PublishAct.class);
+            if (listener != null) {
+                listener.onPopupWindowClick("站内信", null);
+            }
             hidePopupWindow();
         });
 
         init(view, R.id.tvPublish2).setOnClickListener(v -> {
-            mDataManager.gotoActivity(PublishStateAct.class);
+            if (listener != null) {
+                listener.onPopupWindowClick("电话", null);
+            }
+            hidePopupWindow();
+        });
+
+        init(view, R.id.tvCancel).setOnClickListener(v -> {
             hidePopupWindow();
         });
 

@@ -92,6 +92,10 @@ public interface ApiService {
     Observable<ResponseBody> requestAddState(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("project/arrange-talk")
+    Observable<ResponseBody> requestSendMessage(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("ucenter/add-feedback")
     Observable<ResponseBody> requestFeedBack(@FieldMap Map<String, String> params);
 
@@ -142,6 +146,9 @@ public interface ApiService {
 
     @GET("project/detail")
     Observable<ResponseBody> requestProjectDetail(@QueryMap Map<String, String> params);
+
+    @GET("project/get-investor-visits")
+    Observable<ResponseBody> requestPeopleViewList(@QueryMap Map<String, String> params);
 
     @GET("news/detail")
     Observable<ResponseBody> requestNewsDetail(@QueryMap Map<String, String> params);

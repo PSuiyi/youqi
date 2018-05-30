@@ -155,7 +155,7 @@ public class PeopleDetailAct extends BaseAppListActivity {
                 mDataManager.setValueToView(tvTag1, bean.getName());
                 mDataManager.setValueToView(tvTag2, bean.getGroupName());
                 if (bean.getIsCollected().equals("true")) {
-                    Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang);
+                    Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang2);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                     tvOption3.setCompoundDrawables(null, drawable, null, null);
                 } else {
@@ -242,7 +242,7 @@ public class PeopleDetailAct extends BaseAppListActivity {
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 mDataManager.showToast("收藏成功");
-                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang);
+                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang2);
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                 tvOption3.setCompoundDrawables(null, drawable, null, null);
                 bean.setIsCollected("true");

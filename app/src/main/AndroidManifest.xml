@@ -87,6 +87,8 @@
         <activity android:name=".ui.mine.article.ArticleDetailAct" />
         <activity android:name=".ui.home.PeopleApproveAct" />
         <activity android:name=".ui.home.organ.OrganListAct" />
+        <activity android:name=".ui.home.project.SendMessageAct" />
+        <activity android:name=".ui.home.project.PeopleViewAct" />
 
     </application>
 

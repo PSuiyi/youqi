@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.bean.ProjectBean;
 import com.mzk.compass.youqi.ui.home.project.ProjectDetailAct;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
@@ -77,7 +78,11 @@ public class ProjectAdapter extends BaseQuickAdapter<ProjectBean, BaseViewHolder
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         Bundle bundle = new Bundle();
-        bundle.putString("id", bean.getId());
+        if (!StringUtil.isBlank(bean.getLink())) {
+            bundle.putString("id", bean.getLink());
+        } else {
+            bundle.putString("id", bean.getId());
+        }
         gotoActivity(ProjectDetailAct.class, bundle);
     }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -26,6 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -79,6 +81,8 @@ public class OrganDetailAct extends BaseAppActivity {
     TextView tvOption4;
     @Bind(R.id.tvOption5)
     TextView tvOption5;
+    @Bind(R.id.scRootView)
+    ScrollView scRootView;
     private String id;
     private OrganBean bean;
 
@@ -123,7 +127,7 @@ public class OrganDetailAct extends BaseAppActivity {
                 mDataManager.setValueToView(tvAddress, bean.getProvince() + bean.getCity() + bean.getArea() + bean.getAddress());
 
                 if (bean.getIsCollected().equals("true")) {
-                    Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang);
+                    Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang2);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                     tvOption3.setCompoundDrawables(null, drawable, null, null);
                 } else {
@@ -159,7 +163,7 @@ public class OrganDetailAct extends BaseAppActivity {
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 mDataManager.showToast("收藏成功");
-                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang);
+                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang2);
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                 tvOption3.setCompoundDrawables(null, drawable, null, null);
                 bean.setIsCollected("true");
@@ -209,7 +213,15 @@ public class OrganDetailAct extends BaseAppActivity {
             case R.id.tvOption4:
                 break;
             case R.id.tvOption5:
+                scRootView.smoothScrollTo(0, 0);
                 break;
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

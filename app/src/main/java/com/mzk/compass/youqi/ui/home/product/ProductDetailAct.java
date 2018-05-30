@@ -110,7 +110,7 @@ public class ProductDetailAct extends BaseAppActivity {
                 mDataManager.setValueToView(tvNumber, bean.getCount());
                 wvDetail.loadContent(bean.getContent());
                 if (bean.getIsCollected().equals("true")) {
-                    Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang);
+                    Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang2);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                     tvFav.setCompoundDrawables(null, drawable, null, null);
                 } else {
@@ -225,7 +225,7 @@ public class ProductDetailAct extends BaseAppActivity {
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 mDataManager.showToast("收藏成功");
-                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang);
+                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang2);
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                 tvFav.setCompoundDrawables(null, drawable, null, null);
                 bean.setIsCollected("true");

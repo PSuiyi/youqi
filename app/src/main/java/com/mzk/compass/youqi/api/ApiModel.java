@@ -232,6 +232,10 @@ public class ApiModel extends BaseModel {
         request(apiService.requestProjectDetail(params), znzHttpListener, LODING_LODING);
     }
 
+    public Observable<ResponseBody> requestPeopleViewList(Map<String, String> params) {
+        return apiService.requestPeopleViewList(params);
+    }
+
     /**
      * 帖子详情
      *
@@ -576,6 +580,10 @@ public class ApiModel extends BaseModel {
      */
     public void requestAddState(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         request(apiService.requestAddState(params), znzHttpListener);
+    }
+
+    public void requestSendMessage(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestSendMessage(params), znzHttpListener);
     }
 
     /**

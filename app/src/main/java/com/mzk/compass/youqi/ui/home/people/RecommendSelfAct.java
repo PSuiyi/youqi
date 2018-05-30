@@ -11,9 +11,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.bean.ProjectBean;
+import com.mzk.compass.youqi.ui.publish.PublishAct;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIActionSheetDialog;
+import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -99,7 +101,14 @@ public class RecommendSelfAct extends BaseAppActivity {
         switch (view.getId()) {
             case R.id.llProject:
                 if (projectBeanList.isEmpty()) {
-                    mDataManager.showToast("暂时没有项目，请先创建项目");
+                    new UIAlertDialog(activity)
+                            .builder()
+                            .setMsg("你还没有项目，去创建？")
+                            .setNegativeButton("取消", null)
+                            .setPositiveButton("确定", v2 -> {
+                                gotoActivity(PublishAct.class);
+                            })
+                            .show();
                     return;
                 }
                 List<String> items = new ArrayList<>();

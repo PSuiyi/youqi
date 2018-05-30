@@ -49,7 +49,25 @@ public class PeopleBean extends BaseZnzBean {
     private String profile;
     private String collectionNum;
     private String isCollected;
+    private String addTime;
+    private PeopleBean user;
     private List<TagYouBean> tradeid;
+
+    public String getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(String addTime) {
+        this.addTime = addTime;
+    }
+
+    public PeopleBean getUser() {
+        return user;
+    }
+
+    public void setUser(PeopleBean user) {
+        this.user = user;
+    }
 
     public String getProjectid() {
         return projectid;

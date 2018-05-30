@@ -22,13 +22,11 @@ import com.mzk.compass.youqi.base.BaseAppListActivity;
 import com.mzk.compass.youqi.bean.CommentBean;
 import com.mzk.compass.youqi.bean.MenuBean;
 import com.mzk.compass.youqi.bean.MultiBean;
-import com.mzk.compass.youqi.bean.NewsBean;
 import com.mzk.compass.youqi.bean.PeopleBean;
 import com.mzk.compass.youqi.bean.ProjectBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
-import com.mzk.compass.youqi.ui.home.people.PeopleListAct;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -151,7 +149,9 @@ public class ProjectDetailAct extends BaseAppListActivity {
         rvPeople.setAdapter(peopleGridAdapter);
 
         llMore.setOnClickListener(v -> {
-            gotoActivity(PeopleListAct.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("id", id);
+            gotoActivity(PeopleViewAct.class, bundle);
         });
 
 
@@ -206,7 +206,6 @@ public class ProjectDetailAct extends BaseAppListActivity {
                 mDataManager.setValueToView(tvCountView, bean.getVisiteNum());
                 mDataManager.setValueToView(tvCompanyName, bean.getCompanyName());
                 mDataManager.setValueToView(tvShizhi, bean.getRongzijine());
-
 
 
                 mDataManager.setValueToView(tvAddress, bean.getProvince() + bean.getCity() + bean.getArea() + bean.getAddress());
@@ -283,10 +282,16 @@ public class ProjectDetailAct extends BaseAppListActivity {
             case R.id.tvOption1:
                 break;
             case R.id.tvOption2:
-                PopupWindowManager.getInstance(activity).showChatProject(view, new PopupWindowManager.OnPopupWindowClickListener() {
-                    @Override
-                    public void onPopupWindowClick(String type, String[] values) {
-
+                PopupWindowManager.getInstance(activity).showChatProject(view, (type, values) -> {
+                    switch (type) {
+                        case "站内信":
+                            Bundle bundle = new Bundle();
+                            bundle.putString("id", id);
+                            gotoActivity(SendMessageAct.class, bundle);
+                            break;
+                        case "电话":
+                            mDataManager.callPhone(activity, "1245");
+                            break;
                     }
                 });
                 break;
@@ -314,7 +319,7 @@ public class ProjectDetailAct extends BaseAppListActivity {
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 mDataManager.showToast("收藏成功");
-                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang);
+                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang2);
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                 tvOption3.setCompoundDrawables(null, drawable, null, null);
                 bean.setIsCollected("true");

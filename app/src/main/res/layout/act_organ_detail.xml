@@ -12,6 +12,7 @@
     <include layout="@layout/include_common_network_status" />
 
     <ScrollView
+        android:id="@+id/scRootView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">

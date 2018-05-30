@@ -51,11 +51,20 @@ public class ProjectBean extends BaseZnzBean {
     private String rongzijine;
     private String province;
     private String city;
+    private String link;
     private String area;
     private String isCollected;
     private String showProjectResource;
     private List<TagYouBean> tradeid;
     private List<PeopleBean> team;
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
 
     public List<PeopleBean> getTeam() {
         return team;
