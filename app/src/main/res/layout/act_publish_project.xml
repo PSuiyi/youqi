@@ -225,11 +225,17 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/distance_view">
 
-                <ImageView style="@style/DotRedStyle" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                <TextView
-                    style="@style/TitleTextStyle"
-                    android:text="公司头像" />
+                    <ImageView style="@style/DotRedStyle" />
+
+                    <TextView
+                        style="@style/TitleTextStyle"
+                        android:text="公司头像" />
+                </LinearLayout>
 
                 <View style="@style/WeightView" />
 

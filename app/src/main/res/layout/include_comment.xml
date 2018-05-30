@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llComment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <View style="@style/Line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/distance_divider"
+            android:paddingLeft="@dimen/distance_view"
+            android:paddingRight="@dimen/distance_view"
+            android:paddingTop="@dimen/distance_divider">
+
+            <EditText
+                android:id="@+id/etComment"
+                style="@style/EditMultiStyle"
+                android:layout_weight="1"
+                android:background="@drawable/bg_et_comment"
+                android:hint="写评论..."
+                android:paddingBottom="8dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="8dp" />
+
+            <TextView
+                android:id="@+id/tvComment"
+                style="@style/TextWhiteStyle"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/distance_view"
+                android:background="@drawable/bg_comment_send"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
+                android:text="发送" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

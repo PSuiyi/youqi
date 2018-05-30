@@ -176,6 +176,14 @@ public class ApiModel extends BaseModel {
         request(apiService.requestPublishProject(params), znzHttpListener, LODING_PD);
     }
 
+    public void requestRecomSelfProject(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestRecomSelfProject(params), znzHttpListener);
+    }
+
+    public void requestRecomSelf(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestRecomSelf(params), znzHttpListener, LODING_PD);
+    }
+
     /**
      * 帖子列表
      *

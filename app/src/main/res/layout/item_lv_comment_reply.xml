@@ -14,7 +14,7 @@
         android:paddingRight="@dimen/distance_divider">
 
         <TextView
-            android:id="@+id/tvNickName"
+            android:id="@+id/tvUserName"
             style="@style/TextStyle"
             android:text="张三"
             android:textColor="@color/blue" />

@@ -112,7 +112,10 @@ public class PeopleDetailAct extends BaseAppListActivity {
 
         tvRecommend = bindViewById(header, R.id.tvRecommend);
         tvRecommend.setOnClickListener(v -> {
-            gotoActivity(RecommendSelfAct.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("id", id);
+            bundle.putString("from", "投资人");
+            gotoActivity(RecommendSelfAct.class, bundle);
         });
 
         //菜单栏
@@ -210,7 +213,10 @@ public class PeopleDetailAct extends BaseAppListActivity {
             case R.id.tvOption1:
                 break;
             case R.id.tvOption2:
-                gotoActivity(RecommendSelfAct.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("id", id);
+                bundle.putString("from", "投资人");
+                gotoActivity(RecommendSelfAct.class, bundle);
                 break;
             case R.id.tvOption3:
                 if (bean.getIsCollected().equals("true")) {

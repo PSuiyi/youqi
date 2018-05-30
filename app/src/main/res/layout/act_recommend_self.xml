@@ -20,6 +20,7 @@
     <View style="@style/LineBoth" />
 
     <LinearLayout
+        android:id="@+id/llProject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -27,6 +28,7 @@
         android:padding="@dimen/distance_view">
 
         <TextView
+            android:id="@+id/tvProject"
             style="@style/TitleGrayTextStyle"
             android:text="请选择" />
 
@@ -48,15 +50,17 @@
         android:padding="@dimen/distance_view">
 
         <EditText
+            android:id="@+id/etRemark"
             style="@style/EditMultiStyle"
             android:layout_width="match_parent"
             android:background="#F6F6F6"
-            android:hint="您好：真诚向您推荐我们的创业项目，希望您在百忙中抽出时间了解一下我们的项目，如果您对我们的项目有意向，可通过小鱼办公与我们进行视频会议。谢谢。"
+            android:hint="请输入备注"
             android:minHeight="140dp"
             android:padding="@dimen/distance_view" />
 
 
         <TextView
+            android:id="@+id/tvSubmit"
             style="@style/BtnStyle"
             android:layout_marginTop="@dimen/distance_view"
             android:text="确定" />

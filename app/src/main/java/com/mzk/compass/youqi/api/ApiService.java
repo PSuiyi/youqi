@@ -103,6 +103,10 @@ public interface ApiService {
     @POST("site/release")
     Observable<ResponseBody> requestCheckIdentify(@FieldMap Map<String, String> params);
 
+    @FormUrlEncoded
+    @POST("message/recommend-self")
+    Observable<ResponseBody> requestRecomSelf(@FieldMap Map<String, String> params);
+
     @GET("project/list-my-project")
     Observable<ResponseBody> requestProjectMineList(@QueryMap Map<String, String> params);
 
@@ -111,6 +115,9 @@ public interface ApiService {
 
     @GET("order/list")
     Observable<ResponseBody> requestOrderList(@QueryMap Map<String, String> params);
+
+    @GET("investor/get-my-project")
+    Observable<ResponseBody> requestRecomSelfProject(@QueryMap Map<String, String> params);
 
     @GET("comment/index")
     Observable<ResponseBody> requestCommentList(@QueryMap Map<String, String> params);
