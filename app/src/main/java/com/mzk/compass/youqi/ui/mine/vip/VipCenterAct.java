@@ -10,6 +10,7 @@ import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.common.Constants;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.utils.TimeUtils;
+import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -22,7 +23,7 @@ import butterknife.OnClick;
  */
 public class VipCenterAct extends BaseAppActivity {
     @Bind(R.id.ivHeader)
-    ImageView ivHeader;
+    HttpImageView ivHeader;
     @Bind(R.id.tvName)
     TextView tvName;
     @Bind(R.id.tvTitle)
@@ -66,6 +67,7 @@ public class VipCenterAct extends BaseAppActivity {
                 mDataManager.setValueToView(tvRecharge, "购买");
             }
         }
+        ivHeader.loadHeaderImage(mDataManager.readTempData(Constants.User.AVATAR));
     }
 
     @Override

@@ -34,7 +34,7 @@
                     android:layout_height="5dp"
                     android:layout_centerHorizontal="true" />
 
-                <ImageView
+                <com.znz.compass.znzlibray.views.imageloder.HttpImageView
                     android:id="@+id/ivHeader"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -46,8 +46,9 @@
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@+id/textView2"
-                    android:layout_toRightOf="@+id/textView2"
+                    android:layout_toEndOf="@id/tag"
+                    android:layout_marginLeft="@dimen/distance_view"
+                    android:layout_toRightOf="@id/tag"
                     android:src="@mipmap/vip" />
 
                 <TextView
@@ -113,7 +114,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="39dp"
         android:background="@color/white"
         android:orientation="vertical"
         android:padding="@dimen/distance_view">

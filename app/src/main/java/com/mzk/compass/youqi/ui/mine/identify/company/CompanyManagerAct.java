@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.mzk.compass.youqi.ui.mine.identify.personal.MemberMangerAct;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -50,10 +51,10 @@ public class CompanyManagerAct extends BaseAppActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.llCreate:
-                gotoActivity(CompanyCreateAct.class);
+                gotoActivity(CompanyCreateNextAct.class);
                 break;
             case R.id.llManager:
-                gotoActivity(IdentifyProcessAct.class);
+                gotoActivity(MemberMangerAct.class);
                 break;
             case R.id.llIdentify:
                 gotoActivity(CompanyIdentifyAct.class);

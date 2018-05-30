@@ -27,11 +27,7 @@
             android:paddingRight="@dimen/distance_view"
             android:paddingTop="@dimen/distance_view">
 
-            <View
-                android:layout_width="5dp"
-                android:layout_height="5dp"
-                android:layout_marginTop="2dp"
-                android:background="@drawable/bg_red_radius_30" />
+            <ImageView style="@style/DotRedStyle" />
 
             <TextView
                 style="@style/TextStyle"
@@ -58,11 +54,7 @@
             android:paddingRight="@dimen/distance_view"
             android:paddingTop="@dimen/distance_view">
 
-            <View
-                android:layout_width="5dp"
-                android:layout_height="5dp"
-                android:layout_marginTop="2dp"
-                android:background="@drawable/bg_red_radius_30" />
+            <ImageView style="@style/DotRedStyle" />
 
             <TextView
                 style="@style/TextStyle"
@@ -71,7 +63,7 @@
 
             <com.znz.compass.znzlibray.views.EditTextWithDel
                 android:id="@+id/etPhone"
-                style="@style/EditSingleStyle"
+                style="@style/EditPhoneStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"

@@ -59,9 +59,8 @@ public interface ApiService {
     @POST("ucenter/index")
     Observable<ResponseBody> requestUserDetail(@FieldMap Map<String, String> params);
 
-    @FormUrlEncoded
-    @POST("order/detail")
-    Observable<ResponseBody> requestOrderDetail(@FieldMap Map<String, String> params);
+    @GET("order/detail")
+    Observable<ResponseBody> requestOrderDetail(@QueryMap Map<String, String> params);
 
     @FormUrlEncoded
     @POST("account/index")
@@ -193,6 +192,9 @@ public interface ApiService {
     @GET("investor/get-my-investor-info")
     Observable<ResponseBody> requestIdentifyDetail(@QueryMap Map<String, String> params);
 
+    @GET("company/get-create-company-info")
+    Observable<ResponseBody> requestCompanyDetail(@QueryMap Map<String, String> params);
+
     @FormUrlEncoded
     @POST("favourite/add")
     Observable<ResponseBody> requestAddCollect(@FieldMap Map<String, String> params);
@@ -208,6 +210,25 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("account/approve-personal")
     Observable<ResponseBody> requestIdentifyPersonal(@FieldMap Map<String, String> params);
+
+    @GET("invite/list")
+    Observable<ResponseBody> requestMemberList(@QueryMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("invite/add")
+    Observable<ResponseBody> requestMemberAdd(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("invite/update")
+    Observable<ResponseBody> requestMemberUpdate(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("company/save-company-info")
+    Observable<ResponseBody> requestCompany(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("company/get-identify-company-info")
+    Observable<ResponseBody> requestCompanyIdentifyDetail(@FieldMap Map<String, String> params);
 
     @Multipart
     @POST("upload/upload")

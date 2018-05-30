@@ -134,7 +134,6 @@ public class PeopleApproveAct extends BaseAppActivity {
                 if (!StringUtil.isBlank(json.getString("myApproveInfo"))) {
                     IdentifyBean bean = JSON.parseObject(json.getString("myApproveInfo"), IdentifyBean.class);
                     etName.setText(bean.getRealName());
-                    etName.setFocusable(false);
                     selectHangye.addAll(bean.getTradeid());
                     selectLunci.addAll(bean.getRoundsid());
                     for (IndustryBean industryBean : shenFenList) {
@@ -142,6 +141,8 @@ public class PeopleApproveAct extends BaseAppActivity {
                             tvShenFen.setText(industryBean.getName());
                         }
                     }
+                    getTraids();
+                    getRoundids();
                     ivCard.loadHttpImage(bean.getNameCard());
 
                 }
@@ -158,6 +159,7 @@ public class PeopleApproveAct extends BaseAppActivity {
                     cbSelect.setEnabled(true);
                     ivCard.setEnabled(true);
                     tvSubmit.setEnabled(true);
+                    etName.setFocusable(true);
                     tvYiRenZheng.setVisibility(View.GONE);
                     tvSubmit.setVisibility(View.VISIBLE);
                 } else {
@@ -173,6 +175,7 @@ public class PeopleApproveAct extends BaseAppActivity {
                     cbSelect.setEnabled(false);
                     ivCard.setEnabled(false);
                     tvSubmit.setEnabled(false);
+                    etName.setFocusable(false);
                     tvYiRenZheng.setVisibility(View.VISIBLE);
                     tvSubmit.setVisibility(View.GONE);
                 }

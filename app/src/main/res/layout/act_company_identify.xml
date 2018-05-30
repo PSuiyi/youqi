@@ -31,11 +31,7 @@
                 android:paddingRight="@dimen/distance_view"
                 android:paddingTop="@dimen/distance_view">
 
-                <View
-                    android:layout_width="5dp"
-                    android:layout_height="5dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/bg_red_radius_30" />
+                <ImageView style="@style/DotRedStyle" />
 
                 <TextView
                     style="@style/TextStyle"
@@ -46,6 +42,7 @@
             <View style="@style/LineBoth" />
 
             <EditText
+                android:id="@+id/etCompany"
                 style="@style/EditStyle"
                 android:layout_width="match_parent"
                 android:layout_margin="@dimen/distance_view"
@@ -62,11 +59,7 @@
                 android:paddingRight="@dimen/distance_view"
                 android:paddingTop="@dimen/distance_view">
 
-                <View
-                    android:layout_width="5dp"
-                    android:layout_height="5dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/bg_red_radius_30" />
+                <ImageView style="@style/DotRedStyle" />
 
                 <TextView
                     style="@style/TextStyle"
@@ -77,6 +70,7 @@
             <View style="@style/LineBoth" />
 
             <EditText
+                android:id="@+id/etName"
                 style="@style/EditStyle"
                 android:layout_width="match_parent"
                 android:layout_margin="@dimen/distance_view"
@@ -93,11 +87,7 @@
                 android:paddingRight="@dimen/distance_view"
                 android:paddingTop="@dimen/distance_view">
 
-                <View
-                    android:layout_width="5dp"
-                    android:layout_height="5dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/bg_red_radius_30" />
+                <ImageView style="@style/DotRedStyle" />
 
                 <TextView
                     style="@style/TextStyle"
@@ -108,6 +98,7 @@
             <View style="@style/LineBoth" />
 
             <LinearLayout
+                android:id="@+id/llCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -115,6 +106,7 @@
                 android:padding="@dimen/distance_view">
 
                 <TextView
+                    android:id="@+id/tvCity"
                     style="@style/TextStyle"
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -129,6 +121,7 @@
             <View style="@style/LineBoth" />
 
             <EditText
+                android:id="@+id/etAddress"
                 style="@style/EditStyle"
                 android:layout_width="match_parent"
                 android:layout_margin="@dimen/distance_view"
@@ -145,11 +138,7 @@
                 android:paddingRight="@dimen/distance_view"
                 android:paddingTop="@dimen/distance_view">
 
-                <View
-                    android:layout_width="5dp"
-                    android:layout_height="5dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/bg_red_radius_30" />
+                <ImageView style="@style/DotRedStyle" />
 
                 <TextView
                     style="@style/TextStyle"
@@ -160,6 +149,7 @@
             <View style="@style/LineBoth" />
 
             <EditText
+                android:id="@+id/etCard"
                 style="@style/EditStyle"
                 android:layout_width="match_parent"
                 android:layout_margin="@dimen/distance_view"
@@ -176,11 +166,7 @@
                 android:paddingRight="@dimen/distance_view"
                 android:paddingTop="@dimen/distance_view">
 
-                <View
-                    android:layout_width="5dp"
-                    android:layout_height="5dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/bg_red_radius_30" />
+                <ImageView style="@style/DotRedStyle" />
 
                 <TextView
                     style="@style/TextStyle"
@@ -195,14 +181,17 @@
                 android:layout_margin="@dimen/distance_view"
                 android:hint="证件信息不能被遮挡，且清晰可见；照片支持jpg/jpeg/png格式，最大不超过5M。" />
 
-            <ImageView
+            <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                android:id="@+id/ivCard"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="160dp"
                 android:layout_marginLeft="@dimen/distance_view"
                 android:layout_marginRight="@dimen/distance_view"
+                android:scaleType="centerCrop"
                 android:src="@mipmap/dianjishanchuan" />
 
             <LinearLayout
+                android:id="@+id/llSelect"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -210,6 +199,7 @@
                 android:padding="@dimen/distance_view">
 
                 <CheckBox
+                    android:id="@+id/cbSelect"
                     android:layout_width="12dp"
                     android:layout_height="12dp"
                     android:background="@drawable/selector_checkbox"
@@ -218,9 +208,11 @@
 
                 <TextView
                     style="@style/TextSamllGrayStyle"
+                    android:layout_marginLeft="5dp"
                     android:text="已阅读并同意" />
 
                 <TextView
+                    android:id="@+id/tvAgreement"
                     style="@style/TextSamllStyle"
                     android:text="《认证协议》"
                     android:textColor="@color/red" />
@@ -229,6 +221,7 @@
     </ScrollView>
 
     <LinearLayout
+        android:id="@+id/llMenu"
         android:layout_width="match_parent"
         android:layout_height="@dimen/nav_height"
         android:orientation="horizontal">

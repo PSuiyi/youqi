@@ -46,11 +46,11 @@ public class OrderAdapter extends BaseQuickAdapter<OrderBean, BaseViewHolder> im
     protected void convert(BaseViewHolder helper, OrderBean bean) {
         setOnItemClickListener(this);
         mDataManager.setValueToView(tvOrderCode, bean.getOrderSerial());
-        mDataManager.setValueToView(tvProjectName, bean.getName());
-        mDataManager.setValueToView(tvPrice, "￥" + bean.getRealPrice());
+        mDataManager.setValueToView(tvProjectName, bean.getProductName());
+        mDataManager.setValueToView(tvPrice, "￥" + bean.getProductPrice());
         mDataManager.setValueToView(tvCount, "x" + bean.getNum());
-        ivLogo.loadHttpImage(bean.getMobilePhoto());
-        mDataManager.setValueToView(tvTotalMoney, appUtils.getMoney(bean.getRealPrice(), bean.getNum()));
+        ivLogo.loadHttpImage(bean.getProductMobileImage());
+        mDataManager.setValueToView(tvTotalMoney, appUtils.getMoney(bean.getProductPrice(), bean.getNum()));
         if (StringUtil.isBlank(bean.getState())) {
             mDataManager.setViewVisibility(tvState, false);
         } else {
@@ -81,7 +81,7 @@ public class OrderAdapter extends BaseQuickAdapter<OrderBean, BaseViewHolder> im
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         Bundle bundle = new Bundle();
-        bundle.putString("id", bean.getId());
+        bundle.putString("id", bean.getOrderSerial());
         gotoActivity(OrderDetailAct.class, bundle);
     }
 }

@@ -60,23 +60,23 @@ public class UpdateInfoAct extends BaseAppActivity {
         switch (from) {
             case "姓名":
                 etContent.setHint("请输入姓名");
-                mDataManager.setValueToView(etContent, mDataManager.readTempData(Constants.User.NICKNAME));
+                mDataManager.setValueToView(etContent, mDataManager.readTempData(Constants.User.NICKNAME), "");
                 break;
             case "所属公司":
                 etContent.setHint("编辑所属公司20字内");
-                mDataManager.setValueToView(etContent, AppUtils.getInstance(context).getCompanyName());
+                mDataManager.setValueToView(etContent, AppUtils.getInstance(context).getCompanyName(), "");
                 break;
             case "职务":
                 etContent.setHint("编辑职务10字以内");
-                mDataManager.setValueToView(etContent, mDataManager.readTempData(Constants.User.DUTY));
+                mDataManager.setValueToView(etContent, mDataManager.readTempData(Constants.User.DUTY), "");
                 break;
             case "电子邮箱":
                 etContent.setHint("请输入电子邮箱");
-                mDataManager.setValueToView(etContent, mDataManager.readTempData(Constants.User.EMAIL));
+                mDataManager.setValueToView(etContent, mDataManager.readTempData(Constants.User.EMAIL), "");
                 break;
             case "联系地址":
                 etContent.setHint("请输入详细地址");
-                mDataManager.setValueToView(etContent, mDataManager.readTempData(Constants.User.ADDRESS));
+                mDataManager.setValueToView(etContent, mDataManager.readTempData(Constants.User.ADDRESS), "");
                 break;
         }
     }

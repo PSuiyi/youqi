@@ -105,21 +105,22 @@ public class OrderDetailAct extends BaseAppActivity {
     @Override
     protected void loadDataFromServer() {
         Map<String, String> params = new HashMap<>();
+        params.put("orderSerial", id);
         mModel.requestOrderDetail(params, new ZnzHttpListener() {
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 bean = JSON.parseObject(responseOriginal.getString("data"), OrderBean.class);
                 if (bean != null) {
-                    ivLogo.loadHttpImage(bean.getMobilePhoto());
-                    mDataManager.setValueToView(tvProjectName, bean.getName());
-                    mDataManager.setValueToView(tvPrice, "￥" + bean.getRealPrice());
+                    ivLogo.loadHttpImage(bean.getProductMobileImage());
+                    mDataManager.setValueToView(tvProjectName, bean.getProductName());
+                    mDataManager.setValueToView(tvPrice, "￥" + bean.getProductPrice());
                     mDataManager.setValueToView(tvCount, "x" + bean.getNum());
-                    mDataManager.setValueToView(tvTotalMoney, AppUtils.getInstance(context).getMoney(bean.getRealPrice(), bean.getNum()));
+                    mDataManager.setValueToView(tvTotalMoney, AppUtils.getInstance(context).getMoney(bean.getProductPrice(), bean.getNum()));
                     mDataManager.setValueToView(tvPhone, bean.getBuyerTel());
                     mDataManager.setValueToView(tvOrderCode, bean.getOrderSerial());
                     mDataManager.setValueToView(tvNode, bean.getNote());
-                    mDataManager.setValueToView(tvTime, TimeUtils.getFormatTime(bean.getAddTime(), "yyyy.MM.dd HH:mm:ss"));
+                    mDataManager.setValueToView(tvTime, TimeUtils.millis2String(StringUtil.stringToLong(bean.getAddTime()) * 1000, "yyyy.MM.dd HH:mm:ss"));
                     switch (bean.getState()) {
                         case "1":
                             mDataManager.setValueToView(tvState, "待付款");
@@ -185,9 +186,10 @@ public class OrderDetailAct extends BaseAppActivity {
                 updateOrder("cancal");
                 break;
             case R.id.tvPay:
-                updateOrder("confirm");
+
                 break;
             case R.id.tvSubmit:
+                updateOrder("confirm");
                 break;
         }
     }
@@ -195,7 +197,7 @@ public class OrderDetailAct extends BaseAppActivity {
     private void updateOrder(String optype) {
         Map<String, String> params = new HashMap<>();
         params.put("optype", optype);
-        params.put("orderId", bean.getId());
+        params.put("orderSerial", bean.getOrderSerial());
         mModel.requestUpdateOrder(params, new ZnzHttpListener() {
             @Override
             public void onSuccess(JSONObject responseOriginal) {

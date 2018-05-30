@@ -23,6 +23,7 @@
 
 
             <LinearLayout
+                android:id="@+id/llCover"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -34,7 +35,8 @@
                     android:layout_width="60dp"
                     android:text="Logo" />
 
-                <ImageView
+                <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                    android:id="@+id/ivCover"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:src="@mipmap/default_image_square" />
@@ -58,11 +60,7 @@
                 android:paddingRight="@dimen/distance_view"
                 android:paddingTop="@dimen/distance_view">
 
-                <View
-                    android:layout_width="5dp"
-                    android:layout_height="5dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/bg_red_radius_30" />
+                <ImageView style="@style/DotRedStyle" />
 
                 <TextView
                     style="@style/TextStyle"
@@ -89,11 +87,7 @@
                 android:paddingRight="@dimen/distance_view"
                 android:paddingTop="@dimen/distance_view">
 
-                <View
-                    android:layout_width="5dp"
-                    android:layout_height="5dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/bg_red_radius_30" />
+                <ImageView style="@style/DotRedStyle" />
 
                 <TextView
                     style="@style/TextStyle"
@@ -123,6 +117,7 @@
                     android:text="公司地址" />
 
                 <EditText
+                    android:id="@+id/etAddress"
                     style="@style/EditSingleStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -144,6 +139,7 @@
                     android:text="公司网址" />
 
                 <EditText
+                    android:id="@+id/etURL"
                     style="@style/EditSingleStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -194,6 +190,7 @@
                     android:text="传真" />
 
                 <EditText
+                    android:id="@+id/etChuanzhen"
                     style="@style/EditSingleStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -215,6 +212,7 @@
                     android:text="邮箱" />
 
                 <EditText
+                    android:id="@+id/etEmail"
                     style="@style/EditSingleStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -236,6 +234,7 @@
                     android:text="企业简介" />
 
                 <EditText
+                    android:id="@+id/etIntro"
                     style="@style/EditSingleStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -17,9 +17,12 @@ public interface EventTags {
 
     int REFRESH_MESSAGE_EDIT = 0x200;//消息编辑
     int REFRESH_CITY = 0x300;//城市选择 刷新
+    int REFRESH_CITY_IDENTIFY = 0x301;//城市选择 刷新
 
     int REFRESH_PALTFORM_MESSAGE_NUM = 0X400;//刷新平台消息未读消息数目
     int REFRESH_SYSTEM_MESSAGE_NUM = 0X401;//刷新平台消息未读消息数目
+
+    int REFRESH_MEMBER = 0X500;//添加成员或者修改成员刷新列表
 
     int REFRESH_POP = 0x600;//popwindow消失刷新当前界面
     int REFRESH_DELETE_MINE_MEETING = 0X601; //我的预约长按删除，刷新右上角图标

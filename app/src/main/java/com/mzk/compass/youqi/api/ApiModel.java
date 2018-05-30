@@ -497,6 +497,66 @@ public class ApiModel extends BaseModel {
     }
 
     /**
+     * 获取企业创建信息
+     *
+     * @param params
+     * @return
+     */
+    public void requestCompanyDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestCompanyDetail(params), znzHttpListener);
+    }
+
+    /**
+     * 成员列表
+     *
+     * @param params
+     * @return
+     */
+    public void requestMemberList(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestMemberList(params), znzHttpListener);
+    }
+
+    /**
+     * 成员创建，认证
+     *
+     * @param params
+     * @return
+     */
+    public void requestCompany(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestCompany(params), znzHttpListener);
+    }
+
+    /**
+     * 获取企业认证资料
+     *
+     * @param params
+     * @return
+     */
+    public void requestCompanyIdentifyDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestCompanyIdentifyDetail(params), znzHttpListener);
+    }
+
+    /**
+     * 成员添加
+     *
+     * @param params
+     * @return
+     */
+    public void requestMemberAdd(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestMemberAdd(params), znzHttpListener);
+    }
+
+    /**
+     * 成员修改
+     *
+     * @param params
+     * @return
+     */
+    public void requestMemberUpdate(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestMemberUpdate(params), znzHttpListener);
+    }
+
+    /**
      * 账户管理首页
      *
      * @param params

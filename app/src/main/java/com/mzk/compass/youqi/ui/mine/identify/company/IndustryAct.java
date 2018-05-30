@@ -65,10 +65,14 @@ public class IndustryAct extends BaseAppActivity {
                     case "投资轮次":
                         mDataManager.showToast("请选择轮次");
                         break;
+                    case "所属行业":
+                        mDataManager.showToast("请选择行业");
+                        break;
                 }
                 return;
             }
             switch (from) {
+                case "所属行业":
                 case "关注行业":
                     EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_HANYE, selectList));
                     break;

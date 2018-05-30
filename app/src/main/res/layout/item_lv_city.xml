@@ -19,6 +19,7 @@
             android:padding="@dimen/distance_view">
 
             <TextView
+                android:id="@+id/tvCity"
                 style="@style/TitleTextStyle"
                 android:text="上海" />
 

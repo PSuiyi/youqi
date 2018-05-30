@@ -9,34 +9,39 @@ import com.znz.compass.znzlibray.bean.BaseZnzBean;
 public class OrderBean extends BaseZnzBean {
 
     /**
-     * id : 7
+     * orderSerial : 20180425811540486309218
      * state : 2
      * num : 2
-     * orderSerial : 20180425811540486309218
-     * name : 测试商品24
-     * realPrice : 99.00
-     * mobilePhoto : products/5ae2bc129e89b.jpg
+     * productName :
+     * productPrice : 0.00
+     * productMobileImage :
      */
 
-    private String id;
+    private String orderSerial;
     private String state;
     private String num;
-    private String orderSerial;
-    private String name;
-    private String realPrice;
-    private String mobilePhoto;
+    private String productName;
+    private String productPrice;
+    private String productMobileImage;
+    /**
+     * note :
+     * addTime : 1524640486
+     * buyerTel :
+     * adminid : 0
+     */
 
     private String note;
     private String addTime;
     private String buyerTel;
     private String adminid;
 
-    public String getId() {
-        return id;
+
+    public String getOrderSerial() {
+        return orderSerial;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setOrderSerial(String orderSerial) {
+        this.orderSerial = orderSerial;
     }
 
     public String getState() {
@@ -55,36 +60,28 @@ public class OrderBean extends BaseZnzBean {
         this.num = num;
     }
 
-    public String getOrderSerial() {
-        return orderSerial;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setOrderSerial(String orderSerial) {
-        this.orderSerial = orderSerial;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public String getName() {
-        return name;
+    public String getProductPrice() {
+        return productPrice;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProductPrice(String productPrice) {
+        this.productPrice = productPrice;
     }
 
-    public String getRealPrice() {
-        return realPrice;
+    public String getProductMobileImage() {
+        return productMobileImage;
     }
 
-    public void setRealPrice(String realPrice) {
-        this.realPrice = realPrice;
-    }
-
-    public String getMobilePhoto() {
-        return mobilePhoto;
-    }
-
-    public void setMobilePhoto(String mobilePhoto) {
-        this.mobilePhoto = mobilePhoto;
+    public void setProductMobileImage(String productMobileImage) {
+        this.productMobileImage = productMobileImage;
     }
 
     public String getNote() {
