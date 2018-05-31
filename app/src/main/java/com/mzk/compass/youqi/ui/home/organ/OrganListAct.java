@@ -25,6 +25,7 @@ public class OrganListAct extends BaseAppActivity {
     @Override
     protected void initializeVariate() {
 
+
     }
 
     @Override
