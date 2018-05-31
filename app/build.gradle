@@ -2,6 +2,22 @@ apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 
 android {
+    signingConfigs {
+        release {
+            keyAlias 'youqi'
+            keyPassword '123456'
+            storeFile file('../youqi.jks')
+            storePassword '123456'
+        }
+        debug {
+            keyAlias 'youqi'
+            keyPassword '123456'
+            storeFile file('../youqi.jks')
+            storePassword '123456'
+        }
+    }
+
+
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
     defaultConfig {
