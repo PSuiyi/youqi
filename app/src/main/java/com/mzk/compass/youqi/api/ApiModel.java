@@ -477,6 +477,16 @@ public class ApiModel extends BaseModel {
     }
 
     /**
+     * 投稿详情
+     *
+     * @param params
+     * @return
+     */
+    public void requestArticleDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestArticleDetail(params), znzHttpListener);
+    }
+
+    /**
      * 专属客服列表
      *
      * @param params

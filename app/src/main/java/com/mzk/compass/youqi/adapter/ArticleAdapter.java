@@ -1,5 +1,6 @@
 package com.mzk.compass.youqi.adapter;
 
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
@@ -61,6 +62,8 @@ public class ArticleAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        gotoActivity(ArticleDetailAct.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("id", bean.getId());
+        gotoActivity(ArticleDetailAct.class, bundle);
     }
 }

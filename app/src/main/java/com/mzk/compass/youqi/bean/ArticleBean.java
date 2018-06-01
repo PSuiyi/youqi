@@ -19,6 +19,7 @@ public class ArticleBean extends BaseZnzBean {
     private String title;
     private String state;
     private String addTime;
+    private String content;
 
     public String getId() {
         return id;
@@ -50,5 +51,13 @@ public class ArticleBean extends BaseZnzBean {
 
     public void setAddTime(String addTime) {
         this.addTime = addTime;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

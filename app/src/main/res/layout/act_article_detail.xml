@@ -27,8 +27,8 @@
                 android:padding="@dimen/distance_view">
 
                 <TextView
+                    android:id="@+id/tvTitle"
                     style="@style/TitleBlodStyle"
-                    android:text="国家税务总局关于贯彻落实进一步扩大小型微利企业减半征收企业所得税范围有关问题的公告"
                     android:textSize="@dimen/text_size_18" />
 
                 <LinearLayout
@@ -38,9 +38,12 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <TextView style="@style/TimeTextStyle" />
+                    <TextView
+                        android:id="@+id/tvTime"
+                        style="@style/TimeTextStyle" />
 
                     <TextView
+                        android:id="@+id/tvState"
                         style="@style/TextStyle"
                         android:layout_marginLeft="@dimen/distance_divider"
                         android:background="@drawable/bg_line_gray_4"
@@ -52,9 +55,9 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tvContent"
                 style="@style/TitleTextStyle"
-                android:padding="@dimen/distance_view"
-                android:text="为支持小型微利企业发展，贯彻落实国务院第102次常务会议决定，根据《中华人民共和国企业所得税法》（以下简称企业所得税法）及其实施条例、《财政部 国家税务总局关于进一步扩大小型微利企业所得税优惠政策范围的通知》（财税〔2015〕99号）等规定，现就进一步扩大小型微利企业减半征收企业所得税优惠政策范围有关实施问题公告如下： 一、自2015年10月1日至2017年12月31日，符合规定条件的小型微利企业，无论采取查账征收还是核定征收方式，均可以享受财税〔2015〕99号文件规定的小型微利企业所得税优惠政策（以下简称减半征税政策）。 二、符合规定条件的小型微利企业自行申报享受减半征税政策。汇算清缴时，小型微利企业通过填报企业所得税年度纳税申报表中“资产总额、从业人数、所属行业、国家限制和禁止行业”等栏次履行备案手续。 三、企业预缴时享受小型微利企业所得税优惠政策，按照以下规定执行：1.10月1日之前的利润或应纳税所得额适用企业所得税法第二十八条规定的减按20%的税率征收企业所得税的优惠政策（简称减低税率政策）；10月1日之后的利润或应纳税所得额适用减半征税政策。 2.根据财税〔2015〕99号文件规定，小型微利企业2015年10月1日至2015年12月31日期间的利润或应纳税所得额，按照2015年10月1日之后的经营月份数占其2015年度经营月份数的比例计算确定。计算公式如下： 10月1日至12月31日利润额或应纳税所得额=全年累计实际利润或应纳税所得额×（2015年10月1日之后经营月份数÷2015年度经营月份数） 3.2015年度新成立企业的起始经营月份，按照税务登记日期所在月份计算。 六、本公告自2015年10月1日起施行。 特此公告。" />
+                android:padding="@dimen/distance_view" />
 
             <View style="@style/Line" />
         </LinearLayout>

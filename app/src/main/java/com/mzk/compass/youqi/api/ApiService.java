@@ -161,6 +161,9 @@ public interface ApiService {
     @GET("contribution/index")
     Observable<ResponseBody> requestArticleList(@QueryMap Map<String, String> params);
 
+    @GET("contribution/detail")
+    Observable<ResponseBody> requestArticleDetail(@QueryMap Map<String, String> params);
+
     @GET("ucenter/get-my-custom-service")
     Observable<ResponseBody> requestCustomerService(@QueryMap Map<String, String> params);
 

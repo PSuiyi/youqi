@@ -22,6 +22,7 @@ import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.utils.TimeUtils;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
+import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -183,7 +184,15 @@ public class OrderDetailAct extends BaseAppActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvCancal:
-                updateOrder("cancal");
+                new UIAlertDialog(activity)
+                        .builder()
+                        .setMsg("确定取消订单")
+                        .setNegativeButton("取消", null)
+                        .setPositiveButton("确定", v2 -> {
+                            updateOrder("cancel");
+                        })
+                        .show();
+
                 break;
             case R.id.tvPay:
 
