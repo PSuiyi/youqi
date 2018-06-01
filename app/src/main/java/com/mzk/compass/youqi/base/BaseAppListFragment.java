@@ -94,7 +94,7 @@ public abstract class BaseAppListFragment<T extends BaseZnzBean> extends BaseLis
                         }
 
                         String responseStr = responseBody.string();
-                        if (responseStr.contains("status_code=90000")) {
+                        if (responseStr.contains("status_code=8888")) {
                             mDataManager.tokenTimeOut(context);
                             return;
                         }
@@ -142,7 +142,7 @@ public abstract class BaseAppListFragment<T extends BaseZnzBean> extends BaseLis
                                 //页码自增
                                 currentPageIndex++;
                             }
-                        } else if (jsonObject.getString("status_code").equals("90000")) {
+                        } else if (jsonObject.getString("status_code").equals("8888")) {
                             mDataManager.tokenTimeOut(context);
                         } else {
                             mDataManager.showToast(jsonObject.getString("msg"));

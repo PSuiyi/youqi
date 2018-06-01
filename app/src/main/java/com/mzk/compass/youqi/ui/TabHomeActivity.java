@@ -1,10 +1,8 @@
 package com.mzk.compass.youqi.ui;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -16,13 +14,20 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.ui.help.HelpFrag;
 import com.mzk.compass.youqi.ui.home.HomeFrag;
+import com.mzk.compass.youqi.ui.login.LoginAct;
 import com.mzk.compass.youqi.ui.mine.MineFrag;
 import com.mzk.compass.youqi.ui.news.NewsFrag;
 import com.mzk.compass.youqi.ui.publish.PublishAct;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
+import com.znz.compass.znzlibray.common.DataManager;
+import com.znz.compass.znzlibray.eventbus.BaseEvent;
+import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.FragmentUtil;
 import com.znz.compass.znzlibray.utils.StringUtil;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -145,16 +150,34 @@ public class TabHomeActivity extends BaseAppActivity {
         }
     }
 
+    private long mExitTime;
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Intent home = new Intent(Intent.ACTION_MAIN);
-            home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            home.addCategory(Intent.CATEGORY_HOME);
-            startActivity(home);
-            return true;
+    public void onBackPressed() {
+        if ((System.currentTimeMillis() - mExitTime) > 2000) {
+            DataManager.getInstance(this).showToast(R.string.app_exit_again);
+            mExitTime = System.currentTimeMillis();
+        } else {
+            finish();
         }
-        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventManager.register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventManager.unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(BaseEvent event) {
+        if (event.getFlag() == 0x90000) {
+            mDataManager.logout(activity, LoginAct.class);
+        }
     }
 }

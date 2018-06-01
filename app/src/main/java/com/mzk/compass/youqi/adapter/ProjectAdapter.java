@@ -78,10 +78,10 @@ public class ProjectAdapter extends BaseQuickAdapter<ProjectBean, BaseViewHolder
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         Bundle bundle = new Bundle();
-        if (!StringUtil.isBlank(bean.getLink())) {
-            bundle.putString("id", bean.getLink());
-        } else {
+        if (!StringUtil.isBlank(bean.getId())) {
             bundle.putString("id", bean.getId());
+        } else {
+            bundle.putString("id", bean.getLink());
         }
         gotoActivity(ProjectDetailAct.class, bundle);
     }

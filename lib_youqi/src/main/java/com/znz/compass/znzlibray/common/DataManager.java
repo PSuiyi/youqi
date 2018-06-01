@@ -428,15 +428,13 @@ public class DataManager implements DataManagerConst {
         String username = readTempData(ZnzConstants.ACCOUNT);
         String device_token = readTempData(ZnzConstants.DEVICE_TOKEN);
         String service_ip = readTempData(ZnzConstants.SERVICE_IP);
-//        boolean isEnglish = readBooleanTempData(ZnzConstants.IS_ENGLISH);
 
         clearData();
-        OutRetrofitUtil.getInstance().reset();
+//        OutRetrofitUtil.getInstance().reset();
 
         saveTempData(ZnzConstants.ACCOUNT, username);
         saveTempData(ZnzConstants.DEVICE_TOKEN, device_token);
         saveTempData(ZnzConstants.SERVICE_IP, service_ip);
-//        saveBooleanTempData(ZnzConstants.IS_ENGLISH, isEnglish);
 
         saveBooleanTempData(ZnzConstants.IS_APP_OPEND, true);
         saveBooleanTempData(ZnzConstants.IS_LOGIN, false);

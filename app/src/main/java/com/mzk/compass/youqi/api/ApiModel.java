@@ -89,7 +89,7 @@ public class ApiModel extends BaseModel {
      * @param znzHttpListener
      */
     public void requestLogin(Map<String, String> params, ZnzHttpListener znzHttpListener) {
-        request(apiService.requestLogin(params), znzHttpListener);
+        request(apiService.requestLogin(params), znzHttpListener, LODING_PD);
     }
 
     /**
