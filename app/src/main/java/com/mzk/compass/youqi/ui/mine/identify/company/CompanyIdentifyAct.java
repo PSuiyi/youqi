@@ -16,6 +16,14 @@ import com.mzk.compass.youqi.bean.CompanyBean;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
 import com.mzk.compass.youqi.ui.common.CityListAct;
+import com.mzk.compass.youqi.view.city.bean.City;
+import com.mzk.compass.youqi.view.city.bean.County;
+import com.mzk.compass.youqi.view.city.bean.Province;
+import com.mzk.compass.youqi.view.city.bean.Street;
+import com.mzk.compass.youqi.view.city.utils.LogUtil;
+import com.mzk.compass.youqi.view.city.widget.AddressSelector;
+import com.mzk.compass.youqi.view.city.widget.BottomDialog;
+import com.mzk.compass.youqi.view.city.widget.OnAddressSelectedListener;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -40,7 +48,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2018/4/24.
  */
 
-public class CompanyIdentifyAct extends BaseAppActivity {
+public class CompanyIdentifyAct extends BaseAppActivity implements OnAddressSelectedListener, AddressSelector.OnDialogCloseListener, AddressSelector.onSelectorAreaPositionListener {
     @Bind(R.id.etCompany)
     EditText etCompany;
     @Bind(R.id.etName)
@@ -69,6 +77,12 @@ public class CompanyIdentifyAct extends BaseAppActivity {
     List<CityBean> cityList = new ArrayList<>();
     private String licensePhoto;
     private String cityid;
+
+    private BottomDialog dialog;
+
+    private String provinceCode;
+    private String cityCode;
+    private String areaCode;
 
     @Override
     protected int[] getLayoutResource() {
@@ -141,10 +155,19 @@ public class CompanyIdentifyAct extends BaseAppActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.llCity:
-                Bundle bundle = new Bundle();
-                bundle.putString("from", "企业认证");
-                bundle.putSerializable("list", (Serializable) cityList);
-                gotoActivity(CityListAct.class, bundle);
+                if (dialog != null) {
+                    dialog.show();
+                } else {
+                    dialog = new BottomDialog(this);
+                    dialog.setOnAddressSelectedListener(this);
+                    dialog.setDialogDismisListener(this);
+                    dialog.setTextSize(14);//设置字体的大小
+                    dialog.setIndicatorBackgroundColor(android.R.color.holo_orange_light);//设置指示器的颜色
+                    dialog.setTextSelectedColor(android.R.color.holo_orange_light);//设置字体获得焦点的颜色
+                    dialog.setTextUnSelectedColor(android.R.color.holo_blue_light);//设置字体没有获得焦点的颜色
+                    dialog.setSelectorAreaPositionListener(this);
+                    dialog.show();
+                }
                 break;
             case R.id.ivCard:
                 mDataManager.openPhotoSelectSingle(activity, new IPhotoSelectCallback() {
@@ -217,6 +240,10 @@ public class CompanyIdentifyAct extends BaseAppActivity {
                     mDataManager.showToast("请输入机构代码或者信用代码");
                     return;
                 }
+                if (StringUtil.isBlank(provinceCode) | StringUtil.isBlank(cityCode) | StringUtil.isBlank(areaCode)) {
+                    mDataManager.showToast("请选择企业注册地址");
+                    return;
+                }
                 if (StringUtil.isBlank(licensePhoto)) {
                     mDataManager.showToast("请上传证件");
                     return;
@@ -231,9 +258,9 @@ public class CompanyIdentifyAct extends BaseAppActivity {
                 params.put("shorName", mDataManager.getValueFromView(etName));
                 params.put("idCard", mDataManager.getValueFromView(etCard));
                 params.put("address", mDataManager.getValueFromView(etAddress));
-                if (!StringUtil.isBlank(cityid)) {
-                    params.put("cityid", cityid);
-                }
+                params.put("provinceid", provinceCode);
+                params.put("cityid", cityCode);
+                params.put("areaid", areaCode);
                 params.put("licensePhoto", licensePhoto);
                 mModel.requestCompany(params, new ZnzHttpListener() {
                     @Override
@@ -271,5 +298,33 @@ public class CompanyIdentifyAct extends BaseAppActivity {
                 cityid = bean.getId();
                 break;
         }
+    }
+
+    @Override
+    public void onAddressSelected(Province province, City city, County county, Street street) {
+        provinceCode = (province == null ? "" : province.id + "");
+        cityCode = (city == null ? "" : city.id + "");
+        areaCode = (county == null ? "" : county.id + "");
+        LogUtil.d("数据", "省份id=" + provinceCode);
+        LogUtil.d("数据", "城市id=" + cityCode);
+        LogUtil.d("数据", "乡镇id=" + areaCode);
+        String s = (province == null ? "" : province.name) + (city == null ? "" : city.name) + (county == null ? "" : county.name) +
+                (street == null ? "" : street.name);
+        tvCity.setText(s);
+        if (dialog != null) {
+            dialog.dismiss();
+        }
+    }
+
+    @Override
+    public void dialogclose() {
+        if (dialog != null) {
+            dialog.dismiss();
+        }
+    }
+
+    @Override
+    public void selectorAreaPosition(int provincePosition, int cityPosition, int countyPosition, int streetPosition) {
+
     }
 }
