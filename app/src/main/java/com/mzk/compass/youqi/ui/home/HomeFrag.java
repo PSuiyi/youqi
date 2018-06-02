@@ -32,6 +32,7 @@ import com.znz.compass.znzlibray.utils.BitmapUtil;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.imageloder.GlideApp;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
+import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,6 +74,7 @@ public class HomeFrag extends BaseAppFragment {
     private HttpImageView ivImage4;
     private HttpImageView ivImage5;
     private List<ProjectBean> hotList = new ArrayList<>();
+    private int page = 0;
 
     @Override
     protected int[] getLayoutResource() {
@@ -174,17 +176,56 @@ public class HomeFrag extends BaseAppFragment {
                         .into(itemView);
             }
         });
+
+
+        adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (view.getId()) {
+                    case R.id.llChange:
+                        requestHomeData();
+                        break;
+                }
+            }
+        });
     }
 
     @Override
     protected void loadDataFromServer() {
+        requestHomeData();
+
+        Map<String, String> params1 = new HashMap<>();
+        params1.put("bannerType", "MobileCompanyBanner");
+        mModel.requestBanner(params1, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                imgPath.clear();
+                List<BannerBean> list = new ArrayList<>();
+                list.addAll(JSON.parseArray(responseOriginal.getString("data"), BannerBean.class));
+                if (!list.isEmpty()) {
+                    for (BannerBean bannerBean : list) {
+                        imgPath.add(bannerBean.getImage());
+                    }
+                    banner.setData(imgPath, imgPath);
+                    banner.setDelegate((banner, itemView, model, position) -> {
+                    });
+                }
+            }
+        });
+    }
+
+    private void requestHomeData() {
         Map<String, String> params2 = new HashMap<>();
-        params2.put("page", "0");
+        params2.put("page", page + "");
         mModel.requestHomeRecommend(params2, new ZnzHttpListener() {
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
+                page++;
+                projectBeanList.clear();
                 projectBeanList.addAll(JSONArray.parseArray(responseOriginal.getString("data"), ProjectBean.class));
+                dataList.clear();
 
                 Map<String, String> params = new HashMap<>();
                 mModel.requestHome(params, new ZnzHttpListener() {
@@ -192,6 +233,7 @@ public class HomeFrag extends BaseAppFragment {
                     public void onSuccess(JSONObject responseOriginal) {
                         super.onSuccess(responseOriginal);
                         if (!StringUtil.isBlank(responseObject.getString("mobileCompanyRecommendBig"))) {
+                            hotList.clear();
                             hotList.addAll(JSONArray.parseArray(responseObject.getString("mobileCompanyRecommendBig"), ProjectBean.class));
                             if (!StringUtil.isBlank(responseObject.getString("mobileCompanyRecommendSmall"))) {
                                 hotList.addAll(JSONArray.parseArray(responseObject.getString("mobileCompanyRecommendSmall"), ProjectBean.class));
@@ -239,26 +281,6 @@ public class HomeFrag extends BaseAppFragment {
             @Override
             public void onFail(String error) {
                 super.onFail(error);
-            }
-        });
-
-        Map<String, String> params1 = new HashMap<>();
-        params1.put("bannerType", "MobileCompanyBanner");
-        mModel.requestBanner(params1, new ZnzHttpListener() {
-            @Override
-            public void onSuccess(JSONObject responseOriginal) {
-                super.onSuccess(responseOriginal);
-                imgPath.clear();
-                List<BannerBean> list = new ArrayList<>();
-                list.addAll(JSON.parseArray(responseOriginal.getString("data"), BannerBean.class));
-                if (!list.isEmpty()) {
-                    for (BannerBean bannerBean : list) {
-                        imgPath.add(bannerBean.getImage());
-                    }
-                    banner.setData(imgPath, imgPath);
-                    banner.setDelegate((banner, itemView, model, position) -> {
-                    });
-                }
             }
         });
     }

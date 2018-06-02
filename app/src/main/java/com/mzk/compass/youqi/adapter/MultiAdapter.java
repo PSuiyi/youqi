@@ -23,7 +23,7 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
     public MultiAdapter(List dataList) {
         super(dataList);
         addItemType(Constants.MultiType.Section, R.layout.item_lv_section);
-        addItemType(Constants.MultiType.Project, R.layout.item_lv_recycle);
+        addItemType(Constants.MultiType.Project, R.layout.item_lv_home_project);
         addItemType(Constants.MultiType.People, R.layout.item_lv_recycle);
         addItemType(Constants.MultiType.Organ, R.layout.item_lv_home_organ);
     }
@@ -46,6 +46,7 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
                 };
                 rvProject.setLayoutManager(proLayoutManager);
                 rvProject.setAdapter(projectAdapter);
+                helper.addOnClickListener(R.id.llChange);
                 break;
             case Constants.MultiType.People:
                 PeopleGridHomeAdapter adapter = new PeopleGridHomeAdapter(bean.getPeopleList());

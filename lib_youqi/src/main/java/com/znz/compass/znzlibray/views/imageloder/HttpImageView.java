@@ -98,18 +98,18 @@ public class HttpImageView extends AppCompatImageView {
     public void loadSquareImage(String url_image) {
         default_image = R.mipmap.default_image_square;
         error_image = R.mipmap.default_image_square;
-        if (StringUtil.isBlank(url_image)) {
-            this.setImageResource(default_image);
-        } else {
-            url_image = ZnzConstants.IMAGE_ULR + url_image;
-            GlideApp.with(context)
-                    .load(url_image)
-                    .thumbnail(0.1f)
-                    .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                    .error(error_image)
-                    .placeholder(default_image)
-                    .into(this);
-        }
+//        if (StringUtil.isBlank(url_image)) {
+//            this.setImageResource(default_image);
+//        } else {
+//            url_image = ZnzConstants.IMAGE_ULR + url_image;
+//            GlideApp.with(context)
+//                    .load(url_image)
+//                    .thumbnail(0.1f)
+//                    .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+//                    .error(error_image)
+//                    .placeholder(default_image)
+//                    .into(this);
+//        }
     }
 
     /**
@@ -258,16 +258,16 @@ public class HttpImageView extends AppCompatImageView {
             return;
         }
 
-        url_image = ZnzConstants.IMAGE_ULR + url_image;
-
-        GlideApp.with(context)
-                .load(url_image)
-                .thumbnail(0.1f)
-                .centerCrop()
-                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                .error(error_image)
-                .placeholder(default_image)
-                .into(this);
+//        url_image = ZnzConstants.IMAGE_ULR + url_image;
+//
+//        GlideApp.with(context)
+//                .load(url_image)
+//                .thumbnail(0.1f)
+//                .centerCrop()
+//                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
+//                .error(error_image)
+//                .placeholder(default_image)
+//                .into(this);
     }
 
     /**

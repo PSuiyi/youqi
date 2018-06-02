@@ -51,7 +51,7 @@ public class ProjectAdapter extends BaseQuickAdapter<ProjectBean, BaseViewHolder
     @Override
     protected void convert(BaseViewHolder helper, ProjectBean bean) {
         setOnItemClickListener(this);
-        ivImage.loadHttpImage(bean.getLogo());
+        ivImage.loadSquareImage(bean.getLogo());
         ivLogo.loadSquareImage(bean.getCompanyLogo());
         mDataManager.setValueToView(tvName, bean.getName());
         mDataManager.setValueToView(tvTag, bean.getRname());
