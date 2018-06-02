@@ -122,6 +122,11 @@ public class ApiModel extends BaseModel {
         request(apiService.post(params), znzHttpListener);
     }
 
+    public void requestFiltList(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestFiltList(params), znzHttpListener);
+    }
+
+
     /**
      * 删除收货地址
      *

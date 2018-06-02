@@ -3,6 +3,8 @@ package com.mzk.compass.youqi.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -11,9 +13,13 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.mzk.compass.youqi.R;
+import com.mzk.compass.youqi.adapter.FiltAdapter;
+import com.mzk.compass.youqi.bean.FiltBean;
 import com.mzk.compass.youqi.ui.publish.PublishAct;
 import com.mzk.compass.youqi.ui.publish.PublishStateAct;
 import com.znz.compass.znzlibray.common.DataManager;
+
+import java.util.List;
 
 import static com.znz.compass.znzlibray.utils.ViewHolder.init;
 
@@ -152,6 +158,36 @@ public class PopupWindowManager {
         });
 
         popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
+    }
+
+    public void showFilt(View parent, List<FiltBean> dataList, OnPopupWindowClickListener onPopupWindowClickListener) {
+        hidePopupWindow();
+        View view = initPopupWindow(R.layout.pop_filt);
+        popupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
+        RecyclerView rvRecycler = init(view, R.id.rvRecycler);
+        rvRecycler.setLayoutManager(new LinearLayoutManager(mContext));
+        FiltAdapter adapter = new FiltAdapter(dataList);
+        rvRecycler.setAdapter(adapter);
+        adapter.setOnItemClickListener((adapter1, view1, position) -> {
+            if (onPopupWindowClickListener != null) {
+                for (FiltBean filtBean : dataList) {
+                    filtBean.setChecked(false);
+                }
+                dataList.get(position).setChecked(true);
+                onPopupWindowClickListener.onPopupWindowClick(null, new String[]{dataList.get(position).getId()});
+                hidePopupWindow();
+            }
+        });
+
+        LinearLayout llParent = init(view, R.id.llParent);
+        llParent.setOnClickListener(v -> {
+            hidePopupWindow();
+        });
+
+        init(view, R.id.line).setOnClickListener(v -> {
+            hidePopupWindow();
+        });
+        popupWindow.showAsDropDown(parent, 0, 0);
     }
 
     public interface OnPopupWindowClickListener {

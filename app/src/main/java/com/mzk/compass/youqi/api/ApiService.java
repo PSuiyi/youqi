@@ -173,6 +173,9 @@ public interface ApiService {
     @GET("ucenter/aboutus")
     Observable<ResponseBody> requestAboutUs(@QueryMap Map<String, String> params);
 
+    @GET("base/get-filter-data")
+    Observable<ResponseBody> requestFiltList(@QueryMap Map<String, String> params);
+
     @GET("order/confirm")
     Observable<ResponseBody> requestOrderConfirm(@QueryMap Map<String, String> params);
 
