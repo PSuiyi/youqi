@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
-import com.mzk.compass.youqi.ui.home.PeopleApproveAct;
+import com.mzk.compass.youqi.ui.home.people.PeopleApproveAct;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 

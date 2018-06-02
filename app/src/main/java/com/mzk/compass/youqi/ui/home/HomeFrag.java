@@ -22,6 +22,7 @@ import com.mzk.compass.youqi.bean.ProjectBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.common.CityListAct;
 import com.mzk.compass.youqi.ui.common.SearchCommonAct;
+import com.mzk.compass.youqi.ui.home.people.PeopleApproveAct;
 import com.mzk.compass.youqi.ui.home.people.PeopleListAct;
 import com.mzk.compass.youqi.ui.home.project.ProjectDetailAct;
 import com.mzk.compass.youqi.ui.home.project.ProjectListAct;

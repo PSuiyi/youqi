@@ -199,7 +199,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/mingpian" />
+                        android:src="@mipmap/dianjishanchuan" />
 
                     <ImageView
                         android:id="@+id/ivClear"

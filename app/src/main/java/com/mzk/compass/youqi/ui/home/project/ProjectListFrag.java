@@ -61,6 +61,8 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
     TextView tvTotal;
     @Bind(R.id.llFilt)
     LinearLayout llFilt;
+    @Bind(R.id.llFilt1)
+    LinearLayout llFilt1;
     private String from;
 
     private String keywords;
@@ -69,6 +71,9 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
     private List<FiltBean> filtList3 = new ArrayList<>();
     private List<FiltBean> filtList4 = new ArrayList<>();
     private String currentHangye;
+    private String currentJieduan;
+    private String currentArea;
+    private String currentMoney;
 
     public static ProjectListFrag newInstance(String from) {
         Bundle bundle = new Bundle();
@@ -138,11 +143,33 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
                 filtList3.clear();
                 filtList4.clear();
 
-                if (!StringUtil.isBlank(responseObject.getString("rounds"))) {
+                if (!StringUtil.isBlank(responseObject.getString("trades"))) {
                     FiltBean filtBean = new FiltBean();
                     filtBean.setName("全部");
+                    filtBean.setChecked(true);
                     filtList1.add(filtBean);
-                    filtList1.addAll(JSONArray.parseArray(responseObject.getString("rounds"), FiltBean.class));
+                    filtList1.addAll(JSONArray.parseArray(responseObject.getString("trades"), FiltBean.class));
+                }
+                if (!StringUtil.isBlank(responseObject.getString("rounds"))) {
+                    FiltBean filtBean = new FiltBean();
+                    filtBean.setChecked(true);
+                    filtBean.setName("全部");
+                    filtList2.add(filtBean);
+                    filtList2.addAll(JSONArray.parseArray(responseObject.getString("rounds"), FiltBean.class));
+                }
+                if (!StringUtil.isBlank(responseObject.getString("provinceData"))) {
+                    FiltBean filtBean = new FiltBean();
+                    filtBean.setChecked(true);
+                    filtBean.setName("全部");
+                    filtList3.add(filtBean);
+                    filtList3.addAll(JSONArray.parseArray(responseObject.getString("provinceData"), FiltBean.class));
+                }
+                if (!StringUtil.isBlank(responseObject.getString("turnovers"))) {
+                    FiltBean filtBean = new FiltBean();
+                    filtBean.setChecked(true);
+                    filtBean.setName("全部");
+                    filtList4.add(filtBean);
+                    filtList4.addAll(JSONArray.parseArray(responseObject.getString("turnovers"), FiltBean.class));
                 }
             }
 
@@ -157,6 +184,15 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
     protected Observable<ResponseBody> requestCustomeRefreshObservable() {
         if (!StringUtil.isBlank(currentHangye)) {
             params.put("tradeId", currentHangye);
+        }
+        if (!StringUtil.isBlank(currentJieduan)) {
+            params.put("roundId", currentJieduan);
+        }
+        if (!StringUtil.isBlank(currentArea)) {
+            params.put("provinceId", currentArea);
+        }
+        if (!StringUtil.isBlank(currentMoney)) {
+            params.put("turnoverId", currentMoney);
         }
 
         switch (from) {
@@ -208,7 +244,7 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
 
         adapter.notifyDataSetChanged();
 
-        mDataManager.setValueToView(tvTotal, responseJson.getString("totalCount"));
+        mDataManager.setValueToView(tvTotal, "共有" + responseJson.getString("totalCount") + "条");
     }
 
     @Override
@@ -263,16 +299,28 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvOpt1:
-                PopupWindowManager.getInstance(activity).showFilt(view, filtList1, (type, values) -> {
+                PopupWindowManager.getInstance(activity).showFilt(llFilt1, filtList1, (type, values) -> {
                     currentHangye = values[0];
                     resetRefresh();
                 });
                 break;
             case R.id.tvOpt2:
+                PopupWindowManager.getInstance(activity).showFilt(llFilt1, filtList2, (type, values) -> {
+                    currentJieduan = values[0];
+                    resetRefresh();
+                });
                 break;
             case R.id.tvOpt3:
+                PopupWindowManager.getInstance(activity).showFilt(llFilt1, filtList3, (type, values) -> {
+                    currentArea = values[0];
+                    resetRefresh();
+                });
                 break;
             case R.id.tvOpt4:
+                PopupWindowManager.getInstance(activity).showFilt(llFilt1, filtList4, (type, values) -> {
+                    currentMoney = values[0];
+                    resetRefresh();
+                });
                 break;
             case R.id.tvSort1:
                 break;

@@ -1,6 +1,5 @@
-package com.mzk.compass.youqi.ui.home;
+package com.mzk.compass.youqi.ui.home.people;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -38,7 +37,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
