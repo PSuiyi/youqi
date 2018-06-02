@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llFilt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="@dimen/distance_view"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvOpt1"
+                style="@style/TextDrawableStyle"
+                android:drawableRight="@mipmap/xiala"
+                android:text="获投阶段"
+                android:textSize="@dimen/title_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvOpt2"
+                style="@style/TextDrawableStyle"
+                android:drawableRight="@mipmap/xiala"
+                android:text="所属行业"
+                android:textSize="@dimen/title_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvOpt3"
+                style="@style/TextDrawableStyle"
+                android:drawableRight="@mipmap/xiala"
+                android:text="所在地区"
+                android:textSize="@dimen/title_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View style="@style/Line" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/mSwipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvCommonRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>
