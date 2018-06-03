@@ -21,6 +21,7 @@ import com.mzk.compass.youqi.bean.PeopleBean;
 import com.mzk.compass.youqi.bean.ProjectBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.common.CityListAct;
+import com.mzk.compass.youqi.ui.common.HomeCityListAct;
 import com.mzk.compass.youqi.ui.common.SearchCommonAct;
 import com.mzk.compass.youqi.ui.home.people.PeopleApproveAct;
 import com.mzk.compass.youqi.ui.home.people.PeopleListAct;
@@ -92,7 +93,7 @@ public class HomeFrag extends BaseAppFragment {
         znzToolBar.setSearchLeft("南京", BitmapUtil.getResourceDrawable(activity, R.mipmap.xiala));
         znzToolBar.setSearchRightImage(R.mipmap.xiaoxi);
         znzToolBar.setOnSearchLeftClickListener(v -> {
-            gotoActivity(CityListAct.class);
+            gotoActivity(HomeCityListAct.class);
         });
         znzToolBar.setOnSearchClickListener(view -> {
             mDataManager.saveTempData(Constants.SearchType.SEARCHTYPE, "1");

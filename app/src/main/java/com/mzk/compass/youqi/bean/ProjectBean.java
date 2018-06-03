@@ -55,9 +55,18 @@ public class ProjectBean extends BaseZnzBean {
     private String link;
     private String area;
     private String isCollected;
+    private String canArrangeTalk;
     private String showProjectResource;
     private List<TagYouBean> tradeid;
     private List<PeopleBean> team;
+
+    public String getCanArrangeTalk() {
+        return canArrangeTalk;
+    }
+
+    public void setCanArrangeTalk(String canArrangeTalk) {
+        this.canArrangeTalk = canArrangeTalk;
+    }
 
     public String getTel() {
         return tel;

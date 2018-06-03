@@ -38,16 +38,16 @@ public class PeopleViewAdapter extends BaseQuickAdapter<PeopleBean, BaseViewHold
     @Override
     protected void convert(BaseViewHolder helper, PeopleBean bean) {
         setOnItemClickListener(this);
-        ivUserHeader.loadHeaderImage(bean.getUser().getAvatar());
-        mDataManager.setValueToView(tvName, bean.getUser().getUsername());
+        ivUserHeader.loadHeaderImage(bean.getAvatar());
+        mDataManager.setValueToView(tvName, bean.getUsername());
         mDataManager.setValueToView(tvTime, TimeUtils.getFriendlyTimeSpanByNow(bean.getAddTime()));
-
+        mDataManager.setValueToView(tvOrganName, bean.getGroupName());
     }
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         Bundle bundle = new Bundle();
-        bundle.putString("id", bean.getUser().getId());
+        bundle.putString("id", bean.getId());
         gotoActivity(PeopleDetailAct.class, bundle);
     }
 }

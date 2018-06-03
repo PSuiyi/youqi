@@ -6,6 +6,7 @@ import android.widget.LinearLayout;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.ui.login.LoginAct;
+import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 import com.znz.compass.znzlibray.views.rowview.ZnzRowDescription;
 import com.znz.compass.znzlibray.views.rowview.ZnzRowGroupView;
 
@@ -100,6 +101,13 @@ public class SettingAct extends BaseAppActivity {
 
     @OnClick(R.id.llLogout)
     public void onViewClicked() {
-        mDataManager.logout(activity, LoginAct.class);
+        new UIAlertDialog(activity)
+                .builder()
+                .setMsg("是否注销账号")
+                .setNegativeButton("取消", null)
+                .setPositiveButton("确定", v2 -> {
+                    mDataManager.logout(activity, LoginAct.class);
+                })
+                .show();
     }
 }

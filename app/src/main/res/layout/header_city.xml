@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/distance_view">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/distance_divider"
+            android:src="@mipmap/dingwei" />
+
+        <TextView
+            style="@style/TitleTextStyle"
+            android:text="南京" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/TitleGrayTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="#F6F6F6"
+        android:gravity="center"
+        android:text="当前开放城市为南京，以下城市敬请期待。" />
+
+</LinearLayout>

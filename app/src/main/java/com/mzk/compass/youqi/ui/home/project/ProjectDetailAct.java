@@ -300,18 +300,22 @@ public class ProjectDetailAct extends BaseAppListActivity {
             case R.id.tvOption1:
                 break;
             case R.id.tvOption2:
-                PopupWindowManager.getInstance(activity).showChatProject(view, (type, values) -> {
-                    switch (type) {
-                        case "站内信":
-                            Bundle bundle = new Bundle();
-                            bundle.putString("id", id);
-                            gotoActivity(SendMessageAct.class, bundle);
-                            break;
-                        case "电话":
-                            mDataManager.callPhone(activity, bean.getTel());
-                            break;
-                    }
-                });
+                if (!StringUtil.isBlank(bean.getCanArrangeTalk()) && bean.getCanArrangeTalk().equals("true")) {
+                    PopupWindowManager.getInstance(activity).showChatProject(view, (type, values) -> {
+                        switch (type) {
+                            case "站内信":
+                                Bundle bundle = new Bundle();
+                                bundle.putString("id", id);
+                                gotoActivity(SendMessageAct.class, bundle);
+                                break;
+                            case "电话":
+                                mDataManager.callPhone(activity, bean.getTel());
+                                break;
+                        }
+                    });
+                } else {
+                    mDataManager.showToast("暂时无法约谈");
+                }
                 break;
             case R.id.tvOption3:
                 if (bean.getIsCollected().equals("true")) {
@@ -321,6 +325,9 @@ public class ProjectDetailAct extends BaseAppListActivity {
                 }
                 break;
             case R.id.tvOption4:
+                PopupWindowManager.getInstance(activity).showShare(view, (type, values) -> {
+                    
+                });
                 break;
             case R.id.tvOption5:
                 rvRefresh.smoothScrollToPosition(0);

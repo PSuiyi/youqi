@@ -1,6 +1,5 @@
 package com.mzk.compass.youqi.utils;
 
-import android.app.Activity;
 import android.content.Context;
 
 import com.mzk.compass.youqi.bean.UserBean;
@@ -9,9 +8,6 @@ import com.znz.compass.znzlibray.ZnzApplication;
 import com.znz.compass.znzlibray.common.DataManager;
 import com.znz.compass.znzlibray.common.ZnzConstants;
 import com.znz.compass.znzlibray.utils.StringUtil;
-import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.math.BigDecimal;
 
@@ -46,7 +42,6 @@ public class AppUtils {
         mDataManager.saveTempData(Constants.User.AVATAR, bean.getAvatar());
         mDataManager.saveTempData(Constants.User.ISVIP, bean.getIsVip());
         mDataManager.saveTempData(Constants.User.USERNAME, bean.getUsername());
-        mDataManager.saveTempData(ZnzConstants.ACCOUNT, bean.getUsername());
         mDataManager.saveTempData(Constants.User.NICKNAME, bean.getNickName());
         mDataManager.saveTempData(Constants.User.YONGJIN, bean.getYongjin());
         mDataManager.saveTempData(Constants.User.USERTYPE, bean.getUsertype());
@@ -69,10 +64,10 @@ public class AppUtils {
         String result = "";
         DataManager mDataManager = DataManager.getInstance(ZnzApplication.getContext());
         if (StringUtil.isBlank(mDataManager.readTempData(Constants.User.NICKNAME))) {
-            if (StringUtil.isBlank(ZnzConstants.ACCOUNT)) {
+            if (StringUtil.isBlank(Constants.User.USERNAME)) {
                 result = "暂无昵称";
             } else {
-                result = mDataManager.readTempData(ZnzConstants.ACCOUNT);
+                result = mDataManager.readTempData(Constants.User.USERNAME);
             }
         } else {
             result = mDataManager.readTempData(Constants.User.NICKNAME);

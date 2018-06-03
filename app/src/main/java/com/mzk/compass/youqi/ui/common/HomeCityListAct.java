@@ -3,18 +3,20 @@ package com.mzk.compass.youqi.ui.common;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.CityAdapter;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.bean.CityBean;
-import com.mzk.compass.youqi.event.EventRefresh;
-import com.mzk.compass.youqi.event.EventTags;
-
-import org.greenrobot.eventbus.EventBus;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -24,7 +26,7 @@ import butterknife.ButterKnife;
  * User： PSuiyi
  * Description：
  */
-public class CityListAct extends BaseAppActivity {
+public class HomeCityListAct extends BaseAppActivity {
 
     @Bind(R.id.rvCommonRefresh)
     RecyclerView rvCommonRefresh;
@@ -44,11 +46,6 @@ public class CityListAct extends BaseAppActivity {
         if (getIntent().hasExtra("from")) {
             from = getIntent().getStringExtra("from");
         }
-        if (getIntent().hasExtra("list")) {
-            List<CityBean> list = (List<CityBean>) getIntent().getSerializableExtra("list");
-            dataList.addAll(list);
-        }
-
     }
 
     @Override
@@ -63,15 +60,29 @@ public class CityListAct extends BaseAppActivity {
         rvCommonRefresh.setAdapter(adapter);
         rvCommonRefresh.setLayoutManager(new LinearLayoutManager(activity));
         adapter.setOnItemClickListener((adapter, view, position) -> {
-            if (from.equals("企业认证")) {
-                EventBus.getDefault().post(new EventRefresh(EventTags.REFRESH_CITY_IDENTIFY, dataList.get(position)));
-                finish();
-            }
         });
+
+        View header = View.inflate(activity, R.layout.header_city, null);
+        adapter.addHeaderView(header);
     }
 
     @Override
     protected void loadDataFromServer() {
+        Map<String, String> params = new HashMap<>();
+        params.put("page", "0");
+        mModel.requestCityList(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                dataList.addAll(JSONArray.parseArray(responseOriginal.getString("data"), CityBean.class));
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
+            }
+        });
     }
 
 

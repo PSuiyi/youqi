@@ -126,6 +126,9 @@ public class ApiModel extends BaseModel {
         request(apiService.requestFiltList(params), znzHttpListener);
     }
 
+    public void requestCityList(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestCityList(params), znzHttpListener, LODING_LODING);
+    }
 
     /**
      * 删除收货地址
@@ -152,17 +155,6 @@ public class ApiModel extends BaseModel {
     public void requestDefaultAddress(ZnzHttpListener znzHttpListener) {
         Map<String, String> params = new HashMap<>();
         params.put("request_code", "40007");
-        request(apiService.post(params), znzHttpListener);
-    }
-
-    /**
-     * 城市列表
-     *
-     * @param params
-     * @return
-     */
-    public void requestCityList(Map<String, String> params, ZnzHttpListener znzHttpListener) {
-        params.put("request_code", "40003");
         request(apiService.post(params), znzHttpListener);
     }
 

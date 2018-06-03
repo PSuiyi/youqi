@@ -109,6 +109,14 @@ public class PopupWindowManager {
         popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
     }
 
+    public void showShare(View parent, OnPopupWindowClickListener listener) {
+        hidePopupWindow();
+        View view = initPopupWindow(R.layout.pop_share);
+        LinearLayout llParent = init(view, R.id.llParent);
+        llParent.setOnClickListener(view1 -> hidePopupWindow());
+        popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
+    }
+
 
     public void showPublish(View parent, OnPopupWindowClickListener listener) {
         hidePopupWindow();
