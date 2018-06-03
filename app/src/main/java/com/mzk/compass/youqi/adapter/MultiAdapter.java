@@ -33,7 +33,7 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
         setOnItemClickListener(this);
         switch (bean.getItemType()) {
             case Constants.MultiType.Section:
-                helper.setText(R.id.tvTitle, bean.getSection());
+                helper.setText(R.id.tvTitle, bean.getValue());
                 break;
             case Constants.MultiType.Project:
                 ProjectAdapter projectAdapter = new ProjectAdapter(bean.getProjectBeanList());
@@ -74,7 +74,7 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         switch (bean.getItemType()) {
             case Constants.MultiType.Section:
-                switch (bean.getSection()) {
+                switch (bean.getValue()) {
                     case "精选创业项目":
                         gotoActivity(ProjectListAct.class);
                         break;

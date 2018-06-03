@@ -115,6 +115,10 @@ public class ApiModel extends BaseModel {
         return apiService.requestPeopleStateList(params);
     }
 
+    public void requestPeopleStateList(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestPeopleStateList(params), znzHttpListener);
+    }
+
     /**
      * 新增收货地址
      *

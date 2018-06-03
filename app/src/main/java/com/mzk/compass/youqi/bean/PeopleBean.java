@@ -46,11 +46,20 @@ public class PeopleBean extends BaseZnzBean {
     private String userName;
     private String position;
     private String profile;
+    private String example;
     private String collectionNum;
     private String isCollected;
     private String addTime;
     private PeopleBean user;
     private List<TagYouBean> tradeid;
+
+    public String getExample() {
+        return example;
+    }
+
+    public void setExample(String example) {
+        this.example = example;
+    }
 
     public String getAddTime() {
         return addTime;

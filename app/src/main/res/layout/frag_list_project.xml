@@ -194,7 +194,7 @@
                 <TextView
                     android:id="@+id/tvTotal"
                     style="@style/TextGrayStyle"
-                    android:text="共有12000条" />
+                    android:text="共有0条" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

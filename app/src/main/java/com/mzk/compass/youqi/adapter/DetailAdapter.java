@@ -1,11 +1,13 @@
 package com.mzk.compass.youqi.adapter;
 
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.bean.MultiBean;
 import com.mzk.compass.youqi.common.Constants;
-import com.mzk.compass.youqi.ui.mine.state.StateListAct;
+import com.znz.compass.znzlibray.views.WebViewWithProgress;
 import com.znz.compass.znzlibray.views.recyclerview.BaseMultiItemQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
@@ -50,11 +52,21 @@ public class DetailAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseView
             case Constants.MultiType.ProjectData:
                 break;
             case Constants.MultiType.PeopleState:
-                helper.getView(R.id.llMore).setOnClickListener(v -> {
-                    gotoActivity(StateListAct.class);
-                });
+                helper.addOnClickListener(R.id.llMore);
+                StateAdapter stateAdapter = new StateAdapter(bean.getStateBeanList());
+                RecyclerView rvState = helper.getView(R.id.rvRecycler);
+                LinearLayoutManager proLayoutManager = new LinearLayoutManager(mContext) {
+                    @Override
+                    public boolean canScrollVertically() {
+                        return false;
+                    }
+                };
+                rvState.setLayoutManager(proLayoutManager);
+                rvState.setAdapter(stateAdapter);
                 break;
             case Constants.MultiType.PeopleIntro:
+                WebViewWithProgress wvIntro = helper.getView(R.id.wvIntro);
+                wvIntro.loadContent(bean.getPeopleBean().getExample());
                 break;
         }
     }

@@ -234,7 +234,7 @@ public class PeopleListFrag extends BaseAppListFragment {
                 });
                 break;
             case R.id.tvOpt2:
-                PopupWindowManager.getInstance(activity).showFilt(llFilt1, filtList1, (type, values) -> {
+                PopupWindowManager.getInstance(activity).showFilt(llFilt1, filtList2, (type, values) -> {
                     currentJieduan = values[0];
                     resetRefresh();
                 });

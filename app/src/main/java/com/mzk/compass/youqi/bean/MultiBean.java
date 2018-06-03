@@ -9,10 +9,12 @@ import java.util.List;
 
 public class MultiBean extends BaseZnzBean implements MultiItemEntity {
     private int itemType;
-    private String section;
+    private String value;
     private List<OrganBean> organList = new ArrayList<>();
     private List<PeopleBean> peopleList = new ArrayList<>();
     private List<ProjectBean> projectBeanList = new ArrayList<>();
+    private List<StateBean> stateBeanList = new ArrayList<>();
+    private PeopleBean peopleBean;
 
     public MultiBean() {
     }
@@ -23,20 +25,34 @@ public class MultiBean extends BaseZnzBean implements MultiItemEntity {
 
     public MultiBean(int itemType, String section) {
         this.itemType = itemType;
-        this.section = section;
+        this.value = section;
     }
+
 
     public MultiBean(int itemType, List<OrganBean> organList) {
         this.itemType = itemType;
         this.organList = organList;
     }
 
-    public String getSection() {
-        return section;
+    public MultiBean(int itemType, PeopleBean peopleBean) {
+        this.itemType = itemType;
+        this.peopleBean = peopleBean;
     }
 
-    public void setSection(String section) {
-        this.section = section;
+    public List<StateBean> getStateBeanList() {
+        return stateBeanList;
+    }
+
+    public void setStateBeanList(List<StateBean> stateBeanList) {
+        this.stateBeanList = stateBeanList;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
     public List<OrganBean> getOrganList() {
@@ -62,6 +78,14 @@ public class MultiBean extends BaseZnzBean implements MultiItemEntity {
 
     public void setProjectBeanList(List<ProjectBean> projectBeanList) {
         this.projectBeanList = projectBeanList;
+    }
+
+    public PeopleBean getPeopleBean() {
+        return peopleBean;
+    }
+
+    public void setPeopleBean(PeopleBean peopleBean) {
+        this.peopleBean = peopleBean;
     }
 
     @Override

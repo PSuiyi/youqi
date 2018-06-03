@@ -11,57 +11,65 @@
         android:text="简介"
         android:textSize="@dimen/text_size_20" />
 
-    <TextView
-        style="@style/TitleTextStyle"
-        android:layout_width="match_parent"
-        android:background="#F6F6F6"
-        android:paddingBottom="@dimen/distance_divider"
-        android:paddingLeft="@dimen/distance_view"
-        android:paddingRight="@dimen/distance_view"
-        android:paddingTop="@dimen/distance_divider"
-        android:text="投资者介绍" />
-
-    <TextView
-        style="@style/TitleTextStyle"
-        android:padding="@dimen/distance_view"
-        android:text="本人从事金融行业十余年，具有在银行、证券、股权投资基金等多家机构从业经验，主导和发起过多支股权投资基金。目前关注文化、消费和科技类中早期公司和项目。" />
-
-    <TextView
-        style="@style/TitleTextStyle"
-        android:layout_width="match_parent"
-        android:background="#F6F6F6"
-        android:paddingBottom="@dimen/distance_divider"
-        android:paddingLeft="@dimen/distance_view"
-        android:paddingRight="@dimen/distance_view"
-        android:paddingTop="@dimen/distance_divider"
-        android:text="投资信息" />
-
-    <TextView
-        style="@style/TitleTextStyle"
-        android:padding="@dimen/distance_view"
-        android:text="投资轮次： Pre-B轮、B轮、B+轮、D轮、E轮、F轮-上市前、已上市、新三板、战略投资、已被收购。" />
-
-    <TextView
-        style="@style/TitleTextStyle"
-        android:layout_width="match_parent"
-        android:background="#F6F6F6"
-        android:paddingBottom="@dimen/distance_divider"
-        android:paddingLeft="@dimen/distance_view"
-        android:paddingRight="@dimen/distance_view"
-        android:paddingTop="@dimen/distance_divider"
-        android:text="过往投资案例" />
-
-    <TextView
-        style="@style/TitleTextStyle"
-        android:padding="@dimen/distance_view"
-        android:text="请详细介绍您的产品，有哪些功能或亮点？如何解决痛点、如何满足用户需求？或者您可以添加产品图片，并为产品图片做出相应注释。" />
-
-    <ImageView
+    <com.znz.compass.znzlibray.views.WebViewWithProgress
+        android:id="@+id/wvIntro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/distance_view"
-        android:layout_marginLeft="@dimen/distance_view"
-        android:layout_marginRight="@dimen/distance_view"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/touzianlitu" />
+        android:layout_margin="@dimen/distance_view"
+        android:scrollbars="none" />
+
+
+    <!--<TextView-->
+    <!--style="@style/TitleTextStyle"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:background="#F6F6F6"-->
+    <!--android:paddingBottom="@dimen/distance_divider"-->
+    <!--android:paddingLeft="@dimen/distance_view"-->
+    <!--android:paddingRight="@dimen/distance_view"-->
+    <!--android:paddingTop="@dimen/distance_divider"-->
+    <!--android:text="投资者介绍" />-->
+
+    <!--<TextView-->
+    <!--style="@style/TitleTextStyle"-->
+    <!--android:padding="@dimen/distance_view"-->
+    <!--android:text="本人从事金融行业十余年，具有在银行、证券、股权投资基金等多家机构从业经验，主导和发起过多支股权投资基金。目前关注文化、消费和科技类中早期公司和项目。" />-->
+
+    <!--<TextView-->
+    <!--style="@style/TitleTextStyle"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:background="#F6F6F6"-->
+    <!--android:paddingBottom="@dimen/distance_divider"-->
+    <!--android:paddingLeft="@dimen/distance_view"-->
+    <!--android:paddingRight="@dimen/distance_view"-->
+    <!--android:paddingTop="@dimen/distance_divider"-->
+    <!--android:text="投资信息" />-->
+
+    <!--<TextView-->
+    <!--style="@style/TitleTextStyle"-->
+    <!--android:padding="@dimen/distance_view"-->
+    <!--android:text="投资轮次： Pre-B轮、B轮、B+轮、D轮、E轮、F轮-上市前、已上市、新三板、战略投资、已被收购。" />-->
+
+    <!--<TextView-->
+    <!--style="@style/TitleTextStyle"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:background="#F6F6F6"-->
+    <!--android:paddingBottom="@dimen/distance_divider"-->
+    <!--android:paddingLeft="@dimen/distance_view"-->
+    <!--android:paddingRight="@dimen/distance_view"-->
+    <!--android:paddingTop="@dimen/distance_divider"-->
+    <!--android:text="过往投资案例" />-->
+
+    <!--<TextView-->
+    <!--style="@style/TitleTextStyle"-->
+    <!--android:padding="@dimen/distance_view"-->
+    <!--android:text="请详细介绍您的产品，有哪些功能或亮点？如何解决痛点、如何满足用户需求？或者您可以添加产品图片，并为产品图片做出相应注释。" />-->
+
+    <!--<ImageView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginBottom="@dimen/distance_view"-->
+    <!--android:layout_marginLeft="@dimen/distance_view"-->
+    <!--android:layout_marginRight="@dimen/distance_view"-->
+    <!--android:scaleType="centerCrop"-->
+    <!--android:src="@mipmap/touzianlitu" />-->
 </LinearLayout>

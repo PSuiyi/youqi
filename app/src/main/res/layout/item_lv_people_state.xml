@@ -13,18 +13,10 @@
 
     <View style="@style/LineBoth" />
 
-    <TextView
-        style="@style/TitleTextStyle"
-        android:padding="@dimen/distance_view"
-        android:text="项目不错，有需要微信电话联系18551978258！希望以后有合作的机会。" />
-
-    <TextView
-        style="@style/TimeTextStyle"
-        android:paddingBottom="@dimen/distance_view"
-        android:paddingLeft="@dimen/distance_view"
-        android:paddingRight="@dimen/distance_view" />
-
-    <View style="@style/LineBoth" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <include layout="@layout/include_more" />
 

@@ -21,9 +21,11 @@ import com.mzk.compass.youqi.bean.CommentBean;
 import com.mzk.compass.youqi.bean.MenuBean;
 import com.mzk.compass.youqi.bean.MultiBean;
 import com.mzk.compass.youqi.bean.PeopleBean;
+import com.mzk.compass.youqi.bean.StateBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
+import com.mzk.compass.youqi.utils.PopupWindowManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
@@ -152,15 +154,6 @@ public class PeopleDetailAct extends BaseAppListActivity<CommentBean> {
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         rvMenu.setLayoutManager(layoutManager);
         rvMenu.setAdapter(adapterMenu);
-
-
-        //项目详情
-        rvDetail.setLayoutManager(new LinearLayoutManager(activity));
-        List<MultiBean> multiBeanList = new ArrayList<>();
-        multiBeanList.add(new MultiBean(Constants.MultiType.PeopleState));
-        multiBeanList.add(new MultiBean(Constants.MultiType.PeopleIntro));
-        detailAdapter = new DetailAdapter(multiBeanList);
-        rvDetail.setAdapter(detailAdapter);
     }
 
     @Override
@@ -197,6 +190,45 @@ public class PeopleDetailAct extends BaseAppListActivity<CommentBean> {
                 } else {
                     mDataManager.setViewVisibility(rvTrade, false);
                 }
+
+
+                Map<String, String> params = new HashMap<>();
+                params.put("page", "0");
+                params.put("pageSize", "3");
+                params.put("investorId", id);
+                mModel.requestPeopleStateList(params, new ZnzHttpListener() {
+                    @Override
+                    public void onSuccess(JSONObject responseOriginal) {
+                        super.onSuccess(responseOriginal);
+                        List<StateBean> stateBeanList = JSONArray.parseArray(responseObject.getString("data"), StateBean.class);
+                        //项目详情
+                        rvDetail.setLayoutManager(new LinearLayoutManager(activity));
+                        List<MultiBean> multiBeanList = new ArrayList<>();
+                        if (!stateBeanList.isEmpty()) {
+                            MultiBean multiBean = new MultiBean(Constants.MultiType.PeopleState);
+                            multiBean.setStateBeanList(stateBeanList);
+                            multiBeanList.add(multiBean);
+                        }
+                        multiBeanList.add(new MultiBean(Constants.MultiType.PeopleIntro, bean));
+                        detailAdapter = new DetailAdapter(multiBeanList);
+                        rvDetail.setAdapter(detailAdapter);
+
+                        detailAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+                            switch (view.getId()) {
+                                case R.id.llMore:
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("id", id);
+                                    gotoActivity(PeopleStateAct.class, bundle);
+                                    break;
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFail(String error) {
+                        super.onFail(error);
+                    }
+                });
             }
 
             @Override
@@ -254,6 +286,9 @@ public class PeopleDetailAct extends BaseAppListActivity<CommentBean> {
                 }
                 break;
             case R.id.tvOption4:
+                PopupWindowManager.getInstance(activity).showShare(view, (type, values) -> {
+
+                });
                 break;
             case R.id.tvOption5:
                 rvRefresh.smoothScrollToPosition(0);

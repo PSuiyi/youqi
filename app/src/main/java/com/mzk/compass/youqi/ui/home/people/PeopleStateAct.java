@@ -17,6 +17,9 @@ import rx.Observable;
  * Description：
  */
 public class PeopleStateAct extends BaseAppListActivity {
+
+    private String id;
+
     @Override
     protected int[] getLayoutResource() {
         return new int[]{R.layout.common_list_layout_withnav, 1};
@@ -24,7 +27,9 @@ public class PeopleStateAct extends BaseAppListActivity {
 
     @Override
     protected void initializeVariate() {
-
+        if (getIntent().hasExtra("id")) {
+            id = getIntent().getStringExtra("id");
+        }
     }
 
     @Override
@@ -50,6 +55,7 @@ public class PeopleStateAct extends BaseAppListActivity {
 
     @Override
     protected Observable<ResponseBody> requestCustomeRefreshObservable() {
+        params.put("investorId", id);
         return mModel.requestPeopleStateList(params);
     }
 

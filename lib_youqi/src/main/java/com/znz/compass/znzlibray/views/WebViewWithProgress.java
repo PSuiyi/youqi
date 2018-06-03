@@ -9,6 +9,7 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.znz.compass.znzlibray.R;
+import com.znz.compass.znzlibray.utils.StringUtil;
 
 /**
  * @see com.znz.compass.znzlibray.views
@@ -95,6 +96,9 @@ public class WebViewWithProgress extends WebView {
 
     public void loadContent(String content) {
         progressbar.setVisibility(GONE);
+        if (StringUtil.isBlank(content)) {
+            return;
+        }
         this.loadDataWithBaseURL(null, content, "text/html", "utf-8", null);
         //版本号控制，使图片能够适配
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
