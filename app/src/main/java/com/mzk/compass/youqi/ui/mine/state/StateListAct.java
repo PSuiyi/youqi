@@ -13,10 +13,6 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.StateAdapter;
 import com.mzk.compass.youqi.base.BaseAppListActivity;
 import com.mzk.compass.youqi.bean.StateBean;
-import com.mzk.compass.youqi.event.EventRefresh;
-import com.mzk.compass.youqi.event.EventTags;
-
-import org.greenrobot.eventbus.EventBus;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

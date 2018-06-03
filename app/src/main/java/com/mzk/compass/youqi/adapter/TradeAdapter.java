@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
+import com.mzk.compass.youqi.bean.TagYouBean;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 

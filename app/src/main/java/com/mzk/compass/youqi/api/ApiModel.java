@@ -111,6 +111,10 @@ public class ApiModel extends BaseModel {
         return apiService.post(params);
     }
 
+    public Observable<ResponseBody> requestPeopleStateList(Map<String, String> params) {
+        return apiService.requestPeopleStateList(params);
+    }
+
     /**
      * 新增收货地址
      *

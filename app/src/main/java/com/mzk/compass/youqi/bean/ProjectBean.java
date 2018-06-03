@@ -1,6 +1,5 @@
 package com.mzk.compass.youqi.bean;
 
-import com.mzk.compass.youqi.adapter.TagYouBean;
 import com.znz.compass.znzlibray.bean.BaseZnzBean;
 
 import java.util.List;

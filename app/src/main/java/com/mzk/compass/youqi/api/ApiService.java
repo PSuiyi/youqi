@@ -180,6 +180,9 @@ public interface ApiService {
     @GET("base/get-filter-data")
     Observable<ResponseBody> requestFiltList(@QueryMap Map<String, String> params);
 
+    @GET("investor/get-investor-state")
+    Observable<ResponseBody> requestPeopleStateList(@QueryMap Map<String, String> params);
+
     @GET("base/get-city")
     Observable<ResponseBody> requestCityList(@QueryMap Map<String, String> params);
 

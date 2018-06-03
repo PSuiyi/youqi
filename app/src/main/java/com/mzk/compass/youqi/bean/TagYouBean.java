@@ -1,4 +1,4 @@
-package com.mzk.compass.youqi.adapter;
+package com.mzk.compass.youqi.bean;
 
 import com.znz.compass.znzlibray.bean.BaseZnzBean;
 
