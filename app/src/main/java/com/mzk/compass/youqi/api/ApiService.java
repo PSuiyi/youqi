@@ -285,6 +285,9 @@ public interface ApiService {
     @POST("message/reply")
     Observable<ResponseBody> requestMsgReply(@FieldMap Map<String, String> params);
 
+    @GET("ucenter/charge-vip")
+    Observable<ResponseBody> requestPriceList(@QueryMap Map<String, String> params);
+
 
     @Multipart
     @POST("upload/upload")

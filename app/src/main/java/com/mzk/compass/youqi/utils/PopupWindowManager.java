@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.FiltAdapter;
@@ -105,7 +107,17 @@ public class PopupWindowManager {
         hidePopupWindow();
         View view = initPopupWindow(R.layout.pop_pay_vip);
         LinearLayout llParent = init(view, R.id.llParent);
+        TextView tvConfirm = init(view, R.id.tvConfirm);
+        RadioButton radioButton1 = init(view, R.id.radioButton1);
+        RadioButton radioButton2 = init(view, R.id.radioButton2);
         llParent.setOnClickListener(view1 -> hidePopupWindow());
+        tvConfirm.setOnClickListener(view1 -> {
+            if (radioButton1.isChecked()) {
+                listener.onPopupWindowClick("1", null);
+            } else {
+                listener.onPopupWindowClick("2", null);
+            }
+        });
         popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
     }
 

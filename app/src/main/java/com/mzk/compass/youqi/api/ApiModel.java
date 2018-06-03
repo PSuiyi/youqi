@@ -588,7 +588,7 @@ public class ApiModel extends BaseModel {
      * @return
      */
     public void requestSysMsgDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
-        request(apiService.requestSysMsgDetail(params), znzHttpListener,LODING_LODING);
+        request(apiService.requestSysMsgDetail(params), znzHttpListener, LODING_LODING);
     }
 
     /**
@@ -599,6 +599,16 @@ public class ApiModel extends BaseModel {
      */
     public void requestCustomerService(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         request(apiService.requestCustomerService(params), znzHttpListener);
+    }
+
+    /**
+     * 充值列表
+     *
+     * @param params
+     * @return
+     */
+    public void requestPriceList(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestPriceList(params), znzHttpListener);
     }
 
     /**

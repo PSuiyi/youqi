@@ -6,6 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
+import com.mzk.compass.youqi.bean.PriceBean;
 import com.znz.compass.znzlibray.bean.BaseZnzBean;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
@@ -14,7 +15,7 @@ import java.util.List;
 
 import butterknife.Bind;
 
-public class RechargeAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
+public class RechargeAdapter extends BaseQuickAdapter<PriceBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
 
     @Bind(R.id.tvMonth)
     TextView tvMonth;
@@ -27,13 +28,15 @@ public class RechargeAdapter extends BaseQuickAdapter<BaseZnzBean, BaseViewHolde
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, BaseZnzBean bean) {
+    protected void convert(BaseViewHolder helper, PriceBean bean) {
         llPrice = helper.getView(R.id.llPrice);
         if (bean.isSelect()) {
             llPrice.setBackgroundResource(R.drawable.bg_red_light_radius_2);
         } else {
             llPrice.setBackgroundResource(R.drawable.bg_border_gray);
         }
+        tvMonth.setText(bean.getUnit() + "个月");
+        tvPrice.setText("¥" + bean.getPrice());
     }
 
     @Override

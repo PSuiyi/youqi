@@ -20,9 +20,11 @@ import com.mzk.compass.youqi.bean.IndustryBean;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
 import com.mzk.compass.youqi.ui.mine.identify.company.IndustryAct;
+import com.znz.compass.znzlibray.bean.TagBean;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzlibray.views.ZnzTagView;
 import com.znz.compass.znzlibray.views.gallery.inter.IPhotoSelectCallback;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIActionSheetDialog;
@@ -49,12 +51,12 @@ public class PeopleApproveAct extends BaseAppActivity {
     EditText etName;
     @Bind(R.id.llHangYe)
     LinearLayout llHangYe;
-    @Bind(R.id.rvHangye)
-    RecyclerView rvHangye;
     @Bind(R.id.llLunci)
     LinearLayout llLunci;
-    @Bind(R.id.rvLunCi)
-    RecyclerView rvLunCi;
+    @Bind(R.id.tagHangye)
+    ZnzTagView tagHangye;
+    @Bind(R.id.tagLunci)
+    ZnzTagView tagLunci;
     @Bind(R.id.tvShenFen)
     TextView tvShenFen;
     @Bind(R.id.llShenFen)
@@ -75,10 +77,8 @@ public class PeopleApproveAct extends BaseAppActivity {
     private List<IndustryBean> hangyeList = new ArrayList<>();
     private List<IndustryBean> lunciList = new ArrayList<>();
     private List<IndustryBean> shenFenList = new ArrayList<>();
-    private List<IndustryBean> selectHangye = new ArrayList<>();
-    private List<IndustryBean> selectLunci = new ArrayList<>();
-    private TagsAdapter adapter1;
-    private TagsAdapter adapter2;
+    private List<TagBean> selectHangye = new ArrayList<>();
+    private List<TagBean> selectLunci = new ArrayList<>();
 
     private String tradeid;
     private String roundsid;
@@ -103,12 +103,6 @@ public class PeopleApproveAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
-        adapter1 = new TagsAdapter(selectHangye);
-        rvHangye.setLayoutManager(new GridLayoutManager(context, 6));
-        rvHangye.setAdapter(adapter1);
-        adapter2 = new TagsAdapter(selectLunci);
-        rvLunCi.setLayoutManager(new GridLayoutManager(context, 6));
-        rvLunCi.setAdapter(adapter2);
     }
 
     @Override
@@ -126,14 +120,38 @@ public class PeopleApproveAct extends BaseAppActivity {
                 hangyeList.clear();
                 lunciList.clear();
                 shenFenList.clear();
-                hangyeList.addAll(JSON.parseArray(json.getString("tradesData"), IndustryBean.class));
-                lunciList.addAll(JSON.parseArray(json.getString("roundsData"), IndustryBean.class));
-                shenFenList.addAll(JSON.parseArray(json.getString("roleData"), IndustryBean.class));
+                selectHangye.clear();
+                selectLunci.clear();
+                if (!StringUtil.isBlank(json.getString("tradesData"))) {
+                    hangyeList.addAll(JSON.parseArray(json.getString("tradesData"), IndustryBean.class));
+                }
+                if (!StringUtil.isBlank(json.getString("roundsData"))) {
+                    lunciList.addAll(JSON.parseArray(json.getString("roundsData"), IndustryBean.class));
+                }
+                if (!StringUtil.isBlank(json.getString("roleData"))) {
+                    shenFenList.addAll(JSON.parseArray(json.getString("roleData"), IndustryBean.class));
+                }
                 if (!StringUtil.isBlank(json.getString("myApproveInfo"))) {
                     IdentifyBean bean = JSON.parseObject(json.getString("myApproveInfo"), IdentifyBean.class);
                     etName.setText(bean.getRealName());
-                    selectHangye.addAll(bean.getTradeid());
-                    selectLunci.addAll(bean.getRoundsid());
+                    if (bean.getTradeid() != null & !bean.getTradeid().isEmpty()) {
+                        for (IndustryBean industryBean : bean.getTradeid()) {
+                            TagBean tagBean = new TagBean();
+                            tagBean.setId(industryBean.getId());
+                            tagBean.setTitle(industryBean.getName());
+                            selectHangye.add(tagBean);
+                        }
+                        tagHangye.setDataList(selectHangye);
+                    }
+                    if (bean.getRoundsid() != null & !bean.getRoundsid().isEmpty()) {
+                        for (IndustryBean industryBean : bean.getRoundsid()) {
+                            TagBean tagBean = new TagBean();
+                            tagBean.setId(industryBean.getId());
+                            tagBean.setTitle(industryBean.getName());
+                            selectLunci.add(tagBean);
+                        }
+                        tagLunci.setDataList(selectLunci);
+                    }
                     for (IndustryBean industryBean : shenFenList) {
                         if (industryBean.getId().equals(bean.getRoleid())) {
                             tvShenFen.setText(industryBean.getName());
@@ -177,13 +195,15 @@ public class PeopleApproveAct extends BaseAppActivity {
                     tvYiRenZheng.setVisibility(View.VISIBLE);
                     tvSubmit.setVisibility(View.GONE);
                 }
-                if (json.getString("isInstitution").equals("true")) {
-                    for (int i = 0; i < shenFenList.size(); i++) {
-                        if (shenFenList.get(i).getName().equals("独立投资人")) {
-                            shenFenList.remove(i);
+                if (!StringUtil.isBlank(json.getString("isInstitution"))) {
+                    if (json.getString("isInstitution").equals("true")) {
+                        for (int i = 0; i < shenFenList.size(); i++) {
+                            if (shenFenList.get(i).getName().equals("独立投资人")) {
+                                shenFenList.remove(i);
+                            }
                         }
+                        groupName = json.getString("institutionName");
                     }
-                    groupName = json.getString("institutionName");
                 }
             }
         });
@@ -328,15 +348,13 @@ public class PeopleApproveAct extends BaseAppActivity {
                 selectHangye.clear();
                 List<IndustryBean> list = (List<IndustryBean>) event.getBean();
                 if (list != null & !list.isEmpty()) {
-                    selectHangye.addAll(list);
-                    adapter1.notifyDataSetChanged();
                     for (IndustryBean industryBean : list) {
-                        for (IndustryBean bean : hangyeList) {
-                            if (bean.getId().equals(industryBean.getId())) {
-                                bean.setSelect(true);
-                            }
-                        }
+                        TagBean tagBean = new TagBean();
+                        tagBean.setId(industryBean.getId());
+                        tagBean.setTitle(industryBean.getName());
+                        selectHangye.add(tagBean);
                     }
+                    tagHangye.setDataList(selectHangye);
                     getTraids();
                 }
 
@@ -345,15 +363,13 @@ public class PeopleApproveAct extends BaseAppActivity {
                 selectLunci.clear();
                 List<IndustryBean> list1 = (List<IndustryBean>) event.getBean();
                 if (list1 != null & !list1.isEmpty()) {
-                    selectLunci.addAll(list1);
-                    adapter2.notifyDataSetChanged();
                     for (IndustryBean industryBean : list1) {
-                        for (IndustryBean bean : lunciList) {
-                            if (bean.getId().equals(industryBean.getId())) {
-                                bean.setSelect(true);
-                            }
-                        }
+                        TagBean tagBean = new TagBean();
+                        tagBean.setId(industryBean.getId());
+                        tagBean.setTitle(industryBean.getName());
+                        selectLunci.add(tagBean);
                     }
+                    tagHangye.setDataList(selectLunci);
                     getRoundids();
                 }
                 break;
@@ -362,7 +378,7 @@ public class PeopleApproveAct extends BaseAppActivity {
 
     private void getTraids() {
         String ids = "";
-        for (IndustryBean industryBean : selectHangye) {
+        for (TagBean industryBean : selectHangye) {
             ids = industryBean.getId() + "," + ids;
         }
         tradeid = ids.substring(0, ids.length() - 1);
@@ -370,7 +386,7 @@ public class PeopleApproveAct extends BaseAppActivity {
 
     private void getRoundids() {
         String ids = "";
-        for (IndustryBean industryBean : selectLunci) {
+        for (TagBean industryBean : selectLunci) {
             ids = industryBean.getId() + "," + ids;
         }
         roundsid = ids.substring(0, ids.length() - 1);

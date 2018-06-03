@@ -3,18 +3,23 @@ package com.mzk.compass.youqi.ui.mine.vip;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.RechargeAdapter;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.mzk.compass.youqi.bean.PriceBean;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
 import com.znz.compass.znzlibray.bean.BaseZnzBean;
-import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.StringUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -29,10 +34,13 @@ public class RechargeAct extends BaseAppActivity {
     RecyclerView rvPrice;
     @Bind(R.id.tvSubmit)
     TextView tvSubmit;
+    @Bind(R.id.tvTotalPrice)
+    TextView tvTotalPrice;
     private RechargeAdapter adapter;
-    private List<BaseZnzBean> dataList = new ArrayList<>();
+    private List<PriceBean> dataList = new ArrayList<>();
 
     private PopupWindowManager popupWindowManager;
+    private String id;
 
     @Override
     protected int[] getLayoutResource() {
@@ -42,12 +50,6 @@ public class RechargeAct extends BaseAppActivity {
     @Override
     protected void initializeVariate() {
         popupWindowManager = PopupWindowManager.getInstance(context);
-        dataList.add(new BaseZnzBean());
-        dataList.add(new BaseZnzBean());
-        dataList.add(new BaseZnzBean());
-        dataList.add(new BaseZnzBean());
-        dataList.add(new BaseZnzBean());
-        dataList.add(new BaseZnzBean());
     }
 
     @Override
@@ -61,17 +63,35 @@ public class RechargeAct extends BaseAppActivity {
         rvPrice.setLayoutManager(new LinearLayoutManager(activity));
         rvPrice.setAdapter(adapter);
         adapter.setOnItemClickListener((adapter, view, position) -> {
-            for (BaseZnzBean bean : dataList) {
+            for (PriceBean bean : dataList) {
                 bean.setSelect(false);
             }
-            dataList.get(position).setSelect(true);
+            PriceBean bean = dataList.get(position);
+            bean.setSelect(true);
             adapter.notifyDataSetChanged();
+            id = bean.getId();
+            tvTotalPrice.setText(bean.getPrice());
         });
     }
 
     @Override
     protected void loadDataFromServer() {
-
+        Map<String, String> params = new HashMap<>();
+        mModel.requestPriceList(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                if (!StringUtil.isBlank(responseOriginal.getString("data"))) {
+                    dataList.addAll(JSON.parseArray(responseOriginal.getString("data"), PriceBean.class));
+                    if (!dataList.isEmpty()) {
+                        dataList.get(0).setSelect(true);
+                        id = dataList.get(0).getId();
+                        tvTotalPrice.setText(dataList.get(0).getPrice());
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        });
     }
 
     @Override
@@ -83,6 +103,11 @@ public class RechargeAct extends BaseAppActivity {
 
     @OnClick(R.id.tvSubmit)
     public void onViewClicked() {
-        popupWindowManager.showPayWays(tvSubmit, null);
+        popupWindowManager.showPayWays(tvSubmit, new PopupWindowManager.OnPopupWindowClickListener() {
+            @Override
+            public void onPopupWindowClick(String type, String[] values) {
+
+            }
+        });
     }
 }
