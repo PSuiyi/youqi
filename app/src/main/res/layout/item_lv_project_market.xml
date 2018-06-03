@@ -13,28 +13,12 @@
 
     <View style="@style/LineBoth" />
 
-    <TextView
-        style="@style/TitleTextStyle"
-        android:padding="@dimen/distance_view"
-        android:text="请详细介绍项目所处市场，目前的市场规模及预测，您可以采用图表来更清晰的说明。" />
-
-    <ImageView
+    <com.znz.compass.znzlibray.views.WebViewWithProgress
+        android:id="@+id/wvMarket"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/distance_view"
-        android:layout_marginLeft="@dimen/distance_view"
-        android:layout_marginRight="@dimen/distance_view"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/shichanggaikuotu1" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/distance_view"
-        android:layout_marginLeft="@dimen/distance_view"
-        android:layout_marginRight="@dimen/distance_view"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/shichanggaikuotu2" />
+        android:layout_margin="@dimen/distance_view"
+        android:scrollbars="none" />
 
     <View style="@style/LineBoth" />
 </LinearLayout>

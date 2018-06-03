@@ -13,20 +13,12 @@
 
     <View style="@style/LineBoth" />
 
-    <TextView
-        style="@style/TitleTextStyle"
-        android:padding="@dimen/distance_view"
-        android:text="请详细介绍您的产品，有哪些功能或亮点？如何解决痛点、如何满足用户需求？或者您可以添加产品图片，并为产品图片做出相应注释。"></TextView>
-
-
-    <ImageView
+    <com.znz.compass.znzlibray.views.WebViewWithProgress
+        android:id="@+id/wvProduct"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/distance_view"
-        android:layout_marginLeft="@dimen/distance_view"
-        android:layout_marginRight="@dimen/distance_view"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/chanpinggouxiang" />
+        android:layout_margin="@dimen/distance_view"
+        android:scrollbars="none" />
 
     <View style="@style/LineBoth" />
 </LinearLayout>

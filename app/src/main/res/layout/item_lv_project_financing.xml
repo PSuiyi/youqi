@@ -13,10 +13,12 @@
 
     <View style="@style/LineBoth" />
 
-    <TextView
-        style="@style/TitleTextStyle"
-        android:padding="@dimen/distance_view"
-        android:text="请说明您这轮融资的计划，融资的依据，以及融资之后的财务使用规划。" />
+    <com.znz.compass.znzlibray.views.WebViewWithProgress
+        android:id="@+id/wvFinan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/distance_view"
+        android:scrollbars="none" />
 
     <View style="@style/LineBoth" />
 </LinearLayout>

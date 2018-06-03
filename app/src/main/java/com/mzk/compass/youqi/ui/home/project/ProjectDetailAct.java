@@ -178,22 +178,6 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
         rvMenu.setLayoutManager(layoutManager);
         rvMenu.setAdapter(adapterMenu);
 
-
-        //项目详情
-        rvProject.setLayoutManager(new LinearLayoutManager(activity));
-        List<MultiBean> multiBeanList = new ArrayList<>();
-        multiBeanList.add(new MultiBean(Constants.MultiType.ProjectIntro));
-        multiBeanList.add(new MultiBean(Constants.MultiType.ProjectTeam));
-        multiBeanList.add(new MultiBean(Constants.MultiType.ProjectProduct));
-        multiBeanList.add(new MultiBean(Constants.MultiType.ProjectMarket));
-        multiBeanList.add(new MultiBean(Constants.MultiType.ProjectSolution));
-        multiBeanList.add(new MultiBean(Constants.MultiType.ProjectMoney));
-        multiBeanList.add(new MultiBean(Constants.MultiType.ProjectFinancing));
-        multiBeanList.add(new MultiBean(Constants.MultiType.ProjectData));
-        detailAdapter = new DetailAdapter(multiBeanList);
-        rvProject.setAdapter(detailAdapter);
-
-
         adapter.setOnItemChildClickListener((adapter1, view, position) -> {
             CommentBean bean = dataList.get(position);
             switch (view.getId()) {
@@ -260,6 +244,21 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
                 } else {
                     mDataManager.setViewVisibility(rvTrade, false);
                 }
+
+
+                //项目详情
+                rvProject.setLayoutManager(new LinearLayoutManager(activity));
+                List<MultiBean> multiBeanList = new ArrayList<>();
+                multiBeanList.add(new MultiBean(Constants.MultiType.ProjectIntro, bean));
+                multiBeanList.add(new MultiBean(Constants.MultiType.ProjectTeam, bean));
+                multiBeanList.add(new MultiBean(Constants.MultiType.ProjectProduct, bean));
+                multiBeanList.add(new MultiBean(Constants.MultiType.ProjectMarket, bean));
+                multiBeanList.add(new MultiBean(Constants.MultiType.ProjectSolution, bean));
+                multiBeanList.add(new MultiBean(Constants.MultiType.ProjectMoney, bean));
+                multiBeanList.add(new MultiBean(Constants.MultiType.ProjectFinancing, bean));
+                multiBeanList.add(new MultiBean(Constants.MultiType.ProjectData, bean));
+                detailAdapter = new DetailAdapter(multiBeanList, getSupportFragmentManager());
+                rvProject.setAdapter(detailAdapter);
             }
 
             @Override

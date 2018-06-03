@@ -59,6 +59,9 @@ public class ProjectBean extends BaseZnzBean {
     private List<TagYouBean> tradeid;
     private List<PeopleBean> team;
 
+
+
+
     public String getCanArrangeTalk() {
         return canArrangeTalk;
     }

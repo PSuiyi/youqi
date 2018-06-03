@@ -8,15 +8,15 @@
     <TextView
         style="@style/TitleBlodStyle"
         android:padding="@dimen/distance_view"
-        android:text="项目评论"
+        android:text="团队介绍"
         android:textSize="@dimen/text_size_20" />
 
     <View style="@style/LineBoth" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvPeople"
+        android:id="@+id/rvRecycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content"/>
 
     <View style="@style/LineBoth" />
 </LinearLayout>

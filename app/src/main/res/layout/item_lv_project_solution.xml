@@ -13,10 +13,12 @@
 
     <View style="@style/LineBoth" />
 
-    <TextView
-        style="@style/TitleTextStyle"
-        android:padding="@dimen/distance_view"
-        android:text="请输入解决方式请突出您是采用何种产品、服务来解决痛点和需求的？用什么方式来更好地解决痛点？ 例如：我们建立平台，来让买家和卖家高效沟通。" />
+    <com.znz.compass.znzlibray.views.WebViewWithProgress
+        android:id="@+id/wvSolution"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/distance_view"
+        android:scrollbars="none" />
 
     <View style="@style/LineBoth" />
 </LinearLayout>
