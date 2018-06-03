@@ -36,7 +36,7 @@
                 android:paddingTop="8dp" />
 
             <TextView
-                android:id="@+id/tvComment"
+                android:id="@+id/tvSendComment"
                 style="@style/TextWhiteStyle"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"

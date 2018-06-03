@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llRootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -27,6 +28,7 @@
     <View style="@style/Line" />
 
     <LinearLayout
+        android:id="@+id/llOpt"
         android:layout_width="match_parent"
         android:layout_height="@dimen/nav_height"
         android:background="@color/white"
@@ -57,4 +59,6 @@
             android:drawableTop="@mipmap/huidaodingbu"
             android:text="返回顶部" />
     </LinearLayout>
+
+    <include layout="@layout/include_comment" />
 </LinearLayout>

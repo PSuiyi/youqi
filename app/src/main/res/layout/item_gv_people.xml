@@ -18,12 +18,14 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
+            <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                android:id="@+id/ivUserHeader"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@mipmap/default_header" />
 
             <TextView
+                android:id="@+id/tvName"
                 style="@style/TextStyle"
                 android:layout_marginTop="@dimen/distance_text"
                 android:text="赵大千" />

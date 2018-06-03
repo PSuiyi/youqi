@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
@@ -23,6 +25,7 @@ import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -43,7 +46,7 @@ import rx.Observable;
  * User： PSuiyi
  * Description：
  */
-public class PeopleDetailAct extends BaseAppListActivity {
+public class PeopleDetailAct extends BaseAppListActivity<CommentBean> {
     @Bind(R.id.tvOption1)
     TextView tvOption1;
     @Bind(R.id.tvOption2)
@@ -54,6 +57,14 @@ public class PeopleDetailAct extends BaseAppListActivity {
     TextView tvOption4;
     @Bind(R.id.tvOption5)
     TextView tvOption5;
+    @Bind(R.id.llOpt)
+    LinearLayout llOpt;
+    @Bind(R.id.etComment)
+    EditText etComment;
+    @Bind(R.id.tvSendComment)
+    TextView tvSendComment;
+    @Bind(R.id.llComment)
+    LinearLayout llComment;
     private RecyclerView rvDetail;
     private RecyclerView rvMenu;
     private TextView tvRecommend;
@@ -70,6 +81,7 @@ public class PeopleDetailAct extends BaseAppListActivity {
     private RecyclerView rvTrade;
 
     private PeopleBean bean;
+    private String currentPid;
 
     @Override
     protected int[] getLayoutResource() {
@@ -118,16 +130,28 @@ public class PeopleDetailAct extends BaseAppListActivity {
             gotoActivity(RecommendSelfAct.class, bundle);
         });
 
+        adapter.setOnItemChildClickListener((adapter1, view, position) -> {
+            CommentBean bean = dataList.get(position);
+            switch (view.getId()) {
+                case R.id.tvReply:
+                    mDataManager.setViewVisibility(llOpt, false);
+                    mDataManager.setViewVisibility(llComment, true);
+                    currentPid = bean.getId();
+                    mDataManager.toggleEditTextFocus(etComment, true);
+                    break;
+            }
+        });
+
         //菜单栏
         List<MenuBean> menuBeanList = new ArrayList<>();
         menuBeanList.add(new MenuBean("投资人动态"));
         menuBeanList.add(new MenuBean("简介"));
         menuBeanList.add(new MenuBean("评论"));
-        MenuAdapter adapter = new MenuAdapter(menuBeanList);
+        MenuAdapter adapterMenu = new MenuAdapter(menuBeanList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         rvMenu.setLayoutManager(layoutManager);
-        rvMenu.setAdapter(adapter);
+        rvMenu.setAdapter(adapterMenu);
 
 
         //项目详情
@@ -207,10 +231,14 @@ public class PeopleDetailAct extends BaseAppListActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.tvOption1, R.id.tvOption2, R.id.tvOption3, R.id.tvOption4, R.id.tvOption5})
+    @OnClick({R.id.tvSendComment, R.id.tvOption1, R.id.tvOption2, R.id.tvOption3, R.id.tvOption4, R.id.tvOption5})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvOption1:
+                mDataManager.setViewVisibility(llOpt, false);
+                mDataManager.setViewVisibility(llComment, true);
+                currentPid = "0";
+                mDataManager.toggleEditTextFocus(etComment, true);
                 break;
             case R.id.tvOption2:
                 Bundle bundle = new Bundle();
@@ -229,6 +257,33 @@ public class PeopleDetailAct extends BaseAppListActivity {
                 break;
             case R.id.tvOption5:
                 rvRefresh.smoothScrollToPosition(0);
+                break;
+            case R.id.tvSendComment:
+                if (StringUtil.isBlank(mDataManager.getValueFromView(etComment))) {
+                    mDataManager.showToast("请输入评论内容");
+                    return;
+                }
+                Map<String, String> params = new HashMap<>();
+                params.put("pid", currentPid);
+                params.put("type", "投资人");
+                params.put("id", id);
+                params.put("content", mDataManager.getValueFromView(etComment));
+                mModel.requestSendComment(params, new ZnzHttpListener() {
+                    @Override
+                    public void onSuccess(JSONObject responseOriginal) {
+                        super.onSuccess(responseOriginal);
+                        etComment.setText("");
+                        mDataManager.showToast("评论成功");
+                        mDataManager.setViewVisibility(llOpt, true);
+                        mDataManager.setViewVisibility(llComment, false);
+                        resetRefresh();
+                    }
+
+                    @Override
+                    public void onFail(String error) {
+                        super.onFail(error);
+                    }
+                });
                 break;
         }
     }

@@ -91,6 +91,10 @@ public interface ApiService {
     Observable<ResponseBody> requestAddState(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("comment/add")
+    Observable<ResponseBody> requestSendComment(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("project/arrange-talk")
     Observable<ResponseBody> requestSendMessage(@FieldMap Map<String, String> params);
 

@@ -62,7 +62,7 @@ public class CommentAdapter extends BaseQuickAdapter<CommentBean, BaseViewHolder
             rvReply.setVisibility(View.GONE);
         }
 
-
+        helper.addOnClickListener(R.id.tvReply);
         mDataManager.setValueToView(tvUserName, bean.getUsername());
         mDataManager.setValueToView(tvContent, bean.getContent());
         mDataManager.setValueToView(tvTime, TimeUtils.getFriendlyTimeSpanByNow(bean.getAddTime()));

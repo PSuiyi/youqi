@@ -6,6 +6,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -51,7 +52,7 @@ import rx.Observable;
  * User： PSuiyi
  * Description：
  */
-public class ProjectDetailAct extends BaseAppListActivity {
+public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
     @Bind(R.id.tvOption1)
     TextView tvOption1;
     @Bind(R.id.tvOption2)
@@ -62,6 +63,14 @@ public class ProjectDetailAct extends BaseAppListActivity {
     TextView tvOption4;
     @Bind(R.id.tvOption5)
     TextView tvOption5;
+    @Bind(R.id.llOpt)
+    LinearLayout llOpt;
+    @Bind(R.id.etComment)
+    EditText etComment;
+    @Bind(R.id.tvSendComment)
+    TextView tvSendComment;
+    @Bind(R.id.llComment)
+    LinearLayout llComment;
     private RecyclerView rvPeople;
     private LinearLayout llMore;
     private RecyclerView rvMenu;
@@ -90,6 +99,7 @@ public class ProjectDetailAct extends BaseAppListActivity {
     private TextView tvTime;
     private TextView tvCompany;
     private RecyclerView rvTrade;
+    private String currentPid;
 
     @Override
     protected int[] getLayoutResource() {
@@ -162,11 +172,11 @@ public class ProjectDetailAct extends BaseAppListActivity {
         menuBeanList.add(new MenuBean("盈利模式"));
         menuBeanList.add(new MenuBean("项目资料"));
         menuBeanList.add(new MenuBean("项目评论"));
-        MenuAdapter adapter = new MenuAdapter(menuBeanList);
+        MenuAdapter adapterMenu = new MenuAdapter(menuBeanList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         rvMenu.setLayoutManager(layoutManager);
-        rvMenu.setAdapter(adapter);
+        rvMenu.setAdapter(adapterMenu);
 
 
         //项目详情
@@ -182,6 +192,19 @@ public class ProjectDetailAct extends BaseAppListActivity {
         multiBeanList.add(new MultiBean(Constants.MultiType.ProjectData));
         detailAdapter = new DetailAdapter(multiBeanList);
         rvProject.setAdapter(detailAdapter);
+
+
+        adapter.setOnItemChildClickListener((adapter1, view, position) -> {
+            CommentBean bean = dataList.get(position);
+            switch (view.getId()) {
+                case R.id.tvReply:
+                    mDataManager.setViewVisibility(llOpt, false);
+                    mDataManager.setViewVisibility(llComment, true);
+                    currentPid = bean.getId();
+                    mDataManager.toggleEditTextFocus(etComment, true);
+                    break;
+            }
+        });
     }
 
     @Override
@@ -254,7 +277,7 @@ public class ProjectDetailAct extends BaseAppListActivity {
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 userList.clear();
-                userList.addAll(JSONArray.parseArray(responseJson.getString("data"), PeopleBean.class));
+                userList.addAll(JSONArray.parseArray(responseObject.getString("data"), PeopleBean.class));
                 PeopleGridAdapter peopleGridAdapter = new PeopleGridAdapter(userList);
                 rvPeople.setLayoutManager(new GridLayoutManager(activity, 6));
                 rvPeople.setAdapter(peopleGridAdapter);
@@ -294,10 +317,14 @@ public class ProjectDetailAct extends BaseAppListActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.tvOption1, R.id.tvOption2, R.id.tvOption3, R.id.tvOption4, R.id.tvOption5})
+    @OnClick({R.id.tvSendComment, R.id.tvOption1, R.id.tvOption2, R.id.tvOption3, R.id.tvOption4, R.id.tvOption5})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvOption1:
+                mDataManager.setViewVisibility(llOpt, false);
+                mDataManager.setViewVisibility(llComment, true);
+                currentPid = "0";
+                mDataManager.toggleEditTextFocus(etComment, true);
                 break;
             case R.id.tvOption2:
                 if (!StringUtil.isBlank(bean.getCanArrangeTalk()) && bean.getCanArrangeTalk().equals("true")) {
@@ -326,11 +353,38 @@ public class ProjectDetailAct extends BaseAppListActivity {
                 break;
             case R.id.tvOption4:
                 PopupWindowManager.getInstance(activity).showShare(view, (type, values) -> {
-                    
+
                 });
                 break;
             case R.id.tvOption5:
                 rvRefresh.smoothScrollToPosition(0);
+                break;
+            case R.id.tvSendComment:
+                if (StringUtil.isBlank(mDataManager.getValueFromView(etComment))) {
+                    mDataManager.showToast("请输入评论内容");
+                    return;
+                }
+                Map<String, String> params = new HashMap<>();
+                params.put("pid", currentPid);
+                params.put("type", "项目");
+                params.put("id", id);
+                params.put("content", mDataManager.getValueFromView(etComment));
+                mModel.requestSendComment(params, new ZnzHttpListener() {
+                    @Override
+                    public void onSuccess(JSONObject responseOriginal) {
+                        super.onSuccess(responseOriginal);
+                        etComment.setText("");
+                        mDataManager.showToast("评论成功");
+                        mDataManager.setViewVisibility(llOpt, true);
+                        mDataManager.setViewVisibility(llComment, false);
+                        resetRefresh();
+                    }
+
+                    @Override
+                    public void onFail(String error) {
+                        super.onFail(error);
+                    }
+                });
                 break;
         }
     }

@@ -4,6 +4,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
@@ -15,7 +17,10 @@ import com.mzk.compass.youqi.bean.CommentBean;
 import com.mzk.compass.youqi.bean.NewsBean;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
+import com.mzk.compass.youqi.utils.PopupWindowManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzlibray.utils.ZnzLog;
 import com.znz.compass.znzlibray.views.WebViewWithProgress;
 
 import org.greenrobot.eventbus.EventBus;
@@ -34,7 +39,7 @@ import rx.Observable;
  * User： PSuiyi
  * Description：
  */
-public class NewsDetailAct extends BaseAppListActivity {
+public class NewsDetailAct extends BaseAppListActivity<CommentBean> implements View.OnLayoutChangeListener {
 
     @Bind(R.id.tvOption1)
     TextView tvOption1;
@@ -44,6 +49,16 @@ public class NewsDetailAct extends BaseAppListActivity {
     TextView tvOption3;
     @Bind(R.id.tvOption4)
     TextView tvOption4;
+    @Bind(R.id.llOpt)
+    LinearLayout llOpt;
+    @Bind(R.id.etComment)
+    EditText etComment;
+    @Bind(R.id.tvSendComment)
+    TextView tvSendComment;
+    @Bind(R.id.llComment)
+    LinearLayout llComment;
+    @Bind(R.id.llRootView)
+    LinearLayout llRootView;
     private View header;
     private String id;
 
@@ -53,6 +68,8 @@ public class NewsDetailAct extends BaseAppListActivity {
     private TextView tvTime;
     private WebViewWithProgress wvContent;
     private NewsBean bean;
+    private String currentPid = "0";
+    private boolean isKeyboardOn;
 
     @Override
     protected int[] getLayoutResource() {
@@ -89,6 +106,20 @@ public class NewsDetailAct extends BaseAppListActivity {
         tvCountComment = bindViewById(header, R.id.tvCountComment);
         tvTime = bindViewById(header, R.id.tvTime);
         wvContent = bindViewById(header, R.id.wvContent);
+
+        adapter.setOnItemChildClickListener((adapter, view, position) -> {
+            CommentBean bean = dataList.get(position);
+            switch (view.getId()) {
+                case R.id.tvReply:
+                    mDataManager.setViewVisibility(llOpt, false);
+                    mDataManager.setViewVisibility(llComment, true);
+                    currentPid = bean.getId();
+                    mDataManager.toggleEditTextFocus(etComment, true);
+                    break;
+            }
+        });
+
+        llRootView.addOnLayoutChangeListener(this);
     }
 
     @Override
@@ -183,10 +214,14 @@ public class NewsDetailAct extends BaseAppListActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.tvOption1, R.id.tvOption2, R.id.tvOption3, R.id.tvOption4})
+    @OnClick({R.id.tvOption1, R.id.tvOption2, R.id.tvOption3, R.id.tvOption4, R.id.tvSendComment})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvOption1:
+                mDataManager.setViewVisibility(llOpt, false);
+                mDataManager.setViewVisibility(llComment, true);
+                currentPid = "0";
+                mDataManager.toggleEditTextFocus(etComment, true);
                 break;
             case R.id.tvOption2:
                 if (bean.getIsCollected().equals("true")) {
@@ -196,9 +231,55 @@ public class NewsDetailAct extends BaseAppListActivity {
                 }
                 break;
             case R.id.tvOption3:
+                PopupWindowManager.getInstance(activity).showShare(view, (type, values) -> {
+
+                });
                 break;
             case R.id.tvOption4:
                 break;
+            case R.id.tvSendComment:
+                if (StringUtil.isBlank(mDataManager.getValueFromView(etComment))) {
+                    mDataManager.showToast("请输入评论内容");
+                    return;
+                }
+                Map<String, String> params = new HashMap<>();
+                params.put("pid", currentPid);
+                params.put("type", "优报道");
+                params.put("id", id);
+                params.put("content", mDataManager.getValueFromView(etComment));
+                mModel.requestSendComment(params, new ZnzHttpListener() {
+                    @Override
+                    public void onSuccess(JSONObject responseOriginal) {
+                        super.onSuccess(responseOriginal);
+                        etComment.setText("");
+                        mDataManager.showToast("评论成功");
+                        mDataManager.setViewVisibility(llOpt, true);
+                        mDataManager.setViewVisibility(llComment, false);
+                        resetRefresh();
+                    }
+
+                    @Override
+                    public void onFail(String error) {
+                        super.onFail(error);
+                    }
+                });
+                break;
+        }
+    }
+
+    @Override
+    public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+        //现在认为只要控件将Activity向上推的高度超过了1/3屏幕高，就认为软键盘弹起
+        if (oldBottom != 0 && bottom != 0 && (oldBottom - bottom > mDataManager.getDeviceHeight(activity) / 3)) {
+            ZnzLog.e("监听到软键盘---->" + "弹起....");
+            isKeyboardOn = true;
+        } else if (oldBottom != 0 && bottom != 0 && (bottom - oldBottom > mDataManager.getDeviceHeight(activity) / 3)) {
+            ZnzLog.e("监听到软键盘---->" + "关闭....");
+            isKeyboardOn = false;
+//            runOnUiThread(() -> {
+//                mDataManager.setViewVisibility(llOpt, true);
+//                mDataManager.setViewVisibility(llComment, false);
+//            });
         }
     }
 }

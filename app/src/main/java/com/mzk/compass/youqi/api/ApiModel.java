@@ -650,11 +650,15 @@ public class ApiModel extends BaseModel {
      * @return
      */
     public void requestAddState(Map<String, String> params, ZnzHttpListener znzHttpListener) {
-        request(apiService.requestAddState(params), znzHttpListener);
+        request(apiService.requestAddState(params), znzHttpListener, LODING_PD);
     }
 
     public void requestSendMessage(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         request(apiService.requestSendMessage(params), znzHttpListener);
+    }
+
+    public void requestSendComment(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestSendComment(params), znzHttpListener, LODING_PD);
     }
 
     /**
