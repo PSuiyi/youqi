@@ -9,8 +9,6 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.ArticleAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
 import com.mzk.compass.youqi.bean.ArticleBean;
-import com.mzk.compass.youqi.bean.MessageBean;
-import com.mzk.compass.youqi.ui.mine.message.MessageListFrag;
 
 import okhttp3.ResponseBody;
 import rx.Observable;

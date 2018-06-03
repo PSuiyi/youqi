@@ -159,6 +159,27 @@ public interface ApiService {
     @GET("message/list")
     Observable<ResponseBody> requestMessageList(@QueryMap Map<String, String> params);
 
+    @GET("message/list-interact-message")
+    Observable<ResponseBody> requestInteractMessageList(@QueryMap Map<String, String> params);
+
+    @GET("message/list-order-message")
+    Observable<ResponseBody> requestOrderMessageList(@QueryMap Map<String, String> params);
+
+    @GET("message/list-sys-message")
+    Observable<ResponseBody> requestSysMessageList(@QueryMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("message/del-interact-message")
+    Observable<ResponseBody> requestDeletInteractMsg(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("message/del-order-message")
+    Observable<ResponseBody> requestDeleteOrderMsg(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("message/del-sys-message")
+    Observable<ResponseBody> requestDeleteSysMsg(@FieldMap Map<String, String> params);
+
     @GET("state/index")
     Observable<ResponseBody> requestStateList(@QueryMap Map<String, String> params);
 
@@ -245,6 +266,10 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("company/get-identify-company-info")
     Observable<ResponseBody> requestCompanyIdentifyDetail(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("checkversion/get-newest-version")
+    Observable<ResponseBody> requestCheckUpdate(@FieldMap Map<String, String> params);
 
     @Multipart
     @POST("upload/upload")

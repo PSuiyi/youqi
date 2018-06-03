@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.ViewPageAdapter;
 import com.mzk.compass.youqi.base.BaseAppActivity;
-import com.mzk.compass.youqi.ui.mine.message.MessageListFrag;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
 

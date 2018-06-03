@@ -8,6 +8,10 @@ import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.bean.MessageBean;
+import com.mzk.compass.youqi.ui.mine.message.MessageInteractAct;
+import com.mzk.compass.youqi.ui.mine.message.MessageSystemAct;
+import com.mzk.compass.youqi.ui.mine.message.MessageTradeAct;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.utils.TimeUtils;
 import com.znz.compass.znzlibray.views.SwipeMenuLayout;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
@@ -44,8 +48,22 @@ public class MessageAdapter extends BaseQuickAdapter<MessageBean, BaseViewHolder
         } else {
             mDataManager.setViewVisibility(cbSelect, false);
         }
-        mDataManager.setValueToView(tvTitle, bean.getMsgwarning());
-        mDataManager.setValueToView(tvTime, TimeUtils.getFormatTime(bean.getTime(), "yyyy-MM-dd HH:mm"));
+        switch (bean.getType()) {
+            case "互动消息":
+                mDataManager.setValueToView(tvTitle, bean.getMsgwarning());
+                break;
+            case "交易信息":
+                mDataManager.setValueToView(tvTitle, bean.getContent());
+                break;
+            case "系统信息":
+                mDataManager.setValueToView(tvTitle, bean.getTitle());
+                break;
+            default:
+                mDataManager.setValueToView(tvTitle, bean.getTitle());
+                break;
+        }
+
+        mDataManager.setValueToView(tvTime, TimeUtils.millis2String(StringUtil.stringToLong(bean.getAddTime())*1000, "yyyy.MM.dd HH:mm"));
         helper.addOnClickListener(R.id.llDelete);
         helper.addOnClickListener(R.id.llContainer);
         helper.addOnClickListener(R.id.cbSelect);

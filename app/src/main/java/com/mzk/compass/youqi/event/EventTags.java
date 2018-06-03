@@ -16,6 +16,8 @@ public interface EventTags {
     int REFRESH_SEARCH_NEWS = 0x108;//搜索报到
 
     int REFRESH_MESSAGE_EDIT = 0x200;//消息编辑
+    int REFRESH_MESSAGE_DELETE = 0x201;//消息删除
+
     int REFRESH_CITY = 0x300;//城市选择 刷新
     int REFRESH_CITY_IDENTIFY = 0x301;//城市选择 刷新
 

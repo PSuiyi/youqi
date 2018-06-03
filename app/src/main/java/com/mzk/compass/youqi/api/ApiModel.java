@@ -452,6 +452,36 @@ public class ApiModel extends BaseModel {
     }
 
     /**
+     * 互动消息列表
+     *
+     * @param params
+     * @return
+     */
+    public Observable<ResponseBody> requestInteractMessageList(Map<String, String> params) {
+        return apiService.requestInteractMessageList(params);
+    }
+
+    /**
+     * 交易消息列表
+     *
+     * @param params
+     * @return
+     */
+    public Observable<ResponseBody> requestOrderMessageList(Map<String, String> params) {
+        return apiService.requestOrderMessageList(params);
+    }
+
+    /**
+     * 系统消息列表
+     *
+     * @param params
+     * @return
+     */
+    public Observable<ResponseBody> requestSysMessageList(Map<String, String> params) {
+        return apiService.requestSysMessageList(params);
+    }
+
+    /**
      * 动态列表
      *
      * @param params
@@ -492,6 +522,36 @@ public class ApiModel extends BaseModel {
     }
 
     /**
+     * 删除互动消息
+     *
+     * @param params
+     * @return
+     */
+    public void requestDeletInteractMsg(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestDeletInteractMsg(params), znzHttpListener);
+    }
+
+    /**
+     * 删除交易消息
+     *
+     * @param params
+     * @return
+     */
+    public void requestDeleteOrderMsg(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestDeleteOrderMsg(params), znzHttpListener);
+    }
+
+    /**
+     * 删除系统消息
+     *
+     * @param params
+     * @return
+     */
+    public void requestDeleteSysMsg(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestDeleteSysMsg(params), znzHttpListener);
+    }
+
+    /**
      * 专属客服列表
      *
      * @param params
@@ -499,6 +559,16 @@ public class ApiModel extends BaseModel {
      */
     public void requestCustomerService(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         request(apiService.requestCustomerService(params), znzHttpListener);
+    }
+
+    /**
+     * 版本更新
+     *
+     * @param params
+     * @return
+     */
+    public void requestCheckUpdate(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestCheckUpdate(params), znzHttpListener);
     }
 
     /**

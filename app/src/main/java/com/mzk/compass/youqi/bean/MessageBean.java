@@ -18,9 +18,21 @@ public class MessageBean extends BaseZnzBean {
     private String id;
     private String msgwarning;
     private String state;
-    private String time;
+    private String addTime;
+    private String title;
+    private String type;
+
 
     private boolean edit;
+    /**
+     * uid : 1
+     * orderSerial : 6217e041-7419-40e5-a5d5-e60b400d8d60
+     * content : 订单阿斯蒂芬
+     */
+
+    private String uid;
+    private String orderSerial;
+    private String content;
 
     public String getId() {
         return id;
@@ -46,12 +58,12 @@ public class MessageBean extends BaseZnzBean {
         this.state = state;
     }
 
-    public String getTime() {
-        return time;
+    public String getAddTime() {
+        return addTime;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setAddTime(String addTime) {
+        this.addTime = addTime;
     }
 
     public boolean isEdit() {
@@ -60,5 +72,45 @@ public class MessageBean extends BaseZnzBean {
 
     public void setEdit(boolean edit) {
         this.edit = edit;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getOrderSerial() {
+        return orderSerial;
+    }
+
+    public void setOrderSerial(String orderSerial) {
+        this.orderSerial = orderSerial;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

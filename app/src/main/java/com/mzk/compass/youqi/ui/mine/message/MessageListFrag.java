@@ -16,9 +16,15 @@ import com.mzk.compass.youqi.bean.MessageBean;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
 import com.znz.compass.znzlibray.eventbus.EventManager;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -36,6 +42,8 @@ public class MessageListFrag extends BaseAppListFragment<MessageBean> {
     @Bind(R.id.llSelectAll)
     LinearLayout llSelectAll;
     private String from;
+
+    private String ids;
 
     public static MessageListFrag newInstance(String from) {
         Bundle args = new Bundle();
@@ -75,6 +83,16 @@ public class MessageListFrag extends BaseAppListFragment<MessageBean> {
             MessageBean bean = dataList.get(position);
             switch (view.getId()) {
                 case R.id.llDelete:
+                    ids = bean.getId();
+                    new UIAlertDialog(activity)
+                            .builder()
+                            .setMsg("确定删除")
+                            .setNegativeButton("取消", null)
+                            .setPositiveButton("确定", v2 -> {
+                                requestDelete();
+                            })
+                            .show();
+
                     break;
                 case R.id.llContainer:
                     Bundle bundle = new Bundle();
@@ -92,7 +110,7 @@ public class MessageListFrag extends BaseAppListFragment<MessageBean> {
                     }
                     break;
                 case R.id.cbSelect:
-                    bean.setSelect(true);
+                    bean.setSelect(!bean.isSelect());
                     adapter.notifyDataSetChanged();
                     break;
             }
@@ -108,22 +126,22 @@ public class MessageListFrag extends BaseAppListFragment<MessageBean> {
     protected Observable<ResponseBody> requestCustomeRefreshObservable() {
         switch (from) {
             case "互动消息":
-                params.put("type", "0");
-                break;
+                return mModel.requestInteractMessageList(params);
             case "交易信息":
-                params.put("type", "1");
-                break;
+                return mModel.requestOrderMessageList(params);
             case "系统信息":
-                params.put("type", "2");
-                break;
+                return mModel.requestSysMessageList(params);
         }
-        return mModel.requestMessageList(params);
+        return null;
     }
 
     @Override
     protected void onRefreshSuccess(String response) {
         JSONObject json = JSON.parseObject(response);
-        dataList.addAll(JSON.parseArray(json.getString("data"), MessageBean.class));
+        dataList.addAll(JSON.parseArray(json.getString("list"), MessageBean.class));
+        for (MessageBean messageBean : dataList) {
+            messageBean.setType(from);
+        }
         adapter.notifyDataSetChanged();
     }
 
@@ -193,7 +211,66 @@ public class MessageListFrag extends BaseAppListFragment<MessageBean> {
                 adapter.notifyDataSetChanged();
                 break;
             case R.id.tvDelete:
+                String str = "";
+                for (MessageBean messageBean : dataList) {
+                    if (messageBean.isSelect()) {
+                        str = messageBean.getId() + "," + str;
+                    }
+                }
+                ids = str.substring(0, str.length() - 1);
+                new UIAlertDialog(activity)
+                        .builder()
+                        .setMsg("确定删除")
+                        .setNegativeButton("取消", null)
+                        .setPositiveButton("确定", v2 -> {
+                            requestDelete();
+                        })
+                        .show();
                 break;
         }
     }
+
+    private void requestDelete() {
+        Map<String, String> params = new HashMap<>();
+        params.put("ids", ids);
+        switch (from) {
+            case "互动消息":
+                mModel.requestDeletInteractMsg(params, new ZnzHttpListener() {
+                    @Override
+                    public void onSuccess(JSONObject responseOriginal) {
+                        super.onSuccess(responseOriginal);
+                        mDataManager.showToast("删除成功");
+                        resetRefresh();
+                        mDataManager.setViewVisibility(llSelectAll, false);
+                        EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_MESSAGE_DELETE));
+                    }
+                });
+                break;
+            case "交易信息":
+                mModel.requestDeleteOrderMsg(params, new ZnzHttpListener() {
+                    @Override
+                    public void onSuccess(JSONObject responseOriginal) {
+                        super.onSuccess(responseOriginal);
+                        mDataManager.showToast("删除成功");
+                        resetRefresh();
+                        mDataManager.setViewVisibility(llSelectAll, false);
+                        EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_MESSAGE_DELETE));
+                    }
+                });
+                break;
+            case "系统信息":
+                mModel.requestDeleteSysMsg(params, new ZnzHttpListener() {
+                    @Override
+                    public void onSuccess(JSONObject responseOriginal) {
+                        super.onSuccess(responseOriginal);
+                        mDataManager.showToast("删除成功");
+                        resetRefresh();
+                        mDataManager.setViewVisibility(llSelectAll, false);
+                        EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_MESSAGE_DELETE));
+                    }
+                });
+                break;
+        }
+    }
+
 }

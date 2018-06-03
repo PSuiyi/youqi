@@ -3,14 +3,20 @@ package com.mzk.compass.youqi.ui.setting;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.ui.login.LoginAct;
 import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.rowview.ZnzRowDescription;
 import com.znz.compass.znzlibray.views.rowview.ZnzRowGroupView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -27,7 +33,7 @@ public class SettingAct extends BaseAppActivity {
     ZnzRowGroupView commonRowGroup;
     @Bind(R.id.llLogout)
     LinearLayout llLogout;
-    private ArrayList rowDescriptionList;
+    private ArrayList<ZnzRowDescription> rowDescriptionList;
 
     @Override
     protected int[] getLayoutResource() {
@@ -89,7 +95,19 @@ public class SettingAct extends BaseAppActivity {
 
     @Override
     protected void loadDataFromServer() {
-
+        Map<String, String> params = new HashMap<>();
+        mModel.requestCheckUpdate(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                if (!StringUtil.isBlank(responseOriginal.getString("data"))) {
+                    JSONObject json = JSON.parseObject(responseOriginal.getString("data"));
+                    if (StringUtil.stringToDouble(json.getString("version")) <= StringUtil.stringToDouble(StringUtil.getVersionName(context))) {
+                        rowDescriptionList.get(0).setValue("已是最新版本");
+                    }
+                }
+            }
+        });
     }
 
     @Override
