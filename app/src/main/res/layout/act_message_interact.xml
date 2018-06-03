@@ -70,34 +70,13 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
-                    <TextView
-                        style="@style/TextStyle"
-                        android:background="@drawable/bg_blue_light_radius_2"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="互联网"
-                        android:textColor="@color/text_blue_message"
-                        android:textSize="@dimen/text_size_10" />
+                    <com.znz.compass.znzlibray.views.ZnzTagView
+                        android:id="@+id/tagView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
-                    <TextView
-                        style="@style/TextStyle"
-                        android:layout_marginLeft="5dp"
-                        android:background="@drawable/bg_blue_light_radius_2"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="休闲"
-                        android:textColor="@color/text_blue_message"
-                        android:textSize="@dimen/text_size_10" />
+                    </com.znz.compass.znzlibray.views.ZnzTagView>
 
-                    <TextView
-                        style="@style/TextStyle"
-                        android:layout_marginLeft="5dp"
-                        android:background="@drawable/bg_blue_light_radius_2"
-                        android:gravity="center"
-                        android:padding="2dp"
-                        android:text="娱乐"
-                        android:textColor="@color/text_blue_message"
-                        android:textSize="@dimen/text_size_10" />
                 </LinearLayout>
 
                 <LinearLayout

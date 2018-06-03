@@ -271,6 +271,21 @@ public interface ApiService {
     @POST("checkversion/get-newest-version")
     Observable<ResponseBody> requestCheckUpdate(@FieldMap Map<String, String> params);
 
+    @GET("message/get-interact-message-detail")
+    Observable<ResponseBody> requestInteractMsgDetail(@QueryMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("message/update-order-message-state")
+    Observable<ResponseBody> requestOrderMsgDetail(@FieldMap Map<String, String> params);
+
+    @GET("message/get-sys-message-detail")
+    Observable<ResponseBody> requestSysMsgDetail(@QueryMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("message/reply")
+    Observable<ResponseBody> requestMsgReply(@FieldMap Map<String, String> params);
+
+
     @Multipart
     @POST("upload/upload")
     Observable<ResponseBody> uploadImageSingle(@Part List<MultipartBody.Part> partLis);

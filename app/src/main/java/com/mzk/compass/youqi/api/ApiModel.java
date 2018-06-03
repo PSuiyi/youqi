@@ -542,13 +542,53 @@ public class ApiModel extends BaseModel {
     }
 
     /**
-     * 删除系统消息
+     * 互动消息详情
      *
      * @param params
      * @return
      */
     public void requestDeleteSysMsg(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         request(apiService.requestDeleteSysMsg(params), znzHttpListener);
+    }
+
+    /**
+     * 消息回复
+     *
+     * @param params
+     * @return
+     */
+    public void requestMsgReply(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestMsgReply(params), znzHttpListener);
+    }
+
+    /**
+     * 删除系统消息
+     *
+     * @param params
+     * @return
+     */
+    public void requestInteractMsgDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestInteractMsgDetail(params), znzHttpListener);
+    }
+
+    /**
+     * 交易消息跳转
+     *
+     * @param params
+     * @return
+     */
+    public void requestOrderMsgDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestOrderMsgDetail(params), znzHttpListener);
+    }
+
+    /**
+     * 系统消息详情
+     *
+     * @param params
+     * @return
+     */
+    public void requestSysMsgDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestSysMsgDetail(params), znzHttpListener,LODING_LODING);
     }
 
     /**

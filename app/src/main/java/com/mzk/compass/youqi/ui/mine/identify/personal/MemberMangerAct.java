@@ -84,6 +84,12 @@ public class MemberMangerAct extends BaseAppActivity {
                     }
                 }
             }
+
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
+                tvSubmit.setVisibility(View.GONE);
+            }
         });
     }
 

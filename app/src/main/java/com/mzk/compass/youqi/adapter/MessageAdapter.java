@@ -50,7 +50,11 @@ public class MessageAdapter extends BaseQuickAdapter<MessageBean, BaseViewHolder
         }
         switch (bean.getType()) {
             case "互动消息":
-                mDataManager.setValueToView(tvTitle, bean.getMsgwarning());
+                if (StringUtil.isBlank(bean.getMsgwarning())) {
+                    mDataManager.setValueToView(tvTitle, bean.getTitle());
+                } else {
+                    mDataManager.setValueToView(tvTitle, bean.getMsgwarning());
+                }
                 break;
             case "交易信息":
                 mDataManager.setValueToView(tvTitle, bean.getContent());
@@ -63,7 +67,7 @@ public class MessageAdapter extends BaseQuickAdapter<MessageBean, BaseViewHolder
                 break;
         }
 
-        mDataManager.setValueToView(tvTime, TimeUtils.millis2String(StringUtil.stringToLong(bean.getAddTime())*1000, "yyyy.MM.dd HH:mm"));
+        mDataManager.setValueToView(tvTime, TimeUtils.millis2String(StringUtil.stringToLong(bean.getAddTime()) * 1000, "yyyy.MM.dd HH:mm"));
         helper.addOnClickListener(R.id.llDelete);
         helper.addOnClickListener(R.id.llContainer);
         helper.addOnClickListener(R.id.cbSelect);

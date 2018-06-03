@@ -12,11 +12,16 @@ import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.MessageAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
+import com.mzk.compass.youqi.bean.InteractMsgDetailBean;
 import com.mzk.compass.youqi.bean.MessageBean;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
+import com.mzk.compass.youqi.ui.home.people.PeopleDetailAct;
+import com.mzk.compass.youqi.ui.home.project.ProjectDetailAct;
+import com.mzk.compass.youqi.ui.news.NewsDetailAct;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 
 import org.greenrobot.eventbus.EventBus;
@@ -96,15 +101,56 @@ public class MessageListFrag extends BaseAppListFragment<MessageBean> {
                     break;
                 case R.id.llContainer:
                     Bundle bundle = new Bundle();
-                    bundle.putString("id", dataList.get(position).getId());
+                    Map<String, String> params = new HashMap<>();
+                    params.put("id", bean.getId());
                     switch (from) {
                         case "互动消息":
-                            gotoActivity(MessageInteractAct.class, bundle);
+                            mModel.requestInteractMsgDetail(params, new ZnzHttpListener() {
+                                @Override
+                                public void onSuccess(JSONObject responseOriginal) {
+                                    super.onSuccess(responseOriginal);
+
+                                    if (!StringUtil.isBlank(responseOriginal.getString("data"))) {
+                                        InteractMsgDetailBean msgBean = JSON.parseObject(responseOriginal.getString("data"), InteractMsgDetailBean.class);
+                                        if (!StringUtil.isBlank(msgBean.getTitle()) & msgBean.getTitle().equals("评论信息提示") | msgBean.getTitle().equals("留言信息提示")) {
+                                            bundle.putString("id", msgBean.getContentId());
+                                            switch (msgBean.getContentType()) {
+                                                case "1":
+                                                    gotoActivity(ProjectDetailAct.class, bundle);
+                                                    break;
+                                                case "2":
+                                                    gotoActivity(PeopleDetailAct.class, bundle);
+                                                    break;
+                                                case "3":
+                                                    gotoActivity(NewsDetailAct.class, bundle);
+                                                    break;
+                                            }
+                                        } else {
+                                            bundle.putSerializable("bean", msgBean);
+                                            if (msgBean.getIsMyProject().equals("1")) {
+                                                gotoActivity(MessageInteractAct.class, bundle);
+                                            } else {
+                                                gotoActivity(MessageTradeAct.class, bundle);
+                                            }
+                                        }
+                                    }
+
+                                }
+                            });
+
                             break;
                         case "交易信息":
-                            gotoActivity(MessageTradeAct.class, bundle);
+                            mModel.requestOrderMsgDetail(params, new ZnzHttpListener() {
+                                @Override
+                                public void onSuccess(JSONObject responseOriginal) {
+                                    super.onSuccess(responseOriginal);
+
+                                }
+                            });
+
                             break;
                         case "系统信息":
+                            bundle.putString("id", bean.getId());
                             gotoActivity(MessageSystemAct.class, bundle);
                             break;
                     }

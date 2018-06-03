@@ -1,12 +1,17 @@
 package com.mzk.compass.youqi.ui.mine.message;
 
-import com.alibaba.fastjson.JSONObject;
+import android.os.Bundle;
+import android.widget.TextView;
+
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
-import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.mzk.compass.youqi.bean.InteractMsgDetailBean;
+import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzlibray.utils.TimeUtils;
+import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 
-import java.util.HashMap;
-import java.util.Map;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2018/4/19.
@@ -15,7 +20,17 @@ import java.util.Map;
 
 public class MessageTradeAct extends BaseAppActivity {
 
-    private String id;
+    @Bind(R.id.tvTitle)
+    TextView tvTitle;
+    @Bind(R.id.tvTime)
+    TextView tvTime;
+    @Bind(R.id.ivHeader)
+    HttpImageView ivHeader;
+    @Bind(R.id.tvUserName)
+    TextView tvUserName;
+    @Bind(R.id.tvContent)
+    TextView tvContent;
+    private InteractMsgDetailBean bean;
 
     @Override
     protected int[] getLayoutResource() {
@@ -24,8 +39,8 @@ public class MessageTradeAct extends BaseAppActivity {
 
     @Override
     protected void initializeVariate() {
-        if (getIntent().hasExtra("id")) {
-            id = getIntent().getStringExtra("id");
+        if (getIntent().hasExtra("bean")) {
+            bean = (InteractMsgDetailBean) getIntent().getSerializableExtra("bean");
         }
     }
 
@@ -40,18 +55,21 @@ public class MessageTradeAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
-
+        mDataManager.setValueToView(tvTitle, bean.getProjectName());
+        mDataManager.setValueToView(tvUserName, bean.getUsername());
+        mDataManager.setValueToView(tvContent, bean.getContent());
+        mDataManager.setValueToView(tvTime, TimeUtils.millis2String(StringUtil.stringToLong(bean.getAddTime()) * 1000, "yyyy.MM.dd HH:mm"));
+        ivHeader.loadHeaderImage(bean.getAvatar());
     }
 
     @Override
     protected void loadDataFromServer() {
-        Map<String, String> params = new HashMap<>();
-        params.put("id", id);
-        mModel.requestMessageDetail(params, new ZnzHttpListener() {
-            @Override
-            public void onSuccess(JSONObject responseOriginal) {
-                super.onSuccess(responseOriginal);
-            }
-        });
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

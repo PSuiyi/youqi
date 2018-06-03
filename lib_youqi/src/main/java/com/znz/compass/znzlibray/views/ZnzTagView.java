@@ -143,11 +143,11 @@ public class ZnzTagView extends LinearLayout {
             tv.setLayoutParams(params);
 
             if (tags.get(i).isSelect()) {
-                tv.setBackgroundResource(R.drawable.bg_tag_focus);
-                tv.setTextColor(getResources().getColor(R.color.red));
+                tv.setBackgroundResource(R.drawable.bg_blue_light_radius_2);
+                tv.setTextColor(getResources().getColor(R.color.text_blue_message));
             } else {
-                tv.setBackgroundResource(R.drawable.bg_tag);
-                tv.setTextColor(getResources().getColor(R.color.text_gray));
+                tv.setBackgroundResource(R.drawable.bg_blue_light_radius_2);
+                tv.setTextColor(getResources().getColor(R.color.text_blue_message));
             }
             addView(tv);
         }

@@ -24,12 +24,14 @@
             android:padding="@dimen/distance_view">
 
             <TextView
+                android:id="@+id/tvTitle"
                 style="@style/TextStyle"
                 android:text="有鱼钓" />
 
             <View style="@style/WeightView" />
 
             <TextView
+                android:id="@+id/tvTime"
                 style="@style/TextSamllGrayStyle"
                 android:text="2018.01.09 19:09" />
         </LinearLayout>
@@ -46,19 +48,22 @@
             android:orientation="horizontal"
             android:padding="@dimen/distance_view">
 
-            <ImageView
+            <com.znz.compass.znzlibray.views.imageloder.HttpImageView
+                android:id="@+id/ivHeader"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/default_header" />
 
             <TextView
+                android:id="@+id/tvUserName"
                 style="@style/TextStyle"
                 android:layout_marginLeft="10dp"
                 android:text="赵大千" />
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tvContent"
             style="@style/TextStyle"
             android:layout_marginBottom="@dimen/distance_view"
             android:layout_marginLeft="@dimen/distance_view"

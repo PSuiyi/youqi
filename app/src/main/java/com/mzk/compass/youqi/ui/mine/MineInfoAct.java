@@ -18,6 +18,7 @@ import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.rowview.ZnzRowDescription;
 import com.znz.compass.znzlibray.views.rowview.ZnzRowGroupView;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -158,11 +159,14 @@ public class MineInfoAct extends BaseAppActivity {
                             ivHeader.loadHeaderImage(photoList.get(0));
                             Map<String, String> params = new HashMap<>();
                             params.put("dirname", "avatar");
+                            params.put("value", photoList.get(0));
                             mModel.uploadImageSingle(params, photoList.get(0), new ZnzHttpListener() {
                                 @Override
                                 public void onSuccess(JSONObject responseOriginal) {
                                     super.onSuccess(responseOriginal);
                                     String url = responseOriginal.getString("data");
+                                    mDataManager.saveTempData(Constants.User.AVATAR,url);
+                                    EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_USERINFO));
                                     ivHeader.loadHeaderImage(url);
                                 }
                             });
