@@ -273,7 +273,7 @@ public class PeopleDetailAct extends BaseAppListActivity<CommentBean> {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.tvSendComment, R.id.ivFav, R.id.ivShare, R.id.tvOption1, R.id.tvOption2, R.id.tvOption3, R.id.tvOption4, R.id.tvOption5})
+    @OnClick({R.id.tvSendComment, R.id.tvOption1, R.id.tvOption2, R.id.tvOption3, R.id.tvOption4, R.id.tvOption5})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvOption1:
@@ -288,7 +288,6 @@ public class PeopleDetailAct extends BaseAppListActivity<CommentBean> {
                 bundle.putString("from", "投资人");
                 gotoActivity(RecommendSelfAct.class, bundle);
                 break;
-            case R.id.ivFav:
             case R.id.tvOption3:
                 if (bean.getIsCollected().equals("true")) {
                     cancalCollect();
@@ -296,7 +295,6 @@ public class PeopleDetailAct extends BaseAppListActivity<CommentBean> {
                     addCollect();
                 }
                 break;
-            case R.id.ivShare:
             case R.id.tvOption4:
                 PopupWindowManager.getInstance(activity).showShare(view, (type, values) -> {
 
