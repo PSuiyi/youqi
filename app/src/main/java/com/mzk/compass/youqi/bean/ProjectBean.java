@@ -51,14 +51,41 @@ public class ProjectBean extends BaseZnzBean {
     private String rongzijine;
     private String province;
     private String city;
+    private String roundsid;
     private String tname;
     private String link;
     private String area;
     private String isCollected;
     private String canArrangeTalk;
     private String showProjectResource;
+    private TagYouBean turnover;
+    private TagYouBean rounds;
     private List<TagYouBean> tradeid;
     private List<PeopleBean> team;
+
+    public TagYouBean getRounds() {
+        return rounds;
+    }
+
+    public void setRounds(TagYouBean rounds) {
+        this.rounds = rounds;
+    }
+
+    public String getRoundsid() {
+        return roundsid;
+    }
+
+    public void setRoundsid(String roundsid) {
+        this.roundsid = roundsid;
+    }
+
+    public TagYouBean getTurnover() {
+        return turnover;
+    }
+
+    public void setTurnover(TagYouBean turnover) {
+        this.turnover = turnover;
+    }
 
     public String getTname() {
         return tname;

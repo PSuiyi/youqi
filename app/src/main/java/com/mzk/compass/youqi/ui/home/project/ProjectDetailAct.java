@@ -203,13 +203,14 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
                 ivImage.loadHttpImage(bean.getLogo());
                 ivLogo.loadHeaderImage(bean.getCompanyLogo());
                 mDataManager.setValueToView(tvName, bean.getName());
-                mDataManager.setValueToView(tvTag, bean.getRname());
+                mDataManager.setValueToView(tvTag, bean.getRounds().getName());
                 mDataManager.setValueToView(tvContent, bean.getTitle());
                 mDataManager.setValueToView(tvCountFav, bean.getCollectionNum());
                 mDataManager.setValueToView(tvCountComment, bean.getCommentsNum());
                 mDataManager.setValueToView(tvCountView, bean.getVisiteNum());
                 mDataManager.setValueToView(tvCompanyName, bean.getCompanyName());
                 mDataManager.setValueToView(tvShizhi, bean.getRongzijine());
+                mDataManager.setValueToView(tvMoney, bean.getTurnover().getName());
 
 
                 mDataManager.setValueToView(tvAddress, bean.getProvince() + bean.getCity() + bean.getArea() + bean.getAddress());

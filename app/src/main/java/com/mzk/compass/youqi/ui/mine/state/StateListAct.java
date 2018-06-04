@@ -76,6 +76,7 @@ public class StateListAct extends BaseAppListActivity<StateBean> {
         cbSelectAll.setClickable(false);
         cbSelectAll.setEnabled(false);
         adapter = new StateAdapter(dataList);
+        ((StateAdapter) adapter).setCanSwipe(true);
         rvRefresh.setAdapter(adapter);
         adapter.setOnItemChildClickListener((adapter, view, position) -> {
             StateBean bean = dataList.get(position);

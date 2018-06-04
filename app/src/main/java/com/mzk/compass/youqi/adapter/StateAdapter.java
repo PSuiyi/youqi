@@ -1,6 +1,5 @@
 package com.mzk.compass.youqi.adapter;
 
-import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.CheckBox;
@@ -9,8 +8,6 @@ import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.bean.StateBean;
-import com.mzk.compass.youqi.ui.mine.state.StateDetailAct;
-import com.znz.compass.znzlibray.bean.BaseZnzBean;
 import com.znz.compass.znzlibray.utils.TimeUtils;
 import com.znz.compass.znzlibray.views.SwipeMenuLayout;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
@@ -32,6 +29,12 @@ public class StateAdapter extends BaseQuickAdapter<StateBean, BaseViewHolder> im
     @Bind(R.id.llContainer)
     LinearLayout llContainer;
 
+    boolean isCanSwipe;
+
+    public void setCanSwipe(boolean canSwipe) {
+        isCanSwipe = canSwipe;
+    }
+
     public StateAdapter(@Nullable List dataList) {
         super(R.layout.item_lv_state, dataList);
     }
@@ -48,6 +51,8 @@ public class StateAdapter extends BaseQuickAdapter<StateBean, BaseViewHolder> im
         helper.addOnClickListener(R.id.llDelete);
         helper.addOnClickListener(R.id.llContainer);
         helper.addOnClickListener(R.id.cbSelect);
+
+        swipeMenuLayout.setSwipeEnable(isCanSwipe);
     }
 
     @Override
