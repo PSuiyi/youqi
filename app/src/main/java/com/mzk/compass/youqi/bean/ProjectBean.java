@@ -51,6 +51,7 @@ public class ProjectBean extends BaseZnzBean {
     private String rongzijine;
     private String province;
     private String city;
+    private String tname;
     private String link;
     private String area;
     private String isCollected;
@@ -59,8 +60,13 @@ public class ProjectBean extends BaseZnzBean {
     private List<TagYouBean> tradeid;
     private List<PeopleBean> team;
 
+    public String getTname() {
+        return tname;
+    }
 
-
+    public void setTname(String tname) {
+        this.tname = tname;
+    }
 
     public String getCanArrangeTalk() {
         return canArrangeTalk;

@@ -60,6 +60,7 @@ public class ProjectAdapter extends BaseQuickAdapter<ProjectBean, BaseViewHolder
         mDataManager.setValueToView(tvComment, bean.getCommentsNum());
         mDataManager.setValueToView(tvVisite, bean.getVisiteNum());
         mDataManager.setValueToView(tvCompanyName, bean.getCompanyName());
+        mDataManager.setValueToView(tvPrice, bean.getTname());
 
         if (bean.getTradeid() != null & bean.getTradeid().size() > 0) {
             mDataManager.setViewVisibility(rvTrade, true);

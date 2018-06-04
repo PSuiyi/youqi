@@ -1,9 +1,6 @@
 package com.mzk.compass.youqi.adapter;
 
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,16 +8,11 @@ import android.view.View;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.bean.MultiBean;
 import com.mzk.compass.youqi.common.Constants;
-import com.mzk.compass.youqi.ui.home.organ.OrganListFrag;
-import com.mzk.compass.youqi.ui.home.people.PeopleListFrag;
-import com.mzk.compass.youqi.ui.home.product.ProductListFrag;
-import com.mzk.compass.youqi.ui.home.project.ProjectListFrag;
 import com.znz.compass.znzlibray.views.WebViewWithProgress;
 import com.znz.compass.znzlibray.views.recyclerview.BaseMultiItemQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DetailAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
@@ -98,42 +90,6 @@ public class DetailAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseView
                 wvFinan.loadContent(bean.getProjectBean().getFinancing());
                 break;
             case Constants.MultiType.ProjectData:
-                TabLayout commonTabLayout = helper.getView(R.id.commonTabLayout);
-                ViewPager commonViewPager = helper.getView(R.id.commonViewPager);
-
-                List<String> tabNames = new ArrayList<>();
-                List<Fragment> fragmentList = new ArrayList<>();
-
-                tabNames.add("创业项目");
-                tabNames.add("投资人");
-                tabNames.add("投资机构");
-                tabNames.add("商品");
-
-                fragmentList.add(ProjectListFrag.newInstance("收藏"));
-                fragmentList.add(PeopleListFrag.newInstance("收藏"));
-                fragmentList.add(OrganListFrag.newInstance("收藏"));
-                fragmentList.add(ProductListFrag.newInstance("收藏"));
-
-                commonViewPager.setAdapter(new ViewPageAdapter(fragmentManager, tabNames, fragmentList));
-                commonTabLayout.setupWithViewPager(commonViewPager);
-                commonViewPager.setOffscreenPageLimit(fragmentList.size());
-
-                commonTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-                    @Override
-                    public void onTabSelected(TabLayout.Tab tab) {
-
-                    }
-
-                    @Override
-                    public void onTabUnselected(TabLayout.Tab tab) {
-
-                    }
-
-                    @Override
-                    public void onTabReselected(TabLayout.Tab tab) {
-
-                    }
-                });
                 break;
             case Constants.MultiType.PeopleState:
                 helper.addOnClickListener(R.id.llMore);
