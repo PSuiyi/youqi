@@ -18,69 +18,10 @@
         app:banner_tipTextSize="0dp"
         app:banner_transitionEffect="alpha" />
 
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvMenuTop"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="10dp"
-        android:paddingTop="20dp">
-
-        <TextView
-            android:id="@+id/tvMenu1"
-            style="@style/MenuStyle"
-            android:drawableTop="@mipmap/kaigongsi"
-            android:text="开公司" />
-
-        <TextView
-            android:id="@+id/tvMenu2"
-            style="@style/MenuStyle"
-            android:drawableTop="@mipmap/dailijizhang"
-            android:text="代理记账" />
-
-        <TextView
-            android:id="@+id/tvMenu3"
-            style="@style/MenuStyle"
-            android:drawableTop="@mipmap/shangbiaozhuce"
-            android:text="商标注册" />
-
-        <TextView
-            android:id="@+id/tvMenu4"
-            style="@style/MenuStyle"
-            android:drawableTop="@mipmap/tuishuifanhuan"
-            android:text="退税返还" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="20dp"
-        android:paddingTop="10dp">
-
-        <TextView
-            android:id="@+id/tvMenu5"
-            style="@style/MenuStyle"
-            android:drawableTop="@mipmap/renshidaili"
-            android:text="人事代理" />
-
-        <TextView
-            android:id="@+id/tvMenu6"
-            style="@style/MenuStyle"
-            android:drawableTop="@mipmap/itfuwu"
-            android:text="IT服务" />
-
-        <TextView
-            android:id="@+id/tvMenu7"
-            style="@style/MenuStyle"
-            android:drawableTop="@mipmap/chuangyeyuan"
-            android:text="创业园" />
-
-        <TextView
-            android:id="@+id/tvMenu8"
-            style="@style/MenuStyle"
-            android:drawableTop="@mipmap/quanbufenlei"
-            android:text="其他服务" />
-    </LinearLayout>
+        android:layout_height="wrap_content" />
 
     <View style="@style/LineDivider" />
 
@@ -99,5 +40,72 @@
         style="@style/TitleTextStyle"
         android:padding="@dimen/distance_view"
         android:text="推荐商品" />
+
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:paddingBottom="10dp"-->
+    <!--android:paddingTop="20dp"-->
+    <!--android:visibility="gone">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tvMenu1"-->
+    <!--style="@style/MenuStyle"-->
+    <!--android:drawableTop="@mipmap/kaigongsi"-->
+    <!--android:text="开公司" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tvMenu2"-->
+    <!--style="@style/MenuStyle"-->
+    <!--android:drawableTop="@mipmap/dailijizhang"-->
+    <!--android:text="代理记账" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tvMenu3"-->
+    <!--style="@style/MenuStyle"-->
+    <!--android:drawableTop="@mipmap/shangbiaozhuce"-->
+    <!--android:text="商标注册" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tvMenu4"-->
+    <!--style="@style/MenuStyle"-->
+    <!--android:drawableTop="@mipmap/tuishuifanhuan"-->
+    <!--android:text="退税返还" />-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:paddingBottom="20dp"-->
+    <!--android:paddingTop="10dp"-->
+    <!--android:visibility="gone">-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tvMenu5"-->
+    <!--style="@style/MenuStyle"-->
+    <!--android:drawableTop="@mipmap/renshidaili"-->
+    <!--android:text="人事代理" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tvMenu6"-->
+    <!--style="@style/MenuStyle"-->
+    <!--android:drawableTop="@mipmap/itfuwu"-->
+    <!--android:text="IT服务" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tvMenu7"-->
+    <!--style="@style/MenuStyle"-->
+    <!--android:drawableTop="@mipmap/chuangyeyuan"-->
+    <!--android:text="创业园" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tvMenu8"-->
+    <!--style="@style/MenuStyle"-->
+    <!--android:drawableTop="@mipmap/quanbufenlei"-->
+    <!--android:text="其他服务" />-->
+    <!--</LinearLayout>-->
 
 </LinearLayout>

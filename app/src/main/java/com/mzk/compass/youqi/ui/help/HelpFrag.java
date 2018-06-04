@@ -12,10 +12,12 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
+import com.mzk.compass.youqi.adapter.MenuHelpAdapter;
 import com.mzk.compass.youqi.adapter.ProductAdapter;
 import com.mzk.compass.youqi.adapter.ProductGridAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
 import com.mzk.compass.youqi.bean.BannerBean;
+import com.mzk.compass.youqi.bean.MenuBean;
 import com.mzk.compass.youqi.bean.ProductBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.common.SearchCommonAct;
@@ -53,6 +55,10 @@ public class HelpFrag extends BaseAppListFragment {
     private View tvMenu6;
     private View tvMenu7;
     private View tvMenu8;
+
+    private RecyclerView rvMenuTop;
+    private MenuHelpAdapter menuHelpAdapter;
+    private List<MenuBean> menuBeanList = new ArrayList<>();
 
     @Override
     protected int[] getLayoutResource() {
@@ -96,39 +102,44 @@ public class HelpFrag extends BaseAppListFragment {
         rvRefresh.setAdapter(adapter);
 
         header = View.inflate(activity, R.layout.header_help, null);
-        tvMenu1 = bindViewById(header, R.id.tvMenu1);
-        tvMenu2 = bindViewById(header, R.id.tvMenu2);
-        tvMenu3 = bindViewById(header, R.id.tvMenu3);
-        tvMenu4 = bindViewById(header, R.id.tvMenu4);
-        tvMenu5 = bindViewById(header, R.id.tvMenu5);
-        tvMenu6 = bindViewById(header, R.id.tvMenu6);
-        tvMenu7 = bindViewById(header, R.id.tvMenu7);
-        tvMenu8 = bindViewById(header, R.id.tvMenu8);
+        rvMenuTop = bindViewById(header, R.id.rvMenuTop);
+        rvMenuTop.setLayoutManager(new GridLayoutManager(activity,4));
+        menuHelpAdapter = new MenuHelpAdapter(menuBeanList);
+        rvMenuTop.setAdapter(menuHelpAdapter);
 
-        tvMenu1.setOnClickListener(v -> {
-            gotoActivity(ProductListAct.class);
-        });
-        tvMenu2.setOnClickListener(v -> {
-            gotoActivity(ProductListAct.class);
-        });
-        tvMenu3.setOnClickListener(v -> {
-            gotoActivity(ProductListAct.class);
-        });
-        tvMenu4.setOnClickListener(v -> {
-            gotoActivity(ProductListAct.class);
-        });
-        tvMenu5.setOnClickListener(v -> {
-            gotoActivity(ProductListAct.class);
-        });
-        tvMenu6.setOnClickListener(v -> {
-            gotoActivity(ProductListAct.class);
-        });
-        tvMenu7.setOnClickListener(v -> {
-            gotoActivity(ProductListAct.class);
-        });
-        tvMenu8.setOnClickListener(v -> {
-            gotoActivity(ProductListAct.class);
-        });
+        //        tvMenu1 = bindViewById(header, R.id.tvMenu1);
+//        tvMenu2 = bindViewById(header, R.id.tvMenu2);
+//        tvMenu3 = bindViewById(header, R.id.tvMenu3);
+//        tvMenu4 = bindViewById(header, R.id.tvMenu4);
+//        tvMenu5 = bindViewById(header, R.id.tvMenu5);
+//        tvMenu6 = bindViewById(header, R.id.tvMenu6);
+//        tvMenu7 = bindViewById(header, R.id.tvMenu7);
+//        tvMenu8 = bindViewById(header, R.id.tvMenu8);
+
+//        tvMenu1.setOnClickListener(v -> {
+//            gotoActivity(ProductListAct.class);
+//        });
+//        tvMenu2.setOnClickListener(v -> {
+//            gotoActivity(ProductListAct.class);
+//        });
+//        tvMenu3.setOnClickListener(v -> {
+//            gotoActivity(ProductListAct.class);
+//        });
+//        tvMenu4.setOnClickListener(v -> {
+//            gotoActivity(ProductListAct.class);
+//        });
+//        tvMenu5.setOnClickListener(v -> {
+//            gotoActivity(ProductListAct.class);
+//        });
+//        tvMenu6.setOnClickListener(v -> {
+//            gotoActivity(ProductListAct.class);
+//        });
+//        tvMenu7.setOnClickListener(v -> {
+//            gotoActivity(ProductListAct.class);
+//        });
+//        tvMenu8.setOnClickListener(v -> {
+//            gotoActivity(ProductListAct.class);
+//        });
 
         banner = bindViewById(header, R.id.banner);
         rvProduct = bindViewById(header, R.id.rvProduct);
@@ -172,6 +183,10 @@ public class HelpFrag extends BaseAppListFragment {
                 productList.clear();
                 productList.addAll(JSONArray.parseArray(responseObject.getString("mobileHelpBannerUnder"), ProductBean.class));
                 productGridAdapter.notifyDataSetChanged();
+
+                menuBeanList.clear();
+                menuBeanList.addAll(JSONArray.parseArray(responseObject.getString("productTypeData"), MenuBean.class));
+                menuHelpAdapter.notifyDataSetChanged();
             }
 
             @Override

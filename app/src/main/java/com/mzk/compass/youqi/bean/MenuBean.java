@@ -9,8 +9,35 @@ import com.znz.compass.znzlibray.bean.BaseZnzBean;
  */
 public class MenuBean extends BaseZnzBean {
     private String title;
+    private String id;
+    private String name;
+    private String image;
 
     public MenuBean() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public MenuBean(String title) {
