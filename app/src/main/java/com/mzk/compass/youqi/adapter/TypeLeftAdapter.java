@@ -27,7 +27,6 @@ public class TypeLeftAdapter extends BaseQuickAdapter<CategoryBean, BaseViewHold
 
     @Override
     protected void convert(BaseViewHolder helper, CategoryBean bean) {
-        setOnItemClickListener(this);
         ivIcon.loadHttpImage(bean.getImage());
         mDataManager.setValueToView(tvTitle, bean.getName());
     }

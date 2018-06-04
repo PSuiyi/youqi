@@ -12,9 +12,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.bean.OrganBean;
+import com.mzk.compass.youqi.bean.TagYouBean;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
 import com.mzk.compass.youqi.ui.home.people.RecommendSelfAct;
+import com.mzk.compass.youqi.utils.PopupWindowManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.views.WebViewWithProgress;
 import com.znz.compass.znzlibray.views.ZnzRemind;
@@ -135,16 +137,15 @@ public class OrganDetailAct extends BaseAppActivity {
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                     tvOption3.setCompoundDrawables(null, drawable, null, null);
                 }
-//                if (bean.getTradeid() != null & bean.getTradeid().size() > 0) {
-//                    mDataManager.setViewVisibility(rvTrade, true);
-//                    TradeAdapter adapter = new TradeAdapter(bean.getTradeid());
-//                    LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
-//                    layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-//                    rvTrade.setLayoutManager(layoutManager);
-//                    rvTrade.setAdapter(adapter);
-//                } else {
-//                    mDataManager.setViewVisibility(rvTrade, false);
-//                }
+                if (bean.getTradeid() != null & bean.getTradeid().size() > 0) {
+                    String temp = "";
+                    for (TagYouBean tagYouBean : bean.getTradeid()) {
+                        temp += tagYouBean.getName() + " ";
+                    }
+                    tvIndusty.setText("所属行业：" + temp);
+                } else {
+                    tvIndusty.setText("所属行业：暂无数据");
+                }
             }
 
             @Override
@@ -166,6 +167,7 @@ public class OrganDetailAct extends BaseAppActivity {
                 Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang2);
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                 tvOption3.setCompoundDrawables(null, drawable, null, null);
+                ivFav.setImageResource(R.mipmap.shoucanghuang);
                 bean.setIsCollected("true");
                 EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_ORGAN));
             }
@@ -184,6 +186,7 @@ public class OrganDetailAct extends BaseAppActivity {
                 Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucang);
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                 tvOption3.setCompoundDrawables(null, drawable, null, null);
+                ivFav.setImageResource(R.mipmap.shoucang);
                 bean.setIsCollected("false");
                 EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_ORGAN));
             }
@@ -191,7 +194,7 @@ public class OrganDetailAct extends BaseAppActivity {
     }
 
 
-    @OnClick({R.id.tvOption1, R.id.tvRecommend, R.id.tvOption2, R.id.tvOption3, R.id.tvOption4, R.id.tvOption5})
+    @OnClick({R.id.tvOption1, R.id.ivFav, R.id.ivShare, R.id.tvRecommend, R.id.tvOption2, R.id.tvOption3, R.id.tvOption4, R.id.tvOption5})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvOption1:
@@ -203,6 +206,7 @@ public class OrganDetailAct extends BaseAppActivity {
                 bundle.putString("from", "投资机构");
                 gotoActivity(RecommendSelfAct.class, bundle);
                 break;
+            case R.id.ivFav:
             case R.id.tvOption3:
                 if (bean.getIsCollected().equals("true")) {
                     cancalCollect();
@@ -210,7 +214,11 @@ public class OrganDetailAct extends BaseAppActivity {
                     addCollect();
                 }
                 break;
+            case R.id.ivShare:
             case R.id.tvOption4:
+                PopupWindowManager.getInstance(activity).showShare(view, (type, values) -> {
+
+                });
                 break;
             case R.id.tvOption5:
                 scRootView.smoothScrollTo(0, 0);

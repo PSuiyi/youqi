@@ -16,6 +16,7 @@ import com.znz.compass.znzlibray.utils.FragmentUtil;
 public class ProductListAct extends BaseAppActivity {
 
     private ProductListFrag fragment;
+    private String cateId;
 
     @Override
     protected int[] getLayoutResource() {
@@ -24,7 +25,9 @@ public class ProductListAct extends BaseAppActivity {
 
     @Override
     protected void initializeVariate() {
-
+        if (getIntent().hasExtra("cateId")) {
+            cateId = getIntent().getStringExtra("cateId");
+        }
     }
 
     @Override
@@ -45,6 +48,7 @@ public class ProductListAct extends BaseAppActivity {
     @Override
     protected void initializeView() {
         fragment = ProductListFrag.newInstance("商品服务");
+        fragment.setCateId(cateId);
         FragmentUtil.addFragmentToActivity(getSupportFragmentManager(), fragment, R.id.container);
     }
 

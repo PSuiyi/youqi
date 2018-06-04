@@ -2,6 +2,8 @@ package com.mzk.compass.youqi.bean;
 
 import com.znz.compass.znzlibray.bean.BaseZnzBean;
 
+import java.util.List;
+
 /**
  * Date： 2018/5/11 2018
  * User： PSuiyi
@@ -41,6 +43,15 @@ public class OrganBean extends BaseZnzBean {
     private String city;
     private String province;
     private String area;
+    private List<TagYouBean> tradeid;
+
+    public List<TagYouBean> getTradeid() {
+        return tradeid;
+    }
+
+    public void setTradeid(List<TagYouBean> tradeid) {
+        this.tradeid = tradeid;
+    }
 
     public String getExample() {
         return example;

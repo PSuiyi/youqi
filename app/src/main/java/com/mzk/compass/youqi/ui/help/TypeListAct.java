@@ -3,7 +3,6 @@ package com.mzk.compass.youqi.ui.help;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -12,10 +11,8 @@ import com.mzk.compass.youqi.adapter.TypeLeftAdapter;
 import com.mzk.compass.youqi.adapter.TypeRightAdapter;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.bean.CategoryBean;
-import com.znz.compass.znzlibray.bean.BaseZnzBean;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
-import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,13 +62,10 @@ public class TypeListAct extends BaseAppActivity {
         rightAdapter = new TypeRightAdapter(rightList);
         rvRight.setAdapter(rightAdapter);
 
-        leftAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                rightList.clear();
-                rightList.addAll(leftList.get(position).getSon());
-                rightAdapter.notifyDataSetChanged();
-            }
+        leftAdapter.setOnItemClickListener((adapter, view, position) -> {
+            rightList.clear();
+            rightList.addAll(leftList.get(position).getSon());
+            rightAdapter.notifyDataSetChanged();
         });
 
     }

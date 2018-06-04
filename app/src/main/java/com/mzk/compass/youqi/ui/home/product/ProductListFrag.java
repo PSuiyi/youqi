@@ -11,8 +11,6 @@ import com.mzk.compass.youqi.base.BaseAppListFragment;
 import com.mzk.compass.youqi.bean.ProductBean;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
-import com.mzk.compass.youqi.ui.home.organ.OrganListFrag;
-import com.mzk.compass.youqi.ui.home.project.ProjectListFrag;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.utils.StringUtil;
 
@@ -30,6 +28,7 @@ import rx.Observable;
 public class ProductListFrag extends BaseAppListFragment {
     private String from;
     private String keywords;
+    private String cateId;
 
     public static ProductListFrag newInstance(String from) {
         Bundle bundle = new Bundle();
@@ -46,6 +45,10 @@ public class ProductListFrag extends BaseAppListFragment {
         ProductListFrag fragment = new ProductListFrag();
         fragment.setArguments(bundle);
         return fragment;
+    }
+
+    public void setCateId(String cateId) {
+        this.cateId = cateId;
     }
 
     @Override
@@ -85,6 +88,9 @@ public class ProductListFrag extends BaseAppListFragment {
 
     @Override
     protected Observable<ResponseBody> requestCustomeRefreshObservable() {
+        if (!StringUtil.isBlank(cateId)) {
+            params.put("cateId", cateId);
+        }
         switch (from) {
             case "搜索":
                 params.put("searchKey", keywords);
@@ -100,7 +106,7 @@ public class ProductListFrag extends BaseAppListFragment {
 
     @Override
     protected void onRefreshSuccess(String response) {
-        dataList.addAll(JSON.parseArray(responseJson.getString("data"), ProductBean.class));
+        dataList.addAll(JSON.parseArray(responseJson.getString("productData"), ProductBean.class));
         adapter.notifyDataSetChanged();
     }
 
