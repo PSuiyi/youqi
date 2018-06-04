@@ -68,6 +68,14 @@ public class PeopleAdapter extends BaseQuickAdapter<PeopleBean, BaseViewHolder> 
             mDataManager.setViewVisibility(rvTrade, false);
         }
 
+        if (bean.getIsCollected().equals("true")) {
+            ivFav.setImageResource(R.mipmap.shoucanghuang);
+        } else {
+            ivFav.setImageResource(R.mipmap.shoucang);
+        }
+
+        helper.addOnClickListener(R.id.ivShare);
+        helper.addOnClickListener(R.id.ivFav);
     }
 
     @Override

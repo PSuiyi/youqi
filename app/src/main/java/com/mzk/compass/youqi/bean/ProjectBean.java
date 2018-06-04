@@ -54,6 +54,7 @@ public class ProjectBean extends BaseZnzBean {
     private String roundsid;
     private String tname;
     private String link;
+    private String turnoverid;
     private String area;
     private String isCollected;
     private String canArrangeTalk;
@@ -62,6 +63,14 @@ public class ProjectBean extends BaseZnzBean {
     private TagYouBean rounds;
     private List<TagYouBean> tradeid;
     private List<PeopleBean> team;
+
+    public String getTurnoverid() {
+        return turnoverid;
+    }
+
+    public void setTurnoverid(String turnoverid) {
+        this.turnoverid = turnoverid;
+    }
 
     public TagYouBean getRounds() {
         return rounds;

@@ -1,6 +1,5 @@
 package com.mzk.compass.youqi.adapter;
 
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -17,26 +16,8 @@ import java.util.List;
 
 public class DetailAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
 
-    private FragmentManager fragmentManager;
-
     public DetailAdapter(List dataList) {
         super(dataList);
-        addItemType(Constants.MultiType.ProjectIntro, R.layout.item_lv_project_intro);
-        addItemType(Constants.MultiType.ProjectTeam, R.layout.item_lv_project_team);
-        addItemType(Constants.MultiType.ProjectProduct, R.layout.item_lv_project_product);
-        addItemType(Constants.MultiType.ProjectMarket, R.layout.item_lv_project_market);
-        addItemType(Constants.MultiType.ProjectSolution, R.layout.item_lv_project_solution);
-        addItemType(Constants.MultiType.ProjectMoney, R.layout.item_lv_project_money);
-        addItemType(Constants.MultiType.ProjectFinancing, R.layout.item_lv_project_financing);
-        addItemType(Constants.MultiType.ProjectData, R.layout.item_lv_project_data);
-
-        addItemType(Constants.MultiType.PeopleState, R.layout.item_lv_people_state);
-        addItemType(Constants.MultiType.PeopleIntro, R.layout.item_lv_people_intro);
-    }
-
-    public DetailAdapter(List dataList, FragmentManager fragmentManager) {
-        super(dataList);
-        this.fragmentManager = fragmentManager;
         addItemType(Constants.MultiType.ProjectIntro, R.layout.item_lv_project_intro);
         addItemType(Constants.MultiType.ProjectTeam, R.layout.item_lv_project_team);
         addItemType(Constants.MultiType.ProjectProduct, R.layout.item_lv_project_product);

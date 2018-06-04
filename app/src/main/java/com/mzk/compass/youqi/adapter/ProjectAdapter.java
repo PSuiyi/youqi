@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
@@ -43,6 +44,10 @@ public class ProjectAdapter extends BaseQuickAdapter<ProjectBean, BaseViewHolder
     HttpImageView ivLogo;
     @Bind(R.id.tvCompanyName)
     TextView tvCompanyName;
+    @Bind(R.id.ivShare)
+    ImageView ivShare;
+    @Bind(R.id.ivFav)
+    ImageView ivFav;
 
     public ProjectAdapter(@Nullable List dataList) {
         super(R.layout.item_lv_project, dataList);
@@ -64,7 +69,21 @@ public class ProjectAdapter extends BaseQuickAdapter<ProjectBean, BaseViewHolder
         mDataManager.setValueToView(tvComment, bean.getCommentsNum());
         mDataManager.setValueToView(tvVisite, bean.getVisiteNum());
         mDataManager.setValueToView(tvCompanyName, bean.getCompanyName());
-        mDataManager.setValueToView(tvPrice, bean.getTname());
+        if (!StringUtil.isBlank(bean.getTname())) {
+            mDataManager.setValueToView(tvPrice, bean.getTname());
+        } else {
+            mDataManager.setValueToView(tvPrice, bean.getTurnoverid());
+        }
+
+        if (!StringUtil.isBlank(bean.getIsCollected())) {
+            if (bean.getIsCollected().equals("true")) {
+                ivFav.setImageResource(R.mipmap.shoucanghuang);
+            } else {
+                ivFav.setImageResource(R.mipmap.shoucang);
+            }
+        } else {
+            ivFav.setImageResource(R.mipmap.shoucang);
+        }
 
         if (bean.getTradeid() != null & bean.getTradeid().size() > 0) {
             mDataManager.setViewVisibility(rvTrade, true);
@@ -78,6 +97,8 @@ public class ProjectAdapter extends BaseQuickAdapter<ProjectBean, BaseViewHolder
         }
 
 
+        helper.addOnClickListener(R.id.ivShare);
+        helper.addOnClickListener(R.id.ivFav);
     }
 
     @Override

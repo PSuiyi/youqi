@@ -258,7 +258,7 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
                 multiBeanList.add(new MultiBean(Constants.MultiType.ProjectMoney, bean));
                 multiBeanList.add(new MultiBean(Constants.MultiType.ProjectFinancing, bean));
                 multiBeanList.add(new MultiBean(Constants.MultiType.ProjectData, bean));
-                detailAdapter = new DetailAdapter(multiBeanList, getSupportFragmentManager());
+                detailAdapter = new DetailAdapter(multiBeanList);
                 rvProject.setAdapter(detailAdapter);
             }
 

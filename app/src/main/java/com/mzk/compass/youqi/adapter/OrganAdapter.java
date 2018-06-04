@@ -54,6 +54,9 @@ public class OrganAdapter extends BaseQuickAdapter<OrganBean, BaseViewHolder> im
         } else {
             ivFav.setImageResource(R.mipmap.shoucang);
         }
+
+        helper.addOnClickListener(R.id.ivShare);
+        helper.addOnClickListener(R.id.ivFav);
     }
 
     @Override
