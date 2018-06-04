@@ -247,6 +247,16 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
                 }
 
 
+                if (!StringUtil.isBlank(bean.getIsCollected())) {
+                    if (bean.getIsCollected().equals("true")) {
+                        ivFav.setImageResource(R.mipmap.shoucanghuang);
+                    } else {
+                        ivFav.setImageResource(R.mipmap.shoucang);
+                    }
+                } else {
+                    ivFav.setImageResource(R.mipmap.shoucang);
+                }
+
                 //项目详情
                 rvProject.setLayoutManager(new LinearLayoutManager(activity));
                 List<MultiBean> multiBeanList = new ArrayList<>();
@@ -402,6 +412,7 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                 tvOption3.setCompoundDrawables(null, drawable, null, null);
                 bean.setIsCollected("true");
+                ivFav.setImageResource(R.mipmap.shoucanghuang);
                 EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_PROJECT));
             }
         });
@@ -420,6 +431,7 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                 tvOption3.setCompoundDrawables(null, drawable, null, null);
                 bean.setIsCollected("false");
+                ivFav.setImageResource(R.mipmap.shoucang);
                 EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_PROJECT));
             }
         });

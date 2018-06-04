@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -81,6 +82,8 @@ public class PeopleDetailAct extends BaseAppListActivity<CommentBean> {
     private TextView tvCountFav;
     private TextView tvCountComment;
     private RecyclerView rvTrade;
+    private ImageView ivShare;
+    private ImageView ivFav;
 
     private PeopleBean bean;
     private String currentPid;
@@ -123,6 +126,8 @@ public class PeopleDetailAct extends BaseAppListActivity<CommentBean> {
         rvTrade = bindViewById(header, R.id.rvTrade);
         tvCountFav = bindViewById(header, R.id.tvCountFav);
         tvCountComment = bindViewById(header, R.id.tvCountComment);
+        ivFav = bindViewById(header, R.id.ivFav);
+        ivShare = bindViewById(header, R.id.ivShare);
 
         tvRecommend = bindViewById(header, R.id.tvRecommend);
         tvRecommend.setOnClickListener(v -> {
@@ -191,6 +196,11 @@ public class PeopleDetailAct extends BaseAppListActivity<CommentBean> {
                     mDataManager.setViewVisibility(rvTrade, false);
                 }
 
+                if (bean.getIsCollected().equals("true")) {
+                    ivFav.setImageResource(R.mipmap.shoucanghuang);
+                } else {
+                    ivFav.setImageResource(R.mipmap.shoucang);
+                }
 
                 Map<String, String> params = new HashMap<>();
                 params.put("page", "0");
@@ -263,7 +273,7 @@ public class PeopleDetailAct extends BaseAppListActivity<CommentBean> {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.tvSendComment, R.id.tvOption1, R.id.tvOption2, R.id.tvOption3, R.id.tvOption4, R.id.tvOption5})
+    @OnClick({R.id.tvSendComment, R.id.ivFav, R.id.ivShare, R.id.tvOption1, R.id.tvOption2, R.id.tvOption3, R.id.tvOption4, R.id.tvOption5})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvOption1:
@@ -278,6 +288,7 @@ public class PeopleDetailAct extends BaseAppListActivity<CommentBean> {
                 bundle.putString("from", "投资人");
                 gotoActivity(RecommendSelfAct.class, bundle);
                 break;
+            case R.id.ivFav:
             case R.id.tvOption3:
                 if (bean.getIsCollected().equals("true")) {
                     cancalCollect();
@@ -285,6 +296,7 @@ public class PeopleDetailAct extends BaseAppListActivity<CommentBean> {
                     addCollect();
                 }
                 break;
+            case R.id.ivShare:
             case R.id.tvOption4:
                 PopupWindowManager.getInstance(activity).showShare(view, (type, values) -> {
 
@@ -336,6 +348,7 @@ public class PeopleDetailAct extends BaseAppListActivity<CommentBean> {
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                 tvOption3.setCompoundDrawables(null, drawable, null, null);
                 bean.setIsCollected("true");
+                ivFav.setImageResource(R.mipmap.shoucanghuang);
                 EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_PEOPLE));
             }
         });
@@ -354,6 +367,7 @@ public class PeopleDetailAct extends BaseAppListActivity<CommentBean> {
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                 tvOption3.setCompoundDrawables(null, drawable, null, null);
                 bean.setIsCollected("false");
+                ivFav.setImageResource(R.mipmap.shoucang);
                 EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_PEOPLE));
             }
         });
