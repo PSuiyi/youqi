@@ -106,7 +106,15 @@ public class RechargeAct extends BaseAppActivity {
         popupWindowManager.showPayWays(tvSubmit, new PopupWindowManager.OnPopupWindowClickListener() {
             @Override
             public void onPopupWindowClick(String type, String[] values) {
-
+                Map<String,String>params=new HashMap<>();
+                params.put("id",id);
+                params.put("type",type);
+                mModel.requestCreateOrder(params, new ZnzHttpListener() {
+                    @Override
+                    public void onSuccess(JSONObject responseOriginal) {
+                        super.onSuccess(responseOriginal);
+                    }
+                });
             }
         });
     }

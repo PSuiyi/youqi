@@ -198,7 +198,15 @@ public class OrderDetailAct extends BaseAppActivity {
 
                 break;
             case R.id.tvSubmit:
-                updateOrder("confirm");
+                new UIAlertDialog(activity)
+                        .builder()
+                        .setMsg("确定确认订单")
+                        .setNegativeButton("取消", null)
+                        .setPositiveButton("确定", v2 -> {
+                            updateOrder("confirm");
+                        })
+                        .show();
+
                 break;
         }
     }

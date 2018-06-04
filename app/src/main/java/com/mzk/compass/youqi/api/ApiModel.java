@@ -610,6 +610,33 @@ public class ApiModel extends BaseModel {
     public void requestPriceList(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         request(apiService.requestPriceList(params), znzHttpListener);
     }
+    /**
+     * 生成支付订单
+     *
+     * @param params
+     * @return
+     */
+    public void requestCreateOrder(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestCreateOrder(params), znzHttpListener);
+    }
+    /**
+     * 获取验证码
+     *
+     * @param params
+     * @return
+     */
+    public void requestGetCode(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestGetCode(params), znzHttpListener);
+    }
+    /**
+     * 验证手机
+     *
+     * @param params
+     * @return
+     */
+    public void requestCheckPhone(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestCreateOrder(params), znzHttpListener);
+    }
 
     /**
      * 版本更新

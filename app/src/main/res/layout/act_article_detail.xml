@@ -54,12 +54,14 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <View style="@style/Line" />
+
             <TextView
                 android:id="@+id/tvContent"
                 style="@style/TitleTextStyle"
                 android:padding="@dimen/distance_view" />
 
-            <View style="@style/Line" />
+
         </LinearLayout>
     </ScrollView>
 

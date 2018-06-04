@@ -2,6 +2,7 @@ package com.mzk.compass.youqi.ui.mine.order;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -14,9 +15,16 @@ import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
 import com.mzk.compass.youqi.ui.home.project.ProjectListFrag;
 import com.znz.compass.znzlibray.eventbus.EventManager;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
+import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import okhttp3.ResponseBody;
 import rx.Observable;
@@ -64,6 +72,24 @@ public class OrderListFrag extends BaseAppListFragment<OrderBean> {
     protected void initializeView() {
         adapter = new OrderAdapter(dataList);
         rvRefresh.setAdapter(adapter);
+        adapter.setOnItemChildClickListener((adapter, view, position) -> {
+            OrderBean bean = dataList.get(position);
+            switch (view.getId()) {
+                case R.id.tvCancal:
+                    new UIAlertDialog(activity)
+                            .builder()
+                            .setMsg("确定取消订单")
+                            .setNegativeButton("取消", null)
+                            .setPositiveButton("确定", v2 -> {
+                                updateOrder(bean.getOrderSerial());
+                            })
+                            .show();
+
+                    break;
+                case R.id.tvPay:
+                    break;
+            }
+        });
     }
 
     @Override
@@ -103,6 +129,20 @@ public class OrderListFrag extends BaseAppListFragment<OrderBean> {
     @Override
     protected void onRefreshFail(String error) {
 
+    }
+
+    private void updateOrder(String orderSerial) {
+        Map<String, String> params = new HashMap<>();
+        params.put("optype", "cancel");
+        params.put("orderSerial", orderSerial);
+        mModel.requestUpdateOrder(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                mDataManager.showToast("订单取消成功");
+                resetRefresh();
+            }
+        });
     }
 
     @Override

@@ -5,9 +5,15 @@ import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.EditTextWithDel;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -77,18 +83,48 @@ public class CheckPhoneAct extends BaseAppActivity {
 
     @OnClick({R.id.tvNext, R.id.tvGetCode})
     public void onViewClicked(View v) {
+        Map<String, String> params = new HashMap<>();
+        switch (from) {
+            case "修改手机号":
+                params.put("type", "1");
+                break;
+            case "绑定银行卡":
+                params.put("type", "2");
+                break;
+        }
         switch (v.getId()) {
             case R.id.tvNext:
-                switch (from) {
-                    case "修改手机号":
-                        gotoActivity(UpdatePhoneAct.class);
-                        break;
-                    case "绑定银行卡":
-                        gotoActivity(BindCardAct.class);
-                        break;
+                if (StringUtil.isBlank(mDataManager.getValueFromView(etCode))) {
+                    mDataManager.showToast("请输入验证码");
+                    return;
                 }
+                params.put("code", mDataManager.getValueFromView(etCode));
+                mModel.requestCheckPhone(params, new ZnzHttpListener() {
+                    @Override
+                    public void onSuccess(JSONObject responseOriginal) {
+                        super.onSuccess(responseOriginal);
+                        switch (from) {
+                            case "修改手机号":
+                                gotoActivity(UpdatePhoneAct.class);
+                                break;
+                            case "绑定银行卡":
+                                Bundle bundle = new Bundle();
+                                bundle.putString("validateKey", responseOriginal.getString("data"));
+                                gotoActivity(BindCardAct.class, bundle);
+                                break;
+                        }
+                    }
+                });
                 break;
             case R.id.tvGetCode:
+                mModel.requestGetCode(params, new ZnzHttpListener() {
+                    @Override
+                    public void onSuccess(JSONObject responseOriginal) {
+                        super.onSuccess(responseOriginal);
+                        etCode.setText(responseOriginal.getString("data"));
+                    }
+                });
+
                 break;
         }
     }

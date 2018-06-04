@@ -288,6 +288,17 @@ public interface ApiService {
     @GET("ucenter/charge-vip")
     Observable<ResponseBody> requestPriceList(@QueryMap Map<String, String> params);
 
+    @FormUrlEncoded
+    @POST("ucenter/charge-vip")
+    Observable<ResponseBody> requestCreateOrder(@FieldMap Map<String, String> params);
+
+    @GET("account/send-code")
+    Observable<ResponseBody> requestGetCode(@QueryMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("account/send-code")
+    Observable<ResponseBody> requestCheckPhone(@FieldMap Map<String, String> params);
+
 
     @Multipart
     @POST("upload/upload")

@@ -56,10 +56,12 @@
                 <View style="@style/WeightView" />
 
                 <TextView
+                    android:id="@+id/tvCancal"
                     style="@style/TextStyle"
                     android:text="取消订单" />
 
                 <TextView
+                    android:id="@+id/tvPay"
                     style="@style/TextStyle"
                     android:layout_marginLeft="@dimen/distance_view"
                     android:text="去付款" />
