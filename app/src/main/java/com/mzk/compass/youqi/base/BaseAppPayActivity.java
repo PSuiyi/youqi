@@ -1,18 +1,11 @@
-package com.znz.baianju.base;
-
+package com.mzk.compass.youqi.base;
 import android.os.Bundle;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.mzk.compass.youqi.base.BaseAppActivity;
-import com.mzk.compass.youqi.bean.UserBean;
 import com.mzk.compass.youqi.event.EventPay;
 import com.mzk.compass.youqi.event.EventTags;
-import com.mzk.compass.youqi.utils.PopupWindowManager;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
-import com.znz.compass.znzlibray.utils.StringUtil;
-import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 import com.znz.compass.znzpay.alipay.AliPayUtil;
 import com.znz.compass.znzpay.bean.WeixinBean;
 import com.znz.compass.znzpay.common.PayKeys;

@@ -9,10 +9,9 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.RechargeAdapter;
-import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.mzk.compass.youqi.base.BaseAppPayActivity;
 import com.mzk.compass.youqi.bean.PriceBean;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
-import com.znz.compass.znzlibray.bean.BaseZnzBean;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 
@@ -29,7 +28,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2018/4/25.
  */
 
-public class RechargeAct extends BaseAppActivity {
+public class RechargeAct extends BaseAppPayActivity {
     @Bind(R.id.rvPrice)
     RecyclerView rvPrice;
     @Bind(R.id.tvSubmit)
@@ -101,18 +100,24 @@ public class RechargeAct extends BaseAppActivity {
         ButterKnife.bind(this);
     }
 
+    @Override
+    protected void onPayResult(int result) {
+
+    }
+
     @OnClick(R.id.tvSubmit)
     public void onViewClicked() {
         popupWindowManager.showPayWays(tvSubmit, new PopupWindowManager.OnPopupWindowClickListener() {
             @Override
             public void onPopupWindowClick(String type, String[] values) {
-                Map<String,String>params=new HashMap<>();
-                params.put("id",id);
-                params.put("type",type);
+                Map<String, String> params = new HashMap<>();
+                params.put("id", id);
+                params.put("type", type);
                 mModel.requestCreateOrder(params, new ZnzHttpListener() {
                     @Override
                     public void onSuccess(JSONObject responseOriginal) {
                         super.onSuccess(responseOriginal);
+                        handleAliPay();
                     }
                 });
             }
