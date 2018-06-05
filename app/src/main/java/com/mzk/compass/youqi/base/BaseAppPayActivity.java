@@ -66,32 +66,32 @@ public abstract class BaseAppPayActivity extends BaseAppActivity {
      */
     public void handleWeixinPay() {
         Map<String, String> params = new HashMap<>();
-        params.put("order_code", currentOrderCode);
-        params.put("t", "APP");
-//        mModel.requestWeixinPayParams(params, new ZnzHttpListener() {
-//            @Override
-//            public void onSuccess(JSONObject responseOriginal) {
-//                super.onSuccess(responseOriginal);
-//                WeixinBean bean = JSONObject.parseObject(responseOriginal.getString("object"), WeixinBean.class);
-//                Map<String, String> params = new HashMap<>();
-//                params.put("appid", bean.getAppid());
-//                params.put("msg", bean.getMsg());
-//                params.put("out_trade_no", bean.getOut_trade_no());
-//                params.put("status", bean.getStatus());
-//                params.put("partnerid", bean.getPartnerid());
-//                params.put("prepayid", bean.getPrepayid());
-//                params.put("packageStr", bean.getPackageStr());
-//                params.put("nonceStr", bean.getNonceStr());
-//                params.put("timeStamp", bean.getTimestamp());
-//                params.put("paySign", bean.getPaySign());
-//                WXPayUtil.getInstance(activity).startWXPay(params);
-//            }
-//
-//            @Override
-//            public void onFail(String error) {
-//                super.onFail(error);
-//            }
-//        });
+        params.put("orderSerial", currentOrderCode);
+        params.put("type", "1");
+        mModel.requestPayParams(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                WeixinBean bean = JSONObject.parseObject(responseOriginal.getString("object"), WeixinBean.class);
+                Map<String, String> params = new HashMap<>();
+                params.put("appid", bean.getAppid());
+                params.put("msg", bean.getMsg());
+                params.put("out_trade_no", bean.getOut_trade_no());
+                params.put("status", bean.getStatus());
+                params.put("partnerid", bean.getPartnerid());
+                params.put("prepayid", bean.getPrepayid());
+                params.put("packageStr", bean.getPackageStr());
+                params.put("nonceStr", bean.getNonceStr());
+                params.put("timeStamp", bean.getTimestamp());
+                params.put("paySign", bean.getPaySign());
+                WXPayUtil.getInstance(activity).startWXPay(params);
+            }
+
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
+            }
+        });
     }
 
     /**
@@ -99,31 +99,32 @@ public abstract class BaseAppPayActivity extends BaseAppActivity {
      */
     public void handleAliPay() {
         Map<String, String> params = new HashMap<>();
-        params.put("order_code", currentOrderCode);
-//        mModel.requestPayParams(params, new ZnzHttpListener() {
-//            @Override
-//            public void onSuccess(JSONObject responseOriginal) {
-//                super.onSuccess(responseOriginal);
-//                AliPayUtil.getInstance(activity).startAliPay(responseOriginal.getString("object"), result -> {
-//                    switch (result) {
-//                        case "支付成功":
-//                            onPayResult(PayKeys.ALI_PAY_SUCESSS);
-//                            break;
-//                        case "支付取消":
-//                            mDataManager.showToast("支付取消");
-//                            break;
-//                        case "支付失败":
-//                            onPayResult(PayKeys.ALI_PAY_FAIL);
-//                            break;
-//                    }
-//                });
-//            }
-//
-//            @Override
-//            public void onFail(String error) {
-//                super.onFail(error);
-//            }
-//        });
+        params.put("orderSerial", currentOrderCode);
+        params.put("type", "1");
+        mModel.requestPayParams(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                AliPayUtil.getInstance(activity).startAliPay(responseOriginal.getString("data"), result -> {
+                    switch (result) {
+                        case "支付成功":
+                            onPayResult(PayKeys.ALI_PAY_SUCESSS);
+                            break;
+                        case "支付取消":
+                            mDataManager.showToast("支付取消");
+                            break;
+                        case "支付失败":
+                            onPayResult(PayKeys.ALI_PAY_FAIL);
+                            break;
+                    }
+                });
+            }
+
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
+            }
+        });
     }
 
     /**

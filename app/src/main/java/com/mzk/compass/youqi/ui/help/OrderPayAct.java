@@ -1,13 +1,14 @@
 package com.mzk.compass.youqi.ui.help;
 
-import android.os.Bundle;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
-import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.bean.OrderConfirmBean;
+import com.znz.baianju.base.BaseAppPayActivity;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
@@ -17,7 +18,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -25,7 +25,7 @@ import butterknife.OnClick;
  * User： PSuiyi
  * Description：
  */
-public class OrderPayAct extends BaseAppActivity {
+public class OrderPayAct extends BaseAppPayActivity {
     @Bind(R.id.ivLogo)
     HttpImageView ivLogo;
     @Bind(R.id.tvProjectName)
@@ -36,8 +36,17 @@ public class OrderPayAct extends BaseAppActivity {
     TextView tvCount;
     @Bind(R.id.tvTotalMoney)
     TextView tvTotalMoney;
+    @Bind(R.id.rbWx)
+    RadioButton rbWx;
+    @Bind(R.id.rbAli)
+    RadioButton rbAli;
+    @Bind(R.id.radioGroup)
+    RadioGroup radioGroup;
+    @Bind(R.id.tvSubmit)
+    TextView tvSubmit;
     private String orderCode;
     private OrderConfirmBean bean;
+    private int orderType;
 
     @Override
     protected int[] getLayoutResource() {
@@ -48,6 +57,7 @@ public class OrderPayAct extends BaseAppActivity {
     protected void initializeVariate() {
         if (getIntent().hasExtra("orderCode")) {
             orderCode = getIntent().getStringExtra("orderCode");
+            currentOrderCode = orderCode;
         }
     }
 
@@ -58,7 +68,19 @@ public class OrderPayAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
-
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.rbWx:
+                        orderType = 1;
+                        break;
+                    case R.id.rbAli:
+                        orderType = 0;
+                        break;
+                }
+            }
+        });
     }
 
     @Override
@@ -82,15 +104,17 @@ public class OrderPayAct extends BaseAppActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+    protected void onPayResult(int result) {
+
     }
 
     @OnClick(R.id.tvSubmit)
     public void onViewClicked() {
-
+        if (orderType == 0) {
+            handleAliPay();
+        } else {
+            handleWeixinPay();
+        }
     }
 
     private String getTotalMoney() {

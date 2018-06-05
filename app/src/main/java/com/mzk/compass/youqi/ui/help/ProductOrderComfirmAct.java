@@ -96,7 +96,7 @@ public class ProductOrderComfirmAct extends BaseAppActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvPhone:
-                mDataManager.callPhone(activity, "400-8888-8888");
+                mDataManager.callPhone(activity, bean.getTel());
                 break;
             case R.id.tvBuy:
                 if (StringUtil.isBlank(mDataManager.getValueFromView(etPhone))) {

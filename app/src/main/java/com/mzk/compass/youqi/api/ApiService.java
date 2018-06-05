@@ -218,6 +218,10 @@ public interface ApiService {
     @POST("order/submit")
     Observable<ResponseBody> requestOrderSubmit(@FieldMap Map<String, String> params);
 
+    @FormUrlEncoded
+    @POST("order/go-pay")
+    Observable<ResponseBody> requestPayParams(@FieldMap Map<String, String> params);
+
     @GET("order/pay")
     Observable<ResponseBody> requestOrderPay(@QueryMap Map<String, String> params);
 

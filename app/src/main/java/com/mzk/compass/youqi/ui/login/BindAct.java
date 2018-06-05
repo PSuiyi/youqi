@@ -1,5 +1,6 @@
 package com.mzk.compass.youqi.ui.login;
 
+import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 
 /**
@@ -10,7 +11,7 @@ import com.mzk.compass.youqi.base.BaseAppActivity;
 public class BindAct extends BaseAppActivity {
     @Override
     protected int[] getLayoutResource() {
-        return new int[0];
+        return new int[]{R.layout.act_bind, 1};
     }
 
     @Override
