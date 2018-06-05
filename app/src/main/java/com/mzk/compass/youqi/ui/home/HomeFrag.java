@@ -145,22 +145,6 @@ public class HomeFrag extends BaseAppFragment {
         llHot4 = bindViewById(header, R.id.llHot4);
         llHot5 = bindViewById(header, R.id.llHot5);
 
-        llHot1.setOnClickListener(v -> {
-            gotoActivity(ProjectDetailAct.class);
-        });
-        llHot2.setOnClickListener(v -> {
-            gotoActivity(ProjectDetailAct.class);
-        });
-        llHot3.setOnClickListener(v -> {
-            gotoActivity(ProjectDetailAct.class);
-        });
-        llHot4.setOnClickListener(v -> {
-            gotoActivity(ProjectDetailAct.class);
-        });
-        llHot5.setOnClickListener(v -> {
-            gotoActivity(ProjectDetailAct.class);
-        });
-
         banner = bindViewById(header, R.id.banner);
         adapter.addHeaderView(header);
 
@@ -240,15 +224,41 @@ public class HomeFrag extends BaseAppFragment {
                             if (!StringUtil.isBlank(responseObject.getString("mobileCompanyRecommendSmall"))) {
                                 hotList.addAll(JSONArray.parseArray(responseObject.getString("mobileCompanyRecommendSmall"), ProjectBean.class));
                             }
-//                            if (!hotList.isEmpty()) {
-//                                if (hotList.size() >= 5) {
-//                                    ivImage1.loadVerImage(hotList.get(0).getLogo());
-//                                    ivImage2.loadVerImage(hotList.get(1).getLogo());
-//                                    ivImage3.loadVerImage(hotList.get(2).getLogo());
-//                                    ivImage4.loadVerImage(hotList.get(3).getLogo());
-//                                    ivImage5.loadVerImage(hotList.get(4).getLogo());
-//                                }
-//                            }
+                            if (!hotList.isEmpty()) {
+                                if (hotList.size() >= 5) {
+                                    ivImage1.loadVerImage(hotList.get(0).getLogo());
+                                    ivImage2.loadVerImage(hotList.get(1).getLogo());
+                                    ivImage3.loadVerImage(hotList.get(2).getLogo());
+                                    ivImage4.loadVerImage(hotList.get(3).getLogo());
+                                    ivImage5.loadVerImage(hotList.get(4).getLogo());
+
+                                    ivImage1.setOnClickListener(v -> {
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("id", hotList.get(0).getLink());
+                                        gotoActivity(ProjectDetailAct.class, bundle);
+                                    });
+                                    ivImage2.setOnClickListener(v -> {
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("id", hotList.get(1).getLink());
+                                        gotoActivity(ProjectDetailAct.class, bundle);
+                                    });
+                                    ivImage3.setOnClickListener(v -> {
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("id", hotList.get(2).getLink());
+                                        gotoActivity(ProjectDetailAct.class, bundle);
+                                    });
+                                    ivImage4.setOnClickListener(v -> {
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("id", hotList.get(3).getLink());
+                                        gotoActivity(ProjectDetailAct.class, bundle);
+                                    });
+                                    ivImage5.setOnClickListener(v -> {
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("id", hotList.get(4).getLink());
+                                        gotoActivity(ProjectDetailAct.class, bundle);
+                                    });
+                                }
+                            }
                         }
 
                         if (!projectBeanList.isEmpty()) {
