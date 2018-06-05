@@ -72,7 +72,10 @@ public class AccountManagerAct extends BaseAppActivity {
                 .withValueColor(mDataManager.getColor(R.color.text_gray))
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
                 .withOnClickListener(v -> {
-                    gotoActivity(BankCardListAct.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("from", "绑定银行卡");
+                    gotoActivity(CheckPhoneAct.class, bundle);
+//                    gotoActivity(BankCardListAct.class);
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()

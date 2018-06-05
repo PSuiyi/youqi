@@ -8,6 +8,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.ui.login.LoginAct;
+import com.mzk.compass.youqi.utils.DataCleanManager;
 import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -60,6 +61,16 @@ public class SettingAct extends BaseAppActivity {
                     .withEnableArraw(true)
 //                    .withValue(DataCleanManager.getTotalCacheSize(activity))
                     .withOnClickListener(v -> {
+                        new UIAlertDialog(activity)
+                                .builder()
+                                .setMsg("是否确定清除缓存？")
+                                .setNegativeButton("取消", null)
+                                .setPositiveButton("确定", v2 -> {
+                                    DataCleanManager.clearAllCache(context);
+                                    rowDescriptionList.get(0).setValue("0.0MB");
+                                    commonRowGroup.notifyDataChanged(rowDescriptionList);
+                                })
+                                .show();
                     })
                     .build());
         } catch (Exception e) {
@@ -69,8 +80,8 @@ public class SettingAct extends BaseAppActivity {
                 .withTitle("检查更新")
                 .withTextSize(14)
                 .withEnableArraw(true)
-                .withValue("已是最新版本")
                 .withOnClickListener(v -> {
+
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
@@ -103,7 +114,8 @@ public class SettingAct extends BaseAppActivity {
                 if (!StringUtil.isBlank(responseOriginal.getString("data"))) {
                     JSONObject json = JSON.parseObject(responseOriginal.getString("data"));
                     if (StringUtil.stringToDouble(json.getString("version")) <= StringUtil.stringToDouble(StringUtil.getVersionName(context))) {
-                        rowDescriptionList.get(0).setValue("已是最新版本");
+                        rowDescriptionList.get(1).setValue("已是最新版本");
+                        commonRowGroup.notifyDataChanged(rowDescriptionList);
                     }
                 }
             }

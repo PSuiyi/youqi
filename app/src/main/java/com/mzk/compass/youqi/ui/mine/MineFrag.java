@@ -226,7 +226,7 @@ public class MineFrag extends BaseAppFragment {
 
     private void setData() {
         mDataManager.setValueToView(tvNickName, AppUtils.getInstance(context).getUserName());
-        mDataManager.setValueToView(tvCompany, AppUtils.getInstance(context).getCompanyName());
+        mDataManager.setValueToView(tvCompany, AppUtils.getInstance(context).getCompanyName(), "");
         if (StringUtil.isBlank(mDataManager.readTempData(Constants.User.ISVIP))) {
             mDataManager.setViewVisibility(ivVip, false);
         } else {

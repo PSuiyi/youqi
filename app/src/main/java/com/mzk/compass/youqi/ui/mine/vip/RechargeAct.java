@@ -69,7 +69,7 @@ public class RechargeAct extends BaseAppPayActivity {
             bean.setSelect(true);
             adapter.notifyDataSetChanged();
             id = bean.getId();
-            tvTotalPrice.setText(bean.getPrice());
+            tvTotalPrice.setText("￥" + bean.getPrice());
         });
     }
 
@@ -85,7 +85,7 @@ public class RechargeAct extends BaseAppPayActivity {
                     if (!dataList.isEmpty()) {
                         dataList.get(0).setSelect(true);
                         id = dataList.get(0).getId();
-                        tvTotalPrice.setText(dataList.get(0).getPrice());
+                        tvTotalPrice.setText("￥" + dataList.get(0).getPrice());
                     }
                     adapter.notifyDataSetChanged();
                 }

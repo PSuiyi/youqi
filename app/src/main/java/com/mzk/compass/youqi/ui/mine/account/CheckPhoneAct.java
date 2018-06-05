@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.znz.compass.znzlibray.common.ZnzConstants;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.EditTextWithDel;
@@ -67,6 +68,7 @@ public class CheckPhoneAct extends BaseAppActivity {
                 mDataManager.setValueToView(tvGetCode, "重新发送");
             }
         };
+        mDataManager.setValueToView(tvPhone, StringUtil.getSignPhone(mDataManager.readTempData(ZnzConstants.ACCOUNT)));
     }
 
     @Override

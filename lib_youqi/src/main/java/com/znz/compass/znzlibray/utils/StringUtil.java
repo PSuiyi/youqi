@@ -709,5 +709,16 @@ public class StringUtil {
         float textLength = paint.measureText(text);
         return textLength;
     }
-
+    /**
+     * 返回格式化的手机号
+     *
+     * @param phone
+     * @return
+     */
+    public static String getSignPhone(String phone) {
+        if (StringUtil.isBlank(phone)) {
+            return "";
+        }
+        return phone.substring(0, 3) + "****" + phone.substring(7, 11);
+    }
 }

@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.common.Constants;
+import com.mzk.compass.youqi.utils.AppUtils;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.utils.TimeUtils;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
@@ -68,6 +69,7 @@ public class VipCenterAct extends BaseAppActivity {
             }
         }
         ivHeader.loadHeaderImage(mDataManager.readTempData(Constants.User.AVATAR));
+        mDataManager.setValueToView(tvName, AppUtils.getInstance(context).getUserName());
     }
 
     @Override
