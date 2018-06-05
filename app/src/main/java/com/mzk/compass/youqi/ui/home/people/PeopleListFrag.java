@@ -230,12 +230,22 @@ public class PeopleListFrag extends BaseAppListFragment {
             case R.id.tvOpt1:
                 PopupWindowManager.getInstance(activity).showFilt(llFilt1, filtList1, (type, values) -> {
                     currentHangye = values[0];
+                    if (values[1].equals("全部")) {
+                        tvOpt1.setText("所属行业");
+                    } else {
+                        tvOpt1.setText(values[1]);
+                    }
                     resetRefresh();
                 });
                 break;
             case R.id.tvOpt2:
                 PopupWindowManager.getInstance(activity).showFilt(llFilt1, filtList2, (type, values) -> {
                     currentJieduan = values[0];
+                    if (values[1].equals("全部")) {
+                        tvOpt2.setText("获投阶段");
+                    } else {
+                        tvOpt2.setText(values[1]);
+                    }
                     resetRefresh();
                 });
                 break;

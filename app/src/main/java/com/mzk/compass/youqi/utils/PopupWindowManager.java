@@ -194,7 +194,7 @@ public class PopupWindowManager {
                     filtBean.setChecked(false);
                 }
                 dataList.get(position).setChecked(true);
-                onPopupWindowClickListener.onPopupWindowClick(null, new String[]{dataList.get(position).getId()});
+                onPopupWindowClickListener.onPopupWindowClick(null, new String[]{dataList.get(position).getId(), dataList.get(position).getName()});
                 hidePopupWindow();
             }
         });

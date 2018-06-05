@@ -113,7 +113,7 @@ public class ProductDetailAct extends BaseAppActivity {
                 mDataManager.setValueToView(tvTitle, bean.getName());
                 mDataManager.setValueToView(tvMoney, "¥" + bean.getRealPrice());
                 mDataManager.setValueToView(tvMoneyOld, "原价：¥" + bean.getMarketPrice());
-                mDataManager.setValueToView(tvCountPayed, bean.getShowNum());
+                mDataManager.setValueToView(tvCountPayed, "成交量：" + bean.getShowNum());
                 mDataManager.setValueToView(tvNumber, bean.getCount());
                 wvDetail.loadContent(bean.getContent());
                 if (bean.getIsCollected().equals("true")) {
