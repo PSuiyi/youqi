@@ -7,7 +7,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
@@ -48,6 +47,8 @@ public class ProductOrderComfirmAct extends BaseAppActivity {
     CheckBox cbSelect;
     @Bind(R.id.tvRealMoney)
     TextView tvRealMoney;
+    @Bind(R.id.tvTel)
+    TextView tvTel;
     private ProductBean bean;
 
     @Override
@@ -75,6 +76,7 @@ public class ProductOrderComfirmAct extends BaseAppActivity {
             mDataManager.setValueToView(tvCount, "x" + bean.getCount());
             mDataManager.setValueToView(tvTotalMoney, "￥" + bean.getTotalMoney());
             mDataManager.setValueToView(tvRealMoney, "￥" + bean.getTotalMoney());
+            mDataManager.setValueToView(tvTel, bean.getTel());
         }
     }
 

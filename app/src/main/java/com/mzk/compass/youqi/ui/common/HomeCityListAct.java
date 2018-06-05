@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -12,6 +13,7 @@ import com.mzk.compass.youqi.adapter.CityAdapter;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.bean.CityBean;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +32,7 @@ public class HomeCityListAct extends BaseAppActivity {
 
     @Bind(R.id.rvCommonRefresh)
     RecyclerView rvCommonRefresh;
+    private LinearLayout llCity;
 
     private List<CityBean> dataList = new ArrayList<>();
     private CityAdapter adapter;
@@ -60,9 +63,22 @@ public class HomeCityListAct extends BaseAppActivity {
         rvCommonRefresh.setAdapter(adapter);
         rvCommonRefresh.setLayoutManager(new LinearLayoutManager(activity));
         adapter.setOnItemClickListener((adapter, view, position) -> {
+            new UIAlertDialog(activity)
+                    .builder()
+                    .setMsg("目前只开通南京区服务,其他城市敬请期待！")
+                    .setNegativeButton("取消", null)
+                    .setPositiveButton("确定", v2 -> {
+                        
+                    })
+                    .show();
         });
 
+
         View header = View.inflate(activity, R.layout.header_city, null);
+        llCity = bindViewById(header, R.id.llCity);
+        llCity.setOnClickListener(v -> {
+            finish();
+        });
         adapter.addHeaderView(header);
     }
 

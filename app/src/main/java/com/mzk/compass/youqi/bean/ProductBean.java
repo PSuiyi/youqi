@@ -2,6 +2,8 @@ package com.mzk.compass.youqi.bean;
 
 import com.znz.compass.znzlibray.bean.BaseZnzBean;
 
+import java.util.List;
+
 /**
  * Date： 2018/5/11 2018
  * User： PSuiyi
@@ -40,6 +42,15 @@ public class ProductBean extends BaseZnzBean {
     private String id;
     private String count;
     private String totalMoney;
+    private List<CityBean> area;
+
+    public List<CityBean> getArea() {
+        return area;
+    }
+
+    public void setArea(List<CityBean> area) {
+        this.area = area;
+    }
 
     public String getId() {
         return id;

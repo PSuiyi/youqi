@@ -49,7 +49,7 @@ public class AboutUsAct extends BaseAppActivity {
 
     @Override
     protected void loadDataFromServer() {
-        mDataManager.setValueToView(tvVer, "美客美租" + StringUtil.getVersionName(context) + "v");
+        mDataManager.setValueToView(tvVer, "优企" + StringUtil.getVersionName(context) + "v");
         Map<String, String> params = new HashMap<>();
         mModel.requestAboutUs(params, new ZnzHttpListener() {
             @Override

@@ -140,6 +140,7 @@
                 <View style="@style/WeightView" />
 
                 <TextView
+                    android:id="@+id/tvArea"
                     style="@style/TitleTextStyle"
                     android:text="秦淮区" />
 

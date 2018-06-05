@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.mzk.compass.youqi.bean.CityBean;
 import com.mzk.compass.youqi.bean.ProductBean;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
@@ -67,6 +68,12 @@ public class ProductDetailAct extends BaseAppActivity {
     WebViewWithProgress wvDetail;
     @Bind(R.id.tvNumber)
     TextView tvNumber;
+    @Bind(R.id.tvArea)
+    TextView tvArea;
+    @Bind(R.id.ivDown)
+    ImageView ivDown;
+    @Bind(R.id.ivAdd)
+    ImageView ivAdd;
     private String id;
     private ProductBean bean;
 
@@ -118,6 +125,20 @@ public class ProductDetailAct extends BaseAppActivity {
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                     tvFav.setCompoundDrawables(null, drawable, null, null);
                 }
+
+                if (!bean.getArea().isEmpty()) {
+                    tvArea.setText(bean.getArea().get(0).getName());
+                }
+
+                if (!StringUtil.isBlank(bean.getIsCollected())) {
+                    if (bean.getIsCollected().equals("true")) {
+                        ivFav.setImageResource(R.mipmap.shoucanghuang);
+                    } else {
+                        ivFav.setImageResource(R.mipmap.shoucang);
+                    }
+                } else {
+                    ivFav.setImageResource(R.mipmap.shoucang);
+                }
             }
 
             @Override
@@ -149,18 +170,15 @@ public class ProductDetailAct extends BaseAppActivity {
                 break;
             case R.id.llArea:
                 List<String> items = new ArrayList<>();
-                items.add("鼓楼区");
-                items.add("鼓楼区");
-                items.add("鼓楼区");
-                items.add("鼓楼区");
-                items.add("鼓楼区");
-                items.add("鼓楼区");
-                items.add("鼓楼区");
-                items.add("鼓楼区");
+                if (!bean.getArea().isEmpty()) {
+                    for (CityBean cityBean : bean.getArea()) {
+                        items.add(cityBean.getName());
+                    }
+                }
                 new UIActionSheetDialog(activity)
                         .builder()
                         .addSheetItemList(items, null, which -> {
-
+                            tvArea.setText(bean.getArea().get(which).getName());
                         })
                         .show();
                 break;
@@ -172,7 +190,7 @@ public class ProductDetailAct extends BaseAppActivity {
                 }
                 break;
             case R.id.tvPhone:
-                mDataManager.callPhone(activity, "400-8888-8888");
+                mDataManager.callPhone(activity, bean.getTel());
                 break;
             case R.id.tvBuy:
                 Map<String, String> params = new HashMap<>();

@@ -130,6 +130,7 @@
                     <View style="@style/WeightView" />
 
                     <TextView
+                        android:id="@+id/tvTel"
                         style="@style/TitleTextStyle"
                         android:text="400-8888-8888" />
                 </LinearLayout>
