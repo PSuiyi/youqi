@@ -175,6 +175,7 @@
             android:padding="@dimen/distance_view">
 
             <TextView
+                android:id="@+id/tvQQ"
                 style="@style/TextDrawableStyle"
                 android:layout_weight="1"
                 android:drawableTop="@mipmap/qq"
@@ -184,6 +185,7 @@
                 android:textSize="@dimen/text_small_size" />
 
             <TextView
+                android:id="@+id/tvWechat"
                 style="@style/TextDrawableStyle"
                 android:layout_weight="1"
                 android:drawableTop="@mipmap/weixin"
@@ -193,6 +195,7 @@
                 android:textSize="@dimen/text_small_size" />
 
             <TextView
+                android:id="@+id/tvWeibo"
                 style="@style/TextDrawableStyle"
                 android:layout_weight="1"
                 android:drawableTop="@mipmap/weibo"

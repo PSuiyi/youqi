@@ -38,4 +38,9 @@ public interface EventTags {
     int REFRESH_COLLECT_PRODUCT = 0X903; //收藏商品刷新列表
     int REFRESH_COLLECT_NEWS = 0X904; //收藏消息刷新列表
 
+
+    int PAY_WX_SUCCESS = 0x1000;
+    int PAY_WX_FAIL = 0x1001;
+    int PAY_WX_CANCEL = 0x1002;
+
 }

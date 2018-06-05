@@ -91,4 +91,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile project(':lib_youqi')
     compile 'cn.bingoogolapple:bga-banner:2.1.7@aar'
+    compile project(':lib_umeng')
+    compile project(':lib_znzpay')
 }

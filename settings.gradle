@@ -1,2 +1,4 @@
 include ':app'
 include ':lib_youqi'
+include ':lib_umeng'
+include ':lib_znzpay'

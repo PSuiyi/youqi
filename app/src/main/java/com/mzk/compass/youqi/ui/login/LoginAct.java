@@ -12,6 +12,10 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.ui.TabHomeActivity;
 import com.mzk.compass.youqi.view.EditTextPsd;
+import com.socks.library.KLog;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.znz.compass.umeng.login.LoginAuthManager;
 import com.znz.compass.znzlibray.common.ZnzConstants;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -19,6 +23,7 @@ import com.znz.compass.znzlibray.views.EditTextWithDel;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -51,6 +56,9 @@ public class LoginAct extends BaseAppActivity {
 
     private boolean isCode;
     private CountDownTimer timer;
+    private LoginAuthManager loginManager;
+    private String login_type;
+    private String open_id;
 
     @Override
     protected int[] getLayoutResource() {
@@ -59,7 +67,7 @@ public class LoginAct extends BaseAppActivity {
 
     @Override
     protected void initializeVariate() {
-
+        loginManager = LoginAuthManager.getInstance(context);
     }
 
     @Override
@@ -107,10 +115,86 @@ public class LoginAct extends BaseAppActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.tvSubmit, R.id.tvFoget, R.id.tvLoginType, R.id.tvGetCode})
+    private UMAuthListener umAuthListener = new UMAuthListener() {
+        @Override
+        public void onStart(SHARE_MEDIA share_media) {
+
+        }
+
+        @Override
+        public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
+            Set<Map.Entry<String, String>> set = map.entrySet();
+            // 遍历键值对对象的集合，得到每一个键值对对象
+            for (Map.Entry<String, String> me : set) {
+                // 根据键值对对象获取键和值
+                String key = me.getKey();
+                String value = me.getValue();
+                KLog.e(key + "---" + value);
+            }
+            switch (share_media) {
+                case QQ:
+                    login_type = "3";
+                    open_id = map.get("openid");
+                    break;
+                case WEIXIN:
+                    login_type = "1";
+                    open_id = map.get("unionid");
+                    break;
+                case SINA:
+                    login_type = "2";
+                    open_id = map.get("uid");
+                    break;
+            }
+            requestAuthLogin();
+        }
+
+        @Override
+        public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
+
+        }
+
+        @Override
+        public void onCancel(SHARE_MEDIA share_media, int i) {
+
+        }
+    };
+
+
+    private void requestAuthLogin() {
+        Map<String, String> params = new HashMap<>();
+        params.put("open_id", open_id);
+        params.put("type", login_type);
+        mModel.requestAutherLogin(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                JSONObject jsonObject = JSON.parseObject(responseOriginal.getString("data"));
+                String token = jsonObject.getString("token");
+                mDataManager.saveTempData(ZnzConstants.ACCESS_TOKEN, token);
+                mDataManager.saveTempData(ZnzConstants.ACCOUNT, mDataManager.getValueFromView(etPhone));
+                mDataManager.saveBooleanTempData(ZnzConstants.IS_LOGIN, true);
+                if (jsonObject.getString("goTo").equals("1")) {
+                    gotoActivity(BindAct.class);
+                } else {
+                    gotoActivityWithClearStack(TabHomeActivity.class);
+                }
+            }
+        });
+    }
+
+    @OnClick({R.id.tvSubmit, R.id.tvQQ, R.id.tvWechat, R.id.tvWeibo, R.id.tvFoget, R.id.tvLoginType, R.id.tvGetCode})
     public void onViewClicked(View view) {
         Map<String, String> params = new HashMap<>();
         switch (view.getId()) {
+            case R.id.tvQQ:
+                loginManager.loginQQ(activity, umAuthListener);
+                break;
+            case R.id.tvWechat:
+                loginManager.loginWeChat(activity, umAuthListener);
+                break;
+            case R.id.tvWeibo:
+                loginManager.loginWeibo(activity, umAuthListener);
+                break;
             case R.id.tvSubmit:
                 if (StringUtil.isBlank(mDataManager.getValueFromView(etPhone))) {
                     mDataManager.showToast("请输入手机号");

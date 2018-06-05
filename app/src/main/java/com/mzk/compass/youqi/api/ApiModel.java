@@ -99,8 +99,7 @@ public class ApiModel extends BaseModel {
      * @return
      */
     public void requestAutherLogin(Map<String, String> params, ZnzHttpListener znzHttpListener) {
-        params.put("request_code", "10023");
-        request(apiService.post(params), znzHttpListener);
+        request(apiService.requestAutherLogin(params), znzHttpListener);
     }
 
     /**

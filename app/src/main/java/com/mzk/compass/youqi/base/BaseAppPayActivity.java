@@ -1,8 +1,28 @@
-package com.mzk.compass.youqi.base;
+package com.znz.baianju.base;
 
 import android.os.Bundle;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.mzk.compass.youqi.bean.UserBean;
+import com.mzk.compass.youqi.event.EventPay;
+import com.mzk.compass.youqi.event.EventTags;
+import com.mzk.compass.youqi.utils.PopupWindowManager;
 import com.znz.compass.znzlibray.eventbus.EventManager;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
+import com.znz.compass.znzpay.alipay.AliPayUtil;
+import com.znz.compass.znzpay.bean.WeixinBean;
+import com.znz.compass.znzpay.common.PayKeys;
+import com.znz.compass.znzpay.wxpay.WXPayUtil;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Date： 2017/9/4 2017
@@ -31,30 +51,33 @@ public abstract class BaseAppPayActivity extends BaseAppActivity {
         EventManager.unregister(this);
     }
 
-//    @Subscribe(threadMode = ThreadMode.MAIN)
-//    public void onMessageEvent(EventPay event) {
-//        if (event.getFlag() == EventTags.PAY_WX_SUCCESS) {
-//            onPayResult(PayKeys.WX_PAY_SUCESSS);
-//        }
-//        if (event.getFlag() == EventTags.PAY_WX_FAIL) {
-//            onPayResult(PayKeys.WX_PAY_FAIL);
-//        }
-//    }
-//
-//    /**
-//     * 微信支付
-//     */
-//    public void handleWeixinPay() {
-//        Map<String, String> params = new HashMap<>();
-//        params.put("orderSn", currentOrderCode);
-//        params.put("payType", "3");
-//        mModel.requestPayParams(params, new ZnzHttpListener() {
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventPay event) {
+        if (event.getFlag() == EventTags.PAY_WX_SUCCESS) {
+            onPayResult(PayKeys.WX_PAY_SUCESSS);
+        }
+        if (event.getFlag() == EventTags.PAY_WX_FAIL) {
+            onPayResult(PayKeys.WX_PAY_FAIL);
+        }
+    }
+
+    /**
+     * 微信支付
+     */
+    public void handleWeixinPay() {
+        Map<String, String> params = new HashMap<>();
+        params.put("order_code", currentOrderCode);
+        params.put("t", "APP");
+//        mModel.requestWeixinPayParams(params, new ZnzHttpListener() {
 //            @Override
 //            public void onSuccess(JSONObject responseOriginal) {
 //                super.onSuccess(responseOriginal);
-//                WeixinBean bean = JSONObject.parseObject(responseObject.getString("payStr"), WeixinBean.class);
+//                WeixinBean bean = JSONObject.parseObject(responseOriginal.getString("object"), WeixinBean.class);
 //                Map<String, String> params = new HashMap<>();
 //                params.put("appid", bean.getAppid());
+//                params.put("msg", bean.getMsg());
+//                params.put("out_trade_no", bean.getOut_trade_no());
+//                params.put("status", bean.getStatus());
 //                params.put("partnerid", bean.getPartnerid());
 //                params.put("prepayid", bean.getPrepayid());
 //                params.put("packageStr", bean.getPackageStr());
@@ -69,20 +92,19 @@ public abstract class BaseAppPayActivity extends BaseAppActivity {
 //                super.onFail(error);
 //            }
 //        });
-//    }
-//
-//    /**
-//     * 支付宝支付
-//     */
-//    public void handleAliPay() {
-//        Map<String, String> params = new HashMap<>();
-//        params.put("orderSn", currentOrderCode);
-//        params.put("payType", "2");
+    }
+
+    /**
+     * 支付宝支付
+     */
+    public void handleAliPay() {
+        Map<String, String> params = new HashMap<>();
+        params.put("order_code", currentOrderCode);
 //        mModel.requestPayParams(params, new ZnzHttpListener() {
 //            @Override
 //            public void onSuccess(JSONObject responseOriginal) {
 //                super.onSuccess(responseOriginal);
-//                AliPayUtil.getInstance(activity).startAliPay(responseObject.getString("payStr"), result -> {
+//                AliPayUtil.getInstance(activity).startAliPay(responseOriginal.getString("object"), result -> {
 //                    switch (result) {
 //                        case "支付成功":
 //                            onPayResult(PayKeys.ALI_PAY_SUCESSS);
@@ -102,12 +124,12 @@ public abstract class BaseAppPayActivity extends BaseAppActivity {
 //                super.onFail(error);
 //            }
 //        });
-//    }
-//
-//    /**
-//     * 余额支付
-//     */
-//    public void handleOwnPay() {
+    }
+
+    /**
+     * 余额支付
+     */
+    public void handleOwnPay() {
 //        Map<String, String> params2 = new HashMap<>();
 //        mModel.requestUserDetail(params2, new ZnzHttpListener() {
 //            @Override
@@ -151,8 +173,8 @@ public abstract class BaseAppPayActivity extends BaseAppActivity {
 //                }
 //            }
 //        });
-//
-//    }
+
+    }
 
 
     protected abstract void onPayResult(int result);

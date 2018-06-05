@@ -15,6 +15,7 @@
 
         <activity
             android:name=".ui.login.SplashAct"
+            android:screenOrientation="portrait"
             android:theme="@style/AppSplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,76 +24,285 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.login.LoginAct"></activity>
-        <activity android:name=".ui.TabHomeActivity"></activity>
-        <activity android:name=".ui.mine.MineProjectTabAct" />
-        <activity android:name=".ui.mine.OneStepAct" />
-        <activity android:name=".ui.mine.message.MessageTabAct" />
-        <activity android:name=".ui.mine.order.OrderTabAct" />
-        <activity android:name=".ui.mine.order.OrderDetailAct" />
-        <activity android:name=".ui.mine.vip.VipCenterAct" />
-        <activity android:name=".ui.mine.MineFavTabAct" />
-        <activity android:name=".ui.setting.SettingAct" />
-        <activity android:name=".ui.mine.MineInfoAct" />
-        <activity android:name=".ui.setting.FeedbackAct" />
-        <activity android:name=".ui.common.CityListAct" />
-        <activity android:name=".ui.home.project.ProjectDetailAct" />
-        <activity android:name=".ui.home.project.ProjectListAct" />
-        <activity android:name=".ui.news.NewsDetailAct" />
-        <activity android:name=".ui.home.people.PeopleListAct" />
-        <activity android:name=".ui.home.product.ProductListAct" />
-        <activity android:name=".ui.publish.PublishAct" />
-        <activity android:name=".ui.mine.article.ArticleTabAct" />
-        <activity android:name=".ui.login.RegisterAct" />
-        <activity android:name=".ui.login.Register2Act" />
-        <activity android:name=".ui.common.RemindAct" />
-        <activity android:name=".ui.home.product.ProductDetailAct" />
-        <activity android:name=".ui.mine.UpdateInfoAct" />
-        <activity android:name=".ui.mine.UpdateIntroAct" />
-        <activity android:name=".ui.mine.CustomerServiceAct" />
-        <activity android:name=".ui.setting.AboutUsAct" />
-        <activity android:name=".ui.mine.message.MessageInteractAct" />
-        <activity android:name=".ui.mine.message.MessageReplyAct" />
-        <activity android:name=".ui.help.ProductOrderComfirmAct" />
-        <activity android:name=".ui.help.OrderPayAct" />
-        <activity android:name=".ui.help.TypeListAct" />
-        <activity android:name=".ui.home.organ.OrganDetailAct" />
-        <activity android:name=".ui.mine.message.MessageTradeAct" />
-        <activity android:name=".ui.mine.message.MessageSystemAct" />
-        <activity android:name=".ui.mine.identify.personal.IdentifyPersonalAct" />
-        <activity android:name=".ui.mine.identify.IdentifyManagerAct" />
-        <activity android:name=".ui.mine.identify.personal.MemberMangerAct" />
-        <activity android:name=".ui.mine.identify.personal.MemberDetailAct" />
-        <activity android:name=".ui.mine.identify.company.CompanyManagerAct" />
-        <activity android:name=".ui.mine.identify.company.CompanyCreateAct" />
-        <activity android:name=".ui.mine.identify.company.CompanyCreateNextAct" />
-        <activity android:name=".ui.mine.identify.company.IndustryAct" />
-        <activity android:name=".ui.mine.identify.company.CompanyIdentifyAct" />
-        <activity android:name=".ui.mine.identify.company.IdentifyProcessAct" />
-        <activity android:name=".ui.mine.vip.RechargeAct" />
-        <activity android:name=".ui.mine.account.AccountManagerAct" />
-        <activity android:name=".ui.mine.account.UpdatePsdAct" />
-        <activity android:name=".ui.mine.account.CheckPhoneAct" />
-        <activity android:name=".ui.mine.account.UpdatePhoneAct" />
-        <activity android:name=".ui.mine.account.ManagerSuccessAct" />
-        <activity android:name=".ui.mine.account.BindCardAct" />
-        <activity android:name=".ui.mine.account.BankCardListAct" />
-        <activity android:name=".ui.mine.account.IdentifyAct" />
-        <activity android:name=".ui.common.SearchCommonAct" />
-        <activity android:name=".ui.login.ForgetPsdAct" />
-        <activity android:name=".ui.login.ForgetPsd2Act" />
-        <activity android:name=".ui.publish.PublishStateAct" />
-        <activity android:name=".ui.mine.state.StateListAct" />
-        <activity android:name=".ui.mine.state.StateDetailAct" />
-        <activity android:name=".ui.home.people.PeopleDetailAct" />
-        <activity android:name=".ui.home.people.RecommendSelfAct" />
-        <activity android:name=".ui.mine.article.ArticleDetailAct" />
-        <activity android:name=".ui.home.people.PeopleApproveAct" />
-        <activity android:name=".ui.home.organ.OrganListAct" />
-        <activity android:name=".ui.home.project.SendMessageAct" />
-        <activity android:name=".ui.home.project.PeopleViewAct" />
-        <activity android:name=".ui.common.HomeCityListAct" />
-        <activity android:name=".ui.home.people.PeopleStateAct" />
+        <activity
+            android:name=".ui.login.LoginAct"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".ui.TabHomeActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".ui.mine.MineProjectTabAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.OneStepAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.message.MessageTabAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.order.OrderTabAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.order.OrderDetailAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.vip.VipCenterAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.MineFavTabAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.setting.SettingAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.MineInfoAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.setting.FeedbackAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.common.CityListAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.project.ProjectDetailAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.project.ProjectListAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.news.NewsDetailAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.people.PeopleListAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.product.ProductListAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.publish.PublishAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.article.ArticleTabAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.RegisterAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.Register2Act"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.common.RemindAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.product.ProductDetailAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.UpdateInfoAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.UpdateIntroAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.CustomerServiceAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.setting.AboutUsAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.message.MessageInteractAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.message.MessageReplyAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.help.ProductOrderComfirmAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.help.OrderPayAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.help.TypeListAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.organ.OrganDetailAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.message.MessageTradeAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.message.MessageSystemAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.identify.personal.IdentifyPersonalAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.identify.IdentifyManagerAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.identify.personal.MemberMangerAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.identify.personal.MemberDetailAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.identify.company.CompanyManagerAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.identify.company.CompanyCreateAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.identify.company.CompanyCreateNextAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.identify.company.IndustryAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.identify.company.CompanyIdentifyAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.identify.company.IdentifyProcessAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.vip.RechargeAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.account.AccountManagerAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.account.UpdatePsdAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.account.CheckPhoneAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.account.UpdatePhoneAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.account.ManagerSuccessAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.account.BindCardAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.account.BankCardListAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.account.IdentifyAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.common.SearchCommonAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.ForgetPsdAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.ForgetPsd2Act"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.publish.PublishStateAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.state.StateListAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.state.StateDetailAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.people.PeopleDetailAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.people.RecommendSelfAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.article.ArticleDetailAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.people.PeopleApproveAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.organ.OrganListAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.project.SendMessageAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.project.PeopleViewAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.common.HomeCityListAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.home.people.PeopleStateAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.BindAct"
+            android:screenOrientation="portrait" />
+
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5b15e9a08f4a9d27d1000046"></meta-data>
+        <meta-data
+            android:name="UMENG_MESSAGE_SECRET"
+            android:value="b99c8ba7beb6f4c066b0f475ab659907"></meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="appstore"></meta-data>
+
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.umeng.socialize.editorpage.ShareActivity"
+            android:excludeFromRecents="true"
+            android:theme="@style/Theme.UMDefault" />
+        <activity
+            android:name="com.umeng.qq.tencent.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent1106475179" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.umeng.qq.tencent.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!--微博分享-->
+        <activity
+            android:name=".WBShareActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.umeng.socialize.media.WBShareCallBackActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
 
     </application>
 
