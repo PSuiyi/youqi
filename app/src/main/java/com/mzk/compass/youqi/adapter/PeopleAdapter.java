@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.bean.PeopleBean;
 import com.mzk.compass.youqi.ui.home.people.PeopleDetailAct;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
@@ -68,8 +69,12 @@ public class PeopleAdapter extends BaseQuickAdapter<PeopleBean, BaseViewHolder> 
             mDataManager.setViewVisibility(rvTrade, false);
         }
 
-        if (bean.getIsCollected().equals("true")) {
-            ivFav.setImageResource(R.mipmap.shoucanghuang);
+        if (!StringUtil.isBlank(bean.getIsCollected())) {
+            if (bean.getIsCollected().equals("true")) {
+                ivFav.setImageResource(R.mipmap.shoucanghuang);
+            } else {
+                ivFav.setImageResource(R.mipmap.shoucang);
+            }
         } else {
             ivFav.setImageResource(R.mipmap.shoucang);
         }

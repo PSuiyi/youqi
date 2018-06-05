@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.bean.OrganBean;
 import com.mzk.compass.youqi.ui.home.organ.OrganDetailAct;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
@@ -49,8 +50,12 @@ public class OrganAdapter extends BaseQuickAdapter<OrganBean, BaseViewHolder> im
         mDataManager.setValueToView(tvContent, bean.getSummary());
         mDataManager.setValueToView(tvCountFav, bean.getCollectionNum());
         mDataManager.setValueToView(tvCountView, bean.getVisiteNum());
-        if (bean.getIsCollected().equals("true")) {
-            ivFav.setImageResource(R.mipmap.shoucanghuang);
+        if (!StringUtil.isBlank(bean.getIsCollected())) {
+            if (bean.getIsCollected().equals("true")) {
+                ivFav.setImageResource(R.mipmap.shoucanghuang);
+            } else {
+                ivFav.setImageResource(R.mipmap.shoucang);
+            }
         } else {
             ivFav.setImageResource(R.mipmap.shoucang);
         }
