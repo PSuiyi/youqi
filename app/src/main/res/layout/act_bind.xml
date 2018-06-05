@@ -32,6 +32,7 @@
             <View style="@style/LineEdit" />
 
             <com.znz.compass.znzlibray.views.EditTextWithDel
+                android:id="@+id/etPhone"
                 style="@style/EditPhoneStyle"
                 android:hint="请输入手机号" />
 
@@ -53,13 +54,16 @@
             <View style="@style/LineEdit" />
 
             <com.znz.compass.znzlibray.views.EditTextWithDel
+                android:id="@+id/etCode"
                 style="@style/EditStyle"
                 android:layout_weight="1"
-                android:hint="请输入验证码" />
+                android:hint="请输入验证码"
+                android:inputType="number" />
 
             <View style="@style/LineEdit" />
 
             <TextView
+                android:id="@+id/tvGetCode"
                 style="@style/TextStyle"
                 android:text="获取验证码" />
         </LinearLayout>
@@ -70,6 +74,14 @@
             android:id="@+id/tvSubmit"
             style="@style/BtnStyle"
             android:layout_marginTop="20dp"
-            android:text="下一步" />
+            android:text="确定" />
+
+        <TextView
+            android:id="@+id/tvCancel"
+            style="@style/BtnStyle"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_border_gray"
+            android:text="先看看，下次完善"
+            android:textColor="@color/text_color" />
     </LinearLayout>
 </LinearLayout>

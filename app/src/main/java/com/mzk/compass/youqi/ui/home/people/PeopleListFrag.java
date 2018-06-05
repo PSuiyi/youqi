@@ -41,7 +41,7 @@ import rx.Observable;
  * User： PSuiyi
  * Description：
  */
-public class PeopleListFrag extends BaseAppListFragment {
+public class PeopleListFrag extends BaseAppListFragment<PeopleBean> {
     @Bind(R.id.tvOpt1)
     TextView tvOpt1;
     @Bind(R.id.tvOpt2)
@@ -106,6 +106,44 @@ public class PeopleListFrag extends BaseAppListFragment {
     protected void initializeView() {
         adapter = new PeopleAdapter(dataList);
         rvRefresh.setAdapter(adapter);
+
+        adapter.setOnItemChildClickListener((adapter, view, position) -> {
+            PeopleBean bean = dataList.get(position);
+            switch (view.getId()) {
+                case R.id.ivShare:
+                    PopupWindowManager.getInstance(activity).showShare(view, (type, values) -> {
+
+                    });
+                    break;
+                case R.id.ivFav:
+                    if (bean.getIsCollected().equals("true")) {
+                        Map<String, String> params = new HashMap<>();
+                        params.put("type", "2");
+                        params.put("id", bean.getId());
+                        mModel.requestCancalCollect(params, new ZnzHttpListener() {
+                            @Override
+                            public void onSuccess(JSONObject responseOriginal) {
+                                super.onSuccess(responseOriginal);
+                                bean.setIsCollected("false");
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+                    } else {
+                        Map<String, String> params = new HashMap<>();
+                        params.put("type", "2");
+                        params.put("id", bean.getId());
+                        mModel.requestAddCollect(params, new ZnzHttpListener() {
+                            @Override
+                            public void onSuccess(JSONObject responseOriginal) {
+                                super.onSuccess(responseOriginal);
+                                bean.setIsCollected("true");
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+                    }
+                    break;
+            }
+        });
 
         switch (from) {
             case "投资人":

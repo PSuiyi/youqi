@@ -132,10 +132,12 @@ public class OrganDetailAct extends BaseAppActivity {
                     Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang2);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                     tvOption3.setCompoundDrawables(null, drawable, null, null);
+                    ivFav.setImageResource(R.mipmap.shoucanghuang);
                 } else {
                     Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucang);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                     tvOption3.setCompoundDrawables(null, drawable, null, null);
+                    ivFav.setImageResource(R.mipmap.shoucang);
                 }
                 if (bean.getTradeid() != null & bean.getTradeid().size() > 0) {
                     String temp = "";

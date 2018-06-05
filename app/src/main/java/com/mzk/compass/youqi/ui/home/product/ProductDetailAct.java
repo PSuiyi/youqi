@@ -133,11 +133,20 @@ public class ProductDetailAct extends BaseAppActivity {
                 if (!StringUtil.isBlank(bean.getIsCollected())) {
                     if (bean.getIsCollected().equals("true")) {
                         ivFav.setImageResource(R.mipmap.shoucanghuang);
+                        Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang2);
+                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                        tvFav.setCompoundDrawables(null, drawable, null, null);
                     } else {
                         ivFav.setImageResource(R.mipmap.shoucang);
+                        Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucang);
+                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                        tvFav.setCompoundDrawables(null, drawable, null, null);
                     }
                 } else {
                     ivFav.setImageResource(R.mipmap.shoucang);
+                    Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucang);
+                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                    tvFav.setCompoundDrawables(null, drawable, null, null);
                 }
             }
 

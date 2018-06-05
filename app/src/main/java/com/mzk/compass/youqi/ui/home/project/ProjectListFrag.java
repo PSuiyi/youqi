@@ -123,6 +123,44 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
         adapter = new ProjectAdapter(dataList);
         rvRefresh.setAdapter(adapter);
 
+        adapter.setOnItemChildClickListener((adapter, view, position) -> {
+            ProjectBean bean = dataList.get(position);
+            switch (view.getId()) {
+                case R.id.ivShare:
+                    PopupWindowManager.getInstance(activity).showShare(view, (type, values) -> {
+
+                    });
+                    break;
+                case R.id.ivFav:
+                    if (bean.getIsCollected().equals("true")) {
+                        Map<String, String> params = new HashMap<>();
+                        params.put("type", "1");
+                        params.put("id", bean.getId());
+                        mModel.requestCancalCollect(params, new ZnzHttpListener() {
+                            @Override
+                            public void onSuccess(JSONObject responseOriginal) {
+                                super.onSuccess(responseOriginal);
+                                bean.setIsCollected("false");
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+                    } else {
+                        Map<String, String> params = new HashMap<>();
+                        params.put("type", "1");
+                        params.put("id", bean.getId());
+                        mModel.requestAddCollect(params, new ZnzHttpListener() {
+                            @Override
+                            public void onSuccess(JSONObject responseOriginal) {
+                                super.onSuccess(responseOriginal);
+                                bean.setIsCollected("true");
+                                adapter.notifyDataSetChanged();
+                            }
+                        });
+                    }
+                    break;
+            }
+        });
+
         switch (from) {
             case "首页全部项目":
             case "搜索":
