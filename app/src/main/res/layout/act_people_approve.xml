@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:focusableInTouchMode="true"
     android:orientation="vertical">
 
     <include layout="@layout/include_common_navigation" />
@@ -29,7 +30,7 @@
                 <ImageView style="@style/DotRedStyle" />
 
                 <TextView
-                    style="@style/TitleTextStyle"
+                    style="@style/TitleGrayTextStyle"
                     android:text="真实姓名" />
             </LinearLayout>
 
@@ -55,7 +56,7 @@
                 <ImageView style="@style/DotRedStyle" />
 
                 <TextView
-                    style="@style/TitleTextStyle"
+                    style="@style/TitleGrayTextStyle"
                     android:text="关注行业" />
 
                 <View style="@style/WeightView" />
@@ -69,19 +70,16 @@
 
             <View style="@style/LineBoth" />
 
-
-            <View style="@style/LineBoth" />
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="@dimen/distance_view">
 
-               <com.znz.compass.znzlibray.views.ZnzTagView
-                   android:id="@+id/tagHangye"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"></com.znz.compass.znzlibray.views.ZnzTagView>
+                <com.znz.compass.znzlibray.views.ZnzTagView
+                    android:id="@+id/tagHangye"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
             <View style="@style/LineBoth" />
@@ -97,7 +95,7 @@
                 <ImageView style="@style/DotRedStyle" />
 
                 <TextView
-                    style="@style/TitleTextStyle"
+                    style="@style/TitleGrayTextStyle"
                     android:text="投资轮次" />
 
                 <View style="@style/WeightView" />
@@ -120,7 +118,7 @@
                 <com.znz.compass.znzlibray.views.ZnzTagView
                     android:id="@+id/tagLunci"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"></com.znz.compass.znzlibray.views.ZnzTagView>
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -136,7 +134,7 @@
                 <ImageView style="@style/DotRedStyle" />
 
                 <TextView
-                    style="@style/TitleTextStyle"
+                    style="@style/TitleGrayTextStyle"
                     android:text="投资人身份" />
             </LinearLayout>
 
@@ -174,8 +172,33 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/distance_view">
 
+                <ImageView style="@style/DotRedStyle" />
+
                 <TextView
-                    style="@style/TitleTextStyle"
+                    style="@style/TitleGrayTextStyle"
+                    android:text="机构名称" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
+            <EditText
+                android:id="@+id/etGroupName"
+                style="@style/EditStyle"
+                android:layout_width="match_parent"
+                android:hint="请输入机构名称"
+                android:padding="@dimen/distance_view"
+                android:textSize="@dimen/title_size" />
+
+            <View style="@style/LineBoth" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <TextView
+                    style="@style/TitleGrayTextStyle"
                     android:text="上传名片" />
             </LinearLayout>
 
@@ -211,7 +234,7 @@
                 </FrameLayout>
 
                 <TextView
-                    style="@style/TextStyle"
+                    style="@style/TextGrayStyle"
                     android:layout_marginTop="10dp"
                     android:text="照片支持jpg/jpeg/bmp格式，最大不超过5M。名片正面，共1张。"
                     android:textSize="@dimen/text_size_10" />
@@ -247,14 +270,14 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/distance_view">
 
-
                 <CheckBox
                     android:id="@+id/cbSelect"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
                     android:layout_marginRight="@dimen/distance_divider"
                     android:background="@drawable/selector_checkbox"
-                    android:button="@null" />
+                    android:button="@null"
+                    android:enabled="true" />
 
                 <TextView
                     style="@style/TextGrayStyle"

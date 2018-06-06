@@ -1,8 +1,6 @@
 package com.mzk.compass.youqi.ui.home.people;
 
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -13,7 +11,6 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
-import com.mzk.compass.youqi.adapter.TagsAdapter;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.bean.IdentifyBean;
 import com.mzk.compass.youqi.bean.IndustryBean;
@@ -73,6 +70,8 @@ public class PeopleApproveAct extends BaseAppActivity {
     TextView tvSubmit;
     @Bind(R.id.ivClear)
     ImageView ivClear;
+    @Bind(R.id.etGroupName)
+    EditText etGroupName;
 
     private List<IndustryBean> hangyeList = new ArrayList<>();
     private List<IndustryBean> lunciList = new ArrayList<>();
@@ -103,6 +102,7 @@ public class PeopleApproveAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
+        cbSelect.setChecked(true);
     }
 
     @Override
@@ -131,6 +131,7 @@ public class PeopleApproveAct extends BaseAppActivity {
                 if (!StringUtil.isBlank(json.getString("roleData"))) {
                     shenFenList.addAll(JSON.parseArray(json.getString("roleData"), IndustryBean.class));
                 }
+
                 if (!StringUtil.isBlank(json.getString("myApproveInfo"))) {
                     IdentifyBean bean = JSON.parseObject(json.getString("myApproveInfo"), IdentifyBean.class);
                     etName.setText(bean.getRealName());
@@ -157,11 +158,16 @@ public class PeopleApproveAct extends BaseAppActivity {
                             tvShenFen.setText(industryBean.getName());
                         }
                     }
+
+                    mDataManager.setValueToView(etGroupName, bean.getGroupName());
+
                     getTraids();
                     getRoundids();
-                    ivCard.loadHttpImage(bean.getNameCard());
-
+                    ivCard.loadRectImage(bean.getNameCard());
+                    nameCard = bean.getNameCard();
+                    roleid = bean.getRoleid();
                 }
+
                 if (json.getString("canSubmit").equals("true")) {
                     llHangYe.setClickable(true);
                     llLunci.setClickable(true);
@@ -195,6 +201,7 @@ public class PeopleApproveAct extends BaseAppActivity {
                     tvYiRenZheng.setVisibility(View.VISIBLE);
                     tvSubmit.setVisibility(View.GONE);
                 }
+
                 if (!StringUtil.isBlank(json.getString("isInstitution"))) {
                     if (json.getString("isInstitution").equals("true")) {
                         for (int i = 0; i < shenFenList.size(); i++) {
@@ -299,26 +306,27 @@ public class PeopleApproveAct extends BaseAppActivity {
                     return;
                 }
                 if (StringUtil.isBlank(nameCard)) {
-                    mDataManager.showToast("请输入真实姓名");
+                    mDataManager.showToast("请上传名片");
                     return;
                 }
-                if (cbSelect.isChecked()) {
+                if (!cbSelect.isChecked()) {
                     mDataManager.showToast("请同意用户协议");
                     return;
                 }
+
                 Map<String, String> params = new HashMap<>();
                 params.put("realName", mDataManager.getValueFromView(etName));
                 params.put("tradeid", tradeid);
                 params.put("roundsid", roundsid);
                 params.put("roleid", roleid);
                 params.put("nameCard", nameCard);
-                if (!StringUtil.isBlank(groupName)) {
-                    params.put("groupName", groupName);
-                }
+                params.put("groupName", mDataManager.getValueFromView(etGroupName));
                 mModel.requestIdentify(params, new ZnzHttpListener() {
                     @Override
                     public void onSuccess(JSONObject responseOriginal) {
                         super.onSuccess(responseOriginal);
+                        mDataManager.showToast("上传成功");
+                        finish();
                     }
                 });
                 break;

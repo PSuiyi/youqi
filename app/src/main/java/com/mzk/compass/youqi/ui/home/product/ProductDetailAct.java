@@ -116,15 +116,6 @@ public class ProductDetailAct extends BaseAppActivity {
                 mDataManager.setValueToView(tvCountPayed, "成交量：" + bean.getShowNum());
                 mDataManager.setValueToView(tvNumber, bean.getCount());
                 wvDetail.loadContent(bean.getContent());
-                if (bean.getIsCollected().equals("true")) {
-                    Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang2);
-                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                    tvFav.setCompoundDrawables(null, drawable, null, null);
-                } else {
-                    Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucang);
-                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                    tvFav.setCompoundDrawables(null, drawable, null, null);
-                }
 
                 if (!bean.getArea().isEmpty()) {
                     tvArea.setText(bean.getArea().get(0).getName());
@@ -164,7 +155,7 @@ public class ProductDetailAct extends BaseAppActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.llCity, R.id.llArea, R.id.tvFav, R.id.tvPhone, R.id.tvBuy, R.id.ivDown, R.id.ivAdd})
+    @OnClick({R.id.llCity, R.id.ivFav, R.id.llArea, R.id.tvFav, R.id.tvPhone, R.id.tvBuy, R.id.ivDown, R.id.ivAdd})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.llCity:
@@ -191,6 +182,7 @@ public class ProductDetailAct extends BaseAppActivity {
                         })
                         .show();
                 break;
+            case R.id.ivFav:
             case R.id.tvFav:
                 if (bean.getIsCollected().equals("true")) {
                     cancalCollect();
@@ -255,6 +247,7 @@ public class ProductDetailAct extends BaseAppActivity {
                 Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang2);
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                 tvFav.setCompoundDrawables(null, drawable, null, null);
+                ivFav.setBackgroundResource(R.mipmap.shoucanghuang);
                 bean.setIsCollected("true");
                 EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_PRODUCT));
             }
@@ -273,6 +266,7 @@ public class ProductDetailAct extends BaseAppActivity {
                 Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucang);
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                 tvFav.setCompoundDrawables(null, drawable, null, null);
+                ivFav.setBackgroundResource(R.mipmap.shoucang);
                 bean.setIsCollected("false");
                 EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_PRODUCT));
             }

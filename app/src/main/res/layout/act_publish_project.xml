@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:focusableInTouchMode="true"
     android:orientation="vertical">
 
     <include layout="@layout/include_common_navigation" />
@@ -29,7 +30,7 @@
                 <ImageView style="@style/DotRedStyle" />
 
                 <TextView
-                    style="@style/TitleTextStyle"
+                    style="@style/TitleGrayTextStyle"
                     android:text="项目名称" />
             </LinearLayout>
 
@@ -54,7 +55,7 @@
                 <ImageView style="@style/DotRedStyle" />
 
                 <TextView
-                    style="@style/TitleTextStyle"
+                    style="@style/TitleGrayTextStyle"
                     android:text="项目地址" />
             </LinearLayout>
 
@@ -101,7 +102,7 @@
                 <ImageView style="@style/DotRedStyle" />
 
                 <TextView
-                    style="@style/TitleTextStyle"
+                    style="@style/TitleGrayTextStyle"
                     android:text="项目logo" />
             </LinearLayout>
 
@@ -125,7 +126,7 @@
                 <ImageView style="@style/DotRedStyle" />
 
                 <TextView
-                    style="@style/TitleTextStyle"
+                    style="@style/TitleGrayTextStyle"
                     android:text="姓名" />
             </LinearLayout>
 
@@ -150,7 +151,7 @@
                 <ImageView style="@style/DotRedStyle" />
 
                 <TextView
-                    style="@style/TitleTextStyle"
+                    style="@style/TitleGrayTextStyle"
                     android:text="电话" />
             </LinearLayout>
 
@@ -175,7 +176,7 @@
                 <ImageView style="@style/DotRedStyle" />
 
                 <TextView
-                    style="@style/TitleTextStyle"
+                    style="@style/TitleGrayTextStyle"
                     android:text="公司名称" />
             </LinearLayout>
 
@@ -201,7 +202,7 @@
                 <ImageView style="@style/DotRedStyle" />
 
                 <TextView
-                    style="@style/TitleTextStyle"
+                    style="@style/TitleGrayTextStyle"
                     android:text="公司简称" />
             </LinearLayout>
 
@@ -233,7 +234,7 @@
                     <ImageView style="@style/DotRedStyle" />
 
                     <TextView
-                        style="@style/TitleTextStyle"
+                        style="@style/TitleGrayTextStyle"
                         android:text="公司头像" />
                 </LinearLayout>
 
