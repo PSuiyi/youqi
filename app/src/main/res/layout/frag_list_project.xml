@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:id="@+id/llFilt1"
@@ -98,7 +98,7 @@
 
                 <TextView
                     android:id="@+id/tvSort1"
-                    style="@style/TitleRedTextStyle"
+                    style="@style/TitleTextStyle"
                     android:text="成立时间"
                     android:textSize="@dimen/title_size" />
 

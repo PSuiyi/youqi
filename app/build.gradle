@@ -27,6 +27,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true// 防止65536
         ndk {
             abiFilters "armeabi", "armeabi-v7a"
         }

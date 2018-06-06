@@ -154,6 +154,13 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
         tvShizhi = bindViewById(header, R.id.tvShizhi);
         tvState = bindViewById(header, R.id.tvState);
 
+        ivFav.setOnClickListener(v -> {
+            handleFav();
+        });
+
+        ivShare.setOnClickListener(v -> {
+            handleShare(v);
+        });
 
         llMore.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
@@ -365,16 +372,10 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
                 }
                 break;
             case R.id.tvOption3:
-                if (bean.getIsCollected().equals("true")) {
-                    cancalCollect();
-                } else {
-                    addCollect();
-                }
+                handleFav();
                 break;
             case R.id.tvOption4:
-                PopupWindowManager.getInstance(activity).showShare(view, (type, values) -> {
-
-                });
+                handleShare(view);
                 break;
             case R.id.tvOption5:
                 rvRefresh.smoothScrollToPosition(0);
@@ -406,6 +407,20 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
                     }
                 });
                 break;
+        }
+    }
+
+    private void handleShare(View view) {
+        PopupWindowManager.getInstance(activity).showShare(view, (type, values) -> {
+
+        });
+    }
+
+    private void handleFav() {
+        if (bean.getIsCollected().equals("true")) {
+            cancalCollect();
+        } else {
+            addCollect();
         }
     }
 
