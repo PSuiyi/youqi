@@ -52,7 +52,7 @@ public class SplashAct extends BaseAppActivity {
                     }
 //                    }
 //                    gotoActivity(LoginAct.class);
-//                    finish();
+                    finish();
                 })
                 .subscribe();
     }

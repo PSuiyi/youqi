@@ -18,6 +18,7 @@ import com.mzk.compass.youqi.event.EventTags;
 import com.mzk.compass.youqi.ui.home.people.RecommendSelfAct;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.WebViewWithProgress;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
@@ -128,17 +129,25 @@ public class OrganDetailAct extends BaseAppActivity {
                 mDataManager.setValueToView(tvWeb, bean.getWebsite());
                 mDataManager.setValueToView(tvAddress, bean.getProvince() + bean.getCity() + bean.getArea() + bean.getAddress());
 
-                if (bean.getIsCollected().equals("true")) {
-                    Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang2);
-                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                    tvOption3.setCompoundDrawables(null, drawable, null, null);
-                    ivFav.setImageResource(R.mipmap.shoucanghuang);
+                if (!StringUtil.isBlank(bean.getIsCollected())) {
+                    if (bean.getIsCollected().equals("true")) {
+                        ivFav.setImageResource(R.mipmap.shoucanghuang);
+                        Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang2);
+                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                        tvOption3.setCompoundDrawables(null, drawable, null, null);
+                    } else {
+                        ivFav.setImageResource(R.mipmap.shoucang);
+                        Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucangxia);
+                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                        tvOption3.setCompoundDrawables(null, drawable, null, null);
+                    }
                 } else {
-                    Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucang);
+                    ivFav.setImageResource(R.mipmap.shoucang);
+                    Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucangxia);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                     tvOption3.setCompoundDrawables(null, drawable, null, null);
-                    ivFav.setImageResource(R.mipmap.shoucang);
                 }
+
                 if (bean.getTradeid() != null & bean.getTradeid().size() > 0) {
                     String temp = "";
                     for (TagYouBean tagYouBean : bean.getTradeid()) {
@@ -185,7 +194,7 @@ public class OrganDetailAct extends BaseAppActivity {
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 mDataManager.showToast("取消收藏成功");
-                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucang);
+                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucangxia);
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                 tvOption3.setCompoundDrawables(null, drawable, null, null);
                 ivFav.setImageResource(R.mipmap.shoucang);

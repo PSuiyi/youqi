@@ -140,7 +140,7 @@ public class NewsDetailAct extends BaseAppListActivity<CommentBean> implements V
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                     tvOption2.setCompoundDrawables(null, drawable, null, null);
                 } else {
-                    Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucang);
+                    Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucangxia);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                     tvOption2.setCompoundDrawables(null, drawable, null, null);
                 }
@@ -198,7 +198,7 @@ public class NewsDetailAct extends BaseAppListActivity<CommentBean> implements V
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 mDataManager.showToast("取消收藏成功");
-                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucang);
+                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucangxia);
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                 tvOption2.setCompoundDrawables(null, drawable, null, null);
                 bean.setIsCollected("false");
