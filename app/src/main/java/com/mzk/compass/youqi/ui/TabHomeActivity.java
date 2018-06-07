@@ -1,5 +1,6 @@
 package com.mzk.compass.youqi.ui;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -20,6 +21,7 @@ import com.mzk.compass.youqi.ui.mine.MineFrag;
 import com.mzk.compass.youqi.ui.news.NewsFrag;
 import com.mzk.compass.youqi.ui.publish.PublishAct;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
+import com.tbruyelle.rxpermissions.RxPermissions;
 import com.znz.compass.znzlibray.common.DataManager;
 import com.znz.compass.znzlibray.eventbus.BaseEvent;
 import com.znz.compass.znzlibray.eventbus.EventManager;
@@ -72,6 +74,16 @@ public class TabHomeActivity extends BaseAppActivity {
 
     @Override
     protected void initializeVariate() {
+        new RxPermissions(activity)
+                .request(Manifest.permission.CAMERA,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe(granted -> {
+                    if (granted) {
+
+                    } else {
+                        // At least one permission is denied
+                    }
+                });
     }
 
     @Override
