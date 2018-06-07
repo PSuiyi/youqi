@@ -140,7 +140,7 @@ public class UpdateInfoAct extends BaseAppActivity {
                 super.onSuccess(responseOriginal);
                 switch (from) {
                     case "姓名":
-                        mDataManager.saveTempData(Constants.User.NICKNAME, mDataManager.getValueFromView(etContent));
+                        mDataManager.saveTempData(Constants.User.USERNAME, mDataManager.getValueFromView(etContent));
                         break;
                     case "所属公司":
                         mDataManager.saveTempData(Constants.User.CNAME, mDataManager.getValueFromView(etContent));

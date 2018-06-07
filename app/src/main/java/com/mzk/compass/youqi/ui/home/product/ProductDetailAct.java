@@ -2,6 +2,7 @@ package com.mzk.compass.youqi.ui.home.product;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -44,6 +45,10 @@ public class ProductDetailAct extends BaseAppActivity {
     LinearLayout llCity;
     @Bind(R.id.llArea)
     LinearLayout llArea;
+    @Bind(R.id.llBack)
+    LinearLayout llBack;
+    @Bind(R.id.ivBack)
+    ImageView ivBack;
     @Bind(R.id.tvFav)
     TextView tvFav;
     @Bind(R.id.tvPhone)
@@ -74,6 +79,9 @@ public class ProductDetailAct extends BaseAppActivity {
     ImageView ivDown;
     @Bind(R.id.ivAdd)
     ImageView ivAdd;
+    @Bind(R.id.appBarLayout)
+    AppBarLayout appBarLayout;
+
     private String id;
     private ProductBean bean;
 
@@ -91,7 +99,13 @@ public class ProductDetailAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-
+        appBarLayout.addOnOffsetChangedListener((appBarLayout1, verticalOffset) -> {
+            if (Math.abs(verticalOffset) >= (Math.abs(appBarLayout1.getTotalScrollRange()))) {
+                ivBack.setImageResource(R.drawable.topback);
+            } else {
+                ivBack.setImageResource(R.drawable.topback_white);
+            }
+        });
     }
 
     @Override

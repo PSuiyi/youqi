@@ -1,6 +1,8 @@
 package com.mzk.compass.youqi.ui.home.people;
 
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -11,11 +13,13 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
+import com.mzk.compass.youqi.adapter.TagsAdapter;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.bean.IdentifyBean;
 import com.mzk.compass.youqi.bean.IndustryBean;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
+import com.mzk.compass.youqi.ui.common.RemindAct;
 import com.mzk.compass.youqi.ui.mine.identify.company.IndustryAct;
 import com.znz.compass.znzlibray.bean.TagBean;
 import com.znz.compass.znzlibray.eventbus.EventManager;
@@ -50,10 +54,10 @@ public class PeopleApproveAct extends BaseAppActivity {
     LinearLayout llHangYe;
     @Bind(R.id.llLunci)
     LinearLayout llLunci;
-    @Bind(R.id.tagHangye)
-    ZnzTagView tagHangye;
-    @Bind(R.id.tagLunci)
-    ZnzTagView tagLunci;
+    @Bind(R.id.rvHangye)
+    RecyclerView rvHangye;
+    @Bind(R.id.rvLunCi)
+    RecyclerView rvLunCi;
     @Bind(R.id.tvShenFen)
     TextView tvShenFen;
     @Bind(R.id.llShenFen)
@@ -76,9 +80,10 @@ public class PeopleApproveAct extends BaseAppActivity {
     private List<IndustryBean> hangyeList = new ArrayList<>();
     private List<IndustryBean> lunciList = new ArrayList<>();
     private List<IndustryBean> shenFenList = new ArrayList<>();
-    private List<TagBean> selectHangye = new ArrayList<>();
-    private List<TagBean> selectLunci = new ArrayList<>();
-
+    private List<IndustryBean> selectHangye = new ArrayList<>();
+    private List<IndustryBean> selectLunci = new ArrayList<>();
+    private TagsAdapter adapter1;
+    private TagsAdapter adapter2;
     private String tradeid;
     private String roundsid;
     private String roleid;
@@ -103,6 +108,12 @@ public class PeopleApproveAct extends BaseAppActivity {
     @Override
     protected void initializeView() {
         cbSelect.setChecked(true);
+        adapter1 = new TagsAdapter(selectHangye);
+        rvHangye.setLayoutManager(new GridLayoutManager(context, 5));
+        rvHangye.setAdapter(adapter1);
+        adapter2 = new TagsAdapter(selectLunci);
+        rvLunCi.setLayoutManager(new GridLayoutManager(context, 5));
+        rvLunCi.setAdapter(adapter2);
     }
 
     @Override
@@ -135,23 +146,13 @@ public class PeopleApproveAct extends BaseAppActivity {
                 if (!StringUtil.isBlank(json.getString("myApproveInfo"))) {
                     IdentifyBean bean = JSON.parseObject(json.getString("myApproveInfo"), IdentifyBean.class);
                     etName.setText(bean.getRealName());
-                    if (bean.getTradeid() != null & !bean.getTradeid().isEmpty()) {
-                        for (IndustryBean industryBean : bean.getTradeid()) {
-                            TagBean tagBean = new TagBean();
-                            tagBean.setId(industryBean.getId());
-                            tagBean.setTitle(industryBean.getName());
-                            selectHangye.add(tagBean);
-                        }
-                        tagHangye.setDataList(selectHangye);
+                    if (bean.getTradeid() != null && !bean.getTradeid().isEmpty()) {
+                        selectHangye.addAll(bean.getTradeid());
+                        adapter1.notifyDataSetChanged();
                     }
-                    if (bean.getRoundsid() != null & !bean.getRoundsid().isEmpty()) {
-                        for (IndustryBean industryBean : bean.getRoundsid()) {
-                            TagBean tagBean = new TagBean();
-                            tagBean.setId(industryBean.getId());
-                            tagBean.setTitle(industryBean.getName());
-                            selectLunci.add(tagBean);
-                        }
-                        tagLunci.setDataList(selectLunci);
+                    if (bean.getRoundsid() != null && !bean.getRoundsid().isEmpty()) {
+                        selectLunci.addAll(bean.getRoundsid());
+                        adapter2.notifyDataSetChanged();
                     }
                     for (IndustryBean industryBean : shenFenList) {
                         if (industryBean.getId().equals(bean.getRoleid())) {
@@ -217,7 +218,7 @@ public class PeopleApproveAct extends BaseAppActivity {
     }
 
 
-    @OnClick({R.id.llHangYe, R.id.llLunci, R.id.ivClear, R.id.llShenFen, R.id.llXieyi, R.id.ivCard, R.id.tvSubmit})
+    @OnClick({R.id.llHangYe, R.id.llLunci, R.id.ivClear, R.id.llShenFen, R.id.llXieyi, R.id.ivCard, R.id.tvSubmit, R.id.tvRemind})
     public void onViewClicked(View view) {
         Bundle bundle = new Bundle();
         switch (view.getId()) {
@@ -334,6 +335,9 @@ public class PeopleApproveAct extends BaseAppActivity {
                 ivClear.setVisibility(View.GONE);
                 ivCard.loadHttpImage("");
                 break;
+            case R.id.tvRemind:
+                gotoActivity(RemindAct.class);
+                break;
         }
     }
 
@@ -355,14 +359,9 @@ public class PeopleApproveAct extends BaseAppActivity {
             case EventTags.REFRESH_HANYE:
                 selectHangye.clear();
                 List<IndustryBean> list = (List<IndustryBean>) event.getBean();
-                if (list != null & !list.isEmpty()) {
-                    for (IndustryBean industryBean : list) {
-                        TagBean tagBean = new TagBean();
-                        tagBean.setId(industryBean.getId());
-                        tagBean.setTitle(industryBean.getName());
-                        selectHangye.add(tagBean);
-                    }
-                    tagHangye.setDataList(selectHangye);
+                if (list != null && !list.isEmpty()) {
+                    selectHangye.addAll(list);
+                    adapter1.notifyDataSetChanged();
                     getTraids();
                 }
 
@@ -370,14 +369,9 @@ public class PeopleApproveAct extends BaseAppActivity {
             case EventTags.REFRESH_LUNCI:
                 selectLunci.clear();
                 List<IndustryBean> list1 = (List<IndustryBean>) event.getBean();
-                if (list1 != null & !list1.isEmpty()) {
-                    for (IndustryBean industryBean : list1) {
-                        TagBean tagBean = new TagBean();
-                        tagBean.setId(industryBean.getId());
-                        tagBean.setTitle(industryBean.getName());
-                        selectLunci.add(tagBean);
-                    }
-                    tagHangye.setDataList(selectLunci);
+                if (list1 != null && !list1.isEmpty()) {
+                    selectLunci.addAll(list1);
+                    adapter2.notifyDataSetChanged();
                     getRoundids();
                 }
                 break;
@@ -386,7 +380,7 @@ public class PeopleApproveAct extends BaseAppActivity {
 
     private void getTraids() {
         String ids = "";
-        for (TagBean industryBean : selectHangye) {
+        for (IndustryBean industryBean : selectHangye) {
             ids = industryBean.getId() + "," + ids;
         }
         tradeid = ids.substring(0, ids.length() - 1);
@@ -394,7 +388,7 @@ public class PeopleApproveAct extends BaseAppActivity {
 
     private void getRoundids() {
         String ids = "";
-        for (TagBean industryBean : selectLunci) {
+        for (IndustryBean industryBean : selectLunci) {
             ids = industryBean.getId() + "," + ids;
         }
         roundsid = ids.substring(0, ids.length() - 1);

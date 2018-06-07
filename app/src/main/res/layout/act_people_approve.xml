@@ -76,10 +76,11 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/distance_view">
 
-                <com.znz.compass.znzlibray.views.ZnzTagView
-                    android:id="@+id/tagHangye"
-                    android:layout_width="wrap_content"
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvHangye"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
+
             </LinearLayout>
 
             <View style="@style/LineBoth" />
@@ -115,9 +116,9 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/distance_view">
 
-                <com.znz.compass.znzlibray.views.ZnzTagView
-                    android:id="@+id/tagLunci"
-                    android:layout_width="wrap_content"
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvLunCi"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
@@ -217,7 +218,7 @@
                     <com.znz.compass.znzlibray.views.imageloder.HttpImageView
                         android:id="@+id/ivCard"
                         android:layout_width="150dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="100dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"

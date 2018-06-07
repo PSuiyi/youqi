@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.bean.ProductBean;
+import com.mzk.compass.youqi.ui.common.RemindAct;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 
@@ -92,7 +93,7 @@ public class ProductOrderComfirmAct extends BaseAppActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.tvPhone, R.id.tvBuy, R.id.cbSelect})
+    @OnClick({R.id.tvPhone, R.id.tvBuy, R.id.cbSelect, R.id.tvAgree})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvPhone:
@@ -137,6 +138,9 @@ public class ProductOrderComfirmAct extends BaseAppActivity {
                 });
                 break;
             case R.id.cbSelect:
+                break;
+            case R.id.tvAgree:
+                gotoActivity(RemindAct.class);
                 break;
         }
     }

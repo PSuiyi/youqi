@@ -123,7 +123,8 @@ public class CheckPhoneAct extends BaseAppActivity {
                     @Override
                     public void onSuccess(JSONObject responseOriginal) {
                         super.onSuccess(responseOriginal);
-                        etCode.setText(responseOriginal.getString("data"));
+                        etCode.setText("123456");
+                        timer.start();
                     }
                 });
 

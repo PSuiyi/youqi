@@ -66,7 +66,7 @@ public class MineInfoAct extends BaseAppActivity {
         rowDescriptionList.add(new ZnzRowDescription.Builder()
                 .withTitle("姓名")
                 .withEnableArraw(true)
-                .withValue(mDataManager.readTempData(Constants.User.NICKNAME))
+                .withValue(mDataManager.readTempData(Constants.User.USERNAME))
                 .withTextSize(14)
                 .withGravity(true)
                 .withValueColor(mDataManager.getColor(R.color.text_gray))
@@ -218,7 +218,7 @@ public class MineInfoAct extends BaseAppActivity {
     public void onMessageEvent(EventRefresh event) {
         switch (event.getFlag()) {
             case EventTags.REFRESH_USERINFO:
-                rowDescriptionList.get(0).setValue(mDataManager.readTempData(Constants.User.NICKNAME));
+                rowDescriptionList.get(0).setValue(mDataManager.readTempData(Constants.User.USERNAME));
                 rowDescriptionList.get(1).setValue(appUtils.getCompanyName());
                 rowDescriptionList.get(2).setValue(mDataManager.readTempData(Constants.User.DUTY));
                 rowDescriptionList.get(3).setValue(mDataManager.readTempData(Constants.User.EMAIL));

@@ -642,7 +642,7 @@ public class ApiModel extends BaseModel {
      * @return
      */
     public void requestCheckPhone(Map<String, String> params, ZnzHttpListener znzHttpListener) {
-        request(apiService.requestCreateOrder(params), znzHttpListener);
+        request(apiService.requestCheckPhone(params), znzHttpListener);
     }
 
     /**

@@ -194,6 +194,7 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginRight="@dimen/distance_divider"
+                    android:checked="true"
                     android:background="@drawable/selector_checkbox"
                     android:button="@null" />
 
@@ -202,6 +203,7 @@
                     android:text="已阅读并同意" />
 
                 <TextView
+                    android:id="@+id/tvAgree"
                     style="@style/TextRedStyle"
                     android:text="《优企注册条款》" />
             </LinearLayout>
