@@ -1,12 +1,13 @@
 package com.mzk.compass.youqi.utils;
 
+import android.app.Activity;
 import android.content.Context;
 
+import com.mzk.compass.youqi.bean.BannerBean;
 import com.mzk.compass.youqi.bean.UserBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.znz.compass.znzlibray.ZnzApplication;
 import com.znz.compass.znzlibray.common.DataManager;
-import com.znz.compass.znzlibray.common.ZnzConstants;
 import com.znz.compass.znzlibray.utils.StringUtil;
 
 import java.math.BigDecimal;
@@ -122,5 +123,28 @@ public class AppUtils {
 
         double money = pric.multiply(number).doubleValue();
         return "￥" + money;
+    }
+
+    /**
+     * banner点击跳转
+     *
+     * @param activity
+     * @param bean
+     */
+    public void doBannerClick(Activity activity, BannerBean bean) {
+        switch (bean.getContentType()) {
+            case "outside":
+                break;
+            case "project":
+                break;
+            case "approveinvestors":
+                break;
+            case "news":
+                break;
+            case "products":
+                break;
+            case "company":
+                break;
+        }
     }
 }

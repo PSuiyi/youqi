@@ -29,7 +29,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -150,6 +149,7 @@ public class CompanyCreateNextAct extends BaseAppActivity {
                     JSONObject json = JSON.parseObject(responseOriginal.getString("data"));
                     hangyeList.clear();
                     hangyeList.addAll(JSON.parseArray(json.getString("tradeInfo"), IndustryBean.class));
+
                     if (!StringUtil.isBlank(json.getString("companyData"))) {
                         CompanyBean bean = JSON.parseObject(json.getString("companyData"), CompanyBean.class);
                         mDataManager.setValueToView(etCompany, bean.getCname(), "");
@@ -167,6 +167,7 @@ public class CompanyCreateNextAct extends BaseAppActivity {
                             tvHangye.setText(str.substring(0, str.length() - 1));
                         }
                     }
+
                     if (json.getString("canModify").equals("true")) {
                         znzToolBar.setNavRightText("提交");
                         etCompany.setFocusable(true);

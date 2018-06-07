@@ -7,7 +7,6 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.alibaba.fastjson.JSON;
@@ -21,10 +20,11 @@ import com.mzk.compass.youqi.bean.TypeBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.common.SearchCommonAct;
 import com.mzk.compass.youqi.ui.mine.message.MessageTabAct;
+import com.mzk.compass.youqi.utils.AppUtils;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.views.ZnzRemind;
 import com.znz.compass.znzlibray.views.ZnzToolBar;
-import com.znz.compass.znzlibray.views.imageloder.GlideApp;
+import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,9 +57,6 @@ public class NewsFrag extends BaseAppFragment {
     private List<String> tabNames = new ArrayList<>();
     private List<Fragment> fragmentList = new ArrayList<>();
 
-    private List<String> imgPath = new ArrayList<>();
-    private List<String> path = new ArrayList<>();
-
     private List<TypeBean> typeBeanList = new ArrayList<>();
 
     @Override
@@ -89,20 +86,6 @@ public class NewsFrag extends BaseAppFragment {
 
     @Override
     protected void initializeView() {
-        banner.setDelegate((banner, itemView, model, position) -> {
-        });
-        banner.setAdapter(new BGABanner.Adapter<ImageView, String>() {
-            @Override
-            public void fillBannerItem(BGABanner banner, ImageView itemView, String model, int position) {
-                GlideApp.with(activity)
-                        .load(model)
-                        .placeholder(R.mipmap.default_image_rect)
-                        .error(R.mipmap.default_image_rect)
-                        .centerCrop()
-                        .dontAnimate()
-                        .into(itemView);
-            }
-        });
     }
 
     @Override
@@ -130,21 +113,28 @@ public class NewsFrag extends BaseAppFragment {
                 super.onFail(error);
             }
         });
+
         Map<String, String> params1 = new HashMap<>();
         params1.put("bannerType", "MobileNewsBanner");
         mModel.requestBanner(params1, new ZnzHttpListener() {
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
-                imgPath.clear();
-                List<BannerBean> list = new ArrayList<>();
-                list.addAll(JSON.parseArray(responseOriginal.getString("data"), BannerBean.class));
-                if (!list.isEmpty()) {
-                    for (BannerBean bannerBean : list) {
-                        imgPath.add(bannerBean.getImage());
+                List<BannerBean> bannerBeanList = JSON.parseArray(responseOriginal.getString("data"), BannerBean.class);
+                banner.setData(R.layout.banner_common, bannerBeanList, null);
+                banner.setAdapter(new BGABanner.Adapter<LinearLayout, BannerBean>() {
+                    @Override
+                    public void fillBannerItem(BGABanner banner, LinearLayout container, BannerBean bean, int position) {
+                        HttpImageView ivImage = container.findViewById(R.id.ivImage);
+                        ivImage.loadRectImage(bean.getImage());
                     }
-                    banner.setData(imgPath, imgPath);
-                }
+                });
+                banner.setDelegate(new BGABanner.Delegate<LinearLayout, BannerBean>() {
+                    @Override
+                    public void onBannerItemClick(BGABanner banner, LinearLayout container, BannerBean bean, int position) {
+                        AppUtils.getInstance(activity).doBannerClick(activity, bean);
+                    }
+                });
             }
         });
     }

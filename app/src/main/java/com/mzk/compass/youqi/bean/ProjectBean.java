@@ -32,6 +32,7 @@ public class ProjectBean extends BaseZnzBean {
     private String rname;
     private String state;
     private String collectionNum;
+    private String image;
     private String visiteNum;
     private String commentsNum;
     private String rongzistate;
@@ -63,6 +64,14 @@ public class ProjectBean extends BaseZnzBean {
     private TagYouBean rounds;
     private List<TagYouBean> tradeid;
     private List<PeopleBean> team;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public String getTurnoverid() {
         return turnoverid;

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,7 +19,6 @@ import com.mzk.compass.youqi.bean.OrganBean;
 import com.mzk.compass.youqi.bean.PeopleBean;
 import com.mzk.compass.youqi.bean.ProjectBean;
 import com.mzk.compass.youqi.common.Constants;
-import com.mzk.compass.youqi.ui.common.CityListAct;
 import com.mzk.compass.youqi.ui.common.HomeCityListAct;
 import com.mzk.compass.youqi.ui.common.SearchCommonAct;
 import com.mzk.compass.youqi.ui.home.people.PeopleApproveAct;
@@ -29,10 +27,10 @@ import com.mzk.compass.youqi.ui.home.project.ProjectDetailAct;
 import com.mzk.compass.youqi.ui.home.project.ProjectListAct;
 import com.mzk.compass.youqi.ui.mine.message.MessageTabAct;
 import com.mzk.compass.youqi.ui.publish.PublishAct;
+import com.mzk.compass.youqi.utils.AppUtils;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.BitmapUtil;
 import com.znz.compass.znzlibray.utils.StringUtil;
-import com.znz.compass.znzlibray.views.imageloder.GlideApp;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 
@@ -64,7 +62,6 @@ public class HomeFrag extends BaseAppFragment {
     private LinearLayout llHot4;
     private LinearLayout llHot5;
     private BGABanner banner;
-    private List<String> imgPath = new ArrayList<>();
 
     private List<MultiBean> dataList = new ArrayList<>();
     private MultiAdapter adapter;
@@ -148,22 +145,6 @@ public class HomeFrag extends BaseAppFragment {
         banner = bindViewById(header, R.id.banner);
         adapter.addHeaderView(header);
 
-        banner.setDelegate((banner, itemView, model, position) -> {
-        });
-        banner.setAdapter(new BGABanner.Adapter<ImageView, String>() {
-            @Override
-            public void fillBannerItem(BGABanner banner, ImageView itemView, String model, int position) {
-                GlideApp.with(activity)
-                        .load(model)
-                        .placeholder(R.mipmap.default_image_rect)
-                        .error(R.mipmap.default_image_rect)
-                        .centerCrop()
-                        .dontAnimate()
-                        .into(itemView);
-            }
-        });
-
-
         adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
@@ -186,17 +167,21 @@ public class HomeFrag extends BaseAppFragment {
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
-                imgPath.clear();
-                List<BannerBean> list = new ArrayList<>();
-                list.addAll(JSON.parseArray(responseOriginal.getString("data"), BannerBean.class));
-                if (!list.isEmpty()) {
-                    for (BannerBean bannerBean : list) {
-                        imgPath.add(bannerBean.getImage());
+                List<BannerBean> bannerBeanList = JSON.parseArray(responseOriginal.getString("data"), BannerBean.class);
+                banner.setData(R.layout.banner_common, bannerBeanList, null);
+                banner.setAdapter(new BGABanner.Adapter<LinearLayout, BannerBean>() {
+                    @Override
+                    public void fillBannerItem(BGABanner banner, LinearLayout container, BannerBean bean, int position) {
+                        HttpImageView ivImage = container.findViewById(R.id.ivImage);
+                        ivImage.loadRectImage(bean.getImage());
                     }
-                    banner.setData(imgPath, imgPath);
-                    banner.setDelegate((banner, itemView, model, position) -> {
-                    });
-                }
+                });
+                banner.setDelegate(new BGABanner.Delegate<LinearLayout, BannerBean>() {
+                    @Override
+                    public void onBannerItemClick(BGABanner banner, LinearLayout container, BannerBean bean, int position) {
+                        AppUtils.getInstance(activity).doBannerClick(activity, bean);
+                    }
+                });
             }
         });
     }
@@ -226,11 +211,11 @@ public class HomeFrag extends BaseAppFragment {
                             }
                             if (!hotList.isEmpty()) {
                                 if (hotList.size() >= 5) {
-                                    ivImage1.loadVerImage(hotList.get(0).getLogo());
-                                    ivImage2.loadVerImage(hotList.get(1).getLogo());
-                                    ivImage3.loadVerImage(hotList.get(2).getLogo());
-                                    ivImage4.loadVerImage(hotList.get(3).getLogo());
-                                    ivImage5.loadVerImage(hotList.get(4).getLogo());
+                                    ivImage1.loadVerImage(hotList.get(0).getImage());
+                                    ivImage2.loadVerImage(hotList.get(1).getImage());
+                                    ivImage3.loadVerImage(hotList.get(2).getImage());
+                                    ivImage4.loadVerImage(hotList.get(3).getImage());
+                                    ivImage5.loadVerImage(hotList.get(4).getImage());
 
                                     ivImage1.setOnClickListener(v -> {
                                         Bundle bundle = new Bundle();
