@@ -20,6 +20,7 @@ import com.mzk.compass.youqi.event.EventTags;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzlibray.utils.TimeUtils;
 import com.znz.compass.znzlibray.utils.ZnzLog;
 import com.znz.compass.znzlibray.views.WebViewWithProgress;
 
@@ -134,6 +135,8 @@ public class NewsDetailAct extends BaseAppListActivity<CommentBean> implements V
                 mDataManager.setValueToView(tvTitle, bean.getTitle());
                 mDataManager.setValueToView(tvCountFav, bean.getCollectionNum());
                 mDataManager.setValueToView(tvCountComment, bean.getVisiteNum());
+                mDataManager.setValueToView(tvTime, TimeUtils.getFriendlyTimeSpanByNow(bean.getAddTime()));
+
                 wvContent.loadContent(bean.getSummary());
                 if (bean.getIsCollected().equals("true")) {
                     Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang2);

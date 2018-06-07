@@ -272,7 +272,7 @@ public class TimeUtils {
         if (StringUtil.isBlank(time)) {
             return "暂无数据";
         }
-        return new SimpleDateFormat(pattern, Locale.getDefault()).format(string2Date(time, DEFAULT_PATTERN));
+        return new SimpleDateFormat(pattern, Locale.getDefault()).format(new Date(StringUtil.stringToLong(time) * 1000));
     }
 
     /**
@@ -687,7 +687,7 @@ public class TimeUtils {
         if (StringUtil.isBlank(time)) {
             return "暂无数据";
         }
-        return getFriendlyTimeSpanByNow(StringUtil.stringToLong(time));
+        return getFriendlyTimeSpanByNow(StringUtil.stringToLong(time) * 1000);
     }
 
     /**
@@ -748,7 +748,7 @@ public class TimeUtils {
     @SuppressLint("DefaultLocale")
     public static String getFriendlyTimeSpanByNow(long millis) {
         try {
-            long now = System.currentTimeMillis() / 1000;
+            long now = System.currentTimeMillis();
             long span;
             if (now > millis) {
                 span = now - millis;

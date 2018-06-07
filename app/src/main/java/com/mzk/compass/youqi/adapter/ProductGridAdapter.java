@@ -49,7 +49,7 @@ public class ProductGridAdapter extends BaseQuickAdapter<ProductBean, BaseViewHo
         }
         llContainer.setLayoutParams(layoutParams);
 
-        ivImage.loadRectImage(bean.getImage());
+        ivImage.loadSquareImage(bean.getImage());
     }
 
     @Override

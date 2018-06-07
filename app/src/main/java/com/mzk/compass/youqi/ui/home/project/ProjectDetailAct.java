@@ -207,8 +207,8 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 bean = JSONObject.parseObject(responseOriginal.getString("data"), ProjectBean.class);
-                ivImage.loadHttpImage(bean.getLogo());
-                ivLogo.loadHeaderImage(bean.getCompanyLogo());
+                ivImage.loadSquareImage(bean.getLogo());
+                ivLogo.loadSquareImage(bean.getCompanyLogo());
                 mDataManager.setValueToView(tvName, bean.getName());
                 mDataManager.setValueToView(tvTag, bean.getRounds().getName());
                 mDataManager.setValueToView(tvContent, bean.getTitle());
