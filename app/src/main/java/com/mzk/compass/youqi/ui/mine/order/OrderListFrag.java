@@ -2,7 +2,6 @@ package com.mzk.compass.youqi.ui.mine.order;
 
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -10,16 +9,13 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.OrderAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
 import com.mzk.compass.youqi.bean.OrderBean;
-import com.mzk.compass.youqi.bean.ProjectBean;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
-import com.mzk.compass.youqi.ui.home.project.ProjectListFrag;
+import com.mzk.compass.youqi.ui.help.OrderPayAct;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
-import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -87,6 +83,9 @@ public class OrderListFrag extends BaseAppListFragment<OrderBean> {
 
                     break;
                 case R.id.tvPay:
+                    Bundle bundle = new Bundle();
+                    bundle.putString("orderCode", bean.getOrderSerial());
+                    gotoActivity(OrderPayAct.class, bundle);
                     break;
             }
         });

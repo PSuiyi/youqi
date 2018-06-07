@@ -16,6 +16,7 @@ import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.bean.OrderBean;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
+import com.mzk.compass.youqi.ui.help.OrderPayAct;
 import com.mzk.compass.youqi.utils.AppUtils;
 import com.znz.compass.znzlibray.bean.BaseZnzBean;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
@@ -195,7 +196,9 @@ public class OrderDetailAct extends BaseAppActivity {
 
                 break;
             case R.id.tvPay:
-
+                Bundle bundle = new Bundle();
+                bundle.putString("orderCode", bean.getOrderSerial());
+                gotoActivity(OrderPayAct.class, bundle);
                 break;
             case R.id.tvSubmit:
                 new UIAlertDialog(activity)

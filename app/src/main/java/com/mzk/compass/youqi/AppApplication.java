@@ -1,6 +1,7 @@
 package com.mzk.compass.youqi;
 
 import com.bugtags.library.Bugtags;
+import com.bugtags.library.BugtagsOptions;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
@@ -16,7 +17,10 @@ public class AppApplication extends ZnzApplication {
         Config.DEBUG = true;//友盟相关的log日志
 
         //初始化bugtags
-        Bugtags.start("f8a8976eb07316f15ce7e91241c0afb1", this, Bugtags.BTGInvocationEventBubble);
+        BugtagsOptions options = new BugtagsOptions.Builder().
+                enableUserSignIn(false).            //是否允许显示用户登录按钮，默认 true
+                build();
+        Bugtags.start("f8a8976eb07316f15ce7e91241c0afb1", this, Bugtags.BTGInvocationEventBubble, options);
     }
 
     {
