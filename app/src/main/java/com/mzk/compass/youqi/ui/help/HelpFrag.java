@@ -5,7 +5,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
@@ -21,10 +21,10 @@ import com.mzk.compass.youqi.bean.MenuBean;
 import com.mzk.compass.youqi.bean.ProductBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.common.SearchCommonAct;
-import com.mzk.compass.youqi.ui.home.product.ProductListAct;
 import com.mzk.compass.youqi.ui.mine.message.MessageTabAct;
+import com.mzk.compass.youqi.utils.AppUtils;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
-import com.znz.compass.znzlibray.views.imageloder.GlideApp;
+import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,7 +47,6 @@ public class HelpFrag extends BaseAppListFragment {
     private TextView tvMenu3;
     private TextView tvMenu4;
     private BGABanner banner;
-    private List<String> imgPath = new ArrayList<>();
     private RecyclerView rvProduct;
     private ProductGridAdapter productGridAdapter;
     private List<ProductBean> productList = new ArrayList<>();
@@ -145,21 +144,6 @@ public class HelpFrag extends BaseAppListFragment {
         rvProduct = bindViewById(header, R.id.rvProduct);
         adapter.addHeaderView(header);
 
-        banner.setDelegate((banner, itemView, model, position) -> {
-        });
-        banner.setAdapter(new BGABanner.Adapter<ImageView, String>() {
-            @Override
-            public void fillBannerItem(BGABanner banner, ImageView itemView, String model, int position) {
-                GlideApp.with(activity)
-                        .load(model)
-                        .placeholder(R.mipmap.default_image_rect)
-                        .error(R.mipmap.default_image_rect)
-                        .centerCrop()
-                        .dontAnimate()
-                        .into(itemView);
-            }
-        });
-
         productGridAdapter = new ProductGridAdapter(productList);
         LinearLayoutManager layoutManager = new LinearLayoutManager(activity) {
             @Override
@@ -201,15 +185,21 @@ public class HelpFrag extends BaseAppListFragment {
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
-                imgPath.clear();
-                List<BannerBean> list = new ArrayList<>();
-                list.addAll(JSON.parseArray(responseOriginal.getString("data"), BannerBean.class));
-                if (!list.isEmpty()) {
-                    for (BannerBean bannerBean : list) {
-                        imgPath.add(bannerBean.getImage());
+                List<BannerBean> bannerBeanList = JSON.parseArray(responseOriginal.getString("data"), BannerBean.class);
+                banner.setData(R.layout.banner_common, bannerBeanList, null);
+                banner.setAdapter(new BGABanner.Adapter<LinearLayout, BannerBean>() {
+                    @Override
+                    public void fillBannerItem(BGABanner banner, LinearLayout container, BannerBean bean, int position) {
+                        HttpImageView ivImage = container.findViewById(R.id.ivImage);
+                        ivImage.loadRectImage(bean.getImage());
                     }
-                    banner.setData(imgPath, imgPath);
-                }
+                });
+                banner.setDelegate(new BGABanner.Delegate<LinearLayout, BannerBean>() {
+                    @Override
+                    public void onBannerItemClick(BGABanner banner, LinearLayout container, BannerBean bean, int position) {
+                        AppUtils.getInstance(activity).doBannerClick(activity, bean);
+                    }
+                });
             }
         });
     }
