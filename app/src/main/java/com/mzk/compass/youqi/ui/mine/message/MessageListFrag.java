@@ -112,7 +112,7 @@ public class MessageListFrag extends BaseAppListFragment<MessageBean> {
 
                                     if (!StringUtil.isBlank(responseOriginal.getString("data"))) {
                                         InteractMsgDetailBean msgBean = JSON.parseObject(responseOriginal.getString("data"), InteractMsgDetailBean.class);
-                                        if (!StringUtil.isBlank(msgBean.getTitle()) & msgBean.getTitle().equals("评论信息提示") | msgBean.getTitle().equals("留言信息提示")) {
+                                        if (!StringUtil.isBlank(msgBean.getTitle()) && msgBean.getTitle().equals("评论信息提示") | msgBean.getTitle().equals("留言信息提示")) {
                                             bundle.putString("id", msgBean.getContentId());
                                             switch (msgBean.getContentType()) {
                                                 case "1":

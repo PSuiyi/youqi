@@ -78,7 +78,7 @@ public class MessageInteractAct extends BaseAppActivity {
         mDataManager.setValueToView(tvContent, bean.getContent());
         mDataManager.setValueToView(tvTime, TimeUtils.millis2String(StringUtil.stringToLong(bean.getAddTime()) * 1000, "yyyy.MM.dd HH:mm"));
         ivHeader.loadHeaderImage(bean.getAvatar());
-        if (bean.getTradeid() != null & !bean.getTradeid().isEmpty()) {
+        if (bean.getTradeid() != null && !bean.getTradeid().isEmpty()) {
             List<TagBean> list = new ArrayList<>();
             for (IndustryBean industryBean : bean.getTradeid()) {
                 TagBean tagBean = new TagBean();

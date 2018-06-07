@@ -159,7 +159,7 @@ public class CompanyCreateNextAct extends BaseAppActivity {
                         mDataManager.setValueToView(etChuanzhen, bean.getFax(), "");
                         mDataManager.setValueToView(etEmail, bean.getEmail(), "");
                         mDataManager.setValueToView(etIntro, bean.getSummary(), "");
-                        if (bean.getTradeid() != null & !bean.getTradeid().isEmpty()) {
+                        if (bean.getTradeid() != null && !bean.getTradeid().isEmpty()) {
                             String str = "";
                             for (IndustryBean industryBean : bean.getTradeid()) {
                                 str = industryBean.getName() + "," + str;

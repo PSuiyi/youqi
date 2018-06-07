@@ -152,7 +152,7 @@ public class MineFrag extends BaseAppFragment {
                     gotoActivity(VipCenterAct.class);
                 })
                 .build());
-        if (!StringUtil.isBlank(mDataManager.readTempData(Constants.User.USERTYPE)) & mDataManager.readTempData(Constants.User.USERTYPE).equals("1")) {
+        if (!StringUtil.isBlank(mDataManager.readTempData(Constants.User.USERTYPE)) && mDataManager.readTempData(Constants.User.USERTYPE).equals("1")) {
             rowDescriptionList.add(new ZnzRowDescription.Builder()
                     .withIconResId(R.mipmap.wodedongtai)
                     .withTitle("我的动态")
