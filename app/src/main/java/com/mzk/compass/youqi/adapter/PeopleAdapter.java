@@ -58,7 +58,7 @@ public class PeopleAdapter extends BaseQuickAdapter<PeopleBean, BaseViewHolder> 
         mDataManager.setValueToView(tvTag1, bean.getName());
         mDataManager.setValueToView(tvTag2, bean.getGroupName());
 
-        if (bean.getTradeid() != null & bean.getTradeid().size() > 0) {
+        if (bean.getTradeid() != null && bean.getTradeid().size() > 0) {
             mDataManager.setViewVisibility(rvTrade, true);
             TradeAdapter adapter = new TradeAdapter(bean.getTradeid());
             LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);

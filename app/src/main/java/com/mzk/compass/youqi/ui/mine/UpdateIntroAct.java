@@ -28,6 +28,7 @@ import butterknife.OnClick;
 public class UpdateIntroAct extends BaseAppActivity {
     @Bind(R.id.etContent)
     EditText etContent;
+    private String value;
 
     @Override
     protected int[] getLayoutResource() {
@@ -36,7 +37,9 @@ public class UpdateIntroAct extends BaseAppActivity {
 
     @Override
     protected void initializeVariate() {
-
+        if (getIntent().hasExtra("value")) {
+            value = getIntent().getStringExtra("value");
+        }
     }
 
     @Override
@@ -46,7 +49,7 @@ public class UpdateIntroAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
-
+        etContent.setText(value);
     }
 
     @Override

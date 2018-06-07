@@ -74,6 +74,7 @@ public class MineInfoAct extends BaseAppActivity {
                 .withOnClickListener(v -> {
                     Bundle bundle = new Bundle();
                     bundle.putString("from", "姓名");
+                    bundle.putString("value", rowDescriptionList.get(0).getValue());
                     gotoActivity(UpdateInfoAct.class, bundle);
                 })
                 .build());
@@ -88,6 +89,7 @@ public class MineInfoAct extends BaseAppActivity {
                 .withOnClickListener(v -> {
                     Bundle bundle = new Bundle();
                     bundle.putString("from", "所属公司");
+                    bundle.putString("value", rowDescriptionList.get(1).getValue());
                     gotoActivity(UpdateInfoAct.class, bundle);
                 })
                 .build());
@@ -102,6 +104,7 @@ public class MineInfoAct extends BaseAppActivity {
                 .withOnClickListener(v -> {
                     Bundle bundle = new Bundle();
                     bundle.putString("from", "职务");
+                    bundle.putString("value", rowDescriptionList.get(2).getValue());
                     gotoActivity(UpdateInfoAct.class, bundle);
                 })
                 .build());
@@ -116,6 +119,7 @@ public class MineInfoAct extends BaseAppActivity {
                 .withOnClickListener(v -> {
                     Bundle bundle = new Bundle();
                     bundle.putString("from", "电子邮箱");
+                    bundle.putString("value", rowDescriptionList.get(3).getValue());
                     gotoActivity(UpdateInfoAct.class, bundle);
                 })
                 .build());
@@ -123,13 +127,14 @@ public class MineInfoAct extends BaseAppActivity {
                 .withTitle("地址")
                 .withEnableArraw(true)
                 .withGravity(true)
-                .withValue(mDataManager.readTempData(Constants.User.NICKNAME))
+                .withValue(mDataManager.readTempData(Constants.User.ADDRESS))
                 .withTextSize(14)
                 .withValueColor(mDataManager.getColor(R.color.text_gray))
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
                 .withOnClickListener(v -> {
                     Bundle bundle = new Bundle();
                     bundle.putString("from", "联系地址");
+                    bundle.putString("value", rowDescriptionList.get(4).getValue());
                     gotoActivity(UpdateInfoAct.class, bundle);
                 })
                 .build());
@@ -165,7 +170,7 @@ public class MineInfoAct extends BaseAppActivity {
                                 public void onSuccess(JSONObject responseOriginal) {
                                     super.onSuccess(responseOriginal);
                                     String url = responseOriginal.getString("data");
-                                    mDataManager.saveTempData(Constants.User.AVATAR,url);
+                                    mDataManager.saveTempData(Constants.User.AVATAR, url);
                                     EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_USERINFO));
                                     ivHeader.loadHeaderImage(url);
                                 }
@@ -190,7 +195,9 @@ public class MineInfoAct extends BaseAppActivity {
                 }, true);
                 break;
             case R.id.llIntro:
-                gotoActivity(UpdateIntroAct.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("value", mDataManager.getValueFromView(tvIntro));
+                gotoActivity(UpdateIntroAct.class, bundle);
                 break;
         }
     }

@@ -52,7 +52,7 @@ public class IdentifyPersonalAct extends BaseAppActivity {
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
-                if (StringUtil.isBlank(responseOriginal.getString("data")) | responseOriginal.getString("data").equals("未认证")) {
+                if (StringUtil.isBlank(responseOriginal.getString("data")) || responseOriginal.getString("data").equals("未认证")) {
                     tvIdentify.setText("未认证");
                 } else {
                     tvIdentify.setText("");
