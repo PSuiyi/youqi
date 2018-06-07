@@ -2,10 +2,17 @@ package com.mzk.compass.youqi.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 
 import com.mzk.compass.youqi.bean.BannerBean;
 import com.mzk.compass.youqi.bean.UserBean;
 import com.mzk.compass.youqi.common.Constants;
+import com.mzk.compass.youqi.ui.common.WebViewAct;
+import com.mzk.compass.youqi.ui.home.organ.OrganDetailAct;
+import com.mzk.compass.youqi.ui.home.people.PeopleDetailAct;
+import com.mzk.compass.youqi.ui.home.product.ProductDetailAct;
+import com.mzk.compass.youqi.ui.home.project.ProjectDetailAct;
+import com.mzk.compass.youqi.ui.news.NewsDetailAct;
 import com.znz.compass.znzlibray.ZnzApplication;
 import com.znz.compass.znzlibray.common.DataManager;
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -132,18 +139,31 @@ public class AppUtils {
      * @param bean
      */
     public void doBannerClick(Activity activity, BannerBean bean) {
+        Bundle bundle = new Bundle();
         switch (bean.getContentType()) {
             case "outside":
+                bundle.putString("url", bean.getLink());
+                mDataManager.gotoActivity(WebViewAct.class, bundle);
                 break;
             case "project":
+                bundle.putString("id", bean.getLink());
+                mDataManager.gotoActivity(ProjectDetailAct.class, bundle);
                 break;
             case "approveinvestors":
+                bundle.putString("id", bean.getLink());
+                mDataManager.gotoActivity(PeopleDetailAct.class, bundle);
                 break;
             case "news":
+                bundle.putString("id", bean.getLink());
+                mDataManager.gotoActivity(NewsDetailAct.class, bundle);
                 break;
             case "products":
+                bundle.putString("id", bean.getLink());
+                mDataManager.gotoActivity(ProductDetailAct.class, bundle);
                 break;
             case "company":
+                bundle.putString("id", bean.getLink());
+                mDataManager.gotoActivity(OrganDetailAct.class, bundle);
                 break;
         }
     }

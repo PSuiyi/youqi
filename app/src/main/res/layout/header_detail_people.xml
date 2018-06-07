@@ -71,13 +71,15 @@
                     style="@style/LineVer"
                     android:layout_height="10dp"
                     android:layout_marginLeft="@dimen/distance_divider"
-                    android:layout_marginRight="@dimen/distance_divider" />
+                    android:layout_marginRight="@dimen/distance_divider"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tvTag2"
                     style="@style/TextGrayStyle"
                     android:singleLine="true"
-                    android:text="红杉资本" />
+                    android:text="红杉资本"
+                    android:visibility="gone" />
             </LinearLayout>
 
 

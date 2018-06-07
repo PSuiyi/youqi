@@ -106,7 +106,7 @@ public class HomeFrag extends BaseAppFragment {
 
     @Override
     protected void initializeView() {
-        adapter = new MultiAdapter(dataList);
+        adapter = new MultiAdapter(dataList,mModel);
         rvHome.setLayoutManager(new LinearLayoutManager(activity));
         rvHome.setAdapter(adapter);
 

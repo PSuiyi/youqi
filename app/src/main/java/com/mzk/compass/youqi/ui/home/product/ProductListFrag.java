@@ -106,7 +106,11 @@ public class ProductListFrag extends BaseAppListFragment {
 
     @Override
     protected void onRefreshSuccess(String response) {
-        dataList.addAll(JSON.parseArray(responseJson.getString("productData"), ProductBean.class));
+        if (from.equals("收藏")) {
+            dataList.addAll(JSON.parseArray(responseJson.getString("data"), ProductBean.class));
+        } else {
+            dataList.addAll(JSON.parseArray(responseJson.getString("productData"), ProductBean.class));
+        }
         adapter.notifyDataSetChanged();
     }
 

@@ -5,23 +5,33 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
+import com.mzk.compass.youqi.api.ApiModel;
 import com.mzk.compass.youqi.bean.MultiBean;
+import com.mzk.compass.youqi.bean.ProjectBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.home.organ.OrganListAct;
 import com.mzk.compass.youqi.ui.home.people.PeopleListAct;
 import com.mzk.compass.youqi.ui.home.project.ProjectDetailAct;
 import com.mzk.compass.youqi.ui.home.project.ProjectListAct;
+import com.mzk.compass.youqi.utils.PopupWindowManager;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.views.recyclerview.BaseMultiItemQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewHolder> implements BaseQuickAdapter.OnItemClickListener {
 
-    public MultiAdapter(List dataList) {
+    private final ApiModel mModel;
+
+    public MultiAdapter(List dataList, ApiModel mModel) {
         super(dataList);
+        this.mModel = mModel;
         addItemType(Constants.MultiType.Section, R.layout.item_lv_section);
         addItemType(Constants.MultiType.Project, R.layout.item_lv_home_project);
         addItemType(Constants.MultiType.People, R.layout.item_lv_recycle);
@@ -47,6 +57,47 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
                 rvProject.setLayoutManager(proLayoutManager);
                 rvProject.setAdapter(projectAdapter);
                 helper.addOnClickListener(R.id.llChange);
+
+                projectAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+                    @Override
+                    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                        ProjectBean projectBean = bean.getProjectBeanList().get(position);
+                        switch (view.getId()) {
+                            case R.id.ivShare:
+                                PopupWindowManager.getInstance(mContext).showShare(view, (type, values) -> {
+
+                                });
+                                break;
+                            case R.id.ivFav:
+                                if (projectBean.getIsCollected().equals("true")) {
+                                    Map<String, String> params = new HashMap<>();
+                                    params.put("type", "1");
+                                    params.put("id", projectBean.getId());
+                                    mModel.requestCancalCollect(params, new ZnzHttpListener() {
+                                        @Override
+                                        public void onSuccess(JSONObject responseOriginal) {
+                                            super.onSuccess(responseOriginal);
+                                            projectBean.setIsCollected("false");
+                                            projectAdapter.notifyDataSetChanged();
+                                        }
+                                    });
+                                } else {
+                                    Map<String, String> params = new HashMap<>();
+                                    params.put("type", "1");
+                                    params.put("id", projectBean.getId());
+                                    mModel.requestAddCollect(params, new ZnzHttpListener() {
+                                        @Override
+                                        public void onSuccess(JSONObject responseOriginal) {
+                                            super.onSuccess(responseOriginal);
+                                            projectBean.setIsCollected("true");
+                                            projectAdapter.notifyDataSetChanged();
+                                        }
+                                    });
+                                }
+                                break;
+                        }
+                    }
+                });
                 break;
             case Constants.MultiType.People:
                 PeopleGridHomeAdapter adapter = new PeopleGridHomeAdapter(bean.getPeopleList());

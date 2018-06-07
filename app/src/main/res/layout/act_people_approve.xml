@@ -168,29 +168,37 @@
             <View style="@style/LineBoth" />
 
             <LinearLayout
+                android:id="@+id/llGroupName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="@dimen/distance_view">
+                android:orientation="vertical"
+                android:visibility="gone">
 
-                <ImageView style="@style/DotRedStyle" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/distance_view">
 
-                <TextView
-                    style="@style/TitleGrayTextStyle"
-                    android:text="机构名称" />
+                    <ImageView style="@style/DotRedStyle" />
+
+                    <TextView
+                        style="@style/TitleGrayTextStyle"
+                        android:text="机构名称" />
+                </LinearLayout>
+
+                <View style="@style/LineBoth" />
+
+                <EditText
+                    android:id="@+id/etGroupName"
+                    style="@style/EditStyle"
+                    android:layout_width="match_parent"
+                    android:hint="请输入机构名称"
+                    android:padding="@dimen/distance_view"
+                    android:textSize="@dimen/title_size" />
+
+                <View style="@style/LineBoth" />
             </LinearLayout>
-
-            <View style="@style/LineBoth" />
-
-            <EditText
-                android:id="@+id/etGroupName"
-                style="@style/EditStyle"
-                android:layout_width="match_parent"
-                android:hint="请输入机构名称"
-                android:padding="@dimen/distance_view"
-                android:textSize="@dimen/title_size" />
-
-            <View style="@style/LineBoth" />
 
             <LinearLayout
                 android:layout_width="match_parent"

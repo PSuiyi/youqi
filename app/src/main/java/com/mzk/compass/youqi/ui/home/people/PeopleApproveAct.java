@@ -21,11 +21,9 @@ import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
 import com.mzk.compass.youqi.ui.common.RemindAct;
 import com.mzk.compass.youqi.ui.mine.identify.company.IndustryAct;
-import com.znz.compass.znzlibray.bean.TagBean;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
-import com.znz.compass.znzlibray.views.ZnzTagView;
 import com.znz.compass.znzlibray.views.gallery.inter.IPhotoSelectCallback;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIActionSheetDialog;
@@ -76,6 +74,8 @@ public class PeopleApproveAct extends BaseAppActivity {
     ImageView ivClear;
     @Bind(R.id.etGroupName)
     EditText etGroupName;
+    @Bind(R.id.llGroupName)
+    LinearLayout llGroupName;
 
     private List<IndustryBean> hangyeList = new ArrayList<>();
     private List<IndustryBean> lunciList = new ArrayList<>();
@@ -157,6 +157,11 @@ public class PeopleApproveAct extends BaseAppActivity {
                     for (IndustryBean industryBean : shenFenList) {
                         if (industryBean.getId().equals(bean.getRoleid())) {
                             tvShenFen.setText(industryBean.getName());
+                            if (!industryBean.getName().equals("独立投资人")) {
+                                mDataManager.setViewVisibility(llGroupName, true);
+                            } else {
+                                mDataManager.setViewVisibility(llGroupName, false);
+                            }
                         }
                     }
 
@@ -242,6 +247,11 @@ public class PeopleApproveAct extends BaseAppActivity {
                         .addSheetItemList(items, null, which -> {
                             tvShenFen.setText(shenFenList.get(which).getName());
                             roleid = shenFenList.get(which).getId();
+                            if (!shenFenList.get(which).getName().equals("独立投资人")) {
+                                mDataManager.setViewVisibility(llGroupName, true);
+                            } else {
+                                mDataManager.setViewVisibility(llGroupName, false);
+                            }
                         })
                         .show();
                 break;
@@ -306,6 +316,14 @@ public class PeopleApproveAct extends BaseAppActivity {
                     mDataManager.showToast("请选择投资人角色");
                     return;
                 }
+
+                if (llGroupName.getVisibility() == View.VISIBLE) {
+                    if (StringUtil.isBlank(mDataManager.getValueFromView(etGroupName))) {
+                        mDataManager.showToast("请输入组织名称");
+                        return;
+                    }
+                }
+
                 if (StringUtil.isBlank(nameCard)) {
                     mDataManager.showToast("请上传名片");
                     return;
@@ -321,7 +339,11 @@ public class PeopleApproveAct extends BaseAppActivity {
                 params.put("roundsid", roundsid);
                 params.put("roleid", roleid);
                 params.put("nameCard", nameCard);
-                params.put("groupName", mDataManager.getValueFromView(etGroupName));
+                if (StringUtil.isBlank(mDataManager.getValueFromView(etGroupName))) {
+                    params.put("groupName", "");
+                } else {
+                    params.put("groupName", mDataManager.getValueFromView(etGroupName));
+                }
                 mModel.requestIdentify(params, new ZnzHttpListener() {
                     @Override
                     public void onSuccess(JSONObject responseOriginal) {

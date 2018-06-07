@@ -136,13 +136,13 @@ public class OrganDetailAct extends BaseAppActivity {
                         drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                         tvOption3.setCompoundDrawables(null, drawable, null, null);
                     } else {
-                        ivFav.setImageResource(R.mipmap.shoucang);
+                        ivFav.setImageResource(R.mipmap.shoucangxiaobai);
                         Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucangxia);
                         drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                         tvOption3.setCompoundDrawables(null, drawable, null, null);
                     }
                 } else {
-                    ivFav.setImageResource(R.mipmap.shoucang);
+                    ivFav.setImageResource(R.mipmap.shoucangxiaobai);
                     Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucangxia);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                     tvOption3.setCompoundDrawables(null, drawable, null, null);
@@ -197,7 +197,7 @@ public class OrganDetailAct extends BaseAppActivity {
                 Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucangxia);
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                 tvOption3.setCompoundDrawables(null, drawable, null, null);
-                ivFav.setImageResource(R.mipmap.shoucang);
+                ivFav.setImageResource(R.mipmap.shoucangxiaobai);
                 bean.setIsCollected("false");
                 EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_ORGAN));
             }
