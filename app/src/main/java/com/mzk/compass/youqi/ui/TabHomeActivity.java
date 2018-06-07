@@ -14,6 +14,7 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.ui.help.HelpFrag;
 import com.mzk.compass.youqi.ui.home.HomeFrag;
+import com.mzk.compass.youqi.ui.login.BindAct;
 import com.mzk.compass.youqi.ui.login.LoginAct;
 import com.mzk.compass.youqi.ui.mine.MineFrag;
 import com.mzk.compass.youqi.ui.news.NewsFrag;
@@ -178,6 +179,9 @@ public class TabHomeActivity extends BaseAppActivity {
     public void onMessageEvent(BaseEvent event) {
         if (event.getFlag() == 0x90000) {
             mDataManager.logout(activity, LoginAct.class);
+        }
+        if (event.getFlag() == 0x90001) {
+            gotoActivity(BindAct.class);
         }
     }
 }

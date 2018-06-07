@@ -157,6 +157,8 @@ public abstract class BaseAppListActivity<T> extends BaseListActivity<T> {
                             }
                         } else if (jsonObject.getString("status_code").equals("8888")) {
                             mDataManager.tokenTimeOut(activity);
+                        } else if (jsonObject.getString("status_code").equals("2222")) {
+                            mDataManager.showInfoRemind(activity);
                         } else {
                             mDataManager.showToast(jsonObject.getString("msg"));
                             Observable.timer(ZnzConstants.LODING_TIME, TimeUnit.MILLISECONDS)

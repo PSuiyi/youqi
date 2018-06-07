@@ -421,6 +421,18 @@ public class DataManager implements DataManagerConst {
         }
     }
 
+    public void showInfoRemind(Context context) {
+        new UIAlertDialog(context)
+                .builder()
+                .setMsg("请先完善资料")
+                .setCancelable(false)
+                .setNegativeButton("取消", null)
+                .setPositiveButton("确定", v2 -> {
+                    EventBus.getDefault().postSticky(new BaseEvent(0x90001));
+                })
+                .show();
+    }
+
     /**
      * 注销
      */
