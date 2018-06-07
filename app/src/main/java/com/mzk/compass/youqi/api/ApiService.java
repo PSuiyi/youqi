@@ -300,6 +300,13 @@ public interface ApiService {
     @GET("ucenter/charge-vip")
     Observable<ResponseBody> requestPriceList(@QueryMap Map<String, String> params);
 
+    @GET("account/modify-bank")
+    Observable<ResponseBody> requestBankList(@QueryMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("account/modify-bank")
+    Observable<ResponseBody> requestBindBank(@FieldMap Map<String, String> params);
+
     @FormUrlEncoded
     @POST("ucenter/charge-vip")
     Observable<ResponseBody> requestCreateOrder(@FieldMap Map<String, String> params);
@@ -310,6 +317,10 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("account/send-code")
     Observable<ResponseBody> requestCheckPhone(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("account/modify-tel")
+    Observable<ResponseBody> requestChangePhone(@FieldMap Map<String, String> params);
 
 
     @Multipart

@@ -5,9 +5,14 @@ import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.mzk.compass.youqi.event.EventRefresh;
+import com.mzk.compass.youqi.event.EventTags;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2018/4/26.
@@ -16,6 +21,8 @@ import butterknife.ButterKnife;
 public class ManagerSuccessAct extends BaseAppActivity {
     @Bind(R.id.tvStatus)
     TextView tvStatus;
+    @Bind(R.id.tvSubmit)
+    TextView tvSubmit;
     private String from;
 
     @Override
@@ -65,5 +72,18 @@ public class ManagerSuccessAct extends BaseAppActivity {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+    }
+
+    @OnClick(R.id.tvSubmit)
+    public void onViewClicked() {
+        switch (from) {
+            case "修改手机号":
+                EventBus.getDefault().post(new EventRefresh(EventTags.REFRESH_PHONE));
+                break;
+            case "绑定银行卡":
+                EventBus.getDefault().post(new EventRefresh(EventTags.REFRESH_BANK));
+                break;
+        }
+        finish();
     }
 }

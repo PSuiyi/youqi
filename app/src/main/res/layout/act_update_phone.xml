@@ -35,7 +35,9 @@
             <View style="@style/LineEdit" />
 
             <com.znz.compass.znzlibray.views.EditTextWithDel
-                style="@style/EditStyle"
+                android:id="@+id/etPhone"
+                style="@style/EditPhoneStyle"
+                android:layout_width="match_parent"
                 android:hint="请输入新手机号" />
 
         </LinearLayout>
@@ -56,13 +58,16 @@
             <View style="@style/LineEdit" />
 
             <com.znz.compass.znzlibray.views.EditTextWithDel
+                android:id="@+id/etCode"
                 style="@style/EditStyle"
+                android:inputType="number"
                 android:layout_weight="1"
                 android:hint="请输入验证码" />
 
             <View style="@style/LineEdit" />
 
             <TextView
+                android:id="@+id/tvGetCode"
                 style="@style/TextStyle"
                 android:text="获取验证码" />
 

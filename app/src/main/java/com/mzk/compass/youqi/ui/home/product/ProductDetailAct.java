@@ -101,9 +101,9 @@ public class ProductDetailAct extends BaseAppActivity {
     protected void initializeNavigation() {
         appBarLayout.addOnOffsetChangedListener((appBarLayout1, verticalOffset) -> {
             if (Math.abs(verticalOffset) >= (Math.abs(appBarLayout1.getTotalScrollRange()))) {
-                ivBack.setImageResource(R.drawable.topback);
-            } else {
                 ivBack.setImageResource(R.drawable.topback_white);
+            } else {
+                ivBack.setImageResource(R.drawable.topback);
             }
         });
     }
@@ -169,7 +169,7 @@ public class ProductDetailAct extends BaseAppActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.llCity, R.id.ivFav, R.id.llArea, R.id.tvFav, R.id.tvPhone, R.id.tvBuy, R.id.ivDown, R.id.ivAdd})
+    @OnClick({R.id.llCity, R.id.ivFav, R.id.llArea, R.id.tvFav, R.id.tvPhone, R.id.tvBuy, R.id.ivDown, R.id.ivAdd, R.id.llBack})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.llCity:
@@ -232,6 +232,9 @@ public class ProductDetailAct extends BaseAppActivity {
             case R.id.ivAdd:
                 bean.setCount(StringUtil.getNumUP(mDataManager.getValueFromView(tvNumber)));
                 mDataManager.setValueToView(tvNumber, bean.getCount());
+                break;
+            case R.id.llBack:
+                finish();
                 break;
         }
     }

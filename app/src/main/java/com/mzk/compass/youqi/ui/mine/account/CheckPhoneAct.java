@@ -8,10 +8,17 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.mzk.compass.youqi.bean.BankBean;
+import com.mzk.compass.youqi.event.EventRefresh;
+import com.mzk.compass.youqi.event.EventTags;
 import com.znz.compass.znzlibray.common.ZnzConstants;
+import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.EditTextWithDel;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +42,7 @@ public class CheckPhoneAct extends BaseAppActivity {
     private String from;
 
     private CountDownTimer timer;
+    private BankBean bean;
 
     @Override
     protected int[] getLayoutResource() {
@@ -46,11 +54,21 @@ public class CheckPhoneAct extends BaseAppActivity {
         if (getIntent().hasExtra("from")) {
             from = getIntent().getStringExtra("from");
         }
+        if (from.equals("绑定银行卡")) {
+            if (getIntent().hasExtra("bean")) {
+                bean = (BankBean) getIntent().getSerializableExtra("bean");
+            }
+        }
     }
 
     @Override
     protected void initializeNavigation() {
-        setTitleName(from);
+        if (from.equals("查看银行卡")) {
+            setTitleName("绑定银行卡");
+        } else {
+            setTitleName(from);
+        }
+
     }
 
     @Override
@@ -76,13 +94,6 @@ public class CheckPhoneAct extends BaseAppActivity {
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
-
     @OnClick({R.id.tvNext, R.id.tvGetCode})
     public void onViewClicked(View v) {
         Map<String, String> params = new HashMap<>();
@@ -90,6 +101,7 @@ public class CheckPhoneAct extends BaseAppActivity {
             case "修改手机号":
                 params.put("type", "1");
                 break;
+            case "查看银行卡":
             case "绑定银行卡":
                 params.put("type", "2");
                 break;
@@ -105,16 +117,21 @@ public class CheckPhoneAct extends BaseAppActivity {
                     @Override
                     public void onSuccess(JSONObject responseOriginal) {
                         super.onSuccess(responseOriginal);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("validateKey", responseOriginal.getString("data"));
                         switch (from) {
                             case "修改手机号":
                                 gotoActivity(UpdatePhoneAct.class);
                                 break;
+                            case "查看银行卡":
+                                gotoActivity(BankCardListAct.class, bundle);
+                                break;
                             case "绑定银行卡":
-                                Bundle bundle = new Bundle();
-                                bundle.putString("validateKey", responseOriginal.getString("data"));
+                                bundle.putSerializable("bean", bean);
                                 gotoActivity(BindCardAct.class, bundle);
                                 break;
                         }
+                        finish();
                     }
                 });
                 break;
@@ -135,6 +152,7 @@ public class CheckPhoneAct extends BaseAppActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        EventManager.unregister(this);
         if (timer != null) {
             timer.cancel();
         }

@@ -170,9 +170,19 @@ public class MineInfoAct extends BaseAppActivity {
                                 public void onSuccess(JSONObject responseOriginal) {
                                     super.onSuccess(responseOriginal);
                                     String url = responseOriginal.getString("data");
-                                    mDataManager.saveTempData(Constants.User.AVATAR, url);
-                                    EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_USERINFO));
-                                    ivHeader.loadHeaderImage(url);
+                                    Map<String, String> params1 = new HashMap<>();
+                                    params1.put("key", "avatar");
+                                    params1.put("value", url);
+                                    mModel.requestUpdateUserInfo(params1, new ZnzHttpListener() {
+                                        @Override
+                                        public void onSuccess(JSONObject responseOriginal) {
+                                            super.onSuccess(responseOriginal);
+                                            ivHeader.loadHeaderImage(url);
+                                            EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_USERINFO));
+                                            finish();
+                                        }
+                                    });
+
                                 }
                             });
                         }

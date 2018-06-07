@@ -286,7 +286,7 @@ public class MineFrag extends BaseAppFragment {
     public void onMessageEvent(EventRefresh event) {
         switch (event.getFlag()) {
             case EventTags.REFRESH_USERINFO:
-                setData();
+                loadDataFromServer();
                 break;
         }
     }

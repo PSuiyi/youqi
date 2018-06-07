@@ -25,6 +25,8 @@ public interface EventTags {
     int REFRESH_SYSTEM_MESSAGE_NUM = 0X401;//刷新平台消息未读消息数目
 
     int REFRESH_MEMBER = 0X500;//添加成员或者修改成员刷新列表
+    int REFRESH_PHONE = 0X506;//修改手机号，  关闭界面
+    int REFRESH_BANK = 0X507;// ，绑定银行卡，关闭界面
 
     int REFRESH_POP = 0x600;//popwindow消失刷新当前界面
     int REFRESH_DELETE_MINE_MEETING = 0X601; //我的预约长按删除，刷新右上角图标
