@@ -82,7 +82,22 @@ public class SettingAct extends BaseAppActivity {
                 .withTextSize(14)
                 .withEnableArraw(true)
                 .withOnClickListener(v -> {
-
+                    Map<String, String> params = new HashMap<>();
+                    mModel.requestCheckUpdate(params, new ZnzHttpListener() {
+                        @Override
+                        public void onSuccess(JSONObject responseOriginal) {
+                            super.onSuccess(responseOriginal);
+                            if (!StringUtil.isBlank(responseOriginal.getString("data"))) {
+                                JSONObject json = JSON.parseObject(responseOriginal.getString("data"));
+                                if (StringUtil.stringToDouble(json.getString("version")) <= StringUtil.stringToDouble(StringUtil.getVersionName(context))) {
+                                    rowDescriptionList.get(1).setValue("已是最新版本");
+                                    commonRowGroup.notifyDataChanged(rowDescriptionList);
+                                }
+                            } else {
+                                mDataManager.showToast("已经是最新版本");
+                            }
+                        }
+                    });
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
@@ -118,6 +133,9 @@ public class SettingAct extends BaseAppActivity {
                         rowDescriptionList.get(1).setValue("已是最新版本");
                         commonRowGroup.notifyDataChanged(rowDescriptionList);
                     }
+                } else {
+                    rowDescriptionList.get(1).setValue("已是最新版本");
+                    commonRowGroup.notifyDataChanged(rowDescriptionList);
                 }
             }
         });
