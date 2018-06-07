@@ -19,7 +19,6 @@ import com.znz.compass.znzlibray.views.EditTextWithDel;
 
 
 public class EditTextPsd extends LinearLayout {
-    public boolean isWhite = false;//是否显示白色图片，登录页,注册页
     private EditTextWithDel etPsd;
     private ImageView ivShowPsd;
     private boolean isShow = false;//密码是否显示
@@ -63,9 +62,9 @@ public class EditTextPsd extends LinearLayout {
             etPsd.setHint(a.getString(R.styleable.EditTextPsd_hint));
         }
         if (a.hasValue(R.styleable.EditTextPsd_imageColor)) {
-            isWhite = true;
             ivShowPsd.setImageResource(R.mipmap.ic_launcher);
         }
+
 //        if (StringUtil.isBlank(mDataManager.getValueFromView(etPsd))) {
 //            mDataManager.setViewVisibility(ivShowPsd, false);
 //            isShow = false;
@@ -101,13 +100,13 @@ public class EditTextPsd extends LinearLayout {
         ivShowPsd.setOnClickListener(v -> {
             mDataManager.moveCursorEnd(etPsd);
             if (isShow) {
-                ivShowPsd.setImageResource(R.mipmap.zhengyanguan);
-                etPsd.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                ivShowPsd.setImageResource(R.mipmap.zhengyan);
+                etPsd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 isShow = false;
             } else {
-                ivShowPsd.setImageResource(R.mipmap.zhengyan);
                 isShow = true;
-                etPsd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                ivShowPsd.setImageResource(R.mipmap.zhengyanguan);
+                etPsd.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
             }
         });
     }
