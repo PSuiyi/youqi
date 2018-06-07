@@ -34,6 +34,7 @@
             <com.znz.compass.znzlibray.views.EditTextWithDel
                 android:id="@+id/etPhone"
                 style="@style/EditPhoneStyle"
+                android:layout_width="match_parent"
                 android:hint="请输入手机号" />
 
         </LinearLayout>

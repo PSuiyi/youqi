@@ -109,7 +109,7 @@ public class ProductDetailAct extends BaseAppActivity {
                 super.onSuccess(responseOriginal);
                 bean = JSONObject.parseObject(responseOriginal.getString("data"), ProductBean.class);
                 bean.setCount("1");
-                ivImage.loadSquareImage(bean.getMobilePhoto());
+                ivImage.loadSquareImage(bean.getImage());
                 mDataManager.setValueToView(tvTitle, bean.getName());
                 mDataManager.setValueToView(tvMoney, "¥" + bean.getRealPrice());
                 mDataManager.setValueToView(tvMoneyOld, "原价：¥" + bean.getMarketPrice());

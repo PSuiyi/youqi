@@ -110,7 +110,7 @@
                     <TextView
                         android:id="@+id/tvYongjin"
                         style="@style/TextStyle"
-                        android:text="700元"
+                        android:text="0元"
                         android:textColor="@color/red" />
 
                     <TextView
@@ -134,7 +134,7 @@
                     <TextView
                         android:id="@+id/tvBalance"
                         style="@style/TextStyle"
-                        android:text="200元"
+                        android:text="0元"
                         android:textColor="@color/red" />
 
                     <TextView

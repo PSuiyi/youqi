@@ -1,4 +1,5 @@
 package com.mzk.compass.youqi.base;
+
 import android.os.Bundle;
 
 import com.alibaba.fastjson.JSONObject;
@@ -116,6 +117,23 @@ public abstract class BaseAppPayActivity extends BaseAppActivity {
             @Override
             public void onFail(String error) {
                 super.onFail(error);
+            }
+        });
+    }
+
+
+    public void handleAliPay(String key) {
+        AliPayUtil.getInstance(activity).startAliPay(key, result -> {
+            switch (result) {
+                case "支付成功":
+                    onPayResult(PayKeys.ALI_PAY_SUCESSS);
+                    break;
+                case "支付取消":
+                    mDataManager.showToast("支付取消");
+                    break;
+                case "支付失败":
+                    onPayResult(PayKeys.ALI_PAY_FAIL);
+                    break;
             }
         });
     }

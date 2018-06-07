@@ -1,5 +1,6 @@
 package com.mzk.compass.youqi.ui.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.mzk.compass.youqi.ui.TabHomeActivity;
 import com.mzk.compass.youqi.view.EditTextPsd;
 import com.socks.library.KLog;
 import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.znz.compass.umeng.login.LoginAuthManager;
 import com.znz.compass.znzlibray.common.ZnzConstants;
@@ -290,4 +292,9 @@ public class LoginAct extends BaseAppActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+    }
 }

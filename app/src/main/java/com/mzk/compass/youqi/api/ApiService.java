@@ -34,6 +34,10 @@ public interface ApiService {
     Observable<ResponseBody> requestLogin(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("login/complete-selfinfo")
+    Observable<ResponseBody> requestBind(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("login/third-login")
     Observable<ResponseBody> requestAutherLogin(@FieldMap Map<String, String> params);
 

@@ -102,7 +102,7 @@ public class RechargeAct extends BaseAppPayActivity {
 
     @Override
     protected void onPayResult(int result) {
-
+        finish();
     }
 
     @OnClick(R.id.tvSubmit)
@@ -117,7 +117,7 @@ public class RechargeAct extends BaseAppPayActivity {
                     @Override
                     public void onSuccess(JSONObject responseOriginal) {
                         super.onSuccess(responseOriginal);
-                        handleAliPay();
+                        handleAliPay(responseOriginal.getString("data"));
                     }
                 });
             }

@@ -132,6 +132,7 @@ public class ProductOrderComfirmAct extends BaseAppActivity {
                         Bundle bundle = new Bundle();
                         bundle.putString("orderCode", orderCode);
                         gotoActivity(OrderPayAct.class, bundle);
+                        finish();
                     }
                 });
                 break;

@@ -105,7 +105,7 @@ public class OrderPayAct extends BaseAppPayActivity {
 
     @Override
     protected void onPayResult(int result) {
-
+        finish();
     }
 
     @OnClick(R.id.tvSubmit)

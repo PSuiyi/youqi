@@ -9,6 +9,7 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.ui.login.LoginAct;
 import com.mzk.compass.youqi.utils.DataCleanManager;
+import com.znz.compass.umeng.login.LoginAuthManager;
 import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -59,7 +60,7 @@ public class SettingAct extends BaseAppActivity {
                     .withTitle("清理缓存")
                     .withTextSize(14)
                     .withEnableArraw(true)
-//                    .withValue(DataCleanManager.getTotalCacheSize(activity))
+                    .withValue(DataCleanManager.getTotalCacheSize(activity))
                     .withOnClickListener(v -> {
                         new UIAlertDialog(activity)
                                 .builder()
@@ -137,6 +138,7 @@ public class SettingAct extends BaseAppActivity {
                 .setNegativeButton("取消", null)
                 .setPositiveButton("确定", v2 -> {
                     mDataManager.logout(activity, LoginAct.class);
+                    LoginAuthManager.getInstance(activity).logoutAll(activity);
                 })
                 .show();
     }

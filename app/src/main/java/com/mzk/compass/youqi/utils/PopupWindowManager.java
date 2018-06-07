@@ -114,8 +114,10 @@ public class PopupWindowManager {
         tvConfirm.setOnClickListener(view1 -> {
             if (radioButton1.isChecked()) {
                 listener.onPopupWindowClick("1", null);
+                hidePopupWindow();
             } else {
                 listener.onPopupWindowClick("2", null);
+                hidePopupWindow();
             }
         });
         popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);

@@ -9,6 +9,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.ui.TabHomeActivity;
+import com.znz.compass.znzlibray.common.ZnzConstants;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.EditTextWithDel;
@@ -91,6 +92,7 @@ public class BindAct extends BaseAppActivity {
 
     @OnClick({R.id.tvGetCode, R.id.tvSubmit, R.id.tvCancel})
     public void onViewClicked(View view) {
+        Map<String, String> params = new HashMap<>();
         switch (view.getId()) {
             case R.id.tvGetCode:
                 if (StringUtil.isBlank(mDataManager.getValueFromView(etPhone))) {
@@ -101,9 +103,8 @@ public class BindAct extends BaseAppActivity {
                     mDataManager.showToast("请输入正确的手机号");
                     return;
                 }
-                Map<String, String> params = new HashMap<>();
                 params.put("mobile", mDataManager.getValueFromView(etPhone));
-                params.put("type", "2");
+                params.put("type", "4");
                 mModel.requestCode(params, new ZnzHttpListener() {
                     @Override
                     public void onSuccess(JSONObject responseOriginal) {
@@ -119,6 +120,24 @@ public class BindAct extends BaseAppActivity {
                 });
                 break;
             case R.id.tvSubmit:
+                params.put("mobile", mDataManager.getValueFromView(etPhone));
+                params.put("code", mDataManager.getValueFromView(etCode));
+                mModel.requestBind(params, new ZnzHttpListener() {
+                    @Override
+                    public void onSuccess(JSONObject responseOriginal) {
+                        super.onSuccess(responseOriginal);
+                        String token = responseObject.getString("token");
+                        mDataManager.saveTempData(ZnzConstants.ACCESS_TOKEN, token);
+                        mDataManager.saveTempData(ZnzConstants.ACCOUNT, mDataManager.getValueFromView(etPhone));
+                        mDataManager.saveBooleanTempData(ZnzConstants.IS_LOGIN, true);
+                        gotoActivityWithClearStack(TabHomeActivity.class);
+                    }
+
+                    @Override
+                    public void onFail(String error) {
+                        super.onFail(error);
+                    }
+                });
                 break;
             case R.id.tvCancel:
                 gotoActivityWithClearStack(TabHomeActivity.class);
