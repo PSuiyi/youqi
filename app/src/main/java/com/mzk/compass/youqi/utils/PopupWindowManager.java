@@ -19,7 +19,11 @@ import com.mzk.compass.youqi.adapter.FiltAdapter;
 import com.mzk.compass.youqi.bean.FiltBean;
 import com.mzk.compass.youqi.ui.publish.PublishAct;
 import com.mzk.compass.youqi.ui.publish.PublishStateAct;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.znz.compass.umeng.share.ShareBean;
+import com.znz.compass.umeng.share.ShareManager;
 import com.znz.compass.znzlibray.common.DataManager;
+import com.znz.compass.znzlibray.common.ZnzConstants;
 
 import java.util.List;
 
@@ -123,11 +127,44 @@ public class PopupWindowManager {
         popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
     }
 
-    public void showShare(View parent, OnPopupWindowClickListener listener) {
+    public void showShare(View parent, Activity activity, ShareBean bean, OnPopupWindowClickListener listener) {
         hidePopupWindow();
         View view = initPopupWindow(R.layout.pop_share);
         LinearLayout llParent = init(view, R.id.llParent);
         llParent.setOnClickListener(view1 -> hidePopupWindow());
+
+        bean.setImageUrl(ZnzConstants.IMAGE_DIR + bean.getImageUrl());
+        bean.setIconRes(R.mipmap.logoda);
+
+        init(view, R.id.tvOpt1).setOnClickListener(v -> {
+            ShareManager.getInstance(activity).shareWeb(activity, bean, SHARE_MEDIA.WEIXIN);
+            hidePopupWindow();
+        });
+        init(view, R.id.tvOpt2).setOnClickListener(v -> {
+            ShareManager.getInstance(activity).shareWeb(activity, bean, SHARE_MEDIA.WEIXIN_CIRCLE);
+            hidePopupWindow();
+        });
+        init(view, R.id.tvOpt3).setOnClickListener(v -> {
+            ShareManager.getInstance(activity).shareWeb(activity, bean, SHARE_MEDIA.QQ);
+            hidePopupWindow();
+        });
+        init(view, R.id.tvOpt4).setOnClickListener(v -> {
+            ShareManager.getInstance(activity).shareWeb(activity, bean, SHARE_MEDIA.QZONE);
+            hidePopupWindow();
+        });
+        init(view, R.id.tvOpt5).setOnClickListener(v -> {
+            ShareManager.getInstance(activity).shareWeb(activity, bean, SHARE_MEDIA.SINA);
+            hidePopupWindow();
+        });
+        init(view, R.id.tvOpt6).setOnClickListener(v -> {
+            mDataManager.copyToClipboard(bean.getUrl());
+            hidePopupWindow();
+        });
+
+        init(view, R.id.tvCancel).setOnClickListener(v -> {
+            hidePopupWindow();
+        });
+
         popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
     }
 

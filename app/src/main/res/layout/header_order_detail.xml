@@ -134,10 +134,7 @@
             style="@style/TitleBlodStyle"
             android:padding="@dimen/distance_view"
             android:text="订单状态"
-            android:textSize="@dimen/text_size_20" />
-
-        <View style="@style/LineBoth" />
-
-
+            android:textSize="@dimen/text_size_20"
+            android:visibility="gone" />
     </LinearLayout>
 </LinearLayout>

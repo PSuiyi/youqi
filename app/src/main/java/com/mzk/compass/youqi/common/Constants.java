@@ -12,6 +12,7 @@ public class Constants {
      * 客服电话号码
      */
     public static final String PHONE_NUMBER = "客服电话 4008868";
+    public static final String share_url = "http://api.ukee.com/";
 
     /**
      * SharePreference key

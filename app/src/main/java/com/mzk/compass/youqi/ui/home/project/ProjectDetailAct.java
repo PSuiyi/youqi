@@ -29,6 +29,7 @@ import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
+import com.znz.compass.umeng.share.ShareBean;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.utils.TimeUtils;
@@ -411,7 +412,12 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
     }
 
     private void handleShare(View view) {
-        PopupWindowManager.getInstance(activity).showShare(view, (type, values) -> {
+        ShareBean shareBean = new ShareBean();
+        shareBean.setUrl(Constants.share_url + "sharedetail/index?id=" + bean.getId());
+        shareBean.setImageUrl(bean.getLogo());
+        shareBean.setTitle(bean.getName());
+        shareBean.setDescription(bean.getTitle());
+        PopupWindowManager.getInstance(activity).showShare(view, activity, shareBean, (type, values) -> {
 
         });
     }

@@ -1,5 +1,6 @@
 package com.mzk.compass.youqi.adapter;
 
+import android.app.Activity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import com.mzk.compass.youqi.ui.home.people.PeopleListAct;
 import com.mzk.compass.youqi.ui.home.project.ProjectDetailAct;
 import com.mzk.compass.youqi.ui.home.project.ProjectListAct;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
+import com.znz.compass.umeng.share.ShareBean;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.views.recyclerview.BaseMultiItemQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
@@ -64,7 +66,12 @@ public class MultiAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseViewH
                         ProjectBean projectBean = bean.getProjectBeanList().get(position);
                         switch (view.getId()) {
                             case R.id.ivShare:
-                                PopupWindowManager.getInstance(mContext).showShare(view, (type, values) -> {
+                                ShareBean shareBean = new ShareBean();
+                                shareBean.setUrl(Constants.share_url + "sharedetail/index?id=" + projectBean.getLink());
+                                shareBean.setImageUrl(projectBean.getLogo());
+                                shareBean.setTitle(projectBean.getName());
+                                shareBean.setDescription(projectBean.getTitle());
+                                PopupWindowManager.getInstance(mContext).showShare(view, (Activity) mContext, shareBean, (type, values) -> {
 
                                 });
                                 break;

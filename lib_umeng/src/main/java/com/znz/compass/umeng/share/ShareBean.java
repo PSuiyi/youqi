@@ -13,14 +13,14 @@ public class ShareBean extends ZnzBaseBean {
     private String url;
     private String imageUrl;
     private String description;
-    private int iconUrl;
+    private int iconRes;
 
-    public int getIconUrl() {
-        return iconUrl;
+    public int getIconRes() {
+        return iconRes;
     }
 
-    public void setIconUrl(int iconUrl) {
-        this.iconUrl = iconUrl;
+    public void setIconRes(int iconRes) {
+        this.iconRes = iconRes;
     }
 
     public String getUrl() {

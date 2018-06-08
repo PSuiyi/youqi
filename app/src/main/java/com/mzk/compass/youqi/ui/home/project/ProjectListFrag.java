@@ -16,9 +16,11 @@ import com.mzk.compass.youqi.adapter.ProjectAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
 import com.mzk.compass.youqi.bean.FiltBean;
 import com.mzk.compass.youqi.bean.ProjectBean;
+import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
+import com.znz.compass.umeng.share.ShareBean;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -127,7 +129,12 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
             ProjectBean bean = dataList.get(position);
             switch (view.getId()) {
                 case R.id.ivShare:
-                    PopupWindowManager.getInstance(activity).showShare(view, (type, values) -> {
+                    ShareBean shareBean = new ShareBean();
+                    shareBean.setUrl(Constants.share_url + "sharedetail/index?id=" + bean.getId());
+                    shareBean.setImageUrl(bean.getLogo());
+                    shareBean.setTitle(bean.getName());
+                    shareBean.setDescription(bean.getTitle());
+                    PopupWindowManager.getInstance(activity).showShare(view, activity, shareBean, (type, values) -> {
 
                     });
                     break;

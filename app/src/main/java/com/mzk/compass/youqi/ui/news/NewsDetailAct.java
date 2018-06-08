@@ -15,9 +15,11 @@ import com.mzk.compass.youqi.adapter.CommentAdapter;
 import com.mzk.compass.youqi.base.BaseAppListActivity;
 import com.mzk.compass.youqi.bean.CommentBean;
 import com.mzk.compass.youqi.bean.NewsBean;
+import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
+import com.znz.compass.umeng.share.ShareBean;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.utils.TimeUtils;
@@ -234,7 +236,12 @@ public class NewsDetailAct extends BaseAppListActivity<CommentBean> implements V
                 }
                 break;
             case R.id.tvOption3:
-                PopupWindowManager.getInstance(activity).showShare(view, (type, values) -> {
+                ShareBean shareBean = new ShareBean();
+                shareBean.setUrl(Constants.share_url + "sharedetail/news?id=" + bean.getId());
+                shareBean.setImageUrl(bean.getImage());
+                shareBean.setTitle(bean.getTitle());
+                shareBean.setDescription(bean.getSummary());
+                PopupWindowManager.getInstance(activity).showShare(view, activity, shareBean, (type, values) -> {
 
                 });
                 break;

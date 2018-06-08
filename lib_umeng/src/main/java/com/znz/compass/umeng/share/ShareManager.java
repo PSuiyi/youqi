@@ -40,7 +40,7 @@ public class ShareManager {
         if (!TextUtils.isEmpty(bean.getImageUrl())) {
             web.setThumb(new UMImage(activity, bean.getImageUrl()));
         } else {
-            web.setThumb(new UMImage(activity, bean.getIconUrl()));
+            web.setThumb(new UMImage(activity, bean.getIconRes()));
         }
 
         web.setDescription(bean.getDescription());//描述
@@ -55,12 +55,12 @@ public class ShareManager {
     public void shareWeb(Activity activity, ShareBean bean, SHARE_MEDIA share_media) {
         UMWeb web = new UMWeb(bean.getUrl());
         web.setTitle(bean.getTitle());//标题
-        if (!TextUtils.isEmpty(bean.getImageUrl())) {
-            web.setThumb(new UMImage(activity, bean.getImageUrl()));
-        } else {
-            web.setThumb(new UMImage(activity, bean.getIconUrl()));
-        }
-
+//        if (!TextUtils.isEmpty(bean.getImageUrl())) {
+//            web.setThumb(new UMImage(activity, bean.getImageUrl()));
+//        } else {
+//            web.setThumb(new UMImage(activity, bean.getIconRes()));
+//        }
+        web.setThumb(new UMImage(activity, bean.getIconRes()));
         web.setDescription(bean.getDescription());//描述
 
         new ShareAction(activity)
@@ -98,7 +98,7 @@ public class ShareManager {
     public void shareWeb(Activity activity, ShareBean bean, SHARE_MEDIA share_media, final OnZnzShareListener onShareClickListener, UMShareListener shareListener) {
         UMWeb web = new UMWeb(bean.getUrl());
         web.setTitle(bean.getTitle());//标题
-        web.setThumb(new UMImage(activity, bean.getIconUrl()));
+        web.setThumb(new UMImage(activity, bean.getIconRes()));
         web.setDescription(bean.getDescription());//描述
 
         new ShareAction(activity)
