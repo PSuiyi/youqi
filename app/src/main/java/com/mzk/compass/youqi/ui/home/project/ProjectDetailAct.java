@@ -1,5 +1,6 @@
 package com.mzk.compass.youqi.ui.home.project;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -29,6 +30,7 @@ import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
+import com.umeng.socialize.UMShareAPI;
 import com.znz.compass.umeng.share.ShareBean;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -420,6 +422,12 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
         PopupWindowManager.getInstance(activity).showShare(view, activity, shareBean, (type, values) -> {
 
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(activity).onActivityResult(requestCode, resultCode, data);//完成回调
     }
 
     private void handleFav() {

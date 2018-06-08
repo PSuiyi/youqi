@@ -1,5 +1,6 @@
 package com.mzk.compass.youqi.ui.home.project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
+import com.umeng.socialize.UMShareAPI;
 import com.znz.compass.umeng.share.ShareBean;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
@@ -175,6 +177,13 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
                 break;
         }
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(activity).onActivityResult(requestCode, resultCode, data);//完成回调
+    }
+
 
     @Override
     protected void loadDataFromServer() {

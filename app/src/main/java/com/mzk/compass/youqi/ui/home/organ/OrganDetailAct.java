@@ -1,5 +1,6 @@
 package com.mzk.compass.youqi.ui.home.organ;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
 import com.mzk.compass.youqi.ui.home.people.RecommendSelfAct;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
+import com.umeng.socialize.UMShareAPI;
 import com.znz.compass.umeng.share.ShareBean;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -242,6 +244,12 @@ public class OrganDetailAct extends BaseAppActivity {
                 scRootView.smoothScrollTo(0, 0);
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(activity).onActivityResult(requestCode, resultCode, data);//完成回调
     }
 
     @Override
