@@ -6,7 +6,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -42,18 +41,10 @@ import rx.Observable;
  */
 public class HelpFrag extends BaseAppListFragment {
     private View header;
-    private TextView tvMenu1;
-    private TextView tvMenu2;
-    private TextView tvMenu3;
-    private TextView tvMenu4;
     private BGABanner banner;
     private RecyclerView rvProduct;
     private ProductGridAdapter productGridAdapter;
     private List<ProductBean> productList = new ArrayList<>();
-    private View tvMenu5;
-    private View tvMenu6;
-    private View tvMenu7;
-    private View tvMenu8;
 
     private RecyclerView rvMenuTop;
     private MenuHelpAdapter menuHelpAdapter;
@@ -105,40 +96,6 @@ public class HelpFrag extends BaseAppListFragment {
         rvMenuTop.setLayoutManager(new GridLayoutManager(activity,4));
         menuHelpAdapter = new MenuHelpAdapter(menuBeanList);
         rvMenuTop.setAdapter(menuHelpAdapter);
-
-        //        tvMenu1 = bindViewById(header, R.id.tvMenu1);
-//        tvMenu2 = bindViewById(header, R.id.tvMenu2);
-//        tvMenu3 = bindViewById(header, R.id.tvMenu3);
-//        tvMenu4 = bindViewById(header, R.id.tvMenu4);
-//        tvMenu5 = bindViewById(header, R.id.tvMenu5);
-//        tvMenu6 = bindViewById(header, R.id.tvMenu6);
-//        tvMenu7 = bindViewById(header, R.id.tvMenu7);
-//        tvMenu8 = bindViewById(header, R.id.tvMenu8);
-
-//        tvMenu1.setOnClickListener(v -> {
-//            gotoActivity(ProductListAct.class);
-//        });
-//        tvMenu2.setOnClickListener(v -> {
-//            gotoActivity(ProductListAct.class);
-//        });
-//        tvMenu3.setOnClickListener(v -> {
-//            gotoActivity(ProductListAct.class);
-//        });
-//        tvMenu4.setOnClickListener(v -> {
-//            gotoActivity(ProductListAct.class);
-//        });
-//        tvMenu5.setOnClickListener(v -> {
-//            gotoActivity(ProductListAct.class);
-//        });
-//        tvMenu6.setOnClickListener(v -> {
-//            gotoActivity(ProductListAct.class);
-//        });
-//        tvMenu7.setOnClickListener(v -> {
-//            gotoActivity(ProductListAct.class);
-//        });
-//        tvMenu8.setOnClickListener(v -> {
-//            gotoActivity(ProductListAct.class);
-//        });
 
         banner = bindViewById(header, R.id.banner);
         rvProduct = bindViewById(header, R.id.rvProduct);

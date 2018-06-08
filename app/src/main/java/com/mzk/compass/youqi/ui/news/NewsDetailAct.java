@@ -137,7 +137,7 @@ public class NewsDetailAct extends BaseAppListActivity<CommentBean> implements V
                 mDataManager.setValueToView(tvCountComment, bean.getVisiteNum());
                 mDataManager.setValueToView(tvTime, TimeUtils.getFriendlyTimeSpanByNow(bean.getAddTime()));
 
-                wvContent.loadContent(bean.getSummary());
+                wvContent.loadContent(bean.getContent());
                 if (bean.getIsCollected().equals("true")) {
                     Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang2);
                     drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());

@@ -46,7 +46,7 @@ public class OrderPayAct extends BaseAppPayActivity {
     TextView tvSubmit;
     private String orderCode;
     private OrderConfirmBean bean;
-    private int orderType;
+    private int orderType = 0;
 
     @Override
     protected int[] getLayoutResource() {
@@ -81,6 +81,8 @@ public class OrderPayAct extends BaseAppPayActivity {
                 }
             }
         });
+
+        rbAli.setChecked(true);
     }
 
     @Override

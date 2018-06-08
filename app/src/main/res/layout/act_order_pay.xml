@@ -55,7 +55,7 @@
             android:orientation="vertical">
 
             <RadioButton
-                android:id="@+id/rbWx"
+                android:id="@+id/rbAli"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -74,7 +74,7 @@
                 android:layout_marginLeft="@dimen/distance_view" />
 
             <RadioButton
-                android:id="@+id/rbAli"
+                android:id="@+id/rbWx"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"

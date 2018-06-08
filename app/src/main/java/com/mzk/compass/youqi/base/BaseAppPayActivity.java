@@ -61,23 +61,20 @@ public abstract class BaseAppPayActivity extends BaseAppActivity {
     public void handleWeixinPay() {
         Map<String, String> params = new HashMap<>();
         params.put("orderSerial", currentOrderCode);
-        params.put("type", "1");
+        params.put("type", "2");
         mModel.requestPayParams(params, new ZnzHttpListener() {
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
-                WeixinBean bean = JSONObject.parseObject(responseOriginal.getString("object"), WeixinBean.class);
+                WeixinBean bean = JSONObject.parseObject(responseOriginal.getString("data"), WeixinBean.class);
                 Map<String, String> params = new HashMap<>();
                 params.put("appid", bean.getAppid());
-                params.put("msg", bean.getMsg());
-                params.put("out_trade_no", bean.getOut_trade_no());
-                params.put("status", bean.getStatus());
                 params.put("partnerid", bean.getPartnerid());
                 params.put("prepayid", bean.getPrepayid());
                 params.put("packageStr", bean.getPackageStr());
-                params.put("nonceStr", bean.getNonceStr());
+                params.put("nonceStr", bean.getNoncestr());
                 params.put("timeStamp", bean.getTimestamp());
-                params.put("paySign", bean.getPaySign());
+                params.put("paySign", bean.getSign());
                 WXPayUtil.getInstance(activity).startWXPay(params);
             }
 
@@ -86,6 +83,19 @@ public abstract class BaseAppPayActivity extends BaseAppActivity {
                 super.onFail(error);
             }
         });
+    }
+
+
+    public void handleWeixinPay(WeixinBean bean) {
+        Map<String, String> params = new HashMap<>();
+        params.put("appid", bean.getAppid());
+        params.put("partnerid", bean.getPartnerid());
+        params.put("prepayid", bean.getPrepayid());
+        params.put("packageStr", bean.getPackageStr());
+        params.put("nonceStr", bean.getNoncestr());
+        params.put("timeStamp", bean.getTimestamp());
+        params.put("paySign", bean.getSign());
+        WXPayUtil.getInstance(activity).startWXPay(params);
     }
 
     /**

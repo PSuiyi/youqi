@@ -22,12 +22,21 @@ public class NewsBean extends BaseZnzBean {
     private String id;
     private String image;
     private String summary;
+    private String content;
     private String name;
     private String addTime;
     private String title;
     private String collectionNum;
     private String visiteNum;
     private String isCollected;
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 
     public String getCollectionNum() {
         return collectionNum;

@@ -25,14 +25,31 @@ public class WeixinBean implements Serializable {
     private String timestamp;
     private String out_trade_no;
     private String packageStr;
-    private String paySign;
     private String appid;
+    private String sign;
     private String partnerid;
     private String prepayid;
-    private String nonceStr;
+    private String noncestr;
     private String status;
+
     public String getAppid() {
         return appid;
+    }
+
+    public String getSign() {
+        return sign;
+    }
+
+    public void setSign(String sign) {
+        this.sign = sign;
+    }
+
+    public String getNoncestr() {
+        return noncestr;
+    }
+
+    public void setNoncestr(String noncestr) {
+        this.noncestr = noncestr;
     }
 
     public void setAppid(String appid) {
@@ -63,13 +80,6 @@ public class WeixinBean implements Serializable {
         this.packageStr = packageStr;
     }
 
-    public String getNonceStr() {
-        return nonceStr;
-    }
-
-    public void setNonceStr(String nonceStr) {
-        this.nonceStr = nonceStr;
-    }
 
     public String getTimestamp() {
         return timestamp;
@@ -79,13 +89,6 @@ public class WeixinBean implements Serializable {
         this.timestamp = timestamp;
     }
 
-    public String getPaySign() {
-        return paySign;
-    }
-
-    public void setPaySign(String paySign) {
-        this.paySign = paySign;
-    }
 
     public String getMsg() {
         return msg;

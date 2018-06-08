@@ -43,7 +43,7 @@ public class ZnzRetrofitUtil {
             WITH_COMMON_PARAMS = withCommonParams;
 
             mDataManager = DataManager.getInstance(ZnzApplication.getContext());
-            BASE_URL = "http://106.14.211.82/";  //测试环境
+            BASE_URL = "http://api.ukee.com/";  //测试环境
 
             OkHttpClient.Builder builder = new OkHttpClient.Builder();
 

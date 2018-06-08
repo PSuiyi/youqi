@@ -44,5 +44,5 @@ public class ZnzConstants {
 
     public static final boolean APP_DEBUG = true; //是否是测试环境
     public static final String IS_ENGLISH = "IS_ENGLISH";
-    public static final String IMAGE_ULR = "http://img.magick.ltd/";
+    public static final String IMAGE_ULR = "http://static.ukee.com/";
 }

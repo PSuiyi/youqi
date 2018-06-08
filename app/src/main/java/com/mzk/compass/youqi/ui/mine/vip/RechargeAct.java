@@ -14,6 +14,7 @@ import com.mzk.compass.youqi.bean.PriceBean;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzpay.bean.WeixinBean;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -117,7 +118,12 @@ public class RechargeAct extends BaseAppPayActivity {
                     @Override
                     public void onSuccess(JSONObject responseOriginal) {
                         super.onSuccess(responseOriginal);
-                        handleAliPay(responseOriginal.getString("data"));
+                        if (type.equals("1")) {
+                            handleAliPay(responseOriginal.getString("data"));
+                        } else {
+                            WeixinBean bean = JSONObject.parseObject(responseOriginal.getString("data"), WeixinBean.class);
+                            handleWeixinPay(bean);
+                        }
                     }
                 });
             }
