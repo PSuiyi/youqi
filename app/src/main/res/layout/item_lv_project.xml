@@ -83,12 +83,14 @@
                         android:id="@+id/tvCompanyName"
                         style="@style/TextStyle"
                         android:layout_marginLeft="3dp"
+                        android:layout_weight="1"
+                        android:singleLine="true"
                         android:text="美之科" />
 
                     <TextView
                         android:id="@+id/tvPrice"
                         style="@style/TextGrayStyle"
-                        android:layout_marginLeft="3dp"
+                        android:layout_marginLeft="8dp"
                         android:text="200~500万" />
 
                 </LinearLayout>

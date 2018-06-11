@@ -1,5 +1,6 @@
 package com.mzk.compass.youqi.ui.home.product;
 
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -130,6 +131,9 @@ public class ProductDetailAct extends BaseAppActivity {
                 mDataManager.setValueToView(tvCountPayed, "成交量：" + bean.getShowNum());
                 mDataManager.setValueToView(tvNumber, bean.getCount());
                 wvDetail.loadContent(bean.getContent());
+
+                tvMoneyOld.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG); //下划线
+                tvMoneyOld.getPaint().setAntiAlias(true);//抗锯齿
 
                 if (!bean.getArea().isEmpty()) {
                     tvArea.setText(bean.getArea().get(0).getName());

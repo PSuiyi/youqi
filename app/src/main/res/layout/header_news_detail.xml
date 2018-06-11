@@ -17,7 +17,6 @@
         <TextView
             android:id="@+id/tvTitle"
             style="@style/TitleBlodStyle"
-            android:text="注意了！十九大报告圈重点 未来五年的这些关键词才是投资的国之所向"
             android:textSize="@dimen/text_size_18" />
 
         <LinearLayout
@@ -30,7 +29,6 @@
                 android:id="@+id/tvCountFav"
                 style="@style/TextDrawableStyle"
                 android:drawableLeft="@mipmap/shoucangxiaohui"
-                android:text="2585"
                 android:textColor="@color/text_gray"
                 android:textSize="@dimen/text_size_12" />
 
@@ -39,7 +37,6 @@
                 style="@style/TextDrawableStyle"
                 android:layout_marginLeft="@dimen/distance_divider"
                 android:drawableLeft="@mipmap/liulanxiaohui"
-                android:text="2585"
                 android:textColor="@color/text_gray"
                 android:textSize="@dimen/text_size_12" />
 
@@ -47,7 +44,8 @@
 
             <TextView
                 android:id="@+id/tvTime"
-                style="@style/TimeTextStyle" />
+                style="@style/TimeTextStyle"
+                android:text="" />
         </LinearLayout>
     </LinearLayout>
 

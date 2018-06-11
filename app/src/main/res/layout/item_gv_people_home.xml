@@ -39,6 +39,7 @@
                 android:id="@+id/tvOrganName"
                 style="@style/TextStyle"
                 android:layout_marginTop="@dimen/distance_divider"
+                android:singleLine="true"
                 android:text="瑞琪投资"
                 android:textSize="@dimen/text_size_14" />
 

@@ -124,10 +124,6 @@ public class HelpFrag extends BaseAppListFragment {
                 productList.clear();
                 productList.addAll(JSONArray.parseArray(responseObject.getString("mobileHelpBannerUnder"), ProductBean.class));
                 productGridAdapter.notifyDataSetChanged();
-
-                menuBeanList.clear();
-                menuBeanList.addAll(JSONArray.parseArray(responseObject.getString("productTypeData"), MenuBean.class));
-                menuHelpAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -157,6 +153,17 @@ public class HelpFrag extends BaseAppListFragment {
                         AppUtils.getInstance(activity).doBannerClick(activity, bean);
                     }
                 });
+            }
+        });
+
+        Map<String, String> params2 = new HashMap<>();
+        mModel.requestCategory(params2, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                menuBeanList.clear();
+                menuBeanList.addAll(JSONArray.parseArray(responseOriginal.getString("data"), MenuBean.class));
+                menuHelpAdapter.notifyDataSetChanged();
             }
         });
     }

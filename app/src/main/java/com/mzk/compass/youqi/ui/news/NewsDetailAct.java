@@ -248,6 +248,7 @@ public class NewsDetailAct extends BaseAppListActivity<CommentBean> implements V
                 });
                 break;
             case R.id.tvOption4:
+                rvRefresh.smoothScrollToPosition(0);
                 break;
             case R.id.tvSendComment:
                 if (StringUtil.isBlank(mDataManager.getValueFromView(etComment))) {

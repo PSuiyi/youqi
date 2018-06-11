@@ -275,6 +275,7 @@ public class PeopleApproveAct extends BaseAppActivity {
                                     if (!StringUtil.isBlank(responseOriginal.getString("data"))) {
                                         nameCard = responseOriginal.getString("data");
                                     }
+                                    ivCard.loadRectImage(nameCard);
                                 }
                             });
                         }

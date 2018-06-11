@@ -67,7 +67,11 @@ public class ProductAdapter extends BaseQuickAdapter<ProductBean, BaseViewHolder
         mDataManager.setValueToView(tvMoney, "¥" + bean.getRealPrice());
         mDataManager.setValueToView(tvMoneyOld, "原价：¥" + bean.getMarketPrice());
         mDataManager.setValueToView(tvCount, "成交量：" + bean.getShowNum());
-        ivImage.loadSquareImage(bean.getImage());
+        if (!StringUtil.isBlank(bean.getImage())) {
+            ivImage.loadSquareImage(bean.getImage());
+        } else {
+            ivImage.loadSquareImage(bean.getMobilePhoto());
+        }
     }
 
     @Override
