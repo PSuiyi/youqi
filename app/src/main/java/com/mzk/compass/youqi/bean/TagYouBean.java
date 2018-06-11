@@ -10,6 +10,24 @@ import com.znz.compass.znzlibray.bean.BaseZnzBean;
 public class TagYouBean extends BaseZnzBean{
     private String name;
     private String id;
+    private String backgroundcolor;
+    private String fontcolor;
+
+    public String getBackgroundcolor() {
+        return backgroundcolor;
+    }
+
+    public void setBackgroundcolor(String backgroundcolor) {
+        this.backgroundcolor = backgroundcolor;
+    }
+
+    public String getFontcolor() {
+        return fontcolor;
+    }
+
+    public void setFontcolor(String fontcolor) {
+        this.fontcolor = fontcolor;
+    }
 
     public String getId() {
         return id;

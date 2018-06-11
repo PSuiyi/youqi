@@ -133,7 +133,7 @@ public class PopupWindowManager {
         LinearLayout llParent = init(view, R.id.llParent);
         llParent.setOnClickListener(view1 -> hidePopupWindow());
 
-        bean.setImageUrl(ZnzConstants.IMAGE_DIR + bean.getImageUrl());
+        bean.setImageUrl(ZnzConstants.IMAGE_ULR + bean.getImageUrl());
         bean.setIconRes(R.mipmap.logoda);
 
         init(view, R.id.tvOpt1).setOnClickListener(v -> {
