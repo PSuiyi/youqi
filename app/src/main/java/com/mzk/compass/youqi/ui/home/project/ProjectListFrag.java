@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -67,6 +68,18 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
     LinearLayout llFilt;
     @Bind(R.id.llFilt1)
     LinearLayout llFilt1;
+    @Bind(R.id.ivSortTop1)
+    ImageView ivSortTop1;
+    @Bind(R.id.ivSortBottom1)
+    ImageView ivSortBottom1;
+    @Bind(R.id.ivSortTop2)
+    ImageView ivSortTop2;
+    @Bind(R.id.ivSortBottom2)
+    ImageView ivSortBottom2;
+    @Bind(R.id.ivSortTop3)
+    ImageView ivSortTop3;
+    @Bind(R.id.ivSortBottom3)
+    ImageView ivSortBottom3;
     private String from;
 
     private String keywords;
@@ -78,6 +91,7 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
     private String currentJieduan;
     private String currentArea;
     private String currentMoney;
+    private String order1;
 
     public static ProjectListFrag newInstance(String from) {
         Bundle bundle = new Bundle();
@@ -397,6 +411,22 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
                 });
                 break;
             case R.id.tvSort1:
+//                if (StringUtil.isBlank(order1)) {
+//                    order1 = "true";
+//                    ivShang.setImageDrawable(getResources().getDrawable(R.mipmap.shanglalan));
+//                    ivXia.setImageDrawable(getResources().getDrawable(R.mipmap.xialahui));
+//                } else {
+//                    if (order1.equals("true")) {
+//                        order1 = "false";
+//                        ivShang.setImageDrawable(getResources().getDrawable(R.mipmap.shanghui));
+//                        ivXia.setImageDrawable(getResources().getDrawable(R.mipmap.xialan));
+//                    } else {
+//                        order1 = "true";
+//                        ivShang.setImageDrawable(getResources().getDrawable(R.mipmap.shanglalan));
+//                        ivXia.setImageDrawable(getResources().getDrawable(R.mipmap.xialahui));
+//                    }
+//                }
+//                resetRefresh();
                 break;
             case R.id.tvSort2:
                 break;
