@@ -100,18 +100,6 @@ public class ProductOrderComfirmAct extends BaseAppActivity {
                 mDataManager.callPhone(activity, bean.getTel());
                 break;
             case R.id.tvBuy:
-                if (StringUtil.isBlank(mDataManager.getValueFromView(etPhone))) {
-                    mDataManager.showToast("请输入手机号码");
-                    return;
-                }
-                if (!StringUtil.isMobile(mDataManager.getValueFromView(etPhone))) {
-                    mDataManager.showToast("请输入正确的手机号码");
-                    return;
-                }
-                if (StringUtil.isBlank(mDataManager.getValueFromView(etContent))) {
-                    mDataManager.showToast("请输入备注");
-                    return;
-                }
                 if (!cbSelect.isChecked()) {
                     mDataManager.showToast("请同意优企条款");
                     return;
@@ -121,10 +109,16 @@ public class ProductOrderComfirmAct extends BaseAppActivity {
                 params.put("productId", bean.getId());
                 if (!StringUtil.isBlank(mDataManager.getValueFromView(etContent))) {
                     params.put("remark", mDataManager.getValueFromView(etContent));
+                } else {
+                    params.put("remark", "");
                 }
+
                 if (!StringUtil.isBlank(mDataManager.getValueFromView(etPhone))) {
                     params.put("tel", mDataManager.getValueFromView(etPhone));
+                } else {
+                    params.put("tel", "");
                 }
+
                 mModel.requestOrderSubmit(params, new ZnzHttpListener() {
                     @Override
                     public void onSuccess(JSONObject responseOriginal) {

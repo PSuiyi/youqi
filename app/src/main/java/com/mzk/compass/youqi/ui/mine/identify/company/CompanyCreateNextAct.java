@@ -13,6 +13,14 @@ import com.mzk.compass.youqi.bean.CompanyBean;
 import com.mzk.compass.youqi.bean.IndustryBean;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
+import com.mzk.compass.youqi.view.city.bean.City;
+import com.mzk.compass.youqi.view.city.bean.County;
+import com.mzk.compass.youqi.view.city.bean.Province;
+import com.mzk.compass.youqi.view.city.bean.Street;
+import com.mzk.compass.youqi.view.city.utils.LogUtil;
+import com.mzk.compass.youqi.view.city.widget.AddressSelector;
+import com.mzk.compass.youqi.view.city.widget.BottomDialog;
+import com.mzk.compass.youqi.view.city.widget.OnAddressSelectedListener;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -35,7 +43,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2018/4/24.
  */
 
-public class CompanyCreateNextAct extends BaseAppActivity {
+public class CompanyCreateNextAct extends BaseAppActivity implements OnAddressSelectedListener, AddressSelector.OnDialogCloseListener, AddressSelector.onSelectorAreaPositionListener {
 
 
     @Bind(R.id.tvHangye)
@@ -56,10 +64,18 @@ public class CompanyCreateNextAct extends BaseAppActivity {
     EditText etEmail;
     @Bind(R.id.etIntro)
     EditText etIntro;
+    @Bind(R.id.tvAddress)
+    TextView tvAddress;
+    private String provinceCode;
+    private String cityCode;
+    private String areaCode;
+
     private List<IndustryBean> hangyeList = new ArrayList<>();
 
     private String url;
     private String tradeid;
+
+    private BottomDialog dialog;
 
     @Override
     protected int[] getLayoutResource() {
@@ -82,6 +98,10 @@ public class CompanyCreateNextAct extends BaseAppActivity {
             }
             if (StringUtil.isBlank(mDataManager.getValueFromView(etName))) {
                 mDataManager.showToast("请输入企业简称");
+                return;
+            }
+            if (StringUtil.isBlank(areaCode)) {
+                mDataManager.showToast("请选择地址");
                 return;
             }
             if (StringUtil.isBlank(mDataManager.getValueFromView(etAddress))) {
@@ -123,6 +143,9 @@ public class CompanyCreateNextAct extends BaseAppActivity {
             params.put("summary", mDataManager.getValueFromView(etIntro));
             params.put("logo", url);
             params.put("tradeid", tradeid);
+            params.put("provinceid", provinceCode);
+            params.put("cityid", cityCode);
+            params.put("areaid", areaCode);
             mModel.requestCompany(params, new ZnzHttpListener() {
                 @Override
                 public void onSuccess(JSONObject responseOriginal) {
@@ -192,7 +215,7 @@ public class CompanyCreateNextAct extends BaseAppActivity {
         });
     }
 
-    @OnClick({R.id.llCover, R.id.llHangye})
+    @OnClick({R.id.llCover, R.id.llHangye, R.id.tvAddress})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.llCover:
@@ -242,6 +265,21 @@ public class CompanyCreateNextAct extends BaseAppActivity {
                 bundle.putSerializable("list", (Serializable) hangyeList);
                 gotoActivity(IndustryAct.class, bundle);
                 break;
+            case R.id.tvAddress:
+                if (dialog != null) {
+                    dialog.show();
+                } else {
+                    dialog = new BottomDialog(this);
+                    dialog.setOnAddressSelectedListener(this);
+                    dialog.setDialogDismisListener(this);
+                    dialog.setTextSize(14);//设置字体的大小
+                    dialog.setIndicatorBackgroundColor(android.R.color.holo_orange_light);//设置指示器的颜色
+                    dialog.setTextSelectedColor(android.R.color.holo_orange_light);//设置字体获得焦点的颜色
+                    dialog.setTextUnSelectedColor(android.R.color.holo_blue_light);//设置字体没有获得焦点的颜色
+                    dialog.setSelectorAreaPositionListener(this);
+                    dialog.show();
+                }
+                break;
         }
     }
 
@@ -266,11 +304,38 @@ public class CompanyCreateNextAct extends BaseAppActivity {
                 String ids = "";
                 for (IndustryBean industryBean : list) {
                     str = industryBean.getName() + "," + str;
-                    ids = industryBean.getId() + "," + str;
+                    ids = industryBean.getId() + "," + ids;
                 }
                 tvHangye.setText(str.substring(0, str.length() - 1));
                 tradeid = ids.substring(0, str.length() - 1);
                 break;
         }
+    }
+
+    @Override
+    public void onAddressSelected(Province province, City city, County county, Street street) {
+        provinceCode = (province == null ? "" : province.id + "");
+        cityCode = (city == null ? "" : city.id + "");
+        areaCode = (county == null ? "" : county.id + "");
+        LogUtil.d("数据", "省份id=" + provinceCode);
+        LogUtil.d("数据", "城市id=" + cityCode);
+        LogUtil.d("数据", "乡镇id=" + areaCode);
+        String s = (province == null ? "" : province.name) + (city == null ? "" : city.name) + (county == null ? "" : county.name) +
+                (street == null ? "" : street.name);
+        tvAddress.setText(s);
+        if (dialog != null) {
+            dialog.dismiss();
+        }
+    }
+
+    @Override
+    public void dialogclose() {
+        if (dialog != null) {
+            dialog.dismiss();
+        }
+    }
+
+    @Override
+    public void selectorAreaPosition(int provincePosition, int cityPosition, int countyPosition, int streetPosition) {
     }
 }

@@ -8,8 +8,14 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
+import com.socks.library.KLog;
 import com.znz.compass.znzlibray.R;
 import com.znz.compass.znzlibray.utils.StringUtil;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 /**
  * @see com.znz.compass.znzlibray.views
@@ -94,12 +100,18 @@ public class WebViewWithProgress extends WebView {
         super.onScrollChanged(l, t, oldl, oldt);
     }
 
+    /**
+     * 加载富文本
+     *
+     * @param content
+     */
     public void loadContent(String content) {
         progressbar.setVisibility(GONE);
+        this.setEnabled(false);
         if (StringUtil.isBlank(content)) {
             return;
         }
-        this.loadDataWithBaseURL(null, content, "text/html", "utf-8", null);
+        this.loadDataWithBaseURL(null, getNewContent(content), "text/html", "utf-8", null);
         //版本号控制，使图片能够适配
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
         if (currentapiVersion <= 19) {
@@ -110,21 +122,21 @@ public class WebViewWithProgress extends WebView {
     }
 
 
-//    /**
-//     * 处理html文本
-//     *
-//     * @param htmltext
-//     * @return
-//     */
-//    private String getNewContent(String htmltext) {
-//        Document doc = Jsoup.parse(htmltext);
-//        Elements elements = doc.getElementsByTag("img");
-//        for (Element element : elements) {
-//            element.attr("width", "100%").attr("height", "auto");
-//        }
-//
-//        KLog.e("doc.toString()---->" + doc.toString());
-//
-//        return doc.toString();
-//    }
+    /**
+     * 处理html文本
+     *
+     * @param htmltext
+     * @return
+     */
+    private String getNewContent(String htmltext) {
+        Document doc = Jsoup.parse(htmltext);
+        Elements elements = doc.getElementsByTag("img");
+        for (Element element : elements) {
+            element.attr("width", "100%").attr("height", "auto");
+        }
+
+        KLog.e("doc.toString()---->" + doc.toString());
+
+        return doc.toString();
+    }
 }

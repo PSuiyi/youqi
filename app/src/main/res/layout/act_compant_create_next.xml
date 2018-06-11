@@ -116,13 +116,41 @@
                     android:layout_width="60dp"
                     android:text="公司地址" />
 
+                <TextView
+                    android:id="@+id/tvAddress"
+                    style="@style/TextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:hint="请选择" />
+
+                <ImageView
+                    android:layout_width="11dp"
+                    android:layout_height="11dp"
+                    android:src="@drawable/listarr" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
+
+                <TextView
+                    style="@style/TextStyle"
+                    android:layout_width="60dp"
+                    android:text="公司地址"
+                    android:visibility="invisible" />
+
                 <EditText
                     android:id="@+id/etAddress"
                     style="@style/EditSingleStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:hint="请输入" />
+                    android:hint="请输入详细地址" />
             </LinearLayout>
 
             <View style="@style/LineBoth" />
