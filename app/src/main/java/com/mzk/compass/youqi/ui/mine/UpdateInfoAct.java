@@ -1,6 +1,8 @@
 package com.mzk.compass.youqi.ui.mine;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.inputmethod.InputMethodManager;
 
 import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
@@ -57,6 +59,8 @@ public class UpdateInfoAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
+        InputMethodManager imm = ( InputMethodManager ) etContent.getContext( ).getSystemService( Context.INPUT_METHOD_SERVICE );
+        imm.showSoftInput(etContent,InputMethodManager.SHOW_FORCED);
         if (StringUtil.isBlank(from)) {
             return;
         }

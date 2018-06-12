@@ -314,6 +314,9 @@ public interface ApiService {
     @GET("account/send-code")
     Observable<ResponseBody> requestGetCode(@QueryMap Map<String, String> params);
 
+    @GET("message/count")
+    Observable<ResponseBody> requestMessageCount(@QueryMap Map<String, String> params);
+
     @FormUrlEncoded
     @POST("account/send-code")
     Observable<ResponseBody> requestCheckPhone(@FieldMap Map<String, String> params);

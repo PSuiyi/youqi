@@ -67,6 +67,8 @@ public class MineFrag extends BaseAppFragment {
     TextView tvYongjin;
     @Bind(R.id.tvBalance)
     TextView tvBalance;
+    @Bind(R.id.tvMessageCount)
+    TextView tvMessageCount;
     @Bind(R.id.ivVip)
     ImageView ivVip;
     private UserBean bean;
@@ -219,6 +221,22 @@ public class MineFrag extends BaseAppFragment {
                     AppUtils.getInstance(context).saveUserData(bean);
                     setData();
                 }
+            }
+        });
+        mModel.requestMessageCount(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                if (StringUtil.isBlank(responseOriginal.getString("data"))) {
+                    tvMessageCount.setVisibility(View.GONE);
+                } else {
+                    tvMessageCount.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
             }
         });
     }

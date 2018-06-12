@@ -8,8 +8,14 @@ import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.bean.BankBean;
+import com.mzk.compass.youqi.event.EventRefresh;
+import com.mzk.compass.youqi.event.EventTags;
+import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,6 +50,7 @@ public class BankCardListAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
+        znzToolBar.setNavRightText("更换");
         setTitleName("绑定银行卡");
         znzToolBar.setOnNavRightClickListener(view -> {
             Bundle bundle = new Bundle();
@@ -69,12 +76,11 @@ public class BankCardListAct extends BaseAppActivity {
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 if (StringUtil.isBlank(responseOriginal.getString("data"))) {
-                    znzToolBar.setNavRightText("绑定");
-                    showNoData();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("from", "绑定银行卡");
+                    gotoActivity(CheckPhoneAct.class, bundle);
                 } else {
-                    hideNoData();
                     bean = JSON.parseObject(responseOriginal.getString("data"), BankBean.class);
-                    znzToolBar.setNavRightText("更换");
                     tvBank.setText(bean.getDetailbank());
                     tvNumber.setText(bean.getDetailbank());
                 }
@@ -83,9 +89,23 @@ public class BankCardListAct extends BaseAppActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
+        EventManager.register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventManager.unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(EventRefresh event) {
+        switch (event.getFlag()) {
+            case EventTags.REFRESH_BANK:
+                loadDataFromServer();
+                break;
+        }
     }
 }

@@ -8,6 +8,7 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
+import com.znz.compass.znzlibray.common.ZnzConstants;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -105,7 +106,7 @@ public class AccountManagerAct extends BaseAppActivity {
                 super.onSuccess(responseOriginal);
                 JSONObject json = JSON.parseObject(responseOriginal.getString("data"));
                 if (json != null) {
-                    rowDescriptionList.get(1).setValue(json.getString("tel"));
+                    rowDescriptionList.get(1).setValue(StringUtil.getSignPhone(json.getString("tel")));
                     if (StringUtil.isBlank(json.getString("bankcard"))) {
                         rowDescriptionList.get(2).setValue("未绑定");
                     } else {
@@ -125,6 +126,7 @@ public class AccountManagerAct extends BaseAppActivity {
             }
         });
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();

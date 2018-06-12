@@ -163,8 +163,9 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
                             @Override
                             public void onSuccess(JSONObject responseOriginal) {
                                 super.onSuccess(responseOriginal);
-                                bean.setIsCollected("false");
-                                adapter.notifyDataSetChanged();
+//                                bean.setIsCollected("false");
+//                                adapter.notifyDataSetChanged();
+                                resetRefresh();
                             }
                         });
                     } else {
@@ -175,8 +176,9 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
                             @Override
                             public void onSuccess(JSONObject responseOriginal) {
                                 super.onSuccess(responseOriginal);
-                                bean.setIsCollected("true");
-                                adapter.notifyDataSetChanged();
+//                                bean.setIsCollected("true");
+//                                adapter.notifyDataSetChanged();
+                                resetRefresh();
                             }
                         });
                     }
@@ -285,7 +287,11 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
             case "首页全部项目":
                 return mModel.requestProjectList(params);
             case "搜索":
-                params.put("searchKey", keywords);
+                if (StringUtil.isBlank(keywords)) {
+                    params.put("searchKey", "null");
+                }else{
+                    params.put("searchKey", keywords);
+                }
                 return mModel.requestProjectList(params);
             default:
                 return mModel.requestProjectList(params);

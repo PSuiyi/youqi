@@ -95,7 +95,11 @@ public class NewsListFrag extends BaseAppListFragment<NewsBean> {
             switch (from) {
                 case "搜索":
                     params.put("cateId", "0");
-                    params.put("searchKey", keywords);
+                    if (StringUtil.isBlank(keywords)) {
+                        params.put("searchKey", "null");
+                    } else {
+                        params.put("searchKey", keywords);
+                    }
                     return mModel.requestNewsList(params);
                 case "收藏":
                     params.put("type", "5");

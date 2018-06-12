@@ -1,6 +1,8 @@
 package com.mzk.compass.youqi.ui.mine;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.alibaba.fastjson.JSONObject;
@@ -59,6 +61,8 @@ public class UpdateIntroAct extends BaseAppActivity {
 
     @OnClick(R.id.tvSubmit)
     public void onViewClicked() {
+        InputMethodManager imm = ( InputMethodManager ) etContent.getContext( ).getSystemService( Context.INPUT_METHOD_SERVICE );
+        imm.showSoftInput(etContent,InputMethodManager.SHOW_FORCED);
         if (StringUtil.isBlank(mDataManager.getValueFromView(etContent))) {
             mDataManager.showToast("请输入职务");
             return;

@@ -135,8 +135,9 @@ public class OrganListFrag extends BaseAppListFragment<OrganBean> {
                             @Override
                             public void onSuccess(JSONObject responseOriginal) {
                                 super.onSuccess(responseOriginal);
-                                bean.setIsCollected("false");
-                                adapter.notifyDataSetChanged();
+//                                bean.setIsCollected("false");
+//                                adapter.notifyDataSetChanged();
+                                resetRefresh();
                             }
                         });
                     } else {
@@ -147,8 +148,9 @@ public class OrganListFrag extends BaseAppListFragment<OrganBean> {
                             @Override
                             public void onSuccess(JSONObject responseOriginal) {
                                 super.onSuccess(responseOriginal);
-                                bean.setIsCollected("true");
-                                adapter.notifyDataSetChanged();
+//                                bean.setIsCollected("true");
+//                                adapter.notifyDataSetChanged();
+                                resetRefresh();
                             }
                         });
                     }
@@ -225,7 +227,11 @@ public class OrganListFrag extends BaseAppListFragment<OrganBean> {
         }
         switch (from) {
             case "搜索":
-                params.put("searchKey", keywords);
+                if (StringUtil.isBlank(keywords)) {
+                    params.put("searchKey", "null");
+                }else{
+                    params.put("searchKey", keywords);
+                }
                 return mModel.requestOrganList(params);
             case "收藏":
                 params.put("type", "3");

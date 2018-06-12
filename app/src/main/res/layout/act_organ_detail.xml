@@ -158,9 +158,9 @@
 
                         <ImageView
                             android:id="@+id/ivFav"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/shoucanghuang" />
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@mipmap/shoucangxiaobai" />
                     </LinearLayout>
                 </LinearLayout>
 

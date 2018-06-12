@@ -93,7 +93,11 @@ public class ProductListFrag extends BaseAppListFragment {
         }
         switch (from) {
             case "搜索":
-                params.put("searchKey", keywords);
+                if (StringUtil.isBlank(keywords)) {
+                    params.put("searchKey", "null");
+                }else{
+                    params.put("searchKey", keywords);
+                }
                 return mModel.requestProductList(params);
             case "收藏":
                 params.put("type", "4");

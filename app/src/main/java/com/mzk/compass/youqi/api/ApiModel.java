@@ -481,6 +481,7 @@ public class ApiModel extends BaseModel {
     public void requestBankList(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         request(apiService.requestBankList(params), znzHttpListener);
     }
+
     /**
      * 绑定银行卡，修改银行卡
      *
@@ -489,6 +490,16 @@ public class ApiModel extends BaseModel {
      */
     public void requestBindBank(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         request(apiService.requestBindBank(params), znzHttpListener);
+    }
+
+    /**
+     * 获取消息数量
+     *
+     * @param params
+     * @return
+     */
+    public void requestMessageCount(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestMessageCount(params), znzHttpListener);
     }
 
     /**
