@@ -81,8 +81,32 @@ public class UpdatePhoneAct extends BaseAppActivity {
 
     @OnClick({R.id.tvGetCode, R.id.tvSubmit})
     public void onViewClicked(View view) {
+        Map<String, String> params = new HashMap<>();
         switch (view.getId()) {
             case R.id.tvGetCode:
+                if (StringUtil.isBlank(mDataManager.getValueFromView(etPhone))) {
+                    mDataManager.showToast("请输入手机号");
+                    return;
+                }
+                if (!StringUtil.isMobile(mDataManager.getValueFromView(etPhone))) {
+                    mDataManager.showToast("请输入正确的手机号");
+                    return;
+                }
+                params.put("mobile", mDataManager.getValueFromView(etPhone));
+                params.put("type", "5");
+                mModel.requestCode(params, new ZnzHttpListener() {
+                    @Override
+                    public void onSuccess(JSONObject responseOriginal) {
+                        super.onSuccess(responseOriginal);
+                        timer.start();
+                        mDataManager.setValueToView(etCode, "123456");
+                    }
+
+                    @Override
+                    public void onFail(String error) {
+                        super.onFail(error);
+                    }
+                });
                 break;
             case R.id.tvSubmit:
                 if (StringUtil.isBlank(mDataManager.getValueFromView(etCode))) {
@@ -93,7 +117,6 @@ public class UpdatePhoneAct extends BaseAppActivity {
                     mDataManager.showToast("请输入手机号");
                     return;
                 }
-                Map<String, String> params = new HashMap<>();
                 params.put("mobile", mDataManager.getValueFromView(etPhone));
                 params.put("code", mDataManager.getValueFromView(etCode));
                 mModel.requestChangePhone(params, new ZnzHttpListener() {

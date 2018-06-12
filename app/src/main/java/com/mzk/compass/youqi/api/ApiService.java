@@ -42,6 +42,10 @@ public interface ApiService {
     Observable<ResponseBody> requestAutherLogin(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("login/reset-pass")
+    Observable<ResponseBody> requestForgetPsd(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("login/register")
     Observable<ResponseBody> requestRegister(@FieldMap Map<String, String> params);
 

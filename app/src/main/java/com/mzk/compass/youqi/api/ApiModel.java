@@ -68,6 +68,16 @@ public class ApiModel extends BaseModel {
         request(apiService.requestLogin(params), znzHttpListener, LODING_PD);
     }
 
+    /**
+     * 忘记密码
+     *
+     * @param params
+     * @param znzHttpListener
+     */
+    public void requestForgetPsd(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestForgetPsd(params), znzHttpListener, LODING_PD);
+    }
+
     public void requestBind(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         request(apiService.requestBind(params), znzHttpListener, LODING_PD);
     }
