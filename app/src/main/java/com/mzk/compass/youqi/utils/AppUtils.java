@@ -91,7 +91,7 @@ public class AppUtils {
             if (!StringUtil.isBlank(mDataManager.readTempData(Constants.User.COMPANYNAME))) {
                 result = mDataManager.readTempData(Constants.User.COMPANYNAME);
             } else {
-                result = "暂无公司";
+                result = "";
             }
         }
         return result;

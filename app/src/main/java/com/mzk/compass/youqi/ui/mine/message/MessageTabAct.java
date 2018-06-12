@@ -66,15 +66,15 @@ public class MessageTabAct extends BaseAppActivity {
     @Override
     protected void initializeNavigation() {
         setTitleName("消息");
-        znzToolBar.setNavRightText("编辑");
+        znzToolBar.setNavRightText("编辑",mDataManager.getColor(R.color.red));
         znzToolBar.setOnNavRightClickListener(view -> {
             if (isEdit) {
                 isEdit = false;
-                znzToolBar.setNavRightText("编辑");
+                znzToolBar.setNavRightText("编辑",mDataManager.getColor(R.color.red));
                 EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_MESSAGE_EDIT, "完成"));
             } else {
                 isEdit = true;
-                znzToolBar.setNavRightText("完成");
+                znzToolBar.setNavRightText("完成",mDataManager.getColor(R.color.red));
                 EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_MESSAGE_EDIT, "编辑"));
             }
         });

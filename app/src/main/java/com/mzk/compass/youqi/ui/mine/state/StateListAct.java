@@ -48,15 +48,15 @@ public class StateListAct extends BaseAppListActivity<StateBean> {
     @Override
     protected void initializeNavigation() {
         setTitleName("我的动态");
-        znzToolBar.setNavRightText("编辑");
+        znzToolBar.setNavRightText("编辑",mDataManager.getColor(R.color.red));
         znzToolBar.setOnNavRightClickListener(view -> {
             if (isEdit) {
                 isEdit = false;
-                znzToolBar.setNavRightText("编辑");
+                znzToolBar.setNavRightText("编辑",mDataManager.getColor(R.color.red));
                 mDataManager.setViewVisibility(llSelectAll, true);
             } else {
                 isEdit = true;
-                znzToolBar.setNavRightText("完成");
+                znzToolBar.setNavRightText("完成",mDataManager.getColor(R.color.red));
                 mDataManager.setViewVisibility(llSelectAll, true);
             }
             for (StateBean stateBean : dataList) {

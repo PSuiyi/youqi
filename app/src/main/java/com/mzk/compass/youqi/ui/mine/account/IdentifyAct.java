@@ -51,7 +51,7 @@ public class IdentifyAct extends BaseAppActivity {
     @Override
     protected void initializeNavigation() {
         setTitleName("身份认证");
-        znzToolBar.setNavRightText("提交");
+        znzToolBar.setNavRightText("提交",mDataManager.getColor(R.color.red));
         znzToolBar.setOnNavRightClickListener(view -> {
             if (StringUtil.isBlank(mDataManager.getValueFromView(etName))) {
                 mDataManager.showToast("请输入姓名");

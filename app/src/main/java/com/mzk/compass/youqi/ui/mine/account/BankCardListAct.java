@@ -50,7 +50,7 @@ public class BankCardListAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-        znzToolBar.setNavRightText("更换");
+        znzToolBar.setNavRightText("更换", mDataManager.getColor(R.color.red));
         setTitleName("绑定银行卡");
         znzToolBar.setOnNavRightClickListener(view -> {
             Bundle bundle = new Bundle();

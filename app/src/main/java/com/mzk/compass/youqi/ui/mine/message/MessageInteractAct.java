@@ -60,7 +60,7 @@ public class MessageInteractAct extends BaseAppActivity {
     @Override
     protected void initializeNavigation() {
         setTitleName("消息详情");
-        znzToolBar.setNavRightText("回复");
+        znzToolBar.setNavRightText("回复",mDataManager.getColor(R.color.red));
         znzToolBar.setOnNavRightClickListener(view -> {
             Bundle bundle = new Bundle();
             bundle.putSerializable("bean", bean);

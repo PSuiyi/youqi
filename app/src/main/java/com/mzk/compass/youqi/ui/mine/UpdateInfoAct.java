@@ -59,6 +59,7 @@ public class UpdateInfoAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
+        etContent.setFocusable(true);
         InputMethodManager imm = ( InputMethodManager ) etContent.getContext( ).getSystemService( Context.INPUT_METHOD_SERVICE );
         imm.showSoftInput(etContent,InputMethodManager.SHOW_FORCED);
         if (StringUtil.isBlank(from)) {

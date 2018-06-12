@@ -277,6 +277,18 @@ public class ZnzToolBar extends LinearLayout {
     /**
      * set nav right txt
      */
+    public void setNavRightText(String text, int color) {
+        llNavRight.setVisibility(VISIBLE);
+        tvNavRight.setVisibility(VISIBLE);
+        ivNavRight.setVisibility(GONE);
+        llIconRight.setVisibility(GONE);
+        tvNavRight.setText(text);
+        tvNavRight.setTextColor(color);
+    }
+
+    /**
+     * set nav right txt
+     */
     public void setNavRight(String text, int resourceId) {
         llNavRight.setVisibility(VISIBLE);
         tvNavRight.setVisibility(GONE);

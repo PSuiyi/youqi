@@ -139,7 +139,7 @@ public class MineInfoAct extends BaseAppActivity {
                 })
                 .build());
         commonRowGroup.notifyDataChanged(rowDescriptionList);
-        mDataManager.setValueToView(tvIntro, mDataManager.readTempData(Constants.User.INTRODUCE));
+        mDataManager.setValueToView(tvIntro, mDataManager.readTempData(Constants.User.INTRODUCE),"");
         ivHeader.loadHeaderImage(mDataManager.readTempData(Constants.User.AVATAR));
     }
 

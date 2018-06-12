@@ -47,7 +47,7 @@ public class MessageTradeAct extends BaseAppActivity {
     @Override
     protected void initializeNavigation() {
         setTitleName("消息详情");
-        znzToolBar.setNavRightText("回复");
+        znzToolBar.setNavRightText("回复",mDataManager.getColor(R.color.red));
         znzToolBar.setOnNavRightClickListener(view -> {
             gotoActivity(MessageReplyAct.class);
         });

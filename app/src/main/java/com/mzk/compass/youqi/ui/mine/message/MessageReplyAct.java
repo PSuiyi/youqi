@@ -43,7 +43,7 @@ public class MessageReplyAct extends BaseAppActivity {
     @Override
     protected void initializeNavigation() {
         setTitleName("回复");
-        znzToolBar.setNavRightText("发送");
+        znzToolBar.setNavRightText("发送",mDataManager.getColor(R.color.red));
         znzToolBar.setOnNavRightClickListener(view -> {
             if (StringUtil.isBlank(mDataManager.getValueFromView(etContent))) {
                 mDataManager.showToast("请输入回复内容");
