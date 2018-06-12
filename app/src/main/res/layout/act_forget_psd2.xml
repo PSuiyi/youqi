@@ -33,7 +33,9 @@
 
             <com.znz.compass.znzlibray.views.EditTextWithDel
                 style="@style/EditPasswordStyle"
-                android:hint="请输入手机号" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="请输入新密码" />
 
         </LinearLayout>
 
@@ -54,8 +56,10 @@
 
             <com.znz.compass.znzlibray.views.EditTextWithDel
                 style="@style/EditPasswordStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="请输入验证码" />
+                android:hint="请确认新密码" />
         </LinearLayout>
 
         <View style="@style/Line" />

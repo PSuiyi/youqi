@@ -3,7 +3,6 @@ package com.mzk.compass.youqi.ui.mine;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -11,10 +10,8 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.CustomerAdapter;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.bean.CustomerServiceBean;
-import com.znz.compass.znzlibray.bean.BaseZnzBean;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
-import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -64,7 +61,7 @@ public class CustomerServiceAct extends BaseAppActivity {
                             .setMsg("联系电话：" + dataList.get(position).getTel())
                             .setNegativeButton("取消", null)
                             .setPositiveButton("确定", v2 -> {
-
+                                mDataManager.callPhone(activity, dataList.get(position).getTel());
                             })
                             .show();
                     break;
@@ -79,11 +76,11 @@ public class CustomerServiceAct extends BaseAppActivity {
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
-                dataList.addAll(JSON.parseArray(responseOriginal.getString("data"),CustomerServiceBean.class));
+                dataList.addAll(JSON.parseArray(responseOriginal.getString("data"), CustomerServiceBean.class));
                 adapter.notifyDataSetChanged();
-                if (dataList.isEmpty()){
+                if (dataList.isEmpty()) {
                     showNoData();
-                }else{
+                } else {
                     hideNoData();
                 }
             }

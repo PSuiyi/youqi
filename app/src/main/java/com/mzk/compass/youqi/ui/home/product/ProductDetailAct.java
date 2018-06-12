@@ -265,10 +265,8 @@ public class ProductDetailAct extends BaseAppActivity {
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 mDataManager.showToast("收藏成功");
-                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang2);
-                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                tvFav.setCompoundDrawables(null, drawable, null, null);
-                ivFav.setBackgroundResource(R.mipmap.shoucanghuang);
+                mDataManager.setTextDrawableTop(tvFav, R.mipmap.shoucanghuang2);
+                ivFav.setImageResource(R.mipmap.shoucanghuang);
                 bean.setIsCollected("true");
                 EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_PRODUCT));
             }
@@ -284,10 +282,8 @@ public class ProductDetailAct extends BaseAppActivity {
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 mDataManager.showToast("取消收藏成功");
-                Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucangxia);
-                drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                tvFav.setCompoundDrawables(null, drawable, null, null);
-                ivFav.setBackgroundResource(R.mipmap.shoucang);
+                mDataManager.setTextDrawableTop(tvFav, R.mipmap.shoucangxia);
+                ivFav.setImageResource(R.mipmap.shoucang);
                 bean.setIsCollected("false");
                 EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_PRODUCT));
             }

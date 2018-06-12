@@ -61,7 +61,7 @@
                 style="@style/TextStyle"
                 android:layout_weight="1"
                 android:drawablePadding="8dp"
-                android:drawableTop="@mipmap/weixinhaoyou"
+                android:drawableTop="@mipmap/pengyouquan"
                 android:gravity="center"
                 android:text="朋友圈" />
 

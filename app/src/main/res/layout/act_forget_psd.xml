@@ -33,6 +33,8 @@
 
             <com.znz.compass.znzlibray.views.EditTextWithDel
                 style="@style/EditPhoneStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:hint="请输入手机号" />
 
         </LinearLayout>
@@ -54,6 +56,8 @@
 
             <com.znz.compass.znzlibray.views.EditTextWithDel
                 style="@style/EditStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:hint="请输入验证码" />
 
