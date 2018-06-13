@@ -68,7 +68,7 @@ public class HomeCityListAct extends BaseAppActivity {
                     .setMsg("目前只开通南京区服务,其他城市敬请期待！")
                     .setNegativeButton("取消", null)
                     .setPositiveButton("确定", v2 -> {
-                        
+
                     })
                     .show();
         });
@@ -91,6 +91,12 @@ public class HomeCityListAct extends BaseAppActivity {
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 dataList.addAll(JSONArray.parseArray(responseOriginal.getString("data"), CityBean.class));
+                for (CityBean cityBean : dataList) {
+                    if (cityBean.getName().equals("南京市")) {
+                        dataList.remove(cityBean);
+                        break;
+                    }
+                }
                 adapter.notifyDataSetChanged();
             }
 

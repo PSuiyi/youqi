@@ -36,6 +36,15 @@ public class UserBean extends BaseZnzBean {
     private String cname;
     private String vipTime;
     private String nickName;
+    private String duty;
+
+    public String getDuty() {
+        return duty;
+    }
+
+    public void setDuty(String duty) {
+        this.duty = duty;
+    }
 
     public String getAvatar() {
         return avatar;

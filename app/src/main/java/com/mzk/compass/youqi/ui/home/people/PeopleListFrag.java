@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -56,6 +57,18 @@ public class PeopleListFrag extends BaseAppListFragment<PeopleBean> {
     LinearLayout llFilt;
     @Bind(R.id.tvTotal)
     TextView tvTotal;
+    @Bind(R.id.tvSort1)
+    TextView tvSort1;
+    @Bind(R.id.ivSortTop1)
+    ImageView ivSortTop1;
+    @Bind(R.id.ivSortBottom1)
+    ImageView ivSortBottom1;
+    @Bind(R.id.tvSort2)
+    TextView tvSort2;
+    @Bind(R.id.ivSortTop2)
+    ImageView ivSortTop2;
+    @Bind(R.id.ivSortBottom2)
+    ImageView ivSortBottom2;
     private String from;
     private String keywords;
 
@@ -63,6 +76,10 @@ public class PeopleListFrag extends BaseAppListFragment<PeopleBean> {
     private List<FiltBean> filtList2 = new ArrayList<>();
     private String currentHangye;
     private String currentJieduan;
+
+    private String order;
+    private int order1;
+    private int order2;
 
     public static PeopleListFrag newInstance(String from) {
         Bundle bundle = new Bundle();
@@ -212,11 +229,14 @@ public class PeopleListFrag extends BaseAppListFragment<PeopleBean> {
         if (!StringUtil.isBlank(currentJieduan)) {
             params.put("roundId", currentJieduan);
         }
+        if (!StringUtil.isBlank(order)) {
+            params.put("order", order);
+        }
         switch (from) {
             case "搜索":
                 if (StringUtil.isBlank(keywords)) {
                     params.put("searchKey", "null");
-                }else{
+                } else {
                     params.put("searchKey", keywords);
                 }
                 return mModel.requestPeopleList(params);
@@ -284,7 +304,7 @@ public class PeopleListFrag extends BaseAppListFragment<PeopleBean> {
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.tvOpt1, R.id.tvOpt2})
+    @OnClick({R.id.tvOpt1, R.id.tvOpt2, R.id.tvSort1, R.id.tvSort2})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvOpt1:
@@ -308,6 +328,68 @@ public class PeopleListFrag extends BaseAppListFragment<PeopleBean> {
                     }
                     resetRefresh();
                 });
+                break;
+            case R.id.tvSort1:
+                switch (order1) {
+                    case 0:
+                        ivSortTop1.setImageResource(R.mipmap.shanglared);
+                        ivSortBottom1.setImageResource(R.mipmap.xialagray);
+                        order = "0";
+                        order1 = 1;
+                        break;
+                    case 1:
+                        ivSortTop1.setImageResource(R.mipmap.shanglagray);
+                        ivSortBottom1.setImageResource(R.mipmap.xialared);
+                        order = "1";
+                        order1 = 2;
+                        break;
+                    case 2:
+                        ivSortTop1.setImageResource(R.mipmap.shanglared);
+                        ivSortBottom1.setImageResource(R.mipmap.xialagray);
+                        order = "0";
+                        order1 = 1;
+                        break;
+                }
+
+                tvSort1.setTextColor(mDataManager.getColor(R.color.red));
+                tvSort2.setTextColor(mDataManager.getColor(R.color.text_gray));
+
+                ivSortTop2.setImageResource(R.mipmap.shanglagray);
+                ivSortBottom2.setImageResource(R.mipmap.xialagray);
+                order2 = 0;
+
+                resetRefresh();
+                break;
+            case R.id.tvSort2:
+                switch (order2) {
+                    case 0:
+                        ivSortTop2.setImageResource(R.mipmap.shanglared);
+                        ivSortBottom2.setImageResource(R.mipmap.xialagray);
+                        order = "2";
+                        order2 = 1;
+                        break;
+                    case 1:
+                        ivSortTop2.setImageResource(R.mipmap.shanglagray);
+                        ivSortBottom2.setImageResource(R.mipmap.xialared);
+                        order = "3";
+                        order2 = 2;
+                        break;
+                    case 2:
+                        ivSortTop2.setImageResource(R.mipmap.shanglared);
+                        ivSortBottom2.setImageResource(R.mipmap.xialagray);
+                        order = "2";
+                        order2 = 1;
+                        break;
+                }
+
+                tvSort1.setTextColor(mDataManager.getColor(R.color.text_gray));
+                tvSort2.setTextColor(mDataManager.getColor(R.color.red));
+
+                ivSortTop1.setImageResource(R.mipmap.shanglagray);
+                ivSortBottom1.setImageResource(R.mipmap.xialagray);
+                order1 = 0;
+
+                resetRefresh();
                 break;
         }
     }

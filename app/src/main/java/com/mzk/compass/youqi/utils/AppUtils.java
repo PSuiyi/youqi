@@ -60,6 +60,7 @@ public class AppUtils {
         mDataManager.saveTempData(Constants.User.INTRODUCE, bean.getIntroduce());
         mDataManager.saveTempData(Constants.User.CNAME, bean.getCname());
         mDataManager.saveTempData(Constants.User.VIPTIME, bean.getVipTime());
+        mDataManager.saveTempData(Constants.User.DUTY, bean.getDuty());
     }
 
 

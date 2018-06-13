@@ -24,7 +24,6 @@ public class MenuAdapter extends BaseQuickAdapter<MenuBean, BaseViewHolder> impl
 
     @Override
     protected void convert(BaseViewHolder helper, MenuBean bean) {
-        setOnItemClickListener(this);
         mDataManager.setValueToView(tvTitle, bean.getTitle());
     }
 

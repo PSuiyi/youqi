@@ -91,7 +91,10 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
     private String currentJieduan;
     private String currentArea;
     private String currentMoney;
-    private String order1;
+    private String order;
+    private int order1;
+    private int order2;
+    private int order3;
 
     public static ProjectListFrag newInstance(String from) {
         Bundle bundle = new Bundle();
@@ -265,6 +268,10 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
             params.put("turnoverId", currentMoney);
         }
 
+        if (!StringUtil.isBlank(order)) {
+            params.put("order", order);
+        }
+
         switch (from) {
             case "全部":
                 params.put("state", "0");
@@ -289,7 +296,7 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
             case "搜索":
                 if (StringUtil.isBlank(keywords)) {
                     params.put("searchKey", "null");
-                }else{
+                } else {
                     params.put("searchKey", keywords);
                 }
                 return mModel.requestProjectList(params);
@@ -417,26 +424,112 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
                 });
                 break;
             case R.id.tvSort1:
-//                if (StringUtil.isBlank(order1)) {
-//                    order1 = "true";
-//                    ivShang.setImageDrawable(getResources().getDrawable(R.mipmap.shanglalan));
-//                    ivXia.setImageDrawable(getResources().getDrawable(R.mipmap.xialahui));
-//                } else {
-//                    if (order1.equals("true")) {
-//                        order1 = "false";
-//                        ivShang.setImageDrawable(getResources().getDrawable(R.mipmap.shanghui));
-//                        ivXia.setImageDrawable(getResources().getDrawable(R.mipmap.xialan));
-//                    } else {
-//                        order1 = "true";
-//                        ivShang.setImageDrawable(getResources().getDrawable(R.mipmap.shanglalan));
-//                        ivXia.setImageDrawable(getResources().getDrawable(R.mipmap.xialahui));
-//                    }
-//                }
-//                resetRefresh();
+                switch (order1) {
+                    case 0:
+                        ivSortTop1.setImageResource(R.mipmap.shanglared);
+                        ivSortBottom1.setImageResource(R.mipmap.xialagray);
+                        order = "0";
+                        order1 = 1;
+                        break;
+                    case 1:
+                        ivSortTop1.setImageResource(R.mipmap.shanglagray);
+                        ivSortBottom1.setImageResource(R.mipmap.xialared);
+                        order = "1";
+                        order1 = 2;
+                        break;
+                    case 2:
+                        ivSortTop1.setImageResource(R.mipmap.shanglared);
+                        ivSortBottom1.setImageResource(R.mipmap.xialagray);
+                        order = "0";
+                        order1 = 1;
+                        break;
+                }
+
+                tvSort1.setTextColor(mDataManager.getColor(R.color.red));
+                tvSort2.setTextColor(mDataManager.getColor(R.color.text_gray));
+                tvSort3.setTextColor(mDataManager.getColor(R.color.text_gray));
+
+                ivSortTop2.setImageResource(R.mipmap.shanglagray);
+                ivSortBottom2.setImageResource(R.mipmap.xialagray);
+                order2 = 0;
+
+                ivSortTop3.setImageResource(R.mipmap.shanglagray);
+                ivSortBottom3.setImageResource(R.mipmap.xialagray);
+                order3 = 0;
+
+                resetRefresh();
                 break;
             case R.id.tvSort2:
+                switch (order2) {
+                    case 0:
+                        ivSortTop2.setImageResource(R.mipmap.shanglared);
+                        ivSortBottom2.setImageResource(R.mipmap.xialagray);
+                        order = "2";
+                        order2 = 1;
+                        break;
+                    case 1:
+                        ivSortTop2.setImageResource(R.mipmap.shanglagray);
+                        ivSortBottom2.setImageResource(R.mipmap.xialared);
+                        order = "3";
+                        order2 = 2;
+                        break;
+                    case 2:
+                        ivSortTop2.setImageResource(R.mipmap.shanglared);
+                        ivSortBottom2.setImageResource(R.mipmap.xialagray);
+                        order = "2";
+                        order2 = 1;
+                        break;
+                }
+
+                tvSort1.setTextColor(mDataManager.getColor(R.color.text_gray));
+                tvSort2.setTextColor(mDataManager.getColor(R.color.red));
+                tvSort3.setTextColor(mDataManager.getColor(R.color.text_gray));
+
+                ivSortTop1.setImageResource(R.mipmap.shanglagray);
+                ivSortBottom1.setImageResource(R.mipmap.xialagray);
+                order1 = 0;
+
+                ivSortTop3.setImageResource(R.mipmap.shanglagray);
+                ivSortBottom3.setImageResource(R.mipmap.xialagray);
+                order3 = 0;
+
+                resetRefresh();
                 break;
             case R.id.tvSort3:
+                switch (order3) {
+                    case 0:
+                        ivSortTop3.setImageResource(R.mipmap.shanglared);
+                        ivSortBottom3.setImageResource(R.mipmap.xialagray);
+                        order = "4";
+                        order3 = 1;
+                        break;
+                    case 1:
+                        ivSortTop3.setImageResource(R.mipmap.shanglagray);
+                        ivSortBottom3.setImageResource(R.mipmap.xialared);
+                        order = "5";
+                        order3 = 2;
+                        break;
+                    case 2:
+                        ivSortTop3.setImageResource(R.mipmap.shanglared);
+                        ivSortBottom3.setImageResource(R.mipmap.xialagray);
+                        order = "4";
+                        order3 = 1;
+                        break;
+                }
+
+                tvSort1.setTextColor(mDataManager.getColor(R.color.text_gray));
+                tvSort2.setTextColor(mDataManager.getColor(R.color.text_gray));
+                tvSort3.setTextColor(mDataManager.getColor(R.color.red));
+
+                ivSortTop2.setImageResource(R.mipmap.shanglagray);
+                ivSortBottom2.setImageResource(R.mipmap.xialagray);
+                order2 = 0;
+
+                ivSortTop1.setImageResource(R.mipmap.shanglagray);
+                ivSortBottom1.setImageResource(R.mipmap.xialagray);
+                order1 = 0;
+
+                resetRefresh();
                 break;
         }
     }

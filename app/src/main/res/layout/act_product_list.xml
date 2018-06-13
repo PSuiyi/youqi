@@ -10,42 +10,6 @@
 
     <include layout="@layout/include_common_network_status" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:padding="@dimen/distance_view">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                style="@style/TextDrawableStyle"
-                android:drawableRight="@mipmap/xiala"
-                android:text="价格"
-                android:textSize="@dimen/title_size" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                style="@style/TextDrawableStyle"
-                android:drawableRight="@mipmap/xiala"
-                android:text="成交量"
-                android:textSize="@dimen/title_size" />
-        </LinearLayout>
-    </LinearLayout>
-
 
     <FrameLayout
         android:id="@+id/container"

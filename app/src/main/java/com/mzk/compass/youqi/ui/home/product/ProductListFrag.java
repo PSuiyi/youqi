@@ -3,6 +3,12 @@ package com.mzk.compass.youqi.ui.home.product;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.mzk.compass.youqi.R;
@@ -17,6 +23,9 @@ import com.znz.compass.znzlibray.utils.StringUtil;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import okhttp3.ResponseBody;
 import rx.Observable;
 
@@ -26,9 +35,26 @@ import rx.Observable;
  * Description：
  */
 public class ProductListFrag extends BaseAppListFragment {
+    @Bind(R.id.tvSort1)
+    TextView tvSort1;
+    @Bind(R.id.ivSortTop1)
+    ImageView ivSortTop1;
+    @Bind(R.id.ivSortBottom1)
+    ImageView ivSortBottom1;
+    @Bind(R.id.tvSort2)
+    TextView tvSort2;
+    @Bind(R.id.ivSortTop2)
+    ImageView ivSortTop2;
+    @Bind(R.id.ivSortBottom2)
+    ImageView ivSortBottom2;
+    @Bind(R.id.llFilt)
+    LinearLayout llFilt;
     private String from;
     private String keywords;
     private String cateId;
+    private String order;
+    private int order1;
+    private int order2;
 
     public static ProductListFrag newInstance(String from) {
         Bundle bundle = new Bundle();
@@ -53,7 +79,7 @@ public class ProductListFrag extends BaseAppListFragment {
 
     @Override
     protected int[] getLayoutResource() {
-        return new int[]{R.layout.common_list_layout};
+        return new int[]{R.layout.frag_list_product};
     }
 
     @Override
@@ -79,6 +105,13 @@ public class ProductListFrag extends BaseAppListFragment {
     protected void initializeView() {
         adapter = new ProductAdapter(dataList);
         rvRefresh.setAdapter(adapter);
+
+        switch (from) {
+            case "商品服务":
+            case "搜索":
+                mDataManager.setViewVisibility(llFilt, true);
+                break;
+        }
     }
 
     @Override
@@ -91,11 +124,14 @@ public class ProductListFrag extends BaseAppListFragment {
         if (!StringUtil.isBlank(cateId)) {
             params.put("cateId", cateId);
         }
+        if (!StringUtil.isBlank(order)) {
+            params.put("order", order);
+        }
         switch (from) {
             case "搜索":
                 if (StringUtil.isBlank(keywords)) {
                     params.put("searchKey", "null");
-                }else{
+                } else {
                     params.put("searchKey", keywords);
                 }
                 return mModel.requestProductList(params);
@@ -147,6 +183,88 @@ public class ProductListFrag extends BaseAppListFragment {
                 resetRefresh();
                 break;
             case EventTags.REFRESH_COLLECT_PRODUCT:
+                resetRefresh();
+                break;
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
+
+    @OnClick({R.id.tvSort1, R.id.tvSort2})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tvSort1:
+                switch (order1) {
+                    case 0:
+                        ivSortTop1.setImageResource(R.mipmap.shanglared);
+                        ivSortBottom1.setImageResource(R.mipmap.xialagray);
+                        order = "0";
+                        order1 = 1;
+                        break;
+                    case 1:
+                        ivSortTop1.setImageResource(R.mipmap.shanglagray);
+                        ivSortBottom1.setImageResource(R.mipmap.xialared);
+                        order = "1";
+                        order1 = 2;
+                        break;
+                    case 2:
+                        ivSortTop1.setImageResource(R.mipmap.shanglared);
+                        ivSortBottom1.setImageResource(R.mipmap.xialagray);
+                        order = "0";
+                        order1 = 1;
+                        break;
+                }
+
+                tvSort1.setTextColor(mDataManager.getColor(R.color.red));
+                tvSort2.setTextColor(mDataManager.getColor(R.color.text_gray));
+
+                ivSortTop2.setImageResource(R.mipmap.shanglagray);
+                ivSortBottom2.setImageResource(R.mipmap.xialagray);
+                order2 = 0;
+
+                resetRefresh();
+                break;
+            case R.id.tvSort2:
+                switch (order2) {
+                    case 0:
+                        ivSortTop2.setImageResource(R.mipmap.shanglared);
+                        ivSortBottom2.setImageResource(R.mipmap.xialagray);
+                        order = "2";
+                        order2 = 1;
+                        break;
+                    case 1:
+                        ivSortTop2.setImageResource(R.mipmap.shanglagray);
+                        ivSortBottom2.setImageResource(R.mipmap.xialared);
+                        order = "3";
+                        order2 = 2;
+                        break;
+                    case 2:
+                        ivSortTop2.setImageResource(R.mipmap.shanglared);
+                        ivSortBottom2.setImageResource(R.mipmap.xialagray);
+                        order = "2";
+                        order2 = 1;
+                        break;
+                }
+
+                tvSort1.setTextColor(mDataManager.getColor(R.color.text_gray));
+                tvSort2.setTextColor(mDataManager.getColor(R.color.red));
+
+                ivSortTop1.setImageResource(R.mipmap.shanglagray);
+                ivSortBottom1.setImageResource(R.mipmap.xialagray);
+                order1 = 0;
+
                 resetRefresh();
                 break;
         }

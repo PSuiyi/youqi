@@ -148,7 +148,6 @@ public class BaseModel<V extends IView> implements IModel {
                     }
                     break;
                 case 2:
-
                     break;
             }
         } catch (Exception e) {
@@ -184,7 +183,7 @@ public class BaseModel<V extends IView> implements IModel {
                     mView.UIHidePd();
                     break;
                 case LODING_LODING:
-                    mView.UIHideLoding();
+//                    mView.UIHideLoding();
                     break;
             }
         }
