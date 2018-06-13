@@ -102,9 +102,9 @@ public class ProductDetailAct extends BaseAppActivity {
     protected void initializeNavigation() {
         appBarLayout.addOnOffsetChangedListener((appBarLayout1, verticalOffset) -> {
             if (Math.abs(verticalOffset) >= (Math.abs(appBarLayout1.getTotalScrollRange()))) {
-                ivBack.setImageResource(R.drawable.topback_white);
-            } else {
                 ivBack.setImageResource(R.drawable.topback);
+            } else {
+                ivBack.setImageResource(R.drawable.topback_white);
             }
         });
     }

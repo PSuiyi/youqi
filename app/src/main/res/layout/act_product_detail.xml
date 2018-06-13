@@ -7,28 +7,21 @@
     android:focusableInTouchMode="true"
     android:orientation="vertical">
 
-    <include layout="@layout/include_common_navigation" />
-
-    <include layout="@layout/include_common_remind" />
-
-    <include layout="@layout/include_common_network_status" />
-
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/nav_backgroud"
             app:elevation="0dp">
 
             <android.support.design.widget.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:contentScrim="@color/white"
+                app:contentScrim="@color/nav_backgroud"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <com.znz.compass.znzlibray.views.imageloder.HttpImageView
@@ -38,7 +31,7 @@
                     android:scaleType="centerCrop"
                     android:src="@mipmap/default_image_square" />
 
-                <com.znz.compass.znzlibray.views.ZnzToolBar
+                <android.support.v7.widget.Toolbar
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_collapseMode="pin">
@@ -53,7 +46,7 @@
                             android:id="@+id/llBack"
                             android:layout_width="50dp"
                             android:layout_height="match_parent"
-                            android:gravity="center"
+                            android:gravity="center_vertical"
                             android:orientation="vertical">
 
                             <ImageView
@@ -65,7 +58,7 @@
 
 
                     </LinearLayout>
-                </com.znz.compass.znzlibray.views.ZnzToolBar>
+                </android.support.v7.widget.Toolbar>
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
 
@@ -272,45 +265,45 @@
 
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
-    </android.support.design.widget.CoordinatorLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@color/white"
-        android:orientation="vertical">
-
-        <View style="@style/Line" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/white"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvFav"
-                style="@style/MenuBottomStyle"
-                android:layout_width="60dp"
-                android:layout_weight="0"
-                android:drawableTop="@mipmap/shoucang"
-                android:text="收藏" />
+            <View style="@style/Line" />
 
-            <TextView
-                android:id="@+id/tvPhone"
-                style="@style/BtnStyle"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:background="#FF942C"
-                android:text="电话咨询" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tvBuy"
-                style="@style/BtnStyle"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:text="立即购买" />
+                <TextView
+                    android:id="@+id/tvFav"
+                    style="@style/MenuBottomStyle"
+                    android:layout_width="60dp"
+                    android:layout_weight="0"
+                    android:drawableTop="@mipmap/shoucang"
+                    android:text="收藏" />
+
+                <TextView
+                    android:id="@+id/tvPhone"
+                    style="@style/BtnStyle"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="#FF942C"
+                    android:text="电话咨询" />
+
+                <TextView
+                    android:id="@+id/tvBuy"
+                    style="@style/BtnStyle"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:text="立即购买" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
 </LinearLayout>
