@@ -34,28 +34,22 @@ public class CompanyBean extends BaseZnzBean {
     private String summary;
     private String website;
     private String fax;
+    private String logo;
     private String email;
     private String basicAddressInfo;
     private List<IndustryBean> tradeid;
-    /**
-     * cname : null
-     * shorName : null
-     * provinceid : null
-     * cityid : null
-     * areaid : null
-     * address : null
-     * uid : null
-     * companyid : 0
-     * idCard : null
-     * licensePhoto : null
-     * basicAddressInfo : null
-     */
-
     private String uid;
     private String companyid;
     private String idCard;
     private String licensePhoto;
 
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
 
     public String getCname() {
         return cname;

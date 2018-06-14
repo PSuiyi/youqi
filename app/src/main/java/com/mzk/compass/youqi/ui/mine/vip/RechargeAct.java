@@ -82,6 +82,7 @@ public class RechargeAct extends BaseAppPayActivity {
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 if (!StringUtil.isBlank(responseOriginal.getString("data"))) {
+                    dataList.clear();
                     dataList.addAll(JSON.parseArray(responseOriginal.getString("data"), PriceBean.class));
                     if (!dataList.isEmpty()) {
                         dataList.get(0).setSelect(true);

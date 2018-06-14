@@ -183,7 +183,7 @@ public class BaseModel<V extends IView> implements IModel {
                     mView.UIHidePd();
                     break;
                 case LODING_LODING:
-//                    mView.UIHideLoding();
+                    mView.UIHideLoding();
                     break;
             }
         }

@@ -175,6 +175,8 @@ public class CompanyCreateNextAct extends BaseAppActivity implements OnAddressSe
 
                     if (!StringUtil.isBlank(json.getString("companyData"))) {
                         CompanyBean bean = JSON.parseObject(json.getString("companyData"), CompanyBean.class);
+                        ivCover.loadSquareImage(bean.getLogo());
+                        url = bean.getLogo();
                         mDataManager.setValueToView(etCompany, bean.getCname(), "");
                         mDataManager.setValueToView(etName, bean.getShorName(), "");
                         mDataManager.setValueToView(etAddress, bean.getAddress(), "");
@@ -184,11 +186,19 @@ public class CompanyCreateNextAct extends BaseAppActivity implements OnAddressSe
                         mDataManager.setValueToView(etIntro, bean.getSummary(), "");
                         if (bean.getTradeid() != null && !bean.getTradeid().isEmpty()) {
                             String str = "";
+                            String ids = "";
                             for (IndustryBean industryBean : bean.getTradeid()) {
                                 str = industryBean.getName() + "," + str;
+                                ids = industryBean.getId() + "," + ids;
                             }
                             tvHangye.setText(str.substring(0, str.length() - 1));
+                            tradeid = ids.substring(0, ids.length() - 1);
                         }
+
+                        cityCode = bean.getCityid();
+                        provinceCode = bean.getProvinceid();
+                        areaCode = bean.getAreaid();
+                        mDataManager.setValueToView(tvAddress, bean.getBasicAddressInfo(), "");
                     }
 
                     if (json.getString("canModify").equals("true")) {
@@ -307,7 +317,7 @@ public class CompanyCreateNextAct extends BaseAppActivity implements OnAddressSe
                     ids = industryBean.getId() + "," + ids;
                 }
                 tvHangye.setText(str.substring(0, str.length() - 1));
-                tradeid = ids.substring(0, str.length() - 1);
+                tradeid = ids.substring(0, ids.length() - 1);
                 break;
         }
     }
