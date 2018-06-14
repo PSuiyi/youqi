@@ -242,6 +242,12 @@ public class PeopleApproveAct extends BaseAppActivity {
                     etName.setFocusable(true);
                     tvYiRenZheng.setVisibility(View.GONE);
                     tvSubmit.setVisibility(View.VISIBLE);
+                    for (IndustryBean industryBean : selectHangye) {
+                        industryBean.setDelete(true);
+                    }
+                    for (IndustryBean industryBean : selectLunci) {
+                        industryBean.setDelete(true);
+                    }
                 } else {
                     llHangYe.setClickable(false);
                     llLunci.setClickable(false);
@@ -258,6 +264,12 @@ public class PeopleApproveAct extends BaseAppActivity {
                     etName.setFocusable(false);
                     tvYiRenZheng.setVisibility(View.VISIBLE);
                     tvSubmit.setVisibility(View.GONE);
+                    for (IndustryBean industryBean : selectHangye) {
+                        industryBean.setDelete(false);
+                    }
+                    for (IndustryBean industryBean : selectLunci) {
+                        industryBean.setDelete(false);
+                    }
                 }
 
                 if (!StringUtil.isBlank(json.getString("isInstitution"))) {
