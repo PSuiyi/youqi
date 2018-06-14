@@ -8,10 +8,14 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.mzk.compass.youqi.event.EventRefresh;
+import com.mzk.compass.youqi.event.EventTags;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.gallery.inter.IPhotoSelectCallback;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.List;
@@ -51,7 +55,7 @@ public class IdentifyAct extends BaseAppActivity {
     @Override
     protected void initializeNavigation() {
         setTitleName("身份认证");
-        znzToolBar.setNavRightText("提交",mDataManager.getColor(R.color.red));
+        znzToolBar.setNavRightText("提交", mDataManager.getColor(R.color.red));
         znzToolBar.setOnNavRightClickListener(view -> {
             if (StringUtil.isBlank(mDataManager.getValueFromView(etName))) {
                 mDataManager.showToast("请输入姓名");
@@ -79,6 +83,7 @@ public class IdentifyAct extends BaseAppActivity {
                 public void onSuccess(JSONObject responseOriginal) {
                     super.onSuccess(responseOriginal);
                     mDataManager.showToast("提交成功");
+                    EventBus.getDefault().post(new EventRefresh(EventTags.REFRESH_PHONE));
                     finish();
                 }
             });

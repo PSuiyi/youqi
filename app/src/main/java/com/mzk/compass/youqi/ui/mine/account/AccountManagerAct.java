@@ -110,15 +110,15 @@ public class AccountManagerAct extends BaseAppActivity {
                     if (StringUtil.isBlank(json.getString("bankcard"))) {
                         rowDescriptionList.get(2).setValue("未绑定");
                     } else {
-                        rowDescriptionList.get(2).setValue("已绑定");
+                        rowDescriptionList.get(2).setValue(json.getString("bankcard"));
                     }
                     if (StringUtil.isBlank(json.getString("state"))) {
-                        rowDescriptionList.get(2).setValue("去认证");
+                        rowDescriptionList.get(3).setValue("去认证");
                     } else {
                         if (json.getString("state").equals("1")) {
-                            rowDescriptionList.get(2).setValue("已认证");
+                            rowDescriptionList.get(3).setValue("已认证");
                         } else {
-                            rowDescriptionList.get(2).setValue("去认证");
+                            rowDescriptionList.get(3).setValue("去认证");
                         }
                     }
                     commonRowGroup.notifyDataChanged(rowDescriptionList);

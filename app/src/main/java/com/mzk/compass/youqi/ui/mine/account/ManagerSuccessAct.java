@@ -7,6 +7,8 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
+import com.mzk.compass.youqi.ui.login.LoginAct;
+import com.znz.compass.umeng.login.LoginAuthManager;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -78,7 +80,8 @@ public class ManagerSuccessAct extends BaseAppActivity {
     public void onViewClicked() {
         switch (from) {
             case "修改手机号":
-                EventBus.getDefault().post(new EventRefresh(EventTags.REFRESH_PHONE));
+                mDataManager.logout(activity, LoginAct.class);
+                LoginAuthManager.getInstance(activity).logoutAll(activity);
                 break;
             case "绑定银行卡":
                 EventBus.getDefault().post(new EventRefresh(EventTags.REFRESH_BANK));

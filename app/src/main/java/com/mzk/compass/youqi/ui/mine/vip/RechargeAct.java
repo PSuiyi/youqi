@@ -11,10 +11,15 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.RechargeAdapter;
 import com.mzk.compass.youqi.base.BaseAppPayActivity;
 import com.mzk.compass.youqi.bean.PriceBean;
+import com.mzk.compass.youqi.event.EventRefresh;
+import com.mzk.compass.youqi.event.EventTags;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzpay.bean.WeixinBean;
+import com.znz.compass.znzpay.common.PayKeys;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -104,7 +109,18 @@ public class RechargeAct extends BaseAppPayActivity {
 
     @Override
     protected void onPayResult(int result) {
-        finish();
+        switch (result) {
+            case PayKeys.ALI_PAY_SUCESSS:
+            case PayKeys.WX_PAY_SUCESSS:
+                EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_PAY_VIP));
+                finish();
+                break;
+            case PayKeys.ALI_PAY_FAIL:
+            case PayKeys.WX_PAY_FAIL:
+                mDataManager.showToast("支付失败");
+                break;
+        }
+
     }
 
     @OnClick(R.id.tvSubmit)

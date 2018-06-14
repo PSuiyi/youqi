@@ -260,9 +260,8 @@ public interface ApiService {
     @POST("investor/submit-investor-info")
     Observable<ResponseBody> requestIdentify(@FieldMap Map<String, String> params);
 
-    @FormUrlEncoded
-    @POST("account/approve-personal")
-    Observable<ResponseBody> requestIdentifyPersonal(@FieldMap Map<String, String> params);
+    @GET("account/approve-personal")
+    Observable<ResponseBody> requestIdentifyPersonal(@QueryMap Map<String, String> params);
 
     @GET("invite/list")
     Observable<ResponseBody> requestMemberList(@QueryMap Map<String, String> params);

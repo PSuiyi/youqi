@@ -115,6 +115,7 @@ public class Register2Act extends BaseAppActivity {
                         JSONObject jsonObject = JSON.parseObject(responseOriginal.getString("data"));
                         String token = jsonObject.getString("token");
                         mDataManager.saveTempData(ZnzConstants.ACCESS_TOKEN, token);
+                        mDataManager.saveTempData(ZnzConstants.ACCOUNT, phone);
                         mDataManager.saveBooleanTempData(ZnzConstants.IS_LOGIN, true);
                         gotoActivityWithClearStack(TabHomeActivity.class);
                     }

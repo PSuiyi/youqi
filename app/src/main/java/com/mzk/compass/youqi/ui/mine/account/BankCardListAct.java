@@ -50,7 +50,6 @@ public class BankCardListAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-        znzToolBar.setNavRightText("更换", mDataManager.getColor(R.color.red));
         setTitleName("绑定银行卡");
         znzToolBar.setOnNavRightClickListener(view -> {
             Bundle bundle = new Bundle();
@@ -75,14 +74,18 @@ public class BankCardListAct extends BaseAppActivity {
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
-                if (StringUtil.isBlank(responseOriginal.getString("data"))) {
+                bean = JSON.parseObject(responseOriginal.getString("data"), BankBean.class);
+                if (bean == null || StringUtil.isBlank(bean.getBankcard())) {
                     Bundle bundle = new Bundle();
                     bundle.putString("from", "绑定银行卡");
                     gotoActivity(CheckPhoneAct.class, bundle);
+                    znzToolBar.setNavRightText("绑定", mDataManager.getColor(R.color.red));
+                    showNoData();
                 } else {
-                    bean = JSON.parseObject(responseOriginal.getString("data"), BankBean.class);
+                    znzToolBar.setNavRightText("更换", mDataManager.getColor(R.color.red));
                     tvBank.setText(bean.getDetailbank());
                     tvNumber.setText(bean.getDetailbank());
+                    hideNoData();
                 }
             }
         });

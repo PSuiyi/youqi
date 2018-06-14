@@ -10,6 +10,7 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
+import com.znz.compass.znzlibray.common.ZnzConstants;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -38,7 +39,7 @@ public class UpdatePhoneAct extends BaseAppActivity {
     TextView tvGetCode;
     @Bind(R.id.tvSubmit)
     TextView tvSubmit;
-
+    private String validateKey;
     private CountDownTimer timer;
 
     @Override
@@ -48,7 +49,9 @@ public class UpdatePhoneAct extends BaseAppActivity {
 
     @Override
     protected void initializeVariate() {
-
+        if (getIntent().hasExtra("validateKey")) {
+            validateKey = getIntent().getStringExtra("validateKey");
+        }
     }
 
     @Override
@@ -94,6 +97,7 @@ public class UpdatePhoneAct extends BaseAppActivity {
                 }
                 params.put("mobile", mDataManager.getValueFromView(etPhone));
                 params.put("type", "5");
+                params.put("validateKey", validateKey);
                 mModel.requestCode(params, new ZnzHttpListener() {
                     @Override
                     public void onSuccess(JSONObject responseOriginal) {
@@ -125,6 +129,7 @@ public class UpdatePhoneAct extends BaseAppActivity {
                         super.onSuccess(responseOriginal);
                         Bundle bundle = new Bundle();
                         bundle.putString("from", "修改手机号");
+                        mDataManager.saveTempData(ZnzConstants.ACCOUNT, mDataManager.getValueFromView(etPhone));
                         gotoActivity(ManagerSuccessAct.class, bundle);
                     }
                 });

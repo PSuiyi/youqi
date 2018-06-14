@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -23,6 +24,7 @@ import com.mzk.compass.youqi.ui.common.SearchCommonAct;
 import com.mzk.compass.youqi.ui.mine.message.MessageTabAct;
 import com.mzk.compass.youqi.utils.AppUtils;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 
 import java.util.ArrayList;
@@ -30,6 +32,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.Bind;
 import cn.bingoogolapple.bgabanner.BGABanner;
 import okhttp3.ResponseBody;
 import rx.Observable;
@@ -40,6 +43,8 @@ import rx.Observable;
  * Description：
  */
 public class HelpFrag extends BaseAppListFragment {
+    @Bind(R.id.tvMessageCount)
+    TextView tvMessageCount;
     private View header;
     private BGABanner banner;
     private RecyclerView rvProduct;
@@ -93,7 +98,7 @@ public class HelpFrag extends BaseAppListFragment {
 
         header = View.inflate(activity, R.layout.header_help, null);
         rvMenuTop = bindViewById(header, R.id.rvMenuTop);
-        rvMenuTop.setLayoutManager(new GridLayoutManager(activity,4));
+        rvMenuTop.setLayoutManager(new GridLayoutManager(activity, 4));
         menuHelpAdapter = new MenuHelpAdapter(menuBeanList);
         rvMenuTop.setAdapter(menuHelpAdapter);
 
@@ -131,7 +136,23 @@ public class HelpFrag extends BaseAppListFragment {
                 super.onFail(error);
             }
         });
+        mModel.requestMessageCount(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                if (StringUtil.isBlank(responseOriginal.getString("data")) || responseOriginal.getString("data").equals("0")) {
+                    tvMessageCount.setVisibility(View.GONE);
+                } else {
+                    tvMessageCount.setVisibility(View.VISIBLE);
+                    tvMessageCount.setText(responseOriginal.getString("data"));
+                }
+            }
 
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
+            }
+        });
         Map<String, String> params1 = new HashMap<>();
         params1.put("bannerType", "MobileHelpBanner");
         mModel.requestBanner(params1, new ZnzHttpListener() {

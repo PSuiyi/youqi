@@ -51,6 +51,8 @@ public class HomeFrag extends BaseAppFragment {
 
     @Bind(R.id.rvHome)
     RecyclerView rvHome;
+    @Bind(R.id.tvMessageCount)
+    TextView tvMessageCount;
     private View header;
     private TextView tvMenu1;
     private TextView tvMenu2;
@@ -106,7 +108,7 @@ public class HomeFrag extends BaseAppFragment {
 
     @Override
     protected void initializeView() {
-        adapter = new MultiAdapter(dataList,mModel);
+        adapter = new MultiAdapter(dataList, mModel);
         rvHome.setLayoutManager(new LinearLayoutManager(activity));
         rvHome.setAdapter(adapter);
 
@@ -182,6 +184,24 @@ public class HomeFrag extends BaseAppFragment {
                         AppUtils.getInstance(activity).doBannerClick(activity, bean);
                     }
                 });
+            }
+        });
+        Map<String, String> params = new HashMap<>();
+        mModel.requestMessageCount(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                if (StringUtil.isBlank(responseOriginal.getString("data")) || responseOriginal.getString("data").equals("0")) {
+                    tvMessageCount.setVisibility(View.GONE);
+                } else {
+                    tvMessageCount.setVisibility(View.VISIBLE);
+                    tvMessageCount.setText(responseOriginal.getString("data"));
+                }
+            }
+
+            @Override
+            public void onFail(String error) {
+                super.onFail(error);
             }
         });
     }

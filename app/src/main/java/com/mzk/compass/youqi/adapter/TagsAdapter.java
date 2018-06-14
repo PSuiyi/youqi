@@ -34,6 +34,7 @@ public class TagsAdapter extends BaseQuickAdapter<IndustryBean, BaseViewHolder> 
         } else {
             mDataManager.setViewVisibility(ivDelete, false);
         }
+        helper.addOnClickListener(R.id.ivDelete);
         mDataManager.setValueToView(tvName, bean.getName());
     }
 

@@ -121,7 +121,7 @@ public class CheckPhoneAct extends BaseAppActivity {
                         bundle.putString("validateKey", responseOriginal.getString("data"));
                         switch (from) {
                             case "修改手机号":
-                                gotoActivity(UpdatePhoneAct.class);
+                                gotoActivity(UpdatePhoneAct.class,bundle);
                                 break;
                             case "查看银行卡":
                                 gotoActivity(BankCardListAct.class, bundle);

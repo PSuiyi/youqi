@@ -160,6 +160,7 @@ public class OrderListFrag extends BaseAppListFragment<OrderBean> {
     public void onMessageEvent(EventRefresh event) {
         switch (event.getFlag()) {
             case EventTags.REFRESH_ORDER:
+            case EventTags.REFRESH_PAY_ORDER:
                 resetRefresh();
                 break;
         }

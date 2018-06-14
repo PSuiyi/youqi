@@ -27,6 +27,7 @@ import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.gallery.inter.IPhotoSelectCallback;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIActionSheetDialog;
+import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -76,6 +77,12 @@ public class PeopleApproveAct extends BaseAppActivity {
     EditText etGroupName;
     @Bind(R.id.llGroupName)
     LinearLayout llGroupName;
+    @Bind(R.id.line1)
+    View line1;
+    @Bind(R.id.line2)
+    View line2;
+    @Bind(R.id.llXieyi)
+    LinearLayout llXieyi;
 
     private List<IndustryBean> hangyeList = new ArrayList<>();
     private List<IndustryBean> lunciList = new ArrayList<>();
@@ -111,9 +118,39 @@ public class PeopleApproveAct extends BaseAppActivity {
         adapter1 = new TagsAdapter(selectHangye);
         rvHangye.setLayoutManager(new GridLayoutManager(context, 5));
         rvHangye.setAdapter(adapter1);
+        adapter1.setOnItemChildClickListener((adapter, view, position) -> {
+            switch (view.getId()) {
+                case R.id.ivDelete:
+                    selectHangye.remove(position);
+                    adapter1.notifyDataSetChanged();
+                    if (!selectHangye.isEmpty()) {
+                        line1.setVisibility(View.VISIBLE);
+                        rvHangye.setVisibility(View.VISIBLE);
+                    } else {
+                        line1.setVisibility(View.GONE);
+                        rvHangye.setVisibility(View.GONE);
+                    }
+                    break;
+            }
+        });
         adapter2 = new TagsAdapter(selectLunci);
         rvLunCi.setLayoutManager(new GridLayoutManager(context, 5));
         rvLunCi.setAdapter(adapter2);
+        adapter2.setOnItemChildClickListener((adapter, view, position) -> {
+            switch (view.getId()) {
+                case R.id.ivDelete:
+                    selectLunci.remove(position);
+                    adapter2.notifyDataSetChanged();
+                    if (!selectLunci.isEmpty()) {
+                        line2.setVisibility(View.VISIBLE);
+                        rvLunCi.setVisibility(View.VISIBLE);
+                    } else {
+                        line2.setVisibility(View.GONE);
+                        rvLunCi.setVisibility(View.GONE);
+                    }
+                    break;
+            }
+        });
     }
 
     @Override
@@ -149,10 +186,20 @@ public class PeopleApproveAct extends BaseAppActivity {
                     if (bean.getTradeid() != null && !bean.getTradeid().isEmpty()) {
                         selectHangye.addAll(bean.getTradeid());
                         adapter1.notifyDataSetChanged();
+                        line1.setVisibility(View.VISIBLE);
+                        rvHangye.setVisibility(View.VISIBLE);
+                    } else {
+                        line1.setVisibility(View.GONE);
+                        rvHangye.setVisibility(View.GONE);
                     }
                     if (bean.getRoundsid() != null && !bean.getRoundsid().isEmpty()) {
                         selectLunci.addAll(bean.getRoundsid());
                         adapter2.notifyDataSetChanged();
+                        line2.setVisibility(View.VISIBLE);
+                        rvLunCi.setVisibility(View.VISIBLE);
+                    } else {
+                        line2.setVisibility(View.GONE);
+                        rvLunCi.setVisibility(View.GONE);
                     }
                     for (IndustryBean industryBean : shenFenList) {
                         if (industryBean.getId().equals(bean.getRoleid())) {
@@ -172,6 +219,11 @@ public class PeopleApproveAct extends BaseAppActivity {
                     ivCard.loadRectImage(bean.getNameCard());
                     nameCard = bean.getNameCard();
                     roleid = bean.getRoleid();
+                } else {
+                    line1.setVisibility(View.GONE);
+                    line2.setVisibility(View.GONE);
+                    rvHangye.setVisibility(View.GONE);
+                    rvLunCi.setVisibility(View.GONE);
                 }
 
                 if (json.getString("canSubmit").equals("true")) {
@@ -384,18 +436,37 @@ public class PeopleApproveAct extends BaseAppActivity {
                 List<IndustryBean> list = (List<IndustryBean>) event.getBean();
                 if (list != null && !list.isEmpty()) {
                     selectHangye.addAll(list);
+                    for (IndustryBean industryBean : selectHangye) {
+                        industryBean.setDelete(true);
+                    }
                     adapter1.notifyDataSetChanged();
                     getTraids();
                 }
-
+                if (!selectHangye.isEmpty()) {
+                    line1.setVisibility(View.VISIBLE);
+                    rvHangye.setVisibility(View.VISIBLE);
+                } else {
+                    line1.setVisibility(View.GONE);
+                    rvHangye.setVisibility(View.GONE);
+                }
                 break;
             case EventTags.REFRESH_LUNCI:
                 selectLunci.clear();
                 List<IndustryBean> list1 = (List<IndustryBean>) event.getBean();
                 if (list1 != null && !list1.isEmpty()) {
                     selectLunci.addAll(list1);
+                    for (IndustryBean industryBean : selectLunci) {
+                        industryBean.setDelete(true);
+                    }
                     adapter2.notifyDataSetChanged();
                     getRoundids();
+                }
+                if (!selectLunci.isEmpty()) {
+                    line2.setVisibility(View.VISIBLE);
+                    rvLunCi.setVisibility(View.VISIBLE);
+                } else {
+                    line2.setVisibility(View.GONE);
+                    rvLunCi.setVisibility(View.GONE);
                 }
                 break;
         }

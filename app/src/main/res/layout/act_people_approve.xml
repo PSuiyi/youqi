@@ -70,21 +70,17 @@
 
             <View style="@style/LineBoth" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvHangye"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="@dimen/distance_view">
+                android:layout_margin="@dimen/distance_view"
+                android:visibility="gone" />
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rvHangye"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-            <View style="@style/LineBoth" />
-
+            <View
+                android:id="@+id/line1"
+                style="@style/LineBoth"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/llLunci"
@@ -110,21 +106,17 @@
 
             <View style="@style/LineBoth" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvLunCi"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="@dimen/distance_view">
+                android:layout_margin="@dimen/distance_view"
+                android:visibility="gone" />
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rvLunCi"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-            <View style="@style/LineBoth" />
-
+            <View
+                android:id="@+id/line2"
+                style="@style/LineBoth"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="match_parent"

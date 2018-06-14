@@ -227,7 +227,7 @@ public class MineFrag extends BaseAppFragment {
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
-                if (StringUtil.isBlank(responseOriginal.getString("data"))) {
+                if (StringUtil.isBlank(responseOriginal.getString("data")) || responseOriginal.getString("data").equals("0")) {
                     tvMessageCount.setVisibility(View.GONE);
                 } else {
                     tvMessageCount.setVisibility(View.VISIBLE);
@@ -303,6 +303,7 @@ public class MineFrag extends BaseAppFragment {
     public void onMessageEvent(EventRefresh event) {
         switch (event.getFlag()) {
             case EventTags.REFRESH_USERINFO:
+            case EventTags.REFRESH_PAY_VIP:
                 loadDataFromServer();
                 break;
         }
