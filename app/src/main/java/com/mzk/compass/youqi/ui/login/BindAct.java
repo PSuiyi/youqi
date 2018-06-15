@@ -110,7 +110,7 @@ public class BindAct extends BaseAppActivity {
                     public void onSuccess(JSONObject responseOriginal) {
                         super.onSuccess(responseOriginal);
                         timer.start();
-                        mDataManager.setValueToView(etCode, "123456");
+//                        mDataManager.setValueToView(etCode, "123456");
                     }
 
                     @Override

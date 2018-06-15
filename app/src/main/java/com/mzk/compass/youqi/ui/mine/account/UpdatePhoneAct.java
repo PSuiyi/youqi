@@ -23,7 +23,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -103,7 +102,7 @@ public class UpdatePhoneAct extends BaseAppActivity {
                     public void onSuccess(JSONObject responseOriginal) {
                         super.onSuccess(responseOriginal);
                         timer.start();
-                        mDataManager.setValueToView(etCode, "123456");
+//                        mDataManager.setValueToView(etCode, "123456");
                     }
 
                     @Override

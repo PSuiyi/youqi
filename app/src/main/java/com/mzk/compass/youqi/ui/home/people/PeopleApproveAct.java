@@ -27,7 +27,6 @@ import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.gallery.inter.IPhotoSelectCallback;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIActionSheetDialog;
-import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -204,11 +203,12 @@ public class PeopleApproveAct extends BaseAppActivity {
                     for (IndustryBean industryBean : shenFenList) {
                         if (industryBean.getId().equals(bean.getRoleid())) {
                             tvShenFen.setText(industryBean.getName());
-                            if (!industryBean.getName().equals("独立投资人")) {
+                            if (!industryBean.getName().trim().equals("独立投资人")) {
                                 mDataManager.setViewVisibility(llGroupName, true);
                             } else {
                                 mDataManager.setViewVisibility(llGroupName, false);
                             }
+                            break;
                         }
                     }
 

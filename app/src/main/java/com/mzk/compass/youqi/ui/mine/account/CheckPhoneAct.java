@@ -9,22 +9,16 @@ import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.bean.BankBean;
-import com.mzk.compass.youqi.event.EventRefresh;
-import com.mzk.compass.youqi.event.EventTags;
 import com.znz.compass.znzlibray.common.ZnzConstants;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.EditTextWithDel;
 
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
 import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -140,7 +134,7 @@ public class CheckPhoneAct extends BaseAppActivity {
                     @Override
                     public void onSuccess(JSONObject responseOriginal) {
                         super.onSuccess(responseOriginal);
-                        etCode.setText("123456");
+//                        etCode.setText("123456");
                         timer.start();
                     }
                 });

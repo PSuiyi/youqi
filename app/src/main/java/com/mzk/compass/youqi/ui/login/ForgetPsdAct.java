@@ -10,7 +10,6 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
-import com.znz.compass.znzlibray.common.ZnzConstants;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -23,7 +22,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -59,9 +57,9 @@ public class ForgetPsdAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
-        if (!StringUtil.isBlank(mDataManager.readTempData(ZnzConstants.ACCOUNT))) {
-            mDataManager.setValueToView(etPhone, mDataManager.readTempData(ZnzConstants.ACCOUNT));
-        }
+//        if (!StringUtil.isBlank(mDataManager.readTempData(ZnzConstants.ACCOUNT))) {
+//            mDataManager.setValueToView(etPhone, mDataManager.readTempData(ZnzConstants.ACCOUNT));
+//        }
         timer = new CountDownTimer(60 * 1000, 1000) {
             @Override
             public void onTick(long l) {
@@ -102,7 +100,7 @@ public class ForgetPsdAct extends BaseAppActivity {
                     public void onSuccess(JSONObject responseOriginal) {
                         super.onSuccess(responseOriginal);
                         timer.start();
-                        mDataManager.setValueToView(etCode, "123456");
+//                        mDataManager.setValueToView(etCode, "123456");
                     }
 
                     @Override
