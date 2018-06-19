@@ -24,6 +24,7 @@ import com.znz.compass.umeng.share.ShareBean;
 import com.znz.compass.umeng.share.ShareManager;
 import com.znz.compass.znzlibray.common.DataManager;
 import com.znz.compass.znzlibray.common.ZnzConstants;
+import com.znz.compass.znzlibray.utils.StringUtil;
 
 import java.util.List;
 
@@ -133,7 +134,9 @@ public class PopupWindowManager {
         LinearLayout llParent = init(view, R.id.llParent);
         llParent.setOnClickListener(view1 -> hidePopupWindow());
 
-        bean.setImageUrl(ZnzConstants.IMAGE_ULR + bean.getImageUrl());
+        if (!StringUtil.isBlank(bean.getImageUrl())) {
+            bean.setImageUrl(ZnzConstants.IMAGE_ULR + bean.getImageUrl());
+        }
         bean.setIconRes(R.mipmap.logoda);
 
         init(view, R.id.tvOpt1).setOnClickListener(v -> {

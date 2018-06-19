@@ -311,7 +311,7 @@ public class PeopleApproveAct extends BaseAppActivity {
                         .addSheetItemList(items, null, which -> {
                             tvShenFen.setText(shenFenList.get(which).getName());
                             roleid = shenFenList.get(which).getId();
-                            if (!shenFenList.get(which).getName().equals("独立投资人")) {
+                            if (!shenFenList.get(which).getName().trim().equals("独立投资人")) {
                                 mDataManager.setViewVisibility(llGroupName, true);
                             } else {
                                 mDataManager.setViewVisibility(llGroupName, false);
