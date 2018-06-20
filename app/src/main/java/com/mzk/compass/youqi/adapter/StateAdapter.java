@@ -46,6 +46,7 @@ public class StateAdapter extends BaseQuickAdapter<StateBean, BaseViewHolder> im
         } else {
             mDataManager.setViewVisibility(cbSelect, false);
         }
+        cbSelect.setChecked(bean.isSelect());
         mDataManager.setValueToView(tvTitle, bean.getContent());
         mDataManager.setValueToView(tvTime, TimeUtils.getFormatTime(bean.getAddTime(), "yyyy-MM-dd HH:mm"));
         helper.addOnClickListener(R.id.llDelete);

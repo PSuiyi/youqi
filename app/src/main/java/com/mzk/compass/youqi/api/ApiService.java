@@ -275,6 +275,10 @@ public interface ApiService {
     Observable<ResponseBody> requestMemberUpdate(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("state/delete")
+    Observable<ResponseBody> requestDeleteState(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("company/save-company-info")
     Observable<ResponseBody> requestCompany(@FieldMap Map<String, String> params);
 

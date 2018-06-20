@@ -805,6 +805,16 @@ public class ApiModel extends BaseModel {
     }
 
     /**
+     * 删除动态
+     *
+     * @param params
+     * @return
+     */
+    public void requestDeleteState(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestDeleteState(params), znzHttpListener);
+    }
+
+    /**
      * 单张图片上传
      *
      * @param url

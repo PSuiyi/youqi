@@ -12,7 +12,14 @@ import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.StateAdapter;
 import com.mzk.compass.youqi.base.BaseAppListActivity;
+import com.mzk.compass.youqi.bean.MessageBean;
 import com.mzk.compass.youqi.bean.StateBean;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
+import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -34,6 +41,8 @@ public class StateListAct extends BaseAppListActivity<StateBean> {
     LinearLayout llSelectAll;
 
     private boolean isEdit = false;
+    private boolean isAll = false;
+    private String stateId;
 
     @Override
     protected int[] getLayoutResource() {
@@ -48,15 +57,15 @@ public class StateListAct extends BaseAppListActivity<StateBean> {
     @Override
     protected void initializeNavigation() {
         setTitleName("我的动态");
-        znzToolBar.setNavRightText("编辑",mDataManager.getColor(R.color.red));
+        znzToolBar.setNavRightText("编辑", mDataManager.getColor(R.color.red));
         znzToolBar.setOnNavRightClickListener(view -> {
             if (isEdit) {
                 isEdit = false;
-                znzToolBar.setNavRightText("编辑",mDataManager.getColor(R.color.red));
-                mDataManager.setViewVisibility(llSelectAll, true);
+                znzToolBar.setNavRightText("编辑", mDataManager.getColor(R.color.red));
+                mDataManager.setViewVisibility(llSelectAll, false);
             } else {
                 isEdit = true;
-                znzToolBar.setNavRightText("完成",mDataManager.getColor(R.color.red));
+                znzToolBar.setNavRightText("完成", mDataManager.getColor(R.color.red));
                 mDataManager.setViewVisibility(llSelectAll, true);
             }
             for (StateBean stateBean : dataList) {
@@ -82,6 +91,15 @@ public class StateListAct extends BaseAppListActivity<StateBean> {
             StateBean bean = dataList.get(position);
             switch (view.getId()) {
                 case R.id.llDelete:
+                    stateId = bean.getId();
+                    new UIAlertDialog(activity)
+                            .builder()
+                            .setMsg("确定删除")
+                            .setNegativeButton("取消", null)
+                            .setPositiveButton("确定", v2 -> {
+                                requestDelete();
+                            })
+                            .show();
                     break;
                 case R.id.llContainer:
                     Bundle bundle = new Bundle();
@@ -89,7 +107,17 @@ public class StateListAct extends BaseAppListActivity<StateBean> {
                     gotoActivity(StateDetailAct.class, bundle);
                     break;
                 case R.id.cbSelect:
-                    bean.setSelect(true);
+                    bean.setSelect(!bean.isSelect());
+                    adapter.notifyDataSetChanged();
+                    for (StateBean stateBean : dataList) {
+                        if (!stateBean.isSelect()) {
+                            cbSelectAll.setChecked(false);
+                            isAll = false;
+                            return;
+                        }
+                        cbSelectAll.setChecked(true);
+                        isAll = true;
+                    }
                     break;
             }
         });
@@ -128,9 +156,54 @@ public class StateListAct extends BaseAppListActivity<StateBean> {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvDelete:
+                String str = "";
+                for (StateBean stateBean : dataList) {
+                    if (stateBean.isSelect()) {
+                        str = stateBean.getId() + "," + str;
+                    }
+                }
+                if (StringUtil.isBlank(str)) {
+                    mDataManager.showToast("请选择要删除的动态");
+                    return;
+                }
+                stateId = str.substring(0, str.length() - 1);
+                new UIAlertDialog(activity)
+                        .builder()
+                        .setMsg("确定删除")
+                        .setNegativeButton("取消", null)
+                        .setPositiveButton("确定", v2 -> {
+                            requestDelete();
+                        })
+                        .show();
                 break;
             case R.id.llSelectAll:
+                if (isAll) {
+                    isAll = false;
+                } else {
+                    isAll = true;
+                }
+                for (StateBean stateBean : dataList) {
+                    stateBean.setSelect(isAll);
+                }
+                adapter.notifyDataSetChanged();
+                cbSelectAll.setChecked(isAll);
                 break;
         }
+    }
+
+    private void requestDelete() {
+        Map<String, String> params = new HashMap<>();
+        params.put("stateId", stateId);
+        mModel.requestDeleteState(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                mDataManager.showToast("删除成功");
+                resetRefresh();
+                isEdit = false;
+                znzToolBar.setNavRightText("编辑", mDataManager.getColor(R.color.red));
+                mDataManager.setViewVisibility(llSelectAll, false);
+            }
+        });
     }
 }

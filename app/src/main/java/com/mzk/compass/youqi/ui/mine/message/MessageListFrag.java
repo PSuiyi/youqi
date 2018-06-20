@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 
 import com.alibaba.fastjson.JSON;
@@ -46,9 +47,12 @@ public class MessageListFrag extends BaseAppListFragment<MessageBean> {
 
     @Bind(R.id.llSelectAll)
     LinearLayout llSelectAll;
+    @Bind(R.id.cbSelectAll)
+    CheckBox cbSelectAll;
     private String from;
 
     private String ids;
+    private boolean isAll = false;
 
     public static MessageListFrag newInstance(String from) {
         Bundle args = new Bundle();
@@ -158,6 +162,15 @@ public class MessageListFrag extends BaseAppListFragment<MessageBean> {
                 case R.id.cbSelect:
                     bean.setSelect(!bean.isSelect());
                     adapter.notifyDataSetChanged();
+                    for (MessageBean messageBean : dataList) {
+                        if (!messageBean.isSelect()) {
+                            cbSelectAll.setChecked(false);
+                            isAll = false;
+                            return;
+                        }
+                        cbSelectAll.setChecked(true);
+                        isAll = true;
+                    }
                     break;
             }
         });
@@ -251,10 +264,16 @@ public class MessageListFrag extends BaseAppListFragment<MessageBean> {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.cbSelectAll:
+                if (isAll) {
+                    isAll = false;
+                } else {
+                    isAll = true;
+                }
                 for (MessageBean messageBean : dataList) {
-                    messageBean.setSelect(true);
+                    messageBean.setSelect(isAll);
                 }
                 adapter.notifyDataSetChanged();
+                cbSelectAll.setChecked(isAll);
                 break;
             case R.id.tvDelete:
                 String str = "";
@@ -262,6 +281,10 @@ public class MessageListFrag extends BaseAppListFragment<MessageBean> {
                     if (messageBean.isSelect()) {
                         str = messageBean.getId() + "," + str;
                     }
+                }
+                if (StringUtil.isBlank(str)) {
+                    mDataManager.showToast("请选择要删除的消息");
+                    return;
                 }
                 ids = str.substring(0, str.length() - 1);
                 new UIAlertDialog(activity)
