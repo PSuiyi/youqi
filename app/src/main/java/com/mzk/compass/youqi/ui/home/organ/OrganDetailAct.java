@@ -184,6 +184,7 @@ public class OrganDetailAct extends BaseAppActivity {
                 tvOption3.setCompoundDrawables(null, drawable, null, null);
                 ivFav.setImageResource(R.mipmap.shoucanghuang);
                 bean.setIsCollected("true");
+                tvCountFav.setText(StringUtil.getNumUP(mDataManager.getValueFromView(tvCountFav)));
                 EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_ORGAN));
             }
         });
@@ -203,6 +204,7 @@ public class OrganDetailAct extends BaseAppActivity {
                 tvOption3.setCompoundDrawables(null, drawable, null, null);
                 ivFav.setImageResource(R.mipmap.shoucangxiaobai);
                 bean.setIsCollected("false");
+                tvCountFav.setText(StringUtil.getNumDown(mDataManager.getValueFromView(tvCountFav)));
                 EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_ORGAN));
             }
         });

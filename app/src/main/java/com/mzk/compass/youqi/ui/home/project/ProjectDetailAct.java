@@ -213,15 +213,18 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
                 ivImage.loadSquareImage(bean.getLogo());
                 ivLogo.loadSquareImage(bean.getCompanyLogo());
                 mDataManager.setValueToView(tvName, bean.getName());
-                mDataManager.setValueToView(tvTag, bean.getRounds().getName());
+                if (bean.getRounds() != null) {
+                    mDataManager.setValueToView(tvTag, bean.getRounds().getName());
+                }
                 mDataManager.setValueToView(tvContent, bean.getTitle());
                 mDataManager.setValueToView(tvCountFav, bean.getCollectionNum());
                 mDataManager.setValueToView(tvCountComment, bean.getCommentsNum());
                 mDataManager.setValueToView(tvCountView, bean.getVisiteNum());
                 mDataManager.setValueToView(tvCompanyName, bean.getCompanyName());
                 mDataManager.setValueToView(tvShizhi, bean.getRongzijine());
-                mDataManager.setValueToView(tvMoney, bean.getTurnover().getName());
-
+                if (bean.getTurnover() != null) {
+                    mDataManager.setValueToView(tvMoney, bean.getTurnover().getName());
+                }
 
                 mDataManager.setValueToView(tvAddress, bean.getProvince() + bean.getCity() + bean.getArea() + bean.getAddress());
                 //运营状态 1运营中 2 已运营 3 未运营
@@ -401,6 +404,7 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
                         mDataManager.showToast("评论成功");
                         mDataManager.setViewVisibility(llOpt, true);
                         mDataManager.setViewVisibility(llComment, false);
+                        tvCountComment.setText(StringUtil.getNumUP(mDataManager.getValueFromView(tvCountComment)));
                         resetRefresh();
                     }
 
@@ -452,6 +456,7 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
                 tvOption3.setCompoundDrawables(null, drawable, null, null);
                 bean.setIsCollected("true");
                 ivFav.setImageResource(R.mipmap.shoucanghuang);
+                tvCountFav.setText(StringUtil.getNumUP(mDataManager.getValueFromView(tvCountFav)));
                 EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_PROJECT));
             }
         });
@@ -471,6 +476,7 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
                 tvOption3.setCompoundDrawables(null, drawable, null, null);
                 bean.setIsCollected("false");
                 ivFav.setImageResource(R.mipmap.shoucang);
+                tvCountFav.setText(StringUtil.getNumDown(mDataManager.getValueFromView(tvCountFav)));
                 EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_PROJECT));
             }
         });

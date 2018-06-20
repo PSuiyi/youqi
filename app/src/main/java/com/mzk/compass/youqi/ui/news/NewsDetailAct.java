@@ -268,6 +268,7 @@ public class NewsDetailAct extends BaseAppListActivity<CommentBean> implements V
                         mDataManager.showToast("评论成功");
                         mDataManager.setViewVisibility(llOpt, true);
                         mDataManager.setViewVisibility(llComment, false);
+                        tvCountComment.setText(StringUtil.getNumUP(mDataManager.getValueFromView(tvCountComment)));
                         resetRefresh();
                     }
 

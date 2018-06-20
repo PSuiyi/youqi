@@ -28,6 +28,7 @@
                 android:id="@+id/tvName"
                 style="@style/TextStyle"
                 android:layout_marginTop="@dimen/distance_text"
+                android:singleLine="true"
                 android:text="赵大千" />
 
         </LinearLayout>

@@ -90,6 +90,7 @@
                             android:id="@+id/tvCompanyName"
                             style="@style/TextStyle"
                             android:layout_marginLeft="3dp"
+                            android:singleLine="true"
                             android:text="美之科" />
 
                         <TextView

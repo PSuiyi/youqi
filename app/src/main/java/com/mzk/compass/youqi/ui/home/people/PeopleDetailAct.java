@@ -330,6 +330,7 @@ public class PeopleDetailAct extends BaseAppListActivity<CommentBean> {
                         mDataManager.showToast("评论成功");
                         mDataManager.setViewVisibility(llOpt, true);
                         mDataManager.setViewVisibility(llComment, false);
+                        tvCountComment.setText(StringUtil.getNumUP(mDataManager.getValueFromView(tvCountComment)));
                         resetRefresh();
                     }
 
@@ -381,6 +382,7 @@ public class PeopleDetailAct extends BaseAppListActivity<CommentBean> {
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                 tvOption3.setCompoundDrawables(null, drawable, null, null);
                 bean.setIsCollected("true");
+                tvCountFav.setText(StringUtil.getNumUP(mDataManager.getValueFromView(tvCountFav)));
                 ivFav.setImageResource(R.mipmap.shoucanghuang);
                 EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_PEOPLE));
             }
@@ -401,6 +403,7 @@ public class PeopleDetailAct extends BaseAppListActivity<CommentBean> {
                 tvOption3.setCompoundDrawables(null, drawable, null, null);
                 bean.setIsCollected("false");
                 ivFav.setImageResource(R.mipmap.shoucang);
+                tvCountFav.setText(StringUtil.getNumDown(mDataManager.getValueFromView(tvCountFav)));
                 EventBus.getDefault().postSticky(new EventRefresh(EventTags.REFRESH_COLLECT_PEOPLE));
             }
         });
