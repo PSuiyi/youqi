@@ -15,6 +15,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.ProjectAdapter;
+import com.mzk.compass.youqi.adapter.ProjectMineAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
 import com.mzk.compass.youqi.bean.FiltBean;
 import com.mzk.compass.youqi.bean.ProjectBean;
@@ -141,7 +142,21 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
 
     @Override
     protected void initializeView() {
-        adapter = new ProjectAdapter(dataList);
+        switch (from) {
+            case "全部":
+            case "待审核":
+            case "已发布":
+            case "已拒绝":
+            case "已下架":
+                adapter = new ProjectMineAdapter(dataList);
+                break;
+            case "收藏":
+            case "首页全部项目":
+            case "搜索":
+            default:
+                adapter = new ProjectAdapter(dataList);
+                break;
+        }
         rvRefresh.setAdapter(adapter);
 
         adapter.setOnItemChildClickListener((adapter, view, position) -> {

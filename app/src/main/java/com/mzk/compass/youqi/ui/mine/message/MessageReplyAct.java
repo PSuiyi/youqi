@@ -43,14 +43,14 @@ public class MessageReplyAct extends BaseAppActivity {
     @Override
     protected void initializeNavigation() {
         setTitleName("回复");
-        znzToolBar.setNavRightText("发送",mDataManager.getColor(R.color.red));
+        znzToolBar.setNavRightText("发送", mDataManager.getColor(R.color.red));
         znzToolBar.setOnNavRightClickListener(view -> {
             if (StringUtil.isBlank(mDataManager.getValueFromView(etContent))) {
                 mDataManager.showToast("请输入回复内容");
                 return;
             }
             Map<String, String> params = new HashMap<>();
-            params.put("id", bean.getContentId());
+            params.put("id", bean.getMessageId());
             params.put("content", mDataManager.getValueFromView(etContent));
             mModel.requestMsgReply(params, new ZnzHttpListener() {
                 @Override
@@ -65,7 +65,7 @@ public class MessageReplyAct extends BaseAppActivity {
 
     @Override
     protected void initializeView() {
-
+        mDataManager.setValueToView(tvTitle, "项目：" + bean.getProjectName());
     }
 
     @Override

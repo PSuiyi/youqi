@@ -49,7 +49,9 @@ public class MessageTradeAct extends BaseAppActivity {
         setTitleName("消息详情");
         znzToolBar.setNavRightText("回复",mDataManager.getColor(R.color.red));
         znzToolBar.setOnNavRightClickListener(view -> {
-            gotoActivity(MessageReplyAct.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("bean", bean);
+            gotoActivity(MessageReplyAct.class, bundle);
         });
     }
 
