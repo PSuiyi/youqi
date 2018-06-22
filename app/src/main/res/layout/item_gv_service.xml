@@ -53,14 +53,21 @@
                 android:orientation="horizontal"
                 android:paddingTop="@dimen/distance_text">
 
-                <TextView
-                    style="@style/TextRedStyle"
-                    android:background="@drawable/bg_line_red_2"
-                    android:paddingLeft="4dp"
-                    android:paddingRight="4dp"
-                    android:text="自营" />
+                <LinearLayout
+                    android:id="@+id/llSelf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <View style="@style/WeightView" />
+                    <TextView
+                        style="@style/TextRedStyle"
+                        android:background="@drawable/bg_line_red_2"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp"
+                        android:text="自营" />
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tvCount"

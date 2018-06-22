@@ -143,10 +143,10 @@
                 android:id="@+id/tvRongzi"
                 style="@style/TitleRedTextStyle"
                 android:background="@drawable/bg_line_red_2"
-                android:paddingBottom="@dimen/distance_divider"
+                android:paddingBottom="6dp"
                 android:paddingLeft="@dimen/distance_view"
                 android:paddingRight="@dimen/distance_view"
-                android:paddingTop="@dimen/distance_divider"
+                android:paddingTop="6dp"
                 android:text="已融资" />
 
             <View style="@style/WeightView" />
@@ -155,10 +155,10 @@
                 android:id="@+id/tvPublish"
                 style="@style/TitleTextStyle"
                 android:background="@drawable/bg_line_gray"
-                android:paddingBottom="@dimen/distance_divider"
+                android:paddingBottom="6dp"
                 android:paddingLeft="@dimen/distance_view"
                 android:paddingRight="@dimen/distance_view"
-                android:paddingTop="@dimen/distance_divider"
+                android:paddingTop="6dp"
                 android:text="已发布" />
 
             <TextView
@@ -166,10 +166,10 @@
                 style="@style/TitleRedTextStyle"
                 android:layout_marginLeft="@dimen/distance_view"
                 android:background="@drawable/bg_line_red_2"
-                android:paddingBottom="@dimen/distance_divider"
+                android:paddingBottom="6dp"
                 android:paddingLeft="@dimen/distance_view"
                 android:paddingRight="@dimen/distance_view"
-                android:paddingTop="@dimen/distance_divider"
+                android:paddingTop="6dp"
                 android:text="待审核" />
         </LinearLayout>
 

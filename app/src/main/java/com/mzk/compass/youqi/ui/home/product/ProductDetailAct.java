@@ -82,6 +82,8 @@ public class ProductDetailAct extends BaseAppActivity {
     ImageView ivAdd;
     @Bind(R.id.appBarLayout)
     AppBarLayout appBarLayout;
+    @Bind(R.id.llSelf)
+    LinearLayout llSelf;
 
     private String id;
     private ProductBean bean;
@@ -102,9 +104,9 @@ public class ProductDetailAct extends BaseAppActivity {
     protected void initializeNavigation() {
         appBarLayout.addOnOffsetChangedListener((appBarLayout1, verticalOffset) -> {
             if (Math.abs(verticalOffset) >= (Math.abs(appBarLayout1.getTotalScrollRange()))) {
-                ivBack.setImageResource(R.drawable.topback);
+                ivBack.setImageResource(R.mipmap.fanhuida);
             } else {
-                ivBack.setImageResource(R.drawable.topback_white);
+                ivBack.setImageResource(R.mipmap.fanhuida);
             }
         });
     }
@@ -131,6 +133,12 @@ public class ProductDetailAct extends BaseAppActivity {
                 mDataManager.setValueToView(tvCountPayed, "成交量：" + bean.getShowNum());
                 mDataManager.setValueToView(tvNumber, bean.getCount());
                 wvDetail.loadContent(bean.getContent());
+
+                if (!StringUtil.isBlank(bean.getCompanyid()) && bean.getCompanyid().equals("1")) {
+                    mDataManager.setViewVisibility(llSelf, true);
+                } else {
+                    mDataManager.setViewVisibility(llSelf, false);
+                }
 
                 tvMoneyOld.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG); //下划线
                 tvMoneyOld.getPaint().setAntiAlias(true);//抗锯齿

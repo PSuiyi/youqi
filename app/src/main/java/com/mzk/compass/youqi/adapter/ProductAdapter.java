@@ -34,6 +34,8 @@ public class ProductAdapter extends BaseQuickAdapter<ProductBean, BaseViewHolder
     TextView tvCount;
     @Bind(R.id.llContainer)
     LinearLayout llContainer;
+    @Bind(R.id.llSelf)
+    LinearLayout llSelf;
 
     public ProductAdapter(@Nullable List dataList) {
         super(R.layout.item_gv_service, dataList);
@@ -71,6 +73,11 @@ public class ProductAdapter extends BaseQuickAdapter<ProductBean, BaseViewHolder
             ivImage.loadSquareImage(bean.getImage());
         } else {
             ivImage.loadSquareImage(bean.getMobilePhoto());
+        }
+        if (!StringUtil.isBlank(bean.getCompanyid()) && bean.getCompanyid().equals("1")) {
+            mDataManager.setViewVisibility(llSelf, true);
+        } else {
+            mDataManager.setViewVisibility(llSelf, false);
         }
     }
 

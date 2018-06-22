@@ -15,7 +15,6 @@ import com.mzk.compass.youqi.bean.CityBean;
 import com.mzk.compass.youqi.bean.CompanyBean;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
-import com.mzk.compass.youqi.ui.common.CityListAct;
 import com.mzk.compass.youqi.view.city.bean.City;
 import com.mzk.compass.youqi.view.city.bean.County;
 import com.mzk.compass.youqi.view.city.bean.Province;
@@ -34,14 +33,12 @@ import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -126,6 +123,12 @@ public class CompanyIdentifyAct extends BaseAppActivity implements OnAddressSele
                         mDataManager.setValueToView(etCard, bean.getIdCard(), "");
                         ivCard.loadHttpImage(bean.getLicensePhoto());
                         cbSelect.setChecked(true);
+
+                        licensePhoto = bean.getLicensePhoto();
+                        cityCode = bean.getCityid();
+                        provinceCode = bean.getProvinceid();
+                        areaCode = bean.getAreaid();
+                        mDataManager.setValueToView(tvCity, bean.getBasicAddressInfo(), "");
                     }
                     if (json.getString("canModify").equals("true")) {
                         etCompany.setFocusable(true);
