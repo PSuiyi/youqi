@@ -35,6 +35,8 @@ public class MessageAdapter extends BaseQuickAdapter<MessageBean, BaseViewHolder
     CheckBox cbSelect;
     @Bind(R.id.llContainer)
     LinearLayout llContainer;
+    @Bind(R.id.point)
+    View point;
 
     public MessageAdapter(@Nullable List dataList) {
         super(R.layout.item_lv_message, dataList);
@@ -66,7 +68,11 @@ public class MessageAdapter extends BaseQuickAdapter<MessageBean, BaseViewHolder
                 mDataManager.setValueToView(tvTitle, bean.getTitle());
                 break;
         }
-
+        if (!StringUtil.isBlank(bean.getState()) && bean.getState().equals("1")) {
+            point.setVisibility(View.VISIBLE);
+        } else {
+            point.setVisibility(View.GONE);
+        }
         mDataManager.setValueToView(tvTime, TimeUtils.millis2String(StringUtil.stringToLong(bean.getAddTime()) * 1000, "yyyy.MM.dd HH:mm"));
         helper.addOnClickListener(R.id.llDelete);
         helper.addOnClickListener(R.id.llContainer);

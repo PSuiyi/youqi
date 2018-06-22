@@ -20,7 +20,8 @@
             android:background="@drawable/bg_red_radius_30"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
-            android:textSize="@dimen/text_size_10"
+            android:textSize="8sp"
+            android:text="1"
             android:visibility="gone" />
     </FrameLayout>
 

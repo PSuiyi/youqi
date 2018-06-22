@@ -15,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?android:attr/selectableItemBackground"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="@dimen/distance_view">
 
@@ -28,15 +29,29 @@
 
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-
+                android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvTitle"
-                    style="@style/TitleTextStyle"
-                    android:text="创业者赵大千带着项目来找你了，注意查看" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:id="@+id/point"
+                        android:layout_width="5dp"
+                        android:layout_height="5dp"
+                        android:background="@drawable/bg_red_radius_30"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tvTitle"
+                        style="@style/TitleTextStyle"
+                        android:text="创业者赵大千带着项目来找你了，注意查看" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tvTime"
