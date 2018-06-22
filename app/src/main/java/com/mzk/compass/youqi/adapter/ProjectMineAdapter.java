@@ -43,6 +43,12 @@ public class ProjectMineAdapter extends BaseQuickAdapter<ProjectBean, BaseViewHo
     HttpImageView ivLogo;
     @Bind(R.id.tvCompanyName)
     TextView tvCompanyName;
+    @Bind(R.id.tvRongzi)
+    TextView tvRongzi;
+    @Bind(R.id.tvPublish)
+    TextView tvPublish;
+    @Bind(R.id.tvShenhe)
+    TextView tvShenhe;
 
     public ProjectMineAdapter(@Nullable List dataList) {
         super(R.layout.item_lv_project_mine, dataList);
@@ -80,6 +86,72 @@ public class ProjectMineAdapter extends BaseQuickAdapter<ProjectBean, BaseViewHo
         } else {
             mDataManager.setViewVisibility(rvTrade, false);
         }
+        helper.addOnClickListener(R.id.tvShenhe);
+        if (!StringUtil.isBlank(bean.getState())) {
+            tvPublish.setVisibility(View.VISIBLE);
+            tvShenhe.setVisibility(View.VISIBLE);
+            switch (bean.getState()) {
+                case "1":
+                    tvPublish.setText("待审核");
+                    tvPublish.setTextColor(mDataManager.getColor(R.color.red));
+                    tvPublish.setBackgroundResource(R.drawable.bg_line_red_2);
+                    tvShenhe.setVisibility(View.GONE);
+                    break;
+                case "2":
+                    tvPublish.setText("已发布");
+                    tvPublish.setTextColor(mDataManager.getColor(R.color.text_gray));
+                    tvPublish.setBackgroundResource(R.drawable.bg_line_gray);
+                    tvShenhe.setText("下架");
+                    tvShenhe.setTextColor(mDataManager.getColor(R.color.red));
+                    tvShenhe.setBackgroundResource(R.drawable.bg_line_red_2);
+                    break;
+                case "3":
+                    tvPublish.setText("已拒绝");
+                    tvPublish.setTextColor(mDataManager.getColor(R.color.text_gray));
+                    tvPublish.setBackgroundResource(R.drawable.bg_line_gray);
+                    tvShenhe.setText("删除");
+                    tvShenhe.setTextColor(mDataManager.getColor(R.color.red));
+                    tvShenhe.setBackgroundResource(R.drawable.bg_line_red_2);
+                    break;
+                case "4":
+                    tvPublish.setText("已下架");
+                    tvPublish.setTextColor(mDataManager.getColor(R.color.text_gray));
+                    tvPublish.setBackgroundResource(R.drawable.bg_line_gray);
+                    tvShenhe.setText("重新上架");
+                    tvShenhe.setTextColor(mDataManager.getColor(R.color.red));
+                    tvShenhe.setBackgroundResource(R.drawable.bg_line_red_2);
+                    break;
+                default:
+                    tvPublish.setVisibility(View.GONE);
+                    tvShenhe.setVisibility(View.GONE);
+                    break;
+            }
+        } else {
+            tvPublish.setVisibility(View.GONE);
+            tvShenhe.setVisibility(View.GONE);
+        }
+        if (!StringUtil.isBlank(bean.getRongzistate())) {
+            switch (bean.getRongzistate()) {
+                case "1":
+                    tvRongzi.setVisibility(View.VISIBLE);
+                    tvRongzi.setText("已融资");
+                    tvRongzi.setTextColor(mDataManager.getColor(R.color.red));
+                    tvRongzi.setBackgroundResource(R.drawable.bg_line_red_2);
+                    break;
+                case "2":
+                    tvRongzi.setVisibility(View.VISIBLE);
+                    tvRongzi.setText("未融资");
+                    tvRongzi.setTextColor(mDataManager.getColor(R.color.text_gray));
+                    tvRongzi.setBackgroundResource(R.drawable.bg_line_gray);
+                    break;
+                default:
+                    tvRongzi.setVisibility(View.GONE);
+                    break;
+            }
+        } else {
+            tvRongzi.setVisibility(View.GONE);
+        }
+
     }
 
     @Override

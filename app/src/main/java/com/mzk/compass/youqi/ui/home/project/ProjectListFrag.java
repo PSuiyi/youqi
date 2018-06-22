@@ -29,6 +29,7 @@ import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -201,6 +202,21 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
                         });
                     }
                     break;
+                case R.id.tvShenhe:
+                    switch (bean.getState()) {
+                        case "1"://1 表示 正在审核总
+                            break;
+                        case "2"://2 表示 审核通过已上线
+                            updateProject(bean.getId(), "offsale");
+                            break;
+                        case "3"://3 表示已下线
+                            updateProject(bean.getId(), "onsale");
+                            break;
+                        case "4"://4 表示审核拒绝
+                            updateProject(bean.getId(), "delete");
+                            break;
+                    }
+                    break;
             }
         });
 
@@ -371,6 +387,7 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
                 keywords = event.getValue();
                 resetRefresh();
                 break;
+            case EventTags.REFRESH_PROJECT_STATE:
             case EventTags.REFRESH_COLLECT_PROJECT:
                 resetRefresh();
                 break;
@@ -547,5 +564,29 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
                 resetRefresh();
                 break;
         }
+    }
+
+    private void updateProject(String id, String optype) {
+        Map<String, String> params = new HashMap<>();
+        params.put("projectId", id);
+        params.put("optype", optype);
+        mModel.requestUpdateProjectState(params, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                switch (optype) {
+                    case "delete":
+                        mDataManager.showToast("删除成功");
+                        break;
+                    case "onsale":
+                        mDataManager.showToast("上架成功");
+                        break;
+                    case "offsale":
+                        mDataManager.showToast("下架成功");
+                        break;
+                }
+                EventBus.getDefault().post(new EventRefresh(EventTags.REFRESH_PROJECT_STATE));
+            }
+        });
     }
 }

@@ -332,6 +332,10 @@ public interface ApiService {
     @POST("account/modify-tel")
     Observable<ResponseBody> requestChangePhone(@FieldMap Map<String, String> params);
 
+    @FormUrlEncoded
+    @POST("project/operate")
+    Observable<ResponseBody> requestUpdateProjectState(@FieldMap Map<String, String> params);
+
 
     @Multipart
     @POST("upload/upload")

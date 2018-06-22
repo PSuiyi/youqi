@@ -140,6 +140,7 @@
             android:padding="@dimen/distance_view">
 
             <TextView
+                android:id="@+id/tvRongzi"
                 style="@style/TitleRedTextStyle"
                 android:background="@drawable/bg_line_red_2"
                 android:paddingBottom="@dimen/distance_divider"
@@ -151,6 +152,7 @@
             <View style="@style/WeightView" />
 
             <TextView
+                android:id="@+id/tvPublish"
                 style="@style/TitleTextStyle"
                 android:background="@drawable/bg_line_gray"
                 android:paddingBottom="@dimen/distance_divider"
@@ -160,6 +162,7 @@
                 android:text="已发布" />
 
             <TextView
+                android:id="@+id/tvShenhe"
                 style="@style/TitleRedTextStyle"
                 android:layout_marginLeft="@dimen/distance_view"
                 android:background="@drawable/bg_line_red_2"

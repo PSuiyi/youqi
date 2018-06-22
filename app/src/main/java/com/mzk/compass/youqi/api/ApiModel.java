@@ -815,6 +815,16 @@ public class ApiModel extends BaseModel {
     }
 
     /**
+     * 项目操作
+     *
+     * @param params
+     * @return
+     */
+    public void requestUpdateProjectState(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestUpdateProjectState(params), znzHttpListener);
+    }
+
+    /**
      * 单张图片上传
      *
      * @param url
