@@ -56,7 +56,7 @@
                             android:id="@+id/tvTag"
                             style="@style/TagStyle"
                             android:layout_marginLeft="@dimen/distance_divider"
-                            android:text="天使轮" />
+                            android:text="" />
                     </LinearLayout>
 
                     <TextView

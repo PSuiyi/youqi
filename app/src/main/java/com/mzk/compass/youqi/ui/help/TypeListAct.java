@@ -11,6 +11,8 @@ import com.mzk.compass.youqi.adapter.TypeLeftAdapter;
 import com.mzk.compass.youqi.adapter.TypeRightAdapter;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.bean.CategoryBean;
+import com.mzk.compass.youqi.common.Constants;
+import com.mzk.compass.youqi.ui.common.SearchCommonAct;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 
@@ -49,7 +51,13 @@ public class TypeListAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-
+        znzToolBar.setSearchHint("找商品");
+        znzToolBar.setOnSearchClickListener(view -> {
+            mDataManager.saveTempData(Constants.SearchType.SEARCHTYPE, "2");
+            Bundle bundle = new Bundle();
+            bundle.putString("from", "找商品");
+            gotoActivity(SearchCommonAct.class, bundle);
+        });
     }
 
     @Override
