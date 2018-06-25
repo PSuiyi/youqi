@@ -92,11 +92,14 @@
                 <TextView
                     android:id="@+id/tvMessageCount"
                     style="@style/TextSamllStyle"
-                    android:layout_width="5dp"
-                    android:layout_height="5dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="3dp"
                     android:background="@drawable/bg_white_radius_30"
+                    android:gravity="center"
+                    android:paddingLeft="3dp"
+                    android:paddingRight="3dp"
+                    android:text="1"
+                    android:textColor="@color/red"
+                    android:textSize="8sp"
                     android:visibility="gone" />
             </RelativeLayout>
 

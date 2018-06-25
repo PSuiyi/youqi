@@ -80,11 +80,11 @@ public class SearchCommonAct extends BaseAppActivity implements TextWatcher {
             from = getIntent().getStringExtra("from");
         }
         fragment = new SearchHistoryFrag();
-        projectListFrag = ProjectListFrag.newInstance("搜索", searchContent);
-        peopleListFrag = PeopleListFrag.newInstance("搜索", searchContent);
-        organListFrag = OrganListFrag.newInstance("搜索", searchContent);
-        productListFrag = ProductListFrag.newInstance("搜索", searchContent);
-        newsListFrag = NewsListFrag.newInstance("搜索", searchContent);
+//        projectListFrag = ProjectListFrag.newInstance("搜索", searchContent);
+//        peopleListFrag = PeopleListFrag.newInstance("搜索", searchContent);
+//        organListFrag = OrganListFrag.newInstance("搜索", searchContent);
+//        productListFrag = ProductListFrag.newInstance("搜索", searchContent);
+//        newsListFrag = NewsListFrag.newInstance("搜索", searchContent);
 
         fragmentUtil = new FragmentUtil();
         fragmentManager = getSupportFragmentManager();
@@ -108,6 +108,7 @@ public class SearchCommonAct extends BaseAppActivity implements TextWatcher {
             case "搜索投资人":
                 etSerach.setHint("搜索投资人");
                 break;
+            case "搜索机构":
             case "搜索投资机构":
                 etSerach.setHint("搜索投资机构");
                 break;

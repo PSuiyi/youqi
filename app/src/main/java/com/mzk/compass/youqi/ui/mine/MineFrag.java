@@ -231,6 +231,7 @@ public class MineFrag extends BaseAppFragment {
                     tvMessageCount.setVisibility(View.GONE);
                 } else {
                     tvMessageCount.setVisibility(View.VISIBLE);
+                    tvMessageCount.setText(responseOriginal.getString("data"));
                 }
             }
 

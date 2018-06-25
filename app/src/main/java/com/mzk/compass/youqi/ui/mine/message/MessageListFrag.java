@@ -113,8 +113,6 @@ public class MessageListFrag extends BaseAppListFragment<MessageBean> {
                                 @Override
                                 public void onSuccess(JSONObject responseOriginal) {
                                     super.onSuccess(responseOriginal);
-                                    bean.setState("2");
-                                    adapter.notifyItemChanged(position);
                                     if (!StringUtil.isBlank(responseOriginal.getString("data"))) {
                                         InteractMsgDetailBean msgBean = JSON.parseObject(responseOriginal.getString("data"), InteractMsgDetailBean.class);
                                         if (!StringUtil.isBlank(msgBean.getTitle()) && msgBean.getTitle().equals("评论信息提示") | msgBean.getTitle().equals("留言信息提示")) {
@@ -149,15 +147,11 @@ public class MessageListFrag extends BaseAppListFragment<MessageBean> {
                                 @Override
                                 public void onSuccess(JSONObject responseOriginal) {
                                     super.onSuccess(responseOriginal);
-                                    bean.setState("2");
-                                    adapter.notifyItemChanged(position);
                                 }
                             });
 
                             break;
                         case "系统信息":
-                            bean.setState("2");
-                            adapter.notifyItemChanged(position);
                             bundle.putString("id", bean.getId());
                             gotoActivity(MessageSystemAct.class, bundle);
                             break;

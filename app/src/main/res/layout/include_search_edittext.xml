@@ -31,7 +31,6 @@
                 android:drawableLeft="@mipmap/default_sousuo"
                 android:drawablePadding="5dp"
                 android:gravity="center_vertical"
-                android:hint="搜写字楼、区域、商圈"
                 android:minHeight="30dp"
                 android:paddingLeft="@dimen/distance_view"
                 android:paddingRight="@dimen/distance_view"
