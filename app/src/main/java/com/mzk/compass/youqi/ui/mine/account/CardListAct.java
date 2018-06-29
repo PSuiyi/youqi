@@ -21,19 +21,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2018/4/26.
  */
 
-public class BankCardListAct extends BaseAppActivity {
+public class CardListAct extends BaseAppActivity {
 
     @Bind(R.id.tvBank)
     TextView tvBank;
     @Bind(R.id.tvNumber)
     TextView tvNumber;
-    private String validateKey;
     private BankBean bean;
 
     @Override
@@ -43,9 +41,6 @@ public class BankCardListAct extends BaseAppActivity {
 
     @Override
     protected void initializeVariate() {
-        if (getIntent().hasExtra("validateKey")) {
-            validateKey = getIntent().getStringExtra("validateKey");
-        }
     }
 
     @Override
@@ -69,16 +64,12 @@ public class BankCardListAct extends BaseAppActivity {
     @Override
     protected void loadDataFromServer() {
         Map<String, String> params = new HashMap<>();
-        params.put("validateKey", validateKey);
         mModel.requestBankList(params, new ZnzHttpListener() {
             @Override
             public void onSuccess(JSONObject responseOriginal) {
                 super.onSuccess(responseOriginal);
                 bean = JSON.parseObject(responseOriginal.getString("data"), BankBean.class);
                 if (bean == null || StringUtil.isBlank(bean.getBankcard())) {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("from", "绑定银行卡");
-                    gotoActivity(CheckPhoneAct.class, bundle);
                     znzToolBar.setNavRightText("绑定", mDataManager.getColor(R.color.red));
                     showNoData();
                 } else {

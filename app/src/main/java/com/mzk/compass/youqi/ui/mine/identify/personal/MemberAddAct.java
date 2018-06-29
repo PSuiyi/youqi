@@ -1,6 +1,5 @@
 package com.mzk.compass.youqi.ui.mine.identify.personal;
 
-import android.os.Bundle;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -19,14 +18,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2018/4/24.
  */
 
-public class MemberDetailAct extends BaseAppActivity {
+public class MemberAddAct extends BaseAppActivity {
     @Bind(R.id.etName)
     EditTextWithDel etName;
     @Bind(R.id.etPhone)
@@ -99,7 +97,7 @@ public class MemberDetailAct extends BaseAppActivity {
             mDataManager.showToast("请输入手机号");
             return;
         }
-        if (!StringUtil.isMobile(mDataManager.getValueFromView(etName))) {
+        if (!StringUtil.isMobile(mDataManager.getValueFromView(etPhone))) {
             mDataManager.showToast("请输入正确的手机号");
             return;
         }

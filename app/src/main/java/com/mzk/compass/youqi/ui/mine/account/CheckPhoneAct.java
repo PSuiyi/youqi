@@ -118,11 +118,11 @@ public class CheckPhoneAct extends BaseAppActivity {
                                 gotoActivity(UpdatePhoneAct.class,bundle);
                                 break;
                             case "查看银行卡":
-                                gotoActivity(BankCardListAct.class, bundle);
+                                gotoActivity(CardListAct.class, bundle);
                                 break;
                             case "绑定银行卡":
                                 bundle.putSerializable("bean", bean);
-                                gotoActivity(BindCardAct.class, bundle);
+                                gotoActivity(CardAddAct.class, bundle);
                                 break;
                         }
                         finish();

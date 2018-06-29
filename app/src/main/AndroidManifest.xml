@@ -154,7 +154,7 @@
             android:name=".ui.mine.identify.personal.MemberMangerAct"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.mine.identify.personal.MemberDetailAct"
+            android:name=".ui.mine.identify.personal.MemberAddAct"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.mine.identify.company.CompanyManagerAct"
@@ -193,10 +193,10 @@
             android:name=".ui.mine.account.ManagerSuccessAct"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.mine.account.BindCardAct"
+            android:name=".ui.mine.account.CardAddAct"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.mine.account.BankCardListAct"
+            android:name=".ui.mine.account.CardListAct"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.mine.account.IdentifyAct"

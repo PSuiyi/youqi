@@ -61,7 +61,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="@dimen/distance_view"
-                                android:src="@mipmap/vip"
+                                android:src="@mipmap/vipbai"
                                 android:visibility="gone" />
 
                         </LinearLayout>

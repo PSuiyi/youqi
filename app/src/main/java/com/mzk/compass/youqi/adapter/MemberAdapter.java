@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.bean.MemberBean;
-import com.mzk.compass.youqi.ui.mine.identify.personal.MemberDetailAct;
+import com.mzk.compass.youqi.ui.mine.identify.personal.MemberAddAct;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
@@ -51,6 +51,6 @@ public class MemberAdapter extends BaseQuickAdapter<MemberBean, BaseViewHolder> 
         Bundle bundle = new Bundle();
         bundle.putString("from", "编辑");
         bundle.putSerializable("bean", bean);
-        gotoActivity(MemberDetailAct.class, bundle);
+        gotoActivity(MemberAddAct.class, bundle);
     }
 }

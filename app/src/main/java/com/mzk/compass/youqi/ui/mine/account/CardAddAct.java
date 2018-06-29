@@ -21,14 +21,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2018/4/26.
  */
 
-public class BindCardAct extends BaseAppActivity {
+public class CardAddAct extends BaseAppActivity {
     @Bind(R.id.etBankCode)
     EditTextWithDel etBankCode;
     @Bind(R.id.etBank)

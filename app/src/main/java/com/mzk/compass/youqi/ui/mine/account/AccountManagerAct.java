@@ -8,7 +8,6 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
-import com.znz.compass.znzlibray.common.ZnzConstants;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -80,8 +79,7 @@ public class AccountManagerAct extends BaseAppActivity {
                 .withTitleColor(mDataManager.getColor(R.color.text_color))
                 .withOnClickListener(v -> {
                     Bundle bundle = new Bundle();
-                    bundle.putString("from", "查看银行卡");
-                    gotoActivity(CheckPhoneAct.class, bundle);
+                    gotoActivity(CardListAct.class, bundle);
                 })
                 .build());
         rowDescriptionList.add(new ZnzRowDescription.Builder()
@@ -144,6 +142,9 @@ public class AccountManagerAct extends BaseAppActivity {
     public void onMessageEvent(EventRefresh event) {
         switch (event.getFlag()) {
             case EventTags.REFRESH_PHONE:
+                loadDataFromServer();
+                break;
+            case EventTags.REFRESH_BANK:
                 loadDataFromServer();
                 break;
         }

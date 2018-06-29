@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -99,7 +98,7 @@ public class MemberMangerAct extends BaseAppActivity {
             case R.id.tvSubmit:
                 Bundle bundle = new Bundle();
                 bundle.putString("from", "创建");
-                gotoActivity(MemberDetailAct.class, bundle);
+                gotoActivity(MemberAddAct.class, bundle);
                 break;
         }
     }
