@@ -53,8 +53,8 @@ public class PeopleAdapter extends BaseQuickAdapter<PeopleBean, BaseViewHolder> 
         setOnItemClickListener(this);
         ivImage.loadHeaderImage(bean.getAvatar());
         mDataManager.setValueToView(tvName, bean.getUsername());
-        mDataManager.setValueToView(tvCountComment, bean.getCommentsNum());
-        mDataManager.setValueToView(tvCountFav, bean.getCollectionNum());
+        mDataManager.setValueToView(tvCountComment, bean.getCommentsNum(), "0");
+        mDataManager.setValueToView(tvCountFav, bean.getCollectionNum(), "0");
         mDataManager.setValueToView(tvTag1, bean.getName());
         mDataManager.setValueToView(tvTag2, bean.getGroupName());
 

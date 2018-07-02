@@ -231,11 +231,11 @@ public class HomeFrag extends BaseAppFragment {
                             }
                             if (!hotList.isEmpty()) {
                                 if (hotList.size() >= 5) {
-                                    ivImage1.loadVerImage(hotList.get(0).getImage());
-                                    ivImage2.loadVerImage(hotList.get(1).getImage());
-                                    ivImage3.loadVerImage(hotList.get(2).getImage());
-                                    ivImage4.loadVerImage(hotList.get(3).getImage());
-                                    ivImage5.loadVerImage(hotList.get(4).getImage());
+                                    ivImage1.loadVerImage(hotList.get(0).getLogo());
+                                    ivImage2.loadVerImage(hotList.get(1).getLogo());
+                                    ivImage3.loadVerImage(hotList.get(2).getLogo());
+                                    ivImage4.loadVerImage(hotList.get(3).getLogo());
+                                    ivImage5.loadVerImage(hotList.get(4).getLogo());
 
                                     ivImage1.setOnClickListener(v -> {
                                         Bundle bundle = new Bundle();

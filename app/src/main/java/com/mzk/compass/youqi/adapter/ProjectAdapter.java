@@ -61,12 +61,18 @@ public class ProjectAdapter extends BaseQuickAdapter<ProjectBean, BaseViewHolder
         mDataManager.setValueToView(tvName, bean.getName());
         if (!StringUtil.isBlank(bean.getRname())) {
             mDataManager.setValueToView(tvTag, bean.getRname());
+            mDataManager.setViewVisibility(tvTag, true);
         } else {
-            mDataManager.setValueToView(tvTag, bean.getRoundsid());
+            if (!StringUtil.isBlank(bean.getRoundsid())) {
+                mDataManager.setValueToView(tvTag, bean.getRoundsid());
+                mDataManager.setViewVisibility(tvTag, true);
+            } else {
+                mDataManager.setViewVisibility(tvTag, false);
+            }
         }
         mDataManager.setValueToView(tvContent, bean.getTitle());
-        mDataManager.setValueToView(tvCollection, bean.getCollectionNum());
-        mDataManager.setValueToView(tvComment, bean.getCommentsNum());
+        mDataManager.setValueToView(tvCollection, bean.getCollectionNum(), "0");
+        mDataManager.setValueToView(tvComment, bean.getCommentsNum(), "0");
         mDataManager.setValueToView(tvVisite, bean.getVisiteNum());
         mDataManager.setValueToView(tvCompanyName, bean.getCompanyName());
         if (!StringUtil.isBlank(bean.getTname())) {

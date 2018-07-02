@@ -34,7 +34,7 @@ public class StringUtil {
      * @return
      */
     public static boolean isBlank(String str) {
-        if (str == null || "".equals(str) || str.equals("null")) {
+        if (str == null || "".equals(str) || str.equals("null") || str.equals("0")) {
             return true;
         } else {
             return false;
@@ -709,6 +709,7 @@ public class StringUtil {
         float textLength = paint.measureText(text);
         return textLength;
     }
+
     /**
      * 返回格式化的手机号
      *

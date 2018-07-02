@@ -91,6 +91,7 @@
                             android:id="@+id/tvCompanyName"
                             style="@style/TextStyle"
                             android:layout_marginLeft="3dp"
+                            android:layout_weight="1"
                             android:singleLine="true"
                             android:text="美之科" />
 
@@ -234,10 +235,12 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/llTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/distance_divider"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <TextView
                     style="@style/TitleGrayTextStyle"

@@ -36,6 +36,7 @@ import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.utils.TimeUtils;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
+import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -101,6 +102,7 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
     private TextView tvMoney;
     private TextView tvTime;
     private TextView tvCompany;
+    private LinearLayout llTime;
     private RecyclerView rvTrade;
     private String currentPid;
 
@@ -156,6 +158,7 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
         rvTrade = bindViewById(header, R.id.rvTrade);
         tvShizhi = bindViewById(header, R.id.tvShizhi);
         tvState = bindViewById(header, R.id.tvState);
+        llTime = bindViewById(header, R.id.llTime);
 
         ivFav.setOnClickListener(v -> {
             handleFav();
@@ -188,6 +191,13 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
         rvMenu.setLayoutManager(layoutManager);
         rvMenu.setAdapter(adapterMenu);
 
+        adapterMenu.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+//                rvRefresh.scrollTo(0, 200 * position);
+            }
+        });
+
         adapter.setOnItemChildClickListener((adapter1, view, position) -> {
             CommentBean bean = dataList.get(position);
             switch (view.getId()) {
@@ -217,8 +227,8 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
                     mDataManager.setValueToView(tvTag, bean.getRounds().getName());
                 }
                 mDataManager.setValueToView(tvContent, bean.getTitle());
-                mDataManager.setValueToView(tvCountFav, bean.getCollectionNum());
-                mDataManager.setValueToView(tvCountComment, bean.getCommentsNum());
+                mDataManager.setValueToView(tvCountFav, bean.getCollectionNum(), "0");
+                mDataManager.setValueToView(tvCountComment, bean.getCommentsNum(), "0");
                 mDataManager.setValueToView(tvCountView, bean.getVisiteNum());
                 mDataManager.setValueToView(tvCompanyName, bean.getCompanyName());
                 mDataManager.setValueToView(tvShizhi, bean.getRongzijine());
@@ -245,7 +255,12 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
                 }
 
                 mDataManager.setValueToView(tvCompany, bean.getCompanyName());
-                mDataManager.setValueToView(tvTime, TimeUtils.getFormatTime(bean.getCreateTime(), "yyyy-MM-dd"));
+                if (!StringUtil.isBlank(bean.getCreateTime())) {
+                    mDataManager.setViewVisibility(llTime, true);
+                    mDataManager.setValueToView(tvTime, TimeUtils.getFormatTime(bean.getCreateTime(), "yyyy-MM-dd"));
+                } else {
+                    mDataManager.setViewVisibility(llTime, false);
+                }
 
 
                 if (bean.getTradeid() != null & bean.getTradeid().size() > 0) {

@@ -26,6 +26,7 @@ public class DetailAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseView
         addItemType(Constants.MultiType.ProjectMoney, R.layout.item_lv_project_money);
         addItemType(Constants.MultiType.ProjectFinancing, R.layout.item_lv_project_financing);
         addItemType(Constants.MultiType.ProjectData, R.layout.item_lv_project_data);
+        addItemType(Constants.MultiType.ProjectComment, R.layout.item_lv_comment);
 
         addItemType(Constants.MultiType.PeopleState, R.layout.item_lv_people_state);
         addItemType(Constants.MultiType.PeopleIntro, R.layout.item_lv_people_intro);
