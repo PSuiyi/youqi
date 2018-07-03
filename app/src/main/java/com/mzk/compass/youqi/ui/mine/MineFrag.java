@@ -16,6 +16,7 @@ import com.mzk.compass.youqi.bean.UserBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
+import com.mzk.compass.youqi.ui.common.WebViewAct;
 import com.mzk.compass.youqi.ui.mine.account.AccountManagerAct;
 import com.mzk.compass.youqi.ui.mine.article.ArticleTabAct;
 import com.mzk.compass.youqi.ui.mine.identify.IdentifyManagerAct;
@@ -26,6 +27,7 @@ import com.mzk.compass.youqi.ui.mine.state.StateListAct;
 import com.mzk.compass.youqi.ui.mine.vip.VipCenterAct;
 import com.mzk.compass.youqi.ui.setting.SettingAct;
 import com.mzk.compass.youqi.utils.AppUtils;
+import com.znz.compass.znzlibray.common.ZnzConstants;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -276,7 +278,7 @@ public class MineFrag extends BaseAppFragment {
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.llInfo, R.id.ivMessage})
+    @OnClick({R.id.llInfo, R.id.ivMessage, R.id.llOne})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.llInfo:
@@ -284,6 +286,12 @@ public class MineFrag extends BaseAppFragment {
                 break;
             case R.id.ivMessage:
                 gotoActivity(MessageTabAct.class);
+                break;
+            case R.id.llOne:
+                Bundle bundle = new Bundle();
+                bundle.putString("title", "一站通");
+                bundle.putString("url", "http://oa.njyzt.com:98/app/index.aspx?token=c0UmdXvfPPSzXHZf663b02f3lBVjZWlGTtsmH5&mobile=" + mDataManager.readTempData(ZnzConstants.ACCOUNT));
+                mDataManager.gotoActivity(WebViewAct.class, bundle);
                 break;
         }
     }

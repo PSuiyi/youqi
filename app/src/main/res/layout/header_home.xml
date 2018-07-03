@@ -10,7 +10,7 @@
         android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="125dp"
-        app:banner_pageChangeDuration="2000"
+        app:banner_pageChangeDuration="5000"
         app:banner_pointAutoPlayAble="true"
         app:banner_pointContainerBackground="@android:color/transparent"
         app:banner_pointDrawable="@drawable/bga_banner_selector_point_hollow"

@@ -157,6 +157,45 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/llOne"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/distance_view"
+                    android:src="@mipmap/yizhantong"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/distance_view"
+                    android:layout_marginRight="@dimen/distance_view"
+                    android:text="一站通"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/text_size_14" />
+
+                <View style="@style/WeightView" />
+
+                <ImageView
+                    android:id="@+id/ivArrow"
+                    android:layout_width="11dp"
+                    android:layout_height="11dp"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="@dimen/distance_view"
+                    android:src="@drawable/listarr"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <View style="@style/LineBoth" />
+
             <com.znz.compass.znzlibray.views.rowview.ZnzRowGroupView
                 android:id="@+id/commonRowGroup"
                 android:layout_width="match_parent"
