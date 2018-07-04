@@ -120,11 +120,22 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tvYongjin"
-                        style="@style/TextStyle"
-                        android:text="0元"
-                        android:textColor="@color/red" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvYongjin"
+                            style="@style/TextStyle"
+                            android:text="0"
+                            android:textColor="@color/red" />
+
+                        <TextView
+                            style="@style/TextStyle"
+                            android:text="元"
+                            android:textColor="@color/red" />
+                    </LinearLayout>
 
                     <TextView
                         style="@style/TextGrayStyle"
@@ -144,11 +155,22 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tvBalance"
-                        style="@style/TextStyle"
-                        android:text="0元"
-                        android:textColor="@color/red" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvBalance"
+                            style="@style/TextStyle"
+                            android:text="0"
+                            android:textColor="@color/red" />
+
+                        <TextView
+                            style="@style/TextStyle"
+                            android:text="元"
+                            android:textColor="@color/red" />
+                    </LinearLayout>
 
                     <TextView
                         style="@style/TextGrayStyle"
@@ -169,7 +191,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/distance_view"
-                    android:src="@mipmap/yizhantong"
+                    android:src="@mipmap/gongshangcaishui"
                     android:visibility="visible" />
 
                 <TextView
@@ -177,7 +199,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/distance_view"
                     android:layout_marginRight="@dimen/distance_view"
-                    android:text="一站通"
+                    android:text="工商财税"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/text_size_14" />
 

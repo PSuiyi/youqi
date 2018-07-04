@@ -220,6 +220,10 @@ public class MineFrag extends BaseAppFragment {
                 super.onSuccess(responseOriginal);
                 if (!StringUtil.isBlank(responseOriginal.getString("data"))) {
                     bean = JSON.parseObject(responseOriginal.getString("data"), UserBean.class);
+
+                    mDataManager.setValueToView(tvYongjin, bean.getYongjin(), "0");
+                    mDataManager.setValueToView(tvBalance, bean.getBalance(), "0");
+
                     AppUtils.getInstance(context).saveUserData(bean);
                     setData();
                 }
@@ -260,8 +264,6 @@ public class MineFrag extends BaseAppFragment {
             commonRowGroup.notifyDataChanged(rowDescriptionList);
         }
         ivHeader.loadHeaderImage(mDataManager.readTempData(Constants.User.AVATAR));
-        mDataManager.setValueToView(tvYongjin, mDataManager.readTempData(Constants.User.YONGJIN));
-        mDataManager.setValueToView(tvBalance, mDataManager.readTempData(Constants.User.BALANCE));
     }
 
     @Override
@@ -289,7 +291,7 @@ public class MineFrag extends BaseAppFragment {
                 break;
             case R.id.llOne:
                 Bundle bundle = new Bundle();
-                bundle.putString("title", "一站通");
+                bundle.putString("title", "工商财税");
                 bundle.putString("url", "http://oa.njyzt.com:98/app/index.aspx?token=c0UmdXvfPPSzXHZf663b02f3lBVjZWlGTtsmH5&mobile=" + mDataManager.readTempData(ZnzConstants.ACCOUNT));
                 mDataManager.gotoActivity(WebViewAct.class, bundle);
                 break;
