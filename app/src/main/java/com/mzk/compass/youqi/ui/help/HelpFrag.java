@@ -62,7 +62,7 @@ public class HelpFrag extends BaseAppListFragment {
 
     @Override
     protected void initializeVariate() {
-
+        setNoRefreshAndLoad();
     }
 
     @Override

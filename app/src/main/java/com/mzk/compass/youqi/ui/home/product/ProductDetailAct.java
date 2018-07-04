@@ -143,9 +143,9 @@ public class ProductDetailAct extends BaseAppActivity {
                 tvMoneyOld.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG); //下划线
                 tvMoneyOld.getPaint().setAntiAlias(true);//抗锯齿
 
-                if (!bean.getArea().isEmpty()) {
-                    tvArea.setText(bean.getArea().get(0).getName());
-                }
+//                if (!bean.getArea().isEmpty()) {
+//                    tvArea.setText(bean.getArea().get(0).getName());
+//                }
 
                 if (!StringUtil.isBlank(bean.getIsCollected())) {
                     if (bean.getIsCollected().equals("true")) {
