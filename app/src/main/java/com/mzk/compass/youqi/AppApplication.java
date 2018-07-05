@@ -20,7 +20,7 @@ public class AppApplication extends ZnzApplication {
         BugtagsOptions options = new BugtagsOptions.Builder().
                 enableUserSignIn(false).            //是否允许显示用户登录按钮，默认 true
                 build();
-        Bugtags.start("f8a8976eb07316f15ce7e91241c0afb1", this, Bugtags.BTGInvocationEventBubble, options);
+        Bugtags.start("f8a8976eb07316f15ce7e91241c0afb1", this, Bugtags.BTGInvocationEventNone, options);
     }
 
     {

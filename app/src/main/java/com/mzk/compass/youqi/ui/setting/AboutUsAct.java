@@ -1,6 +1,7 @@
 package com.mzk.compass.youqi.ui.setting;
 
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
@@ -9,6 +10,9 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzlibray.views.WebViewWithProgress;
+import com.znz.compass.znzlibray.views.ZnzRemind;
+import com.znz.compass.znzlibray.views.ZnzToolBar;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,6 +31,14 @@ public class AboutUsAct extends BaseAppActivity {
     TextView tvVer;
     @Bind(R.id.tvContent)
     TextView tvContent;
+    @Bind(R.id.znzToolBar)
+    ZnzToolBar znzToolBar;
+    @Bind(R.id.znzRemind)
+    ZnzRemind znzRemind;
+    @Bind(R.id.llNetworkStatus)
+    LinearLayout llNetworkStatus;
+    @Bind(R.id.wvDetail)
+    WebViewWithProgress wvDetail;
 
     @Override
     protected int[] getLayoutResource() {
@@ -57,7 +69,8 @@ public class AboutUsAct extends BaseAppActivity {
                 super.onSuccess(responseOriginal);
                 if (!StringUtil.isBlank(responseOriginal.getString("data"))) {
                     JSONObject json = JSON.parseObject(responseOriginal.getString("data"));
-                    mDataManager.setValueToView(tvContent, json.getString("content"));
+//                    mDataManager.setValueToView(tvContent, json.getString("content"));
+                    wvDetail.loadContent(json.getString("content"));
                 }
             }
         });

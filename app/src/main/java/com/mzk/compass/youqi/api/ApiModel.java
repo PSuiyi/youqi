@@ -659,7 +659,7 @@ public class ApiModel extends BaseModel {
      * @return
      */
     public void requestAboutUs(Map<String, String> params, ZnzHttpListener znzHttpListener) {
-        request(apiService.requestAboutUs(params), znzHttpListener);
+        request(apiService.requestAboutUs(params), znzHttpListener, LODING_LODING);
     }
 
     /**
