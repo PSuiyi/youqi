@@ -180,6 +180,7 @@ public class LoginAct extends BaseAppActivity {
                 } else {
                     gotoActivityWithClearStack(TabHomeActivity.class);
                 }
+                finish();
             }
         });
     }
@@ -233,6 +234,7 @@ public class LoginAct extends BaseAppActivity {
                         mDataManager.saveTempData(ZnzConstants.ACCOUNT, mDataManager.getValueFromView(etPhone));
                         mDataManager.saveBooleanTempData(ZnzConstants.IS_LOGIN, true);
                         gotoActivityWithClearStack(TabHomeActivity.class);
+                        finish();
                     }
 
                     @Override

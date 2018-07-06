@@ -37,6 +37,15 @@ public class UserBean extends BaseZnzBean {
     private String vipTime;
     private String nickName;
     private String duty;
+    private String msgTotal;
+
+    public String getMsgTotal() {
+        return msgTotal;
+    }
+
+    public void setMsgTotal(String msgTotal) {
+        this.msgTotal = msgTotal;
+    }
 
     public String getDuty() {
         return duty;

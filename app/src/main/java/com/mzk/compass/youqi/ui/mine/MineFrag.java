@@ -32,6 +32,8 @@ import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.utils.TimeUtils;
+import com.znz.compass.znzlibray.views.ZnzRemind;
+import com.znz.compass.znzlibray.views.ZnzToolBar;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.rowview.ZnzRowDescription;
 import com.znz.compass.znzlibray.views.rowview.ZnzRowGroupView;
@@ -73,6 +75,14 @@ public class MineFrag extends BaseAppFragment {
     TextView tvMessageCount;
     @Bind(R.id.ivVip)
     ImageView ivVip;
+    @Bind(R.id.znzToolBar)
+    ZnzToolBar znzToolBar;
+    @Bind(R.id.znzRemind)
+    ZnzRemind znzRemind;
+    @Bind(R.id.llNetworkStatus)
+    LinearLayout llNetworkStatus;
+    @Bind(R.id.tvDot)
+    TextView tvDot;
     private UserBean bean;
 
     private ArrayList<ZnzRowDescription> rowDescriptionList = new ArrayList<>();
@@ -212,7 +222,8 @@ public class MineFrag extends BaseAppFragment {
     }
 
     @Override
-    protected void loadDataFromServer() {
+    public void onResume() {
+        super.onResume();
         Map<String, String> params = new HashMap<>();
         mModel.requestUserDetail(params, new ZnzHttpListener() {
             @Override
@@ -223,12 +234,23 @@ public class MineFrag extends BaseAppFragment {
 
                     mDataManager.setValueToView(tvYongjin, bean.getYongjin(), "0");
                     mDataManager.setValueToView(tvBalance, bean.getBalance(), "0");
+                    if (StringUtil.isBlank(bean.getMsgTotal()) || bean.getMsgTotal().equals("0")) {
+                        mDataManager.setViewVisibility(tvDot, false);
+                    } else {
+                        mDataManager.setViewVisibility(tvDot, true);
+                        mDataManager.setValueToView(tvDot, bean.getMsgTotal(), "0");
+                    }
 
                     AppUtils.getInstance(context).saveUserData(bean);
                     setData();
                 }
             }
         });
+    }
+
+    @Override
+    protected void loadDataFromServer() {
+        Map<String, String> params = new HashMap<>();
         mModel.requestMessageCount(params, new ZnzHttpListener() {
             @Override
             public void onSuccess(JSONObject responseOriginal) {

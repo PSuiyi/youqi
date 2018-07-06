@@ -205,6 +205,16 @@
 
                 <View style="@style/WeightView" />
 
+                <TextView
+                    android:id="@+id/tvDot"
+                    style="@style/TextStyle"
+                    android:background="@drawable/bg_dot_red"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:text="2"
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
+
                 <ImageView
                     android:id="@+id/ivArrow"
                     android:layout_width="11dp"
