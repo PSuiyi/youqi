@@ -67,9 +67,11 @@ public class Constants {
         int ProjectFinancing = 16;
         int ProjectData = 17;
         int ProjectComment = 18;
+        int ProjectCommentSection = 19;
+        int ProjectCommentNoData = 20;
 
-        int PeopleState = 20;
-        int PeopleIntro = 21;
+        int PeopleState = 30;
+        int PeopleIntro = 31;
     }
 
 

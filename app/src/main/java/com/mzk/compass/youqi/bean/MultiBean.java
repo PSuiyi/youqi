@@ -16,6 +16,7 @@ public class MultiBean extends BaseZnzBean implements MultiItemEntity {
     private List<StateBean> stateBeanList = new ArrayList<>();
     private PeopleBean peopleBean;
     private ProjectBean projectBean;
+    private CommentBean commentBean;
 
     public MultiBean() {
     }
@@ -43,6 +44,14 @@ public class MultiBean extends BaseZnzBean implements MultiItemEntity {
     public MultiBean(int itemType, ProjectBean projectBean) {
         this.itemType = itemType;
         this.projectBean = projectBean;
+    }
+
+    public CommentBean getCommentBean() {
+        return commentBean;
+    }
+
+    public void setCommentBean(CommentBean commentBean) {
+        this.commentBean = commentBean;
     }
 
     public List<StateBean> getStateBeanList() {

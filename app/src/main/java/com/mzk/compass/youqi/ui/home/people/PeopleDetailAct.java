@@ -181,7 +181,7 @@ public class PeopleDetailAct extends BaseAppListActivity<CommentBean> {
                 super.onSuccess(responseOriginal);
                 bean = JSONObject.parseObject(responseOriginal.getString("data"), PeopleBean.class);
                 ivUserHeader.loadHeaderImage(bean.getAvatar());
-                mDataManager.setValueToView(tvName, bean.getUsername());
+                mDataManager.setValueToView(tvName, bean.getRealName());
                 mDataManager.setValueToView(tvCountComment, bean.getCommentsNum(), "0");
                 mDataManager.setValueToView(tvCountFav, bean.getCollectionNum(), "0");
                 mDataManager.setValueToView(tvTag1, bean.getName());

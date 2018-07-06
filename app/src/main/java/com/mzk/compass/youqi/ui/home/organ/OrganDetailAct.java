@@ -126,8 +126,8 @@ public class OrganDetailAct extends BaseAppActivity {
                 bean = JSONObject.parseObject(responseOriginal.getString("data"), OrganBean.class);
                 ivImage.loadSquareImage(bean.getLogo());
                 mDataManager.setValueToView(tvName, bean.getCname());
-                mDataManager.setValueToView(tvCountView, bean.getVisiteNum());
-                mDataManager.setValueToView(tvCountFav, bean.getCollectionNum());
+                mDataManager.setValueToView(tvCountView, bean.getVisiteNum(), "0");
+                mDataManager.setValueToView(tvCountFav, bean.getCollectionNum(), "-");
                 wvDetail.loadContent(bean.getSummary());
                 wvModel.loadContent(bean.getExample());
                 mDataManager.setValueToView(tvWeb, bean.getWebsite());

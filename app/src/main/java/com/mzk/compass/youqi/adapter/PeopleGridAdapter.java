@@ -37,7 +37,7 @@ public class PeopleGridAdapter extends BaseQuickAdapter<PeopleBean, BaseViewHold
     protected void convert(BaseViewHolder helper, PeopleBean bean) {
         setOnItemClickListener(this);
         ivUserHeader.loadHeaderImage(bean.getAvatar());
-        mDataManager.setValueToView(tvName, bean.getUsername());
+        mDataManager.setValueToView(tvName, bean.getRealName());
     }
 
     @Override

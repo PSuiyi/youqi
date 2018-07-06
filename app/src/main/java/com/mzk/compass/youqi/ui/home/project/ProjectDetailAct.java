@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
-import com.mzk.compass.youqi.adapter.CommentAdapter;
 import com.mzk.compass.youqi.adapter.DetailAdapter;
 import com.mzk.compass.youqi.adapter.MenuAdapter;
 import com.mzk.compass.youqi.adapter.PeopleGridAdapter;
@@ -56,7 +55,7 @@ import rx.Observable;
  * User： PSuiyi
  * Description：
  */
-public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
+public class ProjectDetailAct extends BaseAppListActivity<MultiBean> {
     @Bind(R.id.tvOption1)
     TextView tvOption1;
     @Bind(R.id.tvOption2)
@@ -121,6 +120,7 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
     @Override
     protected void initializeNavigation() {
         setTitleName("项目详情");
+        setNoDetailData(true);
     }
 
     @Override
@@ -130,7 +130,7 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
 
     @Override
     protected void initializeView() {
-        adapter = new CommentAdapter(dataList);
+        adapter = new DetailAdapter(dataList);
         rvRefresh.setAdapter(adapter);
 
         View header = View.inflate(activity, R.layout.header_detail_project, null);
@@ -194,128 +194,28 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
         adapterMenu.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-//                rvRefresh.scrollTo(0, 200 * position);
+                rvRefresh.smoothScrollToPosition(position + 1);
             }
         });
 
         adapter.setOnItemChildClickListener((adapter1, view, position) -> {
-            CommentBean bean = dataList.get(position);
-            switch (view.getId()) {
-                case R.id.tvReply:
-                    mDataManager.setViewVisibility(llOpt, false);
-                    mDataManager.setViewVisibility(llComment, true);
-                    currentPid = bean.getId();
-                    mDataManager.toggleEditTextFocus(etComment, true);
-                    break;
+            MultiBean multiBean = dataList.get(position);
+            if (multiBean.getItemType() == Constants.MultiType.ProjectComment) {
+                CommentBean bean = multiBean.getCommentBean();
+                switch (view.getId()) {
+                    case R.id.tvReply:
+                        mDataManager.setViewVisibility(llOpt, false);
+                        mDataManager.setViewVisibility(llComment, true);
+                        currentPid = bean.getId();
+                        mDataManager.toggleEditTextFocus(etComment, true);
+                        break;
+                }
             }
         });
     }
 
     @Override
     protected void loadDataFromServer() {
-        Map<String, String> params = new HashMap<>();
-        params.put("projectId", id);
-        mModel.requestProjectDetail(params, new ZnzHttpListener() {
-            @Override
-            public void onSuccess(JSONObject responseOriginal) {
-                super.onSuccess(responseOriginal);
-                bean = JSONObject.parseObject(responseOriginal.getString("data"), ProjectBean.class);
-                ivImage.loadSquareImage(bean.getLogo());
-                ivLogo.loadSquareImage(bean.getCompanyLogo());
-                mDataManager.setValueToView(tvName, bean.getName());
-                if (bean.getRounds() != null) {
-                    mDataManager.setValueToView(tvTag, bean.getRounds().getName());
-                }
-                mDataManager.setValueToView(tvContent, bean.getTitle());
-                mDataManager.setValueToView(tvCountFav, bean.getCollectionNum(), "0");
-                mDataManager.setValueToView(tvCountComment, bean.getCommentsNum(), "0");
-                mDataManager.setValueToView(tvCountView, bean.getVisiteNum());
-                mDataManager.setValueToView(tvCompanyName, bean.getCompanyName());
-                mDataManager.setValueToView(tvShizhi, bean.getRongzijine());
-                if (bean.getTurnover() != null) {
-                    mDataManager.setValueToView(tvMoney, bean.getTurnover().getName());
-                }
-
-                mDataManager.setValueToView(tvAddress, bean.getProvince() + bean.getCity() + bean.getArea() + bean.getAddress());
-                //运营状态 1运营中 2 已运营 3 未运营
-                if (!StringUtil.isBlank(bean.getRunState())) {
-                    switch (bean.getRunState()) {
-                        case "1":
-                            tvState.setText("运营中");
-                            break;
-                        case "2":
-                            tvState.setText("已运营");
-                            break;
-                        case "3":
-                            tvState.setText("未运营");
-                            break;
-                    }
-                } else {
-                    tvState.setText("未运营");
-                }
-
-                mDataManager.setValueToView(tvCompany, bean.getCompanyName());
-                if (!StringUtil.isBlank(bean.getCreateTime())) {
-                    mDataManager.setViewVisibility(llTime, true);
-                    mDataManager.setValueToView(tvTime, TimeUtils.getFormatTime(bean.getCreateTime(), "yyyy-MM-dd"));
-                } else {
-                    mDataManager.setViewVisibility(llTime, false);
-                }
-
-
-                if (bean.getTradeid() != null & bean.getTradeid().size() > 0) {
-                    mDataManager.setViewVisibility(rvTrade, true);
-                    TradeAdapter adapter = new TradeAdapter(bean.getTradeid());
-                    LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
-                    layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-                    rvTrade.setLayoutManager(layoutManager);
-                    rvTrade.setAdapter(adapter);
-                } else {
-                    mDataManager.setViewVisibility(rvTrade, false);
-                }
-
-
-                if (!StringUtil.isBlank(bean.getIsCollected())) {
-                    if (bean.getIsCollected().equals("true")) {
-                        ivFav.setImageResource(R.mipmap.shoucanghuang);
-                        Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang2);
-                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                        tvOption3.setCompoundDrawables(null, drawable, null, null);
-                    } else {
-                        ivFav.setImageResource(R.mipmap.shoucang);
-                        Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucangxia);
-                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                        tvOption3.setCompoundDrawables(null, drawable, null, null);
-                    }
-                } else {
-                    ivFav.setImageResource(R.mipmap.shoucang);
-                    Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucangxia);
-                    drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
-                    tvOption3.setCompoundDrawables(null, drawable, null, null);
-
-                }
-
-                //项目详情
-                rvProject.setLayoutManager(new LinearLayoutManager(activity));
-                List<MultiBean> multiBeanList = new ArrayList<>();
-                multiBeanList.add(new MultiBean(Constants.MultiType.ProjectIntro, bean));
-                multiBeanList.add(new MultiBean(Constants.MultiType.ProjectTeam, bean));
-                multiBeanList.add(new MultiBean(Constants.MultiType.ProjectProduct, bean));
-                multiBeanList.add(new MultiBean(Constants.MultiType.ProjectMarket, bean));
-                multiBeanList.add(new MultiBean(Constants.MultiType.ProjectSolution, bean));
-                multiBeanList.add(new MultiBean(Constants.MultiType.ProjectMoney, bean));
-                multiBeanList.add(new MultiBean(Constants.MultiType.ProjectFinancing, bean));
-                multiBeanList.add(new MultiBean(Constants.MultiType.ProjectData, bean));
-                detailAdapter = new DetailAdapter(multiBeanList);
-                rvProject.setAdapter(detailAdapter);
-            }
-
-            @Override
-            public void onFail(String error) {
-                super.onFail(error);
-            }
-        });
-
         Map<String, String> params1 = new HashMap<>();
         params1.put("page", "0");
         params1.put("pageSize", "6");
@@ -348,8 +248,126 @@ public class ProjectDetailAct extends BaseAppListActivity<CommentBean> {
 
     @Override
     protected void onRefreshSuccess(String response) {
-        dataList.addAll(JSONArray.parseArray(responseJson.getString("data"), CommentBean.class));
-        adapter.notifyDataSetChanged();
+        List<CommentBean> commentBeanList = JSONArray.parseArray(responseJson.getString("data"), CommentBean.class);
+        if (currentAction == 1) {
+            Map<String, String> params = new HashMap<>();
+            params.put("projectId", id);
+            mModel.requestProjectDetail(params, new ZnzHttpListener() {
+                @Override
+                public void onSuccess(JSONObject responseOriginal) {
+                    super.onSuccess(responseOriginal);
+                    bean = JSONObject.parseObject(responseOriginal.getString("data"), ProjectBean.class);
+                    ivImage.loadSquareImage(bean.getLogo());
+                    ivLogo.loadSquareImage(bean.getCompanyLogo());
+                    mDataManager.setValueToView(tvName, bean.getName());
+                    if (bean.getRounds() != null) {
+                        mDataManager.setValueToView(tvTag, bean.getRounds().getName());
+                    }
+                    mDataManager.setValueToView(tvContent, bean.getTitle());
+                    mDataManager.setValueToView(tvCountFav, bean.getCollectionNum(), "0");
+                    mDataManager.setValueToView(tvCountComment, bean.getCommentsNum(), "0");
+                    mDataManager.setValueToView(tvCountView, bean.getVisiteNum());
+                    mDataManager.setValueToView(tvCompanyName, bean.getCompanyName());
+                    mDataManager.setValueToView(tvShizhi, bean.getRongzijine());
+                    if (bean.getTurnover() != null) {
+                        mDataManager.setValueToView(tvMoney, bean.getTurnover().getName());
+                    }
+
+                    mDataManager.setValueToView(tvAddress, bean.getProvince() + bean.getCity() + bean.getArea() + bean.getAddress());
+                    //运营状态 1运营中 2 已运营 3 未运营
+                    if (!StringUtil.isBlank(bean.getRunState())) {
+                        switch (bean.getRunState()) {
+                            case "1":
+                                tvState.setText("运营中");
+                                break;
+                            case "2":
+                                tvState.setText("已运营");
+                                break;
+                            case "3":
+                                tvState.setText("未运营");
+                                break;
+                        }
+                    } else {
+                        tvState.setText("未运营");
+                    }
+
+                    mDataManager.setValueToView(tvCompany, bean.getCompanyName());
+                    if (!StringUtil.isBlank(bean.getCreateTime())) {
+                        mDataManager.setViewVisibility(llTime, true);
+                        mDataManager.setValueToView(tvTime, TimeUtils.getFormatTime(bean.getCreateTime(), "yyyy-MM-dd"));
+                    } else {
+                        mDataManager.setViewVisibility(llTime, false);
+                    }
+
+
+                    if (bean.getTradeid() != null & bean.getTradeid().size() > 0) {
+                        mDataManager.setViewVisibility(rvTrade, true);
+                        TradeAdapter adapter = new TradeAdapter(bean.getTradeid());
+                        LinearLayoutManager layoutManager = new LinearLayoutManager(activity);
+                        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                        rvTrade.setLayoutManager(layoutManager);
+                        rvTrade.setAdapter(adapter);
+                    } else {
+                        mDataManager.setViewVisibility(rvTrade, false);
+                    }
+
+
+                    if (!StringUtil.isBlank(bean.getIsCollected())) {
+                        if (bean.getIsCollected().equals("true")) {
+                            ivFav.setImageResource(R.mipmap.shoucanghuang);
+                            Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucanghuang2);
+                            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                            tvOption3.setCompoundDrawables(null, drawable, null, null);
+                        } else {
+                            ivFav.setImageResource(R.mipmap.shoucang);
+                            Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucangxia);
+                            drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                            tvOption3.setCompoundDrawables(null, drawable, null, null);
+                        }
+                    } else {
+                        ivFav.setImageResource(R.mipmap.shoucang);
+                        Drawable drawable = context.getResources().getDrawable(R.mipmap.shoucangxia);
+                        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+                        tvOption3.setCompoundDrawables(null, drawable, null, null);
+
+                    }
+
+                    dataList.add(new MultiBean(Constants.MultiType.ProjectIntro, bean));
+                    dataList.add(new MultiBean(Constants.MultiType.ProjectTeam, bean));
+                    dataList.add(new MultiBean(Constants.MultiType.ProjectProduct, bean));
+                    dataList.add(new MultiBean(Constants.MultiType.ProjectMarket, bean));
+                    dataList.add(new MultiBean(Constants.MultiType.ProjectSolution, bean));
+                    dataList.add(new MultiBean(Constants.MultiType.ProjectMoney, bean));
+                    dataList.add(new MultiBean(Constants.MultiType.ProjectFinancing, bean));
+                    dataList.add(new MultiBean(Constants.MultiType.ProjectData, bean));
+                    dataList.add(new MultiBean(Constants.MultiType.ProjectCommentSection));
+
+                    if (!commentBeanList.isEmpty()) {
+                        for (CommentBean commentBean : commentBeanList) {
+                            MultiBean multiBean = new MultiBean(Constants.MultiType.ProjectComment);
+                            multiBean.setCommentBean(commentBean);
+                            dataList.add(multiBean);
+                        }
+                    } else {
+                        dataList.add(new MultiBean(Constants.MultiType.ProjectCommentNoData));
+                    }
+
+                    adapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onFail(String error) {
+                    super.onFail(error);
+                }
+            });
+        } else {
+            for (CommentBean commentBean : commentBeanList) {
+                MultiBean multiBean = new MultiBean(Constants.MultiType.ProjectComment);
+                multiBean.setCommentBean(commentBean);
+                dataList.add(multiBean);
+            }
+            adapter.notifyDataSetChanged();
+        }
     }
 
 

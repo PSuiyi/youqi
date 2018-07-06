@@ -286,14 +286,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvProject"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <TextView
-        style="@style/TitleBlodStyle"
-        android:padding="@dimen/distance_view"
-        android:text="项目评论"
-        android:textSize="@dimen/text_size_20" />
-
-    <View style="@style/LineBoth" />
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
 </LinearLayout>

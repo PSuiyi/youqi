@@ -159,7 +159,7 @@ public class ApiModel extends BaseModel {
     }
 
     public void requestProjectDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
-        request(apiService.requestProjectDetail(params), znzHttpListener, LODING_LODING);
+        request(apiService.requestProjectDetail(params), znzHttpListener);
     }
 
     public Observable<ResponseBody> requestPeopleViewList(Map<String, String> params) {

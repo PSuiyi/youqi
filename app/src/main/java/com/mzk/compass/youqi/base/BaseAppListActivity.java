@@ -33,6 +33,11 @@ public abstract class BaseAppListActivity<T> extends BaseListActivity<T> {
     protected ApiModel mModel;
     protected JSONObject jsonObject;
     private View headerNoDataView;
+    private boolean isNoDetailData;
+
+    public void setNoDetailData(boolean noDetailData) {
+        isNoDetailData = noDetailData;
+    }
 
     @Override
     protected void initializeAppBusiness() {
@@ -186,6 +191,9 @@ public abstract class BaseAppListActivity<T> extends BaseListActivity<T> {
      * 判断是否有头部
      */
     private void handleNoData() {
+        if (isNoDetailData) {
+            return;
+        }
         if (adapter.getHeaderLayout() != null) {
             if (!isAddHeaderNoData) {
                 if (!StringUtil.isBlank(noDataDes)) {

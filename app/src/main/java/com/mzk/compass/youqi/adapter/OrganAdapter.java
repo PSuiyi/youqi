@@ -48,8 +48,8 @@ public class OrganAdapter extends BaseQuickAdapter<OrganBean, BaseViewHolder> im
         ivImage.loadSquareImage(bean.getLogo());
         mDataManager.setValueToView(tvTitle, bean.getCname());
         mDataManager.setValueToView(tvContent, bean.getSummary());
-        mDataManager.setValueToView(tvCountFav, bean.getCollectionNum());
-        mDataManager.setValueToView(tvCountView, bean.getVisiteNum());
+        mDataManager.setValueToView(tvCountFav, bean.getCollectionNum(), "0");
+        mDataManager.setValueToView(tvCountView, bean.getVisiteNum(), "0");
         if (!StringUtil.isBlank(bean.getIsCollected())) {
             if (bean.getIsCollected().equals("true")) {
                 ivFav.setImageResource(R.mipmap.shoucanghuang);

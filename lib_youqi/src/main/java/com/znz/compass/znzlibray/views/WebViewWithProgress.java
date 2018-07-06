@@ -28,11 +28,11 @@ import org.jsoup.select.Elements;
 public class WebViewWithProgress extends WebView {
     private ProgressBar progressbar;
     private WebSettings settings;
+    private boolean isLoadContent;
 
     public WebViewWithProgress(Context context, AttributeSet attrs) {
         super(context, attrs);
-        progressbar = new ProgressBar(context, null,
-                android.R.attr.progressBarStyleHorizontal);
+        progressbar = new ProgressBar(context, null, android.R.attr.progressBarStyleHorizontal);
         progressbar.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 8, 0, 0));
 
         Drawable drawable = context.getResources().getDrawable(R.drawable.webview_progeress);
@@ -40,7 +40,6 @@ public class WebViewWithProgress extends WebView {
         addView(progressbar);
         setWebChromeClient(new WebChromeClient());
         initSetting();
-
     }
 
     private void initSetting() {
@@ -79,6 +78,9 @@ public class WebViewWithProgress extends WebView {
     public class WebChromeClient extends android.webkit.WebChromeClient {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
+            if (isLoadContent) {
+                return;
+            }
             if (newProgress == 100) {
                 progressbar.setVisibility(GONE);
             } else {
@@ -106,7 +108,10 @@ public class WebViewWithProgress extends WebView {
      * @param content
      */
     public void loadContent(String content) {
+        isLoadContent = true;
         progressbar.setVisibility(GONE);
+        settings.setJavaScriptEnabled(false);
+        settings.setJavaScriptCanOpenWindowsAutomatically(false);
         this.setEnabled(false);
         if (StringUtil.isBlank(content)) {
             return;

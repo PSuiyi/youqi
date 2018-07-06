@@ -5,9 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.mzk.compass.youqi.R;
+import com.mzk.compass.youqi.bean.CommentBean;
 import com.mzk.compass.youqi.bean.MultiBean;
 import com.mzk.compass.youqi.common.Constants;
+import com.znz.compass.znzlibray.utils.TimeUtils;
 import com.znz.compass.znzlibray.views.WebViewWithProgress;
+import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.recyclerview.BaseMultiItemQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
@@ -26,7 +29,9 @@ public class DetailAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseView
         addItemType(Constants.MultiType.ProjectMoney, R.layout.item_lv_project_money);
         addItemType(Constants.MultiType.ProjectFinancing, R.layout.item_lv_project_financing);
         addItemType(Constants.MultiType.ProjectData, R.layout.item_lv_project_data);
+        addItemType(Constants.MultiType.ProjectCommentSection, R.layout.item_lv_comment_section);
         addItemType(Constants.MultiType.ProjectComment, R.layout.item_lv_comment);
+        addItemType(Constants.MultiType.ProjectCommentNoData, R.layout.item_lv_comment_nodata);
 
         addItemType(Constants.MultiType.PeopleState, R.layout.item_lv_people_state);
         addItemType(Constants.MultiType.PeopleIntro, R.layout.item_lv_people_intro);
@@ -37,7 +42,8 @@ public class DetailAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseView
         setOnItemClickListener(this);
         switch (bean.getItemType()) {
             case Constants.MultiType.ProjectIntro:
-                helper.setText(R.id.tvIntro, bean.getProjectBean().getProjectProfile());
+                WebViewWithProgress wvDeIntro = helper.getView(R.id.wvIntro);
+                wvDeIntro.loadContent(bean.getProjectBean().getProjectProfile());
                 break;
             case Constants.MultiType.ProjectTeam:
                 PeopleTeamAdapter teamAdapter = new PeopleTeamAdapter(bean.getProjectBean().getTeam());
@@ -89,6 +95,29 @@ public class DetailAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseView
             case Constants.MultiType.PeopleIntro:
                 WebViewWithProgress wvIntro = helper.getView(R.id.wvIntro);
                 wvIntro.loadContent(bean.getPeopleBean().getExample());
+                break;
+            case Constants.MultiType.ProjectComment:
+                CommentBean commentBean = bean.getCommentBean();
+                RecyclerView rvReply = helper.getView(R.id.rvReply);
+                if (commentBean.getReply() != null && !commentBean.getReply().isEmpty()) {
+                    helper.setVisible(R.id.ivBg, true);
+                    helper.setVisible(R.id.llBg, true);
+                    helper.setVisible(R.id.rvReply, true);
+                    CommentReplyAdapter adapter = new CommentReplyAdapter(commentBean.getReply());
+                    rvReply.setLayoutManager(new LinearLayoutManager(mContext));
+                    rvReply.setAdapter(adapter);
+                } else {
+                    helper.setVisible(R.id.ivBg, false);
+                    helper.setVisible(R.id.llBg, false);
+                    rvReply.setVisibility(View.GONE);
+                }
+
+                helper.addOnClickListener(R.id.tvReply);
+                helper.setText(R.id.tvUserName, commentBean.getUsername());
+                helper.setText(R.id.tvContent, commentBean.getContent());
+                helper.setText(R.id.tvTime, TimeUtils.getFriendlyTimeSpanByNow(commentBean.getAddTime()));
+                HttpImageView ivUserHeader = helper.getView(R.id.ivUserHeader);
+                ivUserHeader.loadHeaderImage(commentBean.getAvatar());
                 break;
         }
     }
