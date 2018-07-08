@@ -316,6 +316,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
         <activity android:name=".ui.common.WebViewAct" />
+        <activity android:name=".ui.mine.ProjectRongZiAct" />
 
     </application>
 

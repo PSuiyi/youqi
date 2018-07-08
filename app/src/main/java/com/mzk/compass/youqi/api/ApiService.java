@@ -324,6 +324,13 @@ public interface ApiService {
     @GET("message/count")
     Observable<ResponseBody> requestMessageCount(@QueryMap Map<String, String> params);
 
+    @GET("project/finance")
+    Observable<ResponseBody> requestRongZiDetail(@QueryMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("project/finance")
+    Observable<ResponseBody> requestRongZiSubmit(@FieldMap Map<String, String> params);
+
     @FormUrlEncoded
     @POST("account/send-code")
     Observable<ResponseBody> requestCheckPhone(@FieldMap Map<String, String> params);

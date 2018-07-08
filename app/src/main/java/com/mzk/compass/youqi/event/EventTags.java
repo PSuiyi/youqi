@@ -18,6 +18,7 @@ public interface EventTags {
     int REFRESH_PAY_VIP = 0x110;//购买VIP
     int REFRESH_PAY_ORDER = 0x111;//订单支付刷新界面
     int REFRESH_PROJECT_STATE = 0x112;//项目操作，刷新列表
+    int REFRESH_PROJECT_RONGZI = 0x113;//融资
 
     int REFRESH_MESSAGE_EDIT = 0x200;//消息编辑
     int REFRESH_MESSAGE_DELETE = 0x201;//消息删除

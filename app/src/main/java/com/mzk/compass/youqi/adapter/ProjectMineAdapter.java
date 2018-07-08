@@ -106,18 +106,18 @@ public class ProjectMineAdapter extends BaseQuickAdapter<ProjectBean, BaseViewHo
                     tvShenhe.setBackgroundResource(R.drawable.bg_line_red_2);
                     break;
                 case "3":
-                    tvPublish.setText("已拒绝");
-                    tvPublish.setTextColor(mDataManager.getColor(R.color.text_gray));
-                    tvPublish.setBackgroundResource(R.drawable.bg_line_gray);
-                    tvShenhe.setText("删除");
-                    tvShenhe.setTextColor(mDataManager.getColor(R.color.red));
-                    tvShenhe.setBackgroundResource(R.drawable.bg_line_red_2);
-                    break;
-                case "4":
                     tvPublish.setText("已下架");
                     tvPublish.setTextColor(mDataManager.getColor(R.color.text_gray));
                     tvPublish.setBackgroundResource(R.drawable.bg_line_gray);
                     tvShenhe.setText("重新上架");
+                    tvShenhe.setTextColor(mDataManager.getColor(R.color.red));
+                    tvShenhe.setBackgroundResource(R.drawable.bg_line_red_2);
+                    break;
+                case "4":
+                    tvPublish.setText("已拒绝");
+                    tvPublish.setTextColor(mDataManager.getColor(R.color.text_gray));
+                    tvPublish.setBackgroundResource(R.drawable.bg_line_gray);
+                    tvShenhe.setText("删除");
                     tvShenhe.setTextColor(mDataManager.getColor(R.color.red));
                     tvShenhe.setBackgroundResource(R.drawable.bg_line_red_2);
                     break;
@@ -130,19 +130,19 @@ public class ProjectMineAdapter extends BaseQuickAdapter<ProjectBean, BaseViewHo
             tvPublish.setVisibility(View.GONE);
             tvShenhe.setVisibility(View.GONE);
         }
-        if (!StringUtil.isBlank(bean.getRongzistate())) {
+        if (!StringUtil.isBlank(bean.getRongzistate())) {//融资状态 1未融资 2 已融资
             switch (bean.getRongzistate()) {
                 case "1":
-                    tvRongzi.setVisibility(View.VISIBLE);
-                    tvRongzi.setText("已融资");
-                    tvRongzi.setTextColor(mDataManager.getColor(R.color.red));
-                    tvRongzi.setBackgroundResource(R.drawable.bg_line_red_2);
-                    break;
-                case "2":
                     tvRongzi.setVisibility(View.VISIBLE);
                     tvRongzi.setText("未融资");
                     tvRongzi.setTextColor(mDataManager.getColor(R.color.text_gray));
                     tvRongzi.setBackgroundResource(R.drawable.bg_line_gray);
+                    break;
+                case "2":
+                    tvRongzi.setVisibility(View.VISIBLE);
+                    tvRongzi.setText("已融资");
+                    tvRongzi.setTextColor(mDataManager.getColor(R.color.red));
+                    tvRongzi.setBackgroundResource(R.drawable.bg_line_red_2);
                     break;
                 default:
                     tvRongzi.setVisibility(View.GONE);
@@ -151,7 +151,7 @@ public class ProjectMineAdapter extends BaseQuickAdapter<ProjectBean, BaseViewHo
         } else {
             tvRongzi.setVisibility(View.GONE);
         }
-
+        helper.addOnClickListener(R.id.tvRongzi);
     }
 
     @Override

@@ -22,12 +22,15 @@ import com.mzk.compass.youqi.bean.ProjectBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
+import com.mzk.compass.youqi.ui.mine.ProjectRongZiAct;
 import com.mzk.compass.youqi.utils.PopupWindowManager;
 import com.umeng.socialize.UMShareAPI;
 import com.znz.compass.umeng.share.ShareBean;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
+import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -207,14 +210,48 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
                         case "1"://1 表示 正在审核总
                             break;
                         case "2"://2 表示 审核通过已上线
-                            updateProject(bean.getId(), "offsale");
+                            new UIAlertDialog(activity)
+                                    .builder()
+                                    .setMsg("是否确认下架")
+                                    .setNegativeButton("取消", null)
+                                    .setPositiveButton("确定", v2 -> {
+                                        updateProject(bean.getId(), "offsale");
+                                    })
+                                    .show();
                             break;
                         case "3"://3 表示已下线
-                            updateProject(bean.getId(), "onsale");
+                            new UIAlertDialog(activity)
+                                    .builder()
+                                    .setMsg("是否确认重新上架")
+                                    .setNegativeButton("取消", null)
+                                    .setPositiveButton("确定", v2 -> {
+                                        updateProject(bean.getId(), "onsale");
+                                    })
+                                    .show();
                             break;
                         case "4"://4 表示审核拒绝
-                            updateProject(bean.getId(), "delete");
+                            new UIAlertDialog(activity)
+                                    .builder()
+                                    .setMsg("是否确认删除")
+                                    .setNegativeButton("取消", null)
+                                    .setPositiveButton("确定", v2 -> {
+                                        updateProject(bean.getId(), "delete");
+                                    })
+                                    .show();
                             break;
+                    }
+                    break;
+                case R.id.tvRongzi://融资状态 1未融资 2 已融资
+                    if (!StringUtil.isBlank(bean.getRongzistate())) {
+                        switch (bean.getRongzistate()) {
+                            case "1":
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("bean", bean);
+                                gotoActivity(ProjectRongZiAct.class, bundle);
+                                break;
+                            case "2":
+                                break;
+                        }
                     }
                     break;
             }
@@ -389,6 +426,7 @@ public class ProjectListFrag extends BaseAppListFragment<ProjectBean> {
                 break;
             case EventTags.REFRESH_PROJECT_STATE:
             case EventTags.REFRESH_COLLECT_PROJECT:
+            case EventTags.REFRESH_PROJECT_RONGZI:
                 resetRefresh();
                 break;
         }

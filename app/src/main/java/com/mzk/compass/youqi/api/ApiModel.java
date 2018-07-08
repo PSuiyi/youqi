@@ -823,6 +823,25 @@ public class ApiModel extends BaseModel {
     public void requestUpdateProjectState(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         request(apiService.requestUpdateProjectState(params), znzHttpListener);
     }
+    /**
+     * 查看融资
+     *
+     * @param params
+     * @return
+     */
+    public void requestRongZiDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestRongZiDetail(params), znzHttpListener);
+    }
+
+    /**
+     * 融资提交
+     *
+     * @param params
+     * @return
+     */
+    public void requestRongZiSubmit(Map<String, String> params, ZnzHttpListener znzHttpListener) {
+        request(apiService.requestRongZiSubmit(params), znzHttpListener);
+    }
 
     /**
      * 单张图片上传
