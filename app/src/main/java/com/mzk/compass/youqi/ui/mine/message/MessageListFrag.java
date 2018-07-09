@@ -19,6 +19,7 @@ import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
 import com.mzk.compass.youqi.ui.home.people.PeopleDetailAct;
 import com.mzk.compass.youqi.ui.home.project.ProjectDetailAct;
+import com.mzk.compass.youqi.ui.mine.order.OrderDetailAct;
 import com.mzk.compass.youqi.ui.news.NewsDetailAct;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
@@ -147,6 +148,9 @@ public class MessageListFrag extends BaseAppListFragment<MessageBean> {
                                 @Override
                                 public void onSuccess(JSONObject responseOriginal) {
                                     super.onSuccess(responseOriginal);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("id", bean.getOrderSerial());
+                                    gotoActivity(OrderDetailAct.class, bundle);
                                 }
                             });
 
