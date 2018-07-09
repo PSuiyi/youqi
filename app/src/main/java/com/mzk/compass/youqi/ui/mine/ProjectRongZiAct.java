@@ -1,6 +1,5 @@
 package com.mzk.compass.youqi.ui.mine;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,7 +15,6 @@ import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.TradeAdapter;
 import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.bean.ProjectBean;
-import com.mzk.compass.youqi.bean.RongZiBean;
 import com.mzk.compass.youqi.bean.TagYouBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.event.EventRefresh;
@@ -98,7 +96,7 @@ public class ProjectRongZiAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-
+        setTitleName("我的项目");
     }
 
     @Override
@@ -108,19 +106,32 @@ public class ProjectRongZiAct extends BaseAppActivity {
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         rvTrade.setLayoutManager(layoutManager);
         rvTrade.setAdapter(adapter);
+
         mDataManager.setValueToView(tvCountFav, bean.getCollectionNum(), "0");
         mDataManager.setValueToView(tvCountComment, bean.getCommentsNum(), "0");
-        mDataManager.setValueToView(tvCountView, bean.getVisiteNum());
-        if (!StringUtil.isBlank(bean.getIsCollected())) {
-            if (bean.getIsCollected().equals("true")) {
-                ivFav.setImageResource(R.mipmap.shoucanghuang);
-            } else {
-                ivFav.setImageResource(R.mipmap.shoucang);
-            }
-        } else {
-            ivFav.setImageResource(R.mipmap.shoucang);
+        mDataManager.setValueToView(tvCountView, bean.getVisiteNum(), "0");
 
+        ivImage.loadSquareImage(bean.getLogo());
+        mDataManager.setValueToView(tvName, bean.getName());
+        mDataManager.setValueToView(tvContent, bean.getTitle());
+
+        if (!StringUtil.isBlank(bean.getRname())) {
+            mDataManager.setValueToView(tvTag, bean.getRname());
+        } else {
+            mDataManager.setValueToView(tvTag, bean.getRoundsid());
         }
+
+        if (bean.getTradeid() != null & bean.getTradeid().size() > 0) {
+            mDataManager.setViewVisibility(rvTrade, true);
+            TradeAdapter adapter = new TradeAdapter(bean.getTradeid());
+            LinearLayoutManager layoutManager2 = new LinearLayoutManager(activity);
+            layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
+            rvTrade.setLayoutManager(layoutManager2);
+            rvTrade.setAdapter(adapter);
+        } else {
+            mDataManager.setViewVisibility(rvTrade, false);
+        }
+
     }
 
     @Override
@@ -133,18 +144,19 @@ public class ProjectRongZiAct extends BaseAppActivity {
                 super.onSuccess(responseOriginal);
                 if (!StringUtil.isBlank(responseOriginal.getString("data"))) {
                     JSONObject json = JSON.parseObject(responseOriginal.getString("data"));
-                    RongZiBean rongZiBean = JSON.parseObject(json.getString("project"), RongZiBean.class);
-                    list.addAll(JSON.parseArray(json.getString("roundsData"), TagYouBean.class));
-                    ivImage.loadHttpImage(rongZiBean.getLogo());
-                    mDataManager.setValueToView(tvName, rongZiBean.getName());
-                    if (!StringUtil.isBlank(rongZiBean.getRname())) {
-                        mDataManager.setValueToView(tvTag, bean.getRoundsid());
+                    bean = JSON.parseObject(json.getString("project"), ProjectBean.class);
+                    if (!StringUtil.isBlank(bean.getIsCollected())) {
+                        if (bean.getIsCollected().equals("true")) {
+                            ivFav.setImageResource(R.mipmap.shoucanghuang);
+                        } else {
+                            ivFav.setImageResource(R.mipmap.shoucang);
+                        }
                     } else {
-                        mDataManager.setValueToView(tvTag, rongZiBean.getRname());
+                        ivFav.setImageResource(R.mipmap.shoucang);
                     }
-                    adapter.notifyDataSetChanged();
-                    mDataManager.setValueToView(tvContent, rongZiBean.getTitle());
 
+                    list.addAll(JSON.parseArray(json.getString("roundsData"), TagYouBean.class));
+                    adapter.notifyDataSetChanged();
                 }
             }
 
@@ -226,10 +238,12 @@ public class ProjectRongZiAct extends BaseAppActivity {
     }
 
     private void handleFav() {
-        if (bean.getIsCollected().equals("true")) {
-            cancalCollect();
-        } else {
-            addCollect();
+        if (!StringUtil.isBlank(bean.getIsCollected())) {
+            if (bean.getIsCollected().equals("true")) {
+                cancalCollect();
+            } else {
+                addCollect();
+            }
         }
     }
 

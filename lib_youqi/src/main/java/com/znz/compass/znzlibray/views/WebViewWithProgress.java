@@ -57,7 +57,7 @@ public class WebViewWithProgress extends WebView {
             // 点击网页里面的链接还是在当前的webView内部跳转，不跳转外部浏览器
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return false;
+                return isLoadContent;
             }
 
             // 可以让webView处理https请求

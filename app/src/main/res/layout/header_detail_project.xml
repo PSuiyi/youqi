@@ -50,7 +50,7 @@
                             style="@style/TitleTextStyle"
                             android:layout_weight="1"
                             android:maxLines="2"
-                            android:text="有鱼钓" />
+                            android:text="" />
 
                         <TextView
                             android:id="@+id/tvTag"
@@ -64,7 +64,7 @@
                         style="@style/TextGrayStyle"
                         android:layout_marginTop="@dimen/distance_text"
                         android:singleLine="true"
-                        android:text="好玩有趣的钓鱼软件，同城交友，人脉扩展！" />
+                        android:text="" />
 
 
                     <android.support.v7.widget.RecyclerView
@@ -115,7 +115,7 @@
                             android:id="@+id/tvCountFav"
                             style="@style/TextDrawableStyle"
                             android:drawableLeft="@mipmap/shoucangxiaohui"
-                            android:text="2585"
+                            android:text="0"
                             android:textColor="@color/text_gray"
                             android:textSize="@dimen/text_size_12" />
 
@@ -124,7 +124,7 @@
                             style="@style/TextDrawableStyle"
                             android:layout_marginLeft="@dimen/distance_divider"
                             android:drawableLeft="@mipmap/pinglunxiaohui"
-                            android:text="2585"
+                            android:text="0"
                             android:textColor="@color/text_gray"
                             android:textSize="@dimen/text_size_12" />
 
@@ -133,7 +133,7 @@
                             style="@style/TextDrawableStyle"
                             android:layout_marginLeft="@dimen/distance_divider"
                             android:drawableLeft="@mipmap/liulanxiaohui"
-                            android:text="2585"
+                            android:text="0"
                             android:textColor="@color/text_gray"
                             android:textSize="@dimen/text_size_12" />
 
@@ -180,7 +180,7 @@
                 <TextView
                     android:id="@+id/tvAddress"
                     style="@style/TitleTextStyle"
-                    android:text="南京市建邺区路山路188号" />
+                    android:text="" />
 
             </LinearLayout>
 
@@ -197,7 +197,7 @@
                 <TextView
                     android:id="@+id/tvState"
                     style="@style/TitleTextStyle"
-                    android:text="运营中" />
+                    android:text="" />
 
             </LinearLayout>
 
@@ -214,7 +214,7 @@
                 <TextView
                     android:id="@+id/tvCompany"
                     style="@style/TitleTextStyle"
-                    android:text="江苏南京美之科信息技术有限公司" />
+                    android:text="" />
 
             </LinearLayout>
 
@@ -231,7 +231,7 @@
                 <TextView
                     android:id="@+id/tvMoney"
                     style="@style/TitleTextStyle"
-                    android:text="天使轮" />
+                    android:text="" />
 
             </LinearLayout>
 

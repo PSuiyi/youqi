@@ -52,7 +52,7 @@
         <TextView
             android:id="@+id/tvOption3"
             style="@style/MenuBottomStyle"
-            android:drawableTop="@mipmap/shoucang"
+            android:drawableTop="@mipmap/shoucangxia"
             android:text="收藏" />
 
         <TextView

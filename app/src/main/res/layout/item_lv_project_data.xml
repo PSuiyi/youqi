@@ -27,6 +27,7 @@
 
     <View style="@style/LineBoth" />
 
+    
 
     <View style="@style/LineBoth" />
 </LinearLayout>

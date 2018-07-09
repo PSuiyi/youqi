@@ -266,7 +266,7 @@ public class ProjectDetailAct extends BaseAppListActivity<MultiBean> {
                     mDataManager.setValueToView(tvContent, bean.getTitle());
                     mDataManager.setValueToView(tvCountFav, bean.getCollectionNum(), "0");
                     mDataManager.setValueToView(tvCountComment, bean.getCommentsNum(), "0");
-                    mDataManager.setValueToView(tvCountView, bean.getVisiteNum());
+                    mDataManager.setValueToView(tvCountView, bean.getVisiteNum(), "0");
                     mDataManager.setValueToView(tvCompanyName, bean.getCompanyName());
                     mDataManager.setValueToView(tvShizhi, bean.getRongzijine());
                     if (bean.getTurnover() != null) {
