@@ -1,5 +1,7 @@
 package com.mzk.compass.youqi.ui.common;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -8,9 +10,11 @@ import android.webkit.WebViewClient;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.base.BaseAppActivity;
+import com.socks.library.KLog;
 import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.utils.ZnzLog;
 import com.znz.compass.znzlibray.views.WebViewWithProgress;
+import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIAlertDialog;
 
 import butterknife.Bind;
 
@@ -82,6 +86,39 @@ public class WebViewAct extends BaseAppActivity {
             // 点击网页里面的链接还是在当前的webView内部跳转，不跳转外部浏览器
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                KLog.e("用户单击超连接", url);
+                try {
+                    String tag = "tel";
+                    String mobile = url.split(":")[1];
+                    if (StringUtil.isBlank(mobile)) {
+                        return false;
+                    }
+                    if (url.contains(tag)) {
+                        new UIAlertDialog(activity)
+                                .builder()
+                                .setMsg("是否拨打" + mobile)
+                                .setNegativeButton("取消", null)
+                                .setPositiveButton("确定", v2 -> {
+                                    Uri uri = Uri.parse("tel:" + mobile);
+                                    Intent intent = new Intent(Intent.ACTION_CALL, uri);
+                                    startActivity(intent);
+                                })
+                                .show();
+                        //这个超连接,java已经处理了，webview不要处理了
+                        return true;
+                    }
+
+
+                    if (url.startsWith("weixin://wap/pay?")) {
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(url));
+                        startActivity(intent);
+                        return true;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 return false;
             }
 
