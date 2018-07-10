@@ -1,5 +1,6 @@
 package com.mzk.compass.youqi.ui.common;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.KeyEvent;
@@ -110,10 +111,14 @@ public class WebViewAct extends BaseAppActivity {
 
 
                     if (url.startsWith("weixin://wap/pay?")) {
-                        Intent intent = new Intent();
-                        intent.setAction(Intent.ACTION_VIEW);
-                        intent.setData(Uri.parse(url));
-                        startActivity(intent);
+                        try {
+                            Intent intent = new Intent();
+                            intent.setAction(Intent.ACTION_VIEW);
+                            intent.setData(Uri.parse(url));
+                            startActivity(intent);
+                        } catch (ActivityNotFoundException e) {
+                            mDataManager.showToast("请安装微信最新版！");
+                        }
                         return true;
                     }
                 } catch (Exception e) {
