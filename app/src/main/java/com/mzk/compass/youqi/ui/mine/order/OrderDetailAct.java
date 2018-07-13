@@ -36,7 +36,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -63,6 +62,10 @@ public class OrderDetailAct extends BaseAppActivity {
     TextView tvNode;
     TextView tvState;
     TextView tvSubsricbe;
+
+    private LinearLayout llPhone;
+    private LinearLayout llRemark;
+
     private OrderProcessAdapter adapter;
     private List<BaseZnzBean> dataList = new ArrayList<>();
     private OrderBean bean;
@@ -100,6 +103,8 @@ public class OrderDetailAct extends BaseAppActivity {
         tvNode = bindViewById(header, R.id.tvNode);
         tvState = bindViewById(header, R.id.tvState);
         tvSubsricbe = bindViewById(header, R.id.tvSubsricbe);
+        llRemark = bindViewById(header, R.id.llRemark);
+        llPhone = bindViewById(header, R.id.llPhone);
 
         adapter = new OrderProcessAdapter(dataList);
         adapter.addHeaderView(header);
@@ -126,6 +131,10 @@ public class OrderDetailAct extends BaseAppActivity {
                     mDataManager.setValueToView(tvOrderCode, bean.getOrderSerial());
                     mDataManager.setValueToView(tvNode, bean.getNote());
                     mDataManager.setValueToView(tvTime, TimeUtils.millis2String(StringUtil.stringToLong(bean.getAddTime()) * 1000, "yyyy.MM.dd HH:mm:ss"));
+
+                    mDataManager.setViewVisibility(llPhone, !StringUtil.isBlank(bean.getBuyerTel()));
+                    mDataManager.setViewVisibility(llRemark, !StringUtil.isBlank(bean.getNote()));
+
                     switch (bean.getState()) {
                         case "1":
                             mDataManager.setValueToView(tvState, "待付款");

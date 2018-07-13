@@ -529,7 +529,7 @@ public class ApiModel extends BaseModel {
      * @return
      */
     public void requestOrderDetail(Map<String, String> params, ZnzHttpListener znzHttpListener) {
-        request(apiService.requestOrderDetail(params), znzHttpListener);
+        request(apiService.requestOrderDetail(params), znzHttpListener, LODING_LODING);
     }
 
     /**
@@ -823,6 +823,7 @@ public class ApiModel extends BaseModel {
     public void requestUpdateProjectState(Map<String, String> params, ZnzHttpListener znzHttpListener) {
         request(apiService.requestUpdateProjectState(params), znzHttpListener);
     }
+
     /**
      * 查看融资
      *
