@@ -95,4 +95,5 @@ dependencies {
     compile 'cn.bingoogolapple:bga-banner:2.1.7@aar'
     compile project(':lib_umeng')
     compile project(':lib_znzpay')
+    compile project(':lib_video')
 }

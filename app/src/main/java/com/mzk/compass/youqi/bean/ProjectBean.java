@@ -49,6 +49,7 @@ public class ProjectBean extends BaseZnzBean {
     private String profitModel;
     private String financing;
     private String roadshowVideo;
+    private String roadshowVideoPic;
     private String rongzijine;
     private String province;
     private String city;
@@ -64,6 +65,14 @@ public class ProjectBean extends BaseZnzBean {
     private TagYouBean rounds;
     private List<TagYouBean> tradeid;
     private List<PeopleBean> team;
+
+    public String getRoadshowVideoPic() {
+        return roadshowVideoPic;
+    }
+
+    public void setRoadshowVideoPic(String roadshowVideoPic) {
+        this.roadshowVideoPic = roadshowVideoPic;
+    }
 
     public String getImage() {
         return image;

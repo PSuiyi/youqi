@@ -3,17 +3,29 @@ package com.mzk.compass.youqi.adapter;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.bean.CommentBean;
 import com.mzk.compass.youqi.bean.MultiBean;
 import com.mzk.compass.youqi.common.Constants;
+import com.mzk.compass.youqi.ui.home.people.PeopleApproveAct;
+import com.mzk.compass.youqi.ui.mine.vip.VipCenterAct;
+import com.znz.compass.znzlibray.common.ZnzConstants;
+import com.znz.compass.znzlibray.utils.StringUtil;
 import com.znz.compass.znzlibray.utils.TimeUtils;
 import com.znz.compass.znzlibray.views.WebViewWithProgress;
 import com.znz.compass.znzlibray.views.imageloder.HttpImageView;
 import com.znz.compass.znzlibray.views.recyclerview.BaseMultiItemQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseQuickAdapter;
 import com.znz.compass.znzlibray.views.recyclerview.BaseViewHolder;
+import com.znz.libvideo.listener.SampleListener;
+import com.znz.libvideo.videoplayer.builder.GSYVideoOptionBuilder;
+import com.znz.libvideo.videoplayer.listener.LockClickListener;
+import com.znz.libvideo.videoplayer.utils.Debuger;
+import com.znz.libvideo.videoplayer.video.StandardGSYVideoPlayer;
 
 import java.util.List;
 
@@ -78,8 +90,101 @@ public class DetailAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseView
                 wvFinan.loadContent(bean.getProjectBean().getFinancing());
                 break;
             case Constants.MultiType.ProjectData:
-                WebViewWithProgress wvData1 = helper.getView(R.id.wvData1);
-                wvData1.loadContent(bean.getProjectBean().getProjectProfile());
+                LinearLayout llViewDoc = helper.getView(R.id.llViewDoc);
+                LinearLayout llNoVip = helper.getView(R.id.llNoVip);
+                StandardGSYVideoPlayer detailPlayer = helper.getView(R.id.detailPlayer);
+
+                helper.setOnClickListener(R.id.tvRenzheng, v -> {
+                    gotoActivity(PeopleApproveAct.class);
+                });
+                helper.setOnClickListener(R.id.tvVip, v -> {
+                    gotoActivity(VipCenterAct.class);
+                });
+
+                if (StringUtil.isBlank(bean.getProjectBean().getShowProjectResource())
+                        || bean.getProjectBean().getShowProjectResource().equals("false")) {
+                    mDataManager.setViewVisibility(llNoVip, true);
+                    mDataManager.setViewVisibility(llViewDoc, false);
+                    mDataManager.setViewVisibility(detailPlayer, false);
+                    return;
+                }
+
+                RadioGroup rbGroup = helper.getView(R.id.rbGroup);
+                rbGroup.setOnCheckedChangeListener((group, checkedId) -> {
+                    switch (checkedId) {
+                        case R.id.rb1:
+                            mDataManager.setViewVisibility(llViewDoc, true);
+                            mDataManager.setViewVisibility(detailPlayer, false);
+                            break;
+                        case R.id.rb2:
+                            mDataManager.setViewVisibility(llViewDoc, false);
+                            mDataManager.setViewVisibility(detailPlayer, true);
+                            break;
+                        case R.id.rb3:
+                            mDataManager.setViewVisibility(llViewDoc, true);
+                            mDataManager.setViewVisibility(detailPlayer, false);
+                            break;
+                        case R.id.rb4:
+                            mDataManager.setViewVisibility(llViewDoc, true);
+                            mDataManager.setViewVisibility(detailPlayer, false);
+                            break;
+                    }
+                });
+
+
+                HttpImageView ivImage = new HttpImageView(mContext);
+                ivImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                ivImage.loadRectImage(bean.getProjectBean().getRoadshowVideoPic());
+
+                GSYVideoOptionBuilder gsyVideoOption = new GSYVideoOptionBuilder();
+                gsyVideoOption.setThumbImageView(ivImage)
+                        .setIsTouchWiget(true)
+                        .setRotateViewAuto(false)
+                        .setLockLand(false)
+                        .setShowFullAnimation(false)
+                        .setNeedLockFull(true)
+                        .setEnlargeImageRes(R.mipmap.icon_qunpin)
+                        .setShrinkImageRes(R.mipmap.icon_qunpin)
+                        .setSeekRatio(1)
+                        .setUrl(ZnzConstants.IMAGE_ULR + bean.getProjectBean().getRoadshowVideo())
+                        .setCacheWithPlay(false)
+                        .setStandardVideoAllCallBack(new SampleListener() {
+                            @Override
+                            public void onPrepared(String url, Object... objects) {
+                                Debuger.printfError("***** onPrepared **** " + objects[0]);
+                                Debuger.printfError("***** onPrepared **** " + objects[1]);
+                                super.onPrepared(url, objects);
+                            }
+
+                            @Override
+                            public void onEnterFullscreen(String url, Object... objects) {
+                                super.onEnterFullscreen(url, objects);
+                                Debuger.printfError("***** onEnterFullscreen **** " + objects[0]);//title
+                                Debuger.printfError("***** onEnterFullscreen **** " + objects[1]);//当前全屏player
+                            }
+
+                            @Override
+                            public void onAutoComplete(String url, Object... objects) {
+                                super.onAutoComplete(url, objects);
+                            }
+
+                            @Override
+                            public void onClickStartError(String url, Object... objects) {
+                                super.onClickStartError(url, objects);
+                            }
+
+                            @Override
+                            public void onQuitFullscreen(String url, Object... objects) {
+                                super.onQuitFullscreen(url, objects);
+                                Debuger.printfError("***** onQuitFullscreen **** " + objects[0]);//title
+                                Debuger.printfError("***** onQuitFullscreen **** " + objects[1]);//当前非全屏player
+                            }
+                        })
+                        .setLockClickListener(new LockClickListener() {
+                            @Override
+                            public void onClick(View view, boolean lock) {
+                            }
+                        }).build(detailPlayer);
                 break;
             case Constants.MultiType.PeopleState:
                 helper.addOnClickListener(R.id.llMore);
