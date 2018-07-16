@@ -78,6 +78,8 @@ public class DetailAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseView
                 wvFinan.loadContent(bean.getProjectBean().getFinancing());
                 break;
             case Constants.MultiType.ProjectData:
+                WebViewWithProgress wvData1 = helper.getView(R.id.wvData1);
+                wvData1.loadContent(bean.getProjectBean().getProjectProfile());
                 break;
             case Constants.MultiType.PeopleState:
                 helper.addOnClickListener(R.id.llMore);

@@ -79,7 +79,6 @@ public class ProjectDetailAct extends BaseAppListActivity<MultiBean> {
     private RecyclerView rvMenu;
     private RecyclerView rvProject;
 
-    private DetailAdapter detailAdapter;
     private String id;
     private ProjectBean bean;
     private List<PeopleBean> userList = new ArrayList<>();
