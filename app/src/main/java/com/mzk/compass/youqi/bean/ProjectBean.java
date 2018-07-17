@@ -15,7 +15,7 @@ public class ProjectBean extends BaseZnzBean {
      * id : 101
      * name : 项目一
      * logo : project/a.jpg
-     * title : 
+     * title :
      * rname : null
      * state : 1
      * tradeid : ["互联网","娱乐"]
@@ -59,12 +59,21 @@ public class ProjectBean extends BaseZnzBean {
     private String turnoverid;
     private String area;
     private String isCollected;
+    private List<DocBean> attachment;
     private String canArrangeTalk;
     private String showProjectResource;
     private TagYouBean turnover;
     private TagYouBean rounds;
     private List<TagYouBean> tradeid;
     private List<PeopleBean> team;
+
+    public List<DocBean> getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(List<DocBean> attachment) {
+        this.attachment = attachment;
+    }
 
     public String getRoadshowVideoPic() {
         return roadshowVideoPic;

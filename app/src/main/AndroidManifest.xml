@@ -74,6 +74,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.home.project.ProjectDetailAct"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.home.project.ProjectListAct"
@@ -315,8 +316,13 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
-        <activity android:name=".ui.common.WebViewAct" />
-        <activity android:name=".ui.mine.ProjectRongZiAct" />
+        <activity
+            android:name=".ui.common.WebViewAct"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.mine.ProjectRongZiAct"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.home.project.DocAct" />
 
     </application>
 

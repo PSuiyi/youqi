@@ -1,17 +1,21 @@
 package com.mzk.compass.youqi.adapter;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.bean.CommentBean;
+import com.mzk.compass.youqi.bean.DocBean;
 import com.mzk.compass.youqi.bean.MultiBean;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.home.people.PeopleApproveAct;
+import com.mzk.compass.youqi.ui.home.project.DocAct;
 import com.mzk.compass.youqi.ui.mine.vip.VipCenterAct;
 import com.znz.compass.znzlibray.common.ZnzConstants;
 import com.znz.compass.znzlibray.utils.StringUtil;
@@ -91,6 +95,8 @@ public class DetailAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseView
                 break;
             case Constants.MultiType.ProjectData:
                 LinearLayout llViewDoc = helper.getView(R.id.llViewDoc);
+                TextView tvViewDoc = helper.getView(R.id.tvViewDoc);
+                TextView tvNoDoc = helper.getView(R.id.tvNoDoc);
                 LinearLayout llNoVip = helper.getView(R.id.llNoVip);
                 StandardGSYVideoPlayer detailPlayer = helper.getView(R.id.detailPlayer);
 
@@ -115,6 +121,7 @@ public class DetailAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseView
                         case R.id.rb1:
                             mDataManager.setViewVisibility(llViewDoc, true);
                             mDataManager.setViewVisibility(detailPlayer, false);
+                            handleDoc(bean, tvViewDoc, tvNoDoc, "2");
                             break;
                         case R.id.rb2:
                             mDataManager.setViewVisibility(llViewDoc, false);
@@ -123,13 +130,29 @@ public class DetailAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseView
                         case R.id.rb3:
                             mDataManager.setViewVisibility(llViewDoc, true);
                             mDataManager.setViewVisibility(detailPlayer, false);
+                            handleDoc(bean, tvViewDoc, tvNoDoc, "3");
                             break;
                         case R.id.rb4:
                             mDataManager.setViewVisibility(llViewDoc, true);
                             mDataManager.setViewVisibility(detailPlayer, false);
+                            handleDoc(bean, tvViewDoc, tvNoDoc, "1");
                             break;
                     }
                 });
+
+                switch (rbGroup.getCheckedRadioButtonId()) {
+                    case R.id.rb1:
+                        handleDoc(bean, tvViewDoc, tvNoDoc, "2");
+                        break;
+                    case R.id.rb2:
+                        break;
+                    case R.id.rb3:
+                        handleDoc(bean, tvViewDoc, tvNoDoc, "3");
+                        break;
+                    case R.id.rb4:
+                        handleDoc(bean, tvViewDoc, tvNoDoc, "1");
+                        break;
+                }
 
 
                 HttpImageView ivImage = new HttpImageView(mContext);
@@ -227,6 +250,50 @@ public class DetailAdapter extends BaseMultiItemQuickAdapter<MultiBean, BaseView
                 ivUserHeader.loadHeaderImage(commentBean.getAvatar());
                 break;
         }
+    }
+
+    private void handleDoc(MultiBean bean, TextView tvViewDoc, TextView tvNoDoc, String type) {
+        if (bean.getProjectBean().getAttachment() == null) {
+            mDataManager.setViewVisibility(tvNoDoc, true);
+            mDataManager.setViewVisibility(tvViewDoc, false);
+        } else {
+            if (!bean.getProjectBean().getAttachment().isEmpty()) {
+                //文件类型，1.商业计划书 2.项目相关资料 3.财务报表
+                DocBean docBean = hasDoc(bean, type);
+                if (docBean != null) {
+                    mDataManager.setViewVisibility(tvNoDoc, false);
+                    mDataManager.setViewVisibility(tvViewDoc, true);
+                    tvViewDoc.setOnClickListener(v -> {
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("bean", docBean);
+                        gotoActivity(DocAct.class, bundle);
+                    });
+                } else {
+                    mDataManager.setViewVisibility(tvNoDoc, true);
+                    mDataManager.setViewVisibility(tvViewDoc, false);
+                }
+            } else {
+                mDataManager.setViewVisibility(tvNoDoc, true);
+                mDataManager.setViewVisibility(tvViewDoc, false);
+            }
+        }
+    }
+
+    /**
+     * 判断是否有文档
+     *
+     * @param bean
+     * @param type
+     * @return
+     */
+    private DocBean hasDoc(MultiBean bean, String type) {
+        //文件类型，1.商业计划书 2.项目相关资料 3.财务报表
+        for (DocBean docBean : bean.getProjectBean().getAttachment()) {
+            if (docBean.getFiletype().equals(type)) {
+                return docBean;
+            }
+        }
+        return null;
     }
 
     @Override

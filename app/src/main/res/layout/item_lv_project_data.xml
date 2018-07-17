@@ -109,7 +109,14 @@
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:paddingTop="10dp"
-                android:text="查看文档" />
+                android:text="查看文档"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvNoDoc"
+                style="@style/TitleTextStyle"
+                android:text="暂无文档"
+                android:visibility="gone" />
         </LinearLayout>
 
 
