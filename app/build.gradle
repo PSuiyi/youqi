@@ -96,4 +96,5 @@ dependencies {
     compile project(':lib_umeng')
     compile project(':lib_znzpay')
     compile project(':lib_video')
+    compile files('libs/bdocreadersdk.jar')
 }
