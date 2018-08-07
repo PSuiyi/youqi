@@ -226,7 +226,7 @@ public class ProductListFrag extends BaseAppListFragment {
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.tvSort1, R.id.tvSort2, R.id.tvType})
+    @OnClick({R.id.tvSort1, R.id.tvSort2, R.id.llType})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvSort1:
@@ -291,7 +291,7 @@ public class ProductListFrag extends BaseAppListFragment {
 
                 resetRefresh();
                 break;
-            case R.id.tvType:
+            case R.id.llType:
                 List<String> items = new ArrayList<>();
                 List<MenuBean> menus = new ArrayList<>();
                 items.add("全部");
