@@ -7,6 +7,7 @@ import com.mzk.compass.youqi.base.BaseAppActivity;
 import com.mzk.compass.youqi.common.Constants;
 import com.mzk.compass.youqi.ui.common.SearchCommonAct;
 import com.znz.compass.znzlibray.utils.FragmentUtil;
+import com.znz.compass.znzlibray.utils.StringUtil;
 
 /**
  * Date： 2018/4/5 2018
@@ -17,6 +18,8 @@ public class ProductListAct extends BaseAppActivity {
 
     private ProductListFrag fragment;
     private String cateId;
+    private String cateIdParent;
+    private String cateName;
 
     @Override
     protected int[] getLayoutResource() {
@@ -27,6 +30,12 @@ public class ProductListAct extends BaseAppActivity {
     protected void initializeVariate() {
         if (getIntent().hasExtra("cateId")) {
             cateId = getIntent().getStringExtra("cateId");
+        }
+        if (getIntent().hasExtra("cateIdParent")) {
+            cateIdParent = getIntent().getStringExtra("cateIdParent");
+        }
+        if (getIntent().hasExtra("cateName")) {
+            cateName = getIntent().getStringExtra("cateName");
         }
     }
 
@@ -48,7 +57,14 @@ public class ProductListAct extends BaseAppActivity {
     @Override
     protected void initializeView() {
         fragment = ProductListFrag.newInstance("商品服务");
-        fragment.setCateId(cateId);
+        if (!StringUtil.isBlank(cateIdParent)) {
+            fragment.setCateId(cateId);
+            fragment.setCateIdParent(cateIdParent);
+            fragment.setCateName(cateName);
+        } else {
+            fragment.setCateId(cateId);
+            fragment.setCateIdParent(cateId);
+        }
         FragmentUtil.addFragmentToActivity(getSupportFragmentManager(), fragment, R.id.container);
     }
 

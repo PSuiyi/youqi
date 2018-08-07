@@ -20,6 +20,12 @@ public class TypeRightAdapter extends BaseQuickAdapter<CategoryBean, BaseViewHol
     @Bind(R.id.tvTitle)
     TextView tvTitle;
 
+    private String parentId;
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
+
     public TypeRightAdapter(@Nullable List dataList) {
         super(R.layout.item_lv_type_right, dataList);
     }
@@ -34,6 +40,8 @@ public class TypeRightAdapter extends BaseQuickAdapter<CategoryBean, BaseViewHol
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         Bundle bundle = new Bundle();
         bundle.putString("cateId", bean.getId());
+        bundle.putString("cateIdParent", parentId);
+        bundle.putString("cateName", bean.getName());
         gotoActivity(ProductListAct.class, bundle);
     }
 }

@@ -16,14 +16,15 @@ import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.ProductAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
+import com.mzk.compass.youqi.bean.FiltBean;
 import com.mzk.compass.youqi.bean.MenuBean;
 import com.mzk.compass.youqi.bean.ProductBean;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
+import com.mzk.compass.youqi.utils.PopupWindowManager;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
-import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIActionSheetDialog;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -61,9 +62,12 @@ public class ProductListFrag extends BaseAppListFragment {
     LinearLayout llFilt;
     @Bind(R.id.tvType)
     TextView tvType;
+    @Bind(R.id.llType)
+    LinearLayout llType;
     private String from;
     private String keywords;
     private String cateId;
+    private String cateName;
     private String cateIdParent;
     private String order;
     private int order1;
@@ -90,7 +94,14 @@ public class ProductListFrag extends BaseAppListFragment {
 
     public void setCateId(String cateId) {
         this.cateId = cateId;
-        cateIdParent = cateId;
+    }
+
+    public void setCateIdParent(String cateId) {
+        this.cateIdParent = cateId;
+    }
+
+    public void setCateName(String name) {
+        this.cateName = name;
     }
 
     @Override
@@ -121,6 +132,10 @@ public class ProductListFrag extends BaseAppListFragment {
     protected void initializeView() {
         adapter = new ProductAdapter(dataList);
         rvRefresh.setAdapter(adapter);
+
+        if (!StringUtil.isBlank(cateName)) {
+            tvType.setText(cateName);
+        }
 
         switch (from) {
             case "商品服务":
@@ -292,32 +307,51 @@ public class ProductListFrag extends BaseAppListFragment {
                 resetRefresh();
                 break;
             case R.id.llType:
-                List<String> items = new ArrayList<>();
-                List<MenuBean> menus = new ArrayList<>();
-                items.add("全部");
+                List<FiltBean> filtList1 = new ArrayList<>();
+
+                FiltBean filtBean = new FiltBean();
+                filtBean.setId("-1");
+                filtBean.setName("全部");
+                filtList1.add(filtBean);
+
                 for (MenuBean menuBean : menuBeanList) {
                     if (menuBean.getId().equals(cateIdParent)) {
                         for (MenuBean bean : menuBean.getSon()) {
-                            items.add(bean.getName());
-                            menus.add(bean);
+                            FiltBean filtBean1 = new FiltBean();
+                            filtBean1.setId(bean.getId());
+                            filtBean1.setName(bean.getName());
+                            filtList1.add(filtBean1);
                         }
                         break;
                     }
                 }
-                new UIActionSheetDialog(activity)
-                        .builder()
-                        .addSheetItemList(items, null, which -> {
-                            if (items.get(which).equals("全部")) {
-                                cateId = cateIdParent;
-                                tvType.setText("全部");
-                            } else {
-                                cateId = menus.get(which - 1).getId();
-                                tvType.setText(items.get(which));
-                            }
-                            resetRefresh();
-                        })
-                        .show();
+
+                if (!handleHasCate(filtList1)) {
+                    filtList1.get(0).setChecked(true);
+                }
+
+                PopupWindowManager.getInstance(activity).showFilt(llType, filtList1, (type, values) -> {
+                    if (values[1].equals("全部")) {
+                        cateId = cateIdParent;
+                        tvType.setText("全部");
+                    } else {
+                        cateId = values[0];
+                        tvType.setText(values[1]);
+                    }
+                    resetRefresh();
+                });
                 break;
         }
+    }
+
+    private boolean handleHasCate(List<FiltBean> filtList1) {
+        for (FiltBean filtBean : filtList1) {
+            if (filtBean.getId().equals(cateId)) {
+                filtBean.setChecked(true);
+                return true;
+            }
+        }
+
+        return false;
     }
 }

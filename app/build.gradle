@@ -24,8 +24,8 @@ android {
         applicationId "com.mzk.compass.youqi"
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode 12
-        versionName "1.2"
+        versionCode 13
+        versionName "1.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true// 防止65536
         ndk {

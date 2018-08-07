@@ -73,6 +73,7 @@ public class TypeListAct extends BaseAppActivity {
         leftAdapter.setOnItemClickListener((adapter, view, position) -> {
             rightList.clear();
             rightList.addAll(leftList.get(position).getSon());
+            rightAdapter.setParentId(leftList.get(position).getId());
             rightAdapter.notifyDataSetChanged();
         });
 
@@ -91,6 +92,7 @@ public class TypeListAct extends BaseAppActivity {
                     leftList.addAll(JSON.parseArray(responseOriginal.getString("data"), CategoryBean.class));
                     if (!leftList.isEmpty()) {
                         rightList.addAll(leftList.get(0).getSon());
+                        rightAdapter.setParentId(leftList.get(0).getId());
                         rightAdapter.notifyDataSetChanged();
                     }
                     leftAdapter.notifyDataSetChanged();

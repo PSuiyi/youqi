@@ -15,15 +15,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:orientation="horizontal"
-            android:padding="@dimen/distance_view">
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/llType"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="@dimen/distance_view">
 
                 <TextView
                     android:id="@+id/tvType"
@@ -51,7 +51,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/distance_view"
+                android:paddingTop="@dimen/distance_view">
 
                 <TextView
                     android:id="@+id/tvSort1"
@@ -85,7 +87,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/distance_view"
+                android:paddingTop="@dimen/distance_view">
 
                 <TextView
                     android:id="@+id/tvSort2"
