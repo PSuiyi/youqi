@@ -2,6 +2,8 @@ package com.mzk.compass.youqi.bean;
 
 import com.znz.compass.znzlibray.bean.BaseZnzBean;
 
+import java.util.List;
+
 /**
  * Date： 2018/4/28 2018
  * User： PSuiyi
@@ -12,8 +14,17 @@ public class MenuBean extends BaseZnzBean {
     private String id;
     private String name;
     private String image;
+    private List<MenuBean> son;
 
     public MenuBean() {
+    }
+
+    public List<MenuBean> getSon() {
+        return son;
+    }
+
+    public void setSon(List<MenuBean> son) {
+        this.son = son;
     }
 
     public String getId() {

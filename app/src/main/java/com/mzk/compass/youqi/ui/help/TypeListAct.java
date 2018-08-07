@@ -51,7 +51,7 @@ public class TypeListAct extends BaseAppActivity {
 
     @Override
     protected void initializeNavigation() {
-        znzToolBar.setSearchHint("找商品");
+        znzToolBar.setSearchHint("找服务");
         znzToolBar.setOnSearchClickListener(view -> {
             mDataManager.saveTempData(Constants.SearchType.SEARCHTYPE, "2");
             Bundle bundle = new Bundle();

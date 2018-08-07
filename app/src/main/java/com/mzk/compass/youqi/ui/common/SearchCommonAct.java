@@ -10,8 +10,6 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mzk.compass.youqi.R;
@@ -25,7 +23,6 @@ import com.mzk.compass.youqi.ui.home.organ.OrganListFrag;
 import com.mzk.compass.youqi.ui.home.people.PeopleListFrag;
 import com.mzk.compass.youqi.ui.home.product.ProductListFrag;
 import com.mzk.compass.youqi.ui.home.project.ProjectListFrag;
-import com.mzk.compass.youqi.ui.mine.order.OrderListFrag;
 import com.mzk.compass.youqi.ui.news.NewsListFrag;
 import com.znz.compass.znzlibray.eventbus.EventManager;
 import com.znz.compass.znzlibray.utils.FragmentUtil;
@@ -113,7 +110,7 @@ public class SearchCommonAct extends BaseAppActivity implements TextWatcher {
                 etSerach.setHint("搜索投资机构");
                 break;
             case "找商品":
-                etSerach.setHint("找商品");
+                etSerach.setHint("找服务");
                 break;
             case "搜索优报道":
                 etSerach.setHint("搜索优报道");

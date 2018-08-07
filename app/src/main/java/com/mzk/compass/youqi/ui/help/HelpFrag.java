@@ -83,7 +83,7 @@ public class HelpFrag extends BaseAppListFragment {
         znzToolBar.setOnSearchRightClickListener(v -> {
             gotoActivity(MessageTabAct.class);
         });
-        znzToolBar.setSearchHint("找商品");
+        znzToolBar.setSearchHint("找服务");
     }
 
     @Override

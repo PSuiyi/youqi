@@ -11,17 +11,27 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.mzk.compass.youqi.R;
 import com.mzk.compass.youqi.adapter.ProductAdapter;
 import com.mzk.compass.youqi.base.BaseAppListFragment;
+import com.mzk.compass.youqi.bean.MenuBean;
 import com.mzk.compass.youqi.bean.ProductBean;
 import com.mzk.compass.youqi.event.EventRefresh;
 import com.mzk.compass.youqi.event.EventTags;
 import com.znz.compass.znzlibray.eventbus.EventManager;
+import com.znz.compass.znzlibray.network.znzhttp.ZnzHttpListener;
 import com.znz.compass.znzlibray.utils.StringUtil;
+import com.znz.compass.znzlibray.views.ios.ActionSheetDialog.UIActionSheetDialog;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -49,12 +59,17 @@ public class ProductListFrag extends BaseAppListFragment {
     ImageView ivSortBottom2;
     @Bind(R.id.llFilt)
     LinearLayout llFilt;
+    @Bind(R.id.tvType)
+    TextView tvType;
     private String from;
     private String keywords;
     private String cateId;
+    private String cateIdParent;
     private String order;
     private int order1;
     private int order2;
+
+    private List<MenuBean> menuBeanList = new ArrayList<>();
 
     public static ProductListFrag newInstance(String from) {
         Bundle bundle = new Bundle();
@@ -75,6 +90,7 @@ public class ProductListFrag extends BaseAppListFragment {
 
     public void setCateId(String cateId) {
         this.cateId = cateId;
+        cateIdParent = cateId;
     }
 
     @Override
@@ -116,7 +132,15 @@ public class ProductListFrag extends BaseAppListFragment {
 
     @Override
     protected void loadDataFromServer() {
-
+        Map<String, String> params2 = new HashMap<>();
+        mModel.requestCategory(params2, new ZnzHttpListener() {
+            @Override
+            public void onSuccess(JSONObject responseOriginal) {
+                super.onSuccess(responseOriginal);
+                menuBeanList.clear();
+                menuBeanList.addAll(JSONArray.parseArray(responseOriginal.getString("data"), MenuBean.class));
+            }
+        });
     }
 
     @Override
@@ -202,7 +226,7 @@ public class ProductListFrag extends BaseAppListFragment {
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.tvSort1, R.id.tvSort2})
+    @OnClick({R.id.tvSort1, R.id.tvSort2, R.id.tvType})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvSort1:
@@ -266,6 +290,33 @@ public class ProductListFrag extends BaseAppListFragment {
                 order1 = 0;
 
                 resetRefresh();
+                break;
+            case R.id.tvType:
+                List<String> items = new ArrayList<>();
+                List<MenuBean> menus = new ArrayList<>();
+                items.add("全部");
+                for (MenuBean menuBean : menuBeanList) {
+                    if (menuBean.getId().equals(cateIdParent)) {
+                        for (MenuBean bean : menuBean.getSon()) {
+                            items.add(bean.getName());
+                            menus.add(bean);
+                        }
+                        break;
+                    }
+                }
+                new UIActionSheetDialog(activity)
+                        .builder()
+                        .addSheetItemList(items, null, which -> {
+                            if (items.get(which).equals("全部")) {
+                                cateId = cateIdParent;
+                                tvType.setText("全部");
+                            } else {
+                                cateId = menus.get(which - 1).getId();
+                                tvType.setText(items.get(which));
+                            }
+                            resetRefresh();
+                        })
+                        .show();
                 break;
         }
     }
