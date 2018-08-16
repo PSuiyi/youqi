@@ -311,7 +311,7 @@ public class ProductListFrag extends BaseAppListFragment {
 
                 FiltBean filtBean = new FiltBean();
                 filtBean.setId("-1");
-                filtBean.setName("全部");
+                filtBean.setName("全部分类");
                 filtList1.add(filtBean);
 
                 for (MenuBean menuBean : menuBeanList) {
@@ -331,9 +331,9 @@ public class ProductListFrag extends BaseAppListFragment {
                 }
 
                 PopupWindowManager.getInstance(activity).showFilt(llType, filtList1, (type, values) -> {
-                    if (values[1].equals("全部")) {
+                    if (values[1].equals("全部分类")) {
                         cateId = cateIdParent;
-                        tvType.setText("全部");
+                        tvType.setText("全部分类");
                     } else {
                         cateId = values[0];
                         tvType.setText(values[1]);
